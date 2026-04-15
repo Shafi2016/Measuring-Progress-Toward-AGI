@@ -95,5 +95,5 @@ epu-attention-benchmark/
 │   ├── graph3_q3_order_control.png
 │   └── graph4_q4_retrieval_vs_judgment.png
 │
-└── docs/
-    └── notes.md
+└── data/
+    └── Human labelled EPU articles 
