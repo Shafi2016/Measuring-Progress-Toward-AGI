@@ -1,0 +1,2 @@
+llm_name,trend_slope_per_step,long_minus_short_boot_mean,long_minus_short_boot_ci_lo,long_minus_short_boot_ci_hi
+anthropic/claude-sonnet-4-6@default,0.009999999999999867,0.02,-0.006,0.046

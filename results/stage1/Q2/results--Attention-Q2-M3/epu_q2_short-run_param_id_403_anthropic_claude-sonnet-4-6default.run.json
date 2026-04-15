@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:35:43.629458Z",
+  "endTime": "2026-03-31T18:35:45.443583Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-43f0c6d6",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nNEW DELHI, July 4 \u2014 A few months ago, it seemed like an ideal match. On one side was India, now open to foreign invest\u00adment but starved of the electrical power needed for economic growth. On the other was a consortium of major American com\u00adpanies with a contract to invest nearly $3 billion in an advanced power plant outside Bombay. When paperwork on the contract was completed in January, the consortium, led by the Enron Corporation of Houston, a big natural-gas supplier, was the jewel in the crown of a budding new business relation\u00adship between India and the isnited States. Now the project is in disarray, possibly on the verge of cancellation by a new Hindu nationalist government of Maha\u00adrashtra state, with its capital in Bombay. Threats by leaders of the state govern\u00adment to \"bundle Enron into the sea\" have reminded some Indians of the atmosphere in the 1970's, when Prime Minister Indira Gandhi forced Coca-Cola, I.B.M. and other big American companies out of India, driv\u00ading away foreign investment for a genera\u00adtion. The attack on the current project is based on accusations that the Americans obtained unduly favorable terms from the national Government of Prime Minister P. V. Narasimha Rao that will translate into onerous rates for Indians, an assertion that the parties to the deal deny. Critics have also noted that the contract was awarded without competitive bidding, a break with the tight rules that govern public contracts in India. For the American companies, and forforei\n\n[...TRUNCATED...]\n\nly slow, with less than $2 billion coming in last year, a fraction of the amounts foreign companies are in\u00advesting elsewhere in Asia, Those who say that Enron and its partners have been given overly generous terms focus on a provision in the contract that guarantees a minimum return on investment of 16 percent, rising to a potential 30 per\u00adcent if the Enron plant operates at close to its full 2,015-megawatt ca\u00adpacity. But the Indian power minis\u00adtry has noted that power companies under private Indian ownership have made approximately 40 per\u00adcent in recent years. As to the objections that the Gov\u00adernment awarded the Enron con\u00adtract, and those for seven other for- eign-led power projects, without competitive bidding, as required by Indian law, the power ministry said the nation's dire energy needs justi\u00adfied giving a head start to the foreign companies. Ms. Mark has sounded at times as though the Enron consortium might be ready to make concessions, per\u00adhaps on the electrical rates stipulat\u00aded in the contract. \"The India we started discussions with in 1991 was a different India,\" she said to the Times of India, in a front-page article published on Sun\u00adday. \"We went there when no one wanted to go. We devoted all our energy and a substantial sum pre\u00adparing for the project. It was done in a spirit of solidarity with India, not in a self-serving way.\" Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.85, \"focus_excerpt\": \"a new Hindu nationalist government of Maharashtra state...Threats by leaders of the state government to 'bundle Enron into the sea'...the contract was awarded without competitive bidding, a break with the tight rules that govern public contracts in India\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 943,
+            "outputTokens": 75,
+            "inputTokensCostNanodollars": "2829000",
+            "outputTokensCostNanodollars": "1125000",
+            "totalBackendLatencyMs": "1781"
+          },
+          "id": "epu_q2_short-43f0c6d6-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 943,
+        "outputTokens": 75,
+        "inputTokensCostNanodollars": "2829000",
+        "outputTokensCostNanodollars": "1125000",
+        "totalBackendLatencyMs": "1781"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #404"
+}

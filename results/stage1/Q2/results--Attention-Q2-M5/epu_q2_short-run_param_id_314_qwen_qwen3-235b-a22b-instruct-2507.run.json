@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:41:13.032555Z",
+  "endTime": "2026-04-01T17:41:14.544916Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-a13a270c",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nAmong the surge of new btoks published in advance of the holiday buying season are two that entail the thoughts and lives of America's two richest men. No. 1 in the billionaire parade is Bill Gates, the youthful genius whose wealth is derived from stock in the computer software company he founded, Microsoft. No. 2 is Warren Buffett, the \"Oracle of Omaha,\" as he's called to reflect the choice of his home town in Nebraska as a base of operations. The Gates btok, The Road Ahead, is self-written and presents his vision of the future of the technology-information revolution. Buffett has not written a btok, although he has said he might at some uncertain time. Other authors, however, have examined Buffett and his achievements. The most recent is Buffett: The Making of an American Capitalist by Wall Street Journal reporter Robert Lowenstein. It's refreshing to realize that these men made their fortunes themselves and they work not on Wall Street but in Seattle and Omaha, respectively. Their business and personal lives seem to mark them as down-to-earth folks and not stuffy old men occupying richly paneled offices in New York skyscrapers, which is a time-worn cliche for America's super- rich. Gates, recently turned 40, got rich quickly because of the great success of Microsoft, which dominates the field that provides the means for making computers do what their owners want them to do. Buffett, 65, became a multibillionaire gradually over many years by investing in a broad range of Am\n\n[...TRUNCATED...]\n\nnown firms. Anyone can join in the Buffett action with a phone call to a stock broker and the wherewithal to come up with $32,750, which is what the price of a share was on Friday. One investor who got his piece of the Buffett action considerably cheaper than that is Don Shula, who was introduced to the Omahan by a friend several years ago. The Dolphins coach once visited Buffett in his unpretentious Nebraska office and got a first-hand ltok at his fondness for his favorite beverage, cherry Coke. That's fitting, since Coca-Cola is the biggest single holding in the Buffett portfolio. Other large segments are American Express, Geico and Washington Post Co., all bought years ago at what turned out to be bargain prices. Capital Cities/ABC is another long-time holding whose forthcoming merger with Disney should add even more clout to the Buffett stock empire. In essence, his strategy entails treating each parehase as a stake in a business. His method is known as \"buy and hold.\" Don't sell shares of gtod companies when temporary reversals occur. That's not easy to do in this period of impatience and fear. \"I certainly have no desire to sell a gtod controlled business run by people I like and admire, merely to obtain a fancy price,\" Buffett once said. That philosophy defines the man and his mission. If followed properly, it can be a profitable path for gain in today's helter-skelter financial environment. Caption: photo: btok cover (n), Bill Gates (a)\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"Buffett once said. That philosophy defines the man and his mission. If followed properly, it can be a profitable path for gain in today's helter-skelter financial environment.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 851,
+            "outputTokens": 64,
+            "inputTokensCostNanodollars": "187220",
+            "outputTokensCostNanodollars": "56320",
+            "totalBackendLatencyMs": "1364"
+          },
+          "id": "epu_q2_short-a13a270c-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 851,
+        "outputTokens": 64,
+        "inputTokensCostNanodollars": "187220",
+        "outputTokensCostNanodollars": "56320",
+        "totalBackendLatencyMs": "1364"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #315"
+}

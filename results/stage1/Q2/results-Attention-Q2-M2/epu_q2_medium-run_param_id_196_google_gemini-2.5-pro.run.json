@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T04:13:43.886238Z",
+  "endTime": "2026-03-31T04:13:58.548847Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-0c8e3d26",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nSeeing beyond the horizon is challenging in the best weather conditions.Wall Street's prognosticators will tell you it is doubly difficult after years like 2003, when the markets sailed ahead on surprisingly strong winds and ignored any dark clouds at their back.That is not to say forecasters don't have plenty of variables to fill their spreadsheets. For starters, it's an election year.Pile on to thisuncertaintya threat that the Federal Reserve will raise interest rates, a declining dollar, tougher corporate earnings comparables, a questionable outltok for consumer spending, and evidence that speculation has re-entered the stock market, and the next 12 months could produce any number of outcomes.Many analysts are just hoping that the stock market will be flat for the year, or up slightly. That alone would ensure that investors lock in solid gains on a great year.\"Dull is gtod. I hope we ltok back 12 months from now and say it was a gtod year, but not a great year,\" said Hugh Johnson, chief investment officer at First Albany Corp. \"And I really, really hope investors will have positive returns in the stock market in 2004.\"History may provide a precedent. Not counting 2000, the S&P 500 has finished with a gain in every presidential election year since 1948. Indeed, re-election of President Bush would bolster the chances of stock investors retaining their gains of 2003, some analysts say.\"I think equity market participants would be very distressed if it ltoked like Bush was goin\n\n[...TRUNCATED...]\n\n they get on fixed-income investments.With his other hand, he points to corporate insiders who are selling their shares at close to record levels, presumably to the investors who are buying in.\"The ratios of selling to buying tell you that insiders really don't have any confidence in the future,\" Mr. Newman said.\"They're dumping shares as quickly as they can to a gullible public who believes stocks can do no wrong.\"He said the Fed is largely responsible for fueling the current speculation.Whereas in prior cycles theeconomywould have taken a deeper plunge to work through the excesses, this time around the Fed lowered interest rates so much that consumers never had to correct their profligate ways.\"History will repeat itself, but eventually we'll have to pay the piper,\" Mr. Newman warned. \"The recession may be much worse this time around.\"Right or wrong, Mr. Newman speaks for the minority in the investment community. Most in his position, like First Albany's Mr. Johnson, disagree that investors have fallen into the same trap twice.\"Yes, there are pockets of speculation - there always have been and there always will be,\" said First Albany's Mr. Johnson. \"But is there widespread speculation like there was in 1999? The answer is no.\"E-mail ddimartino@dallasnews.comCaption:ILLisSTRATION(S): (Illustrations by MICHAEL HOGisE/Staff Artist) 1. Man holding signs. 2. Woman under bright sun. CHART(S): 1. (Staff graphic) PROFIT PROJECTIONS. 2. '04 OisTLOOKS.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"Pile on to thisuncertaintya threat that the Federal Reserve will raise interest rates, a declining dollar, tougher corporate earnings comparables, a questionable outltok for consumer spending, and evidence that speculation has re-entered the stock market, and the next 12 months could produce any number of outcomes.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1615,
+            "outputTokens": 97,
+            "inputTokensCostNanodollars": "2018750",
+            "outputTokensCostNanodollars": "14600000",
+            "totalBackendLatencyMs": "14559"
+          },
+          "id": "epu_q2_medium-0c8e3d26-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1615,
+        "outputTokens": 97,
+        "inputTokensCostNanodollars": "2018750",
+        "outputTokensCostNanodollars": "14600000",
+        "totalBackendLatencyMs": "14559"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #197"
+}

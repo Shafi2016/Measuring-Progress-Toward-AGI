@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:50:37.944872Z",
+  "endTime": "2026-03-31T02:50:42.922511Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-db425aa4",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nAbstract: OisR OPINION: isnemployed workers poised to overcome hardships, regain optimism For those ltoking for work this Labor Day holiday, in the midst of the worst economic meltdown in 60 years, Monday is one more day where business dtors are closed to them. With South Florida's unemployment rate passing the 10-percent mark, these are truly difficult times not only for the unemployed but for those who have been forced to take pay cuts or go part-time -- or both. The possibility of local property-tax hikes and layoffs of government workers have frustrated citizens who are realizing that some of their elected officials made dismal choices during the flush years and didn't set up adequate rainy day funds to keep services running properly in a downturn. Yet there are glimmers of a slowly rebounding economy and signs that the federal $787 billion stimulus package is starting to make a difference. Nationally, unemployment claims have dropped slightly but not by as much as the Labor Department's economists had expected. Manufacturing production is improving. Car sales -- thanks to the wildly popular Cash for Clunkers program that just ended -- have jumped, and home sales are rising in South Florida. Mortgage rates are more than a point lower than a year ago -- the average 30-year fixed rate fell to 5.41 percent. And the stimulus, having just passed the 200-day mark, has created between 500,000 and 750,000 jobs. The Federal Reserve last week credited the stimulus for helping stabi\n\n[...TRUNCATED...]\n\nir part to tackle fiscal problems of their making. Case in point: Federal stimulus dollars are being used to help homeless sex offenders living under the Julia Tuttle Causeway pay for rent and utilities. They're living in bug-infested filth because a Miami-Dade ordinance and those of area cities have gone tto far in drawing 2,500-ftot buffer zones where children congregate. The local ordinance is the culprit here. The federal government should spend more to build or fix roads and transit systems -- not on clearing homeless camps created by knee-jerk local laws. For the thousands of South Floridians still unemployed, the silver lining in this economic storm is that most of the nation's economists believe the recession has ended even if the jobless rate likely will rise through next year. Without more jobs, consumer spending -- which accounts for 70 percent of the nation's economy -- will remain troublesome heading into the December holiday season. On this Labor Day, rain or shine, dtors open or shut, we will ltok to the future with optimism despite the economic malaise, knowing that generations before us overcame greater challenges. Because despite this mixed bag of economic possibilities, Americans will persevere. We always have. It's part of the character of a nation built on the sweat of immigrants and the moxie and skill of its workers. Caption: PETER ANDREW BOSCH/MIAMI HERALD STAFF The line is long at a Miami Dade College job fair in April.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.95, \"focus_excerpt\": \"The possibility of local property-tax hikes and layoffs of government workers have frustrated citizens who are realizing that some of their elected officials made dismal choices during the flush years and didn't set up adequate rainy day funds to keep services running properly in a downturn.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1567,
+            "outputTokens": 74,
+            "inputTokensCostNanodollars": "470100",
+            "outputTokensCostNanodollars": "2190000",
+            "totalBackendLatencyMs": "4915"
+          },
+          "id": "epu_q2_medium-db425aa4-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1567,
+        "outputTokens": 74,
+        "inputTokensCostNanodollars": "470100",
+        "outputTokensCostNanodollars": "2190000",
+        "totalBackendLatencyMs": "4915"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #379"
+}

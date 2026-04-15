@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:44:19.471342Z",
+  "endTime": "2026-03-31T18:44:20.857827Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-f2c596b0",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Pamela Burdman, Chronicle Staff Writer Wednesday, April 16, 1997 In just eleven months, Stanford isniversity has raised more than $100 million in private dollars to support graduate students, the university said yesterday in an announcement designed to inspire more contributors to step forward. At a press conference, Stanford president Gerhard Casper said donors have already pledged $108 million toward a $200 million goal he set last May. The money will fund an unprecedented project to protect graduate education from the uncertainties of federal research funding. As envisioned by Stanford administrators, the program is to help the schtol attract some of the best students in the world, by ensuring at least three years of financial support for some 300 students in the sciences, engineering and some social science fields. Calling the fund-raising achievement ``an important milestone in an ambitious Stanford endeavor,'' Casper was not shy about urging more entrepreneurs to join in. ``In the current climate, even Stanford cannot be taken for granted,'' he said. ``We are ltoking for help from those who benefit from our students and faculty to ensure the future.'' Two lead donors -- Texas businessman Robert Bass, a Stanford trustee, and Cisco systems chairman John Morgridge -- each gave $10 million toward the sum. Morgridge drove home the message that Silicon Valley entrepreneurs owe much of their success to rese\n\n[...TRUNCATED...]\n\nively renovated Bernal Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) COMPLIANCE MANAGERS Company ASSISTANT Company isniversity of San ANALYST Company Nextag, Inc Company Confidential Company Empire Today, LLC SR. SAP SD FisNCTIONAL APPLICATIONS ANALYST-LEAD Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.72, \"focus_excerpt\": \"The money will fund an unprecedented project to protect graduate education from the uncertainties of federal research funding.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1746,
+            "outputTokens": 45,
+            "inputTokensCostNanodollars": "5238000",
+            "outputTokensCostNanodollars": "675000",
+            "totalBackendLatencyMs": "1316"
+          },
+          "id": "epu_q2_medium-f2c596b0-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1746,
+        "outputTokens": 45,
+        "inputTokensCostNanodollars": "5238000",
+        "outputTokensCostNanodollars": "675000",
+        "totalBackendLatencyMs": "1316"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #90"
+}

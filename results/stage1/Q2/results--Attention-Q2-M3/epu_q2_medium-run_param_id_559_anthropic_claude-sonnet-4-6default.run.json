@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:00:06.396269Z",
+  "endTime": "2026-03-31T19:00:09.381735Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-fa7db45c",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Reviewed by David Moisl Sunday, March 6, 2005 ho Eric Martin wrote the 2000 novel \"Luck.'' Winners By Eric B. Martin MacADAM/CAGE; 363 PAGES; $28 Shane gets involved with helping Debra, Sam's hard-luck mom in the projects, which gives Martin an opportunity to contrast the flashy, glitzy dot-com world of mostly white winners with the gritty reality of black losers in the projects, who were virtually untouched by the btom. \"Winners\" is as much a historical portrait of an almost surreal moment in time as it is the story of one man's journey between two mutually exclusive worlds. The story is laced with keen observations of a beautiful city. Writing about the Mission in the early evening, Martin says: \"The neighborhtod change of shift is not yet complete. Daytime Mexicans still hurry for final meat and fruit and fish while nighttime whites begin to fill the bars and taquerias.\" San Francisco often seems to Shane like \"an entire city at leisure.\" Shane is a street-ball-playing, street-smart, down-to-earth guy. As a chimney sweep, he is the romantic outcast in the world of his wife's dot-com friends, an exclusive world with its own rules, language and codes. Shane -- and Martin -- view the nouveaux riches with obyious disdain. Although everyone agrees that his wife's company is taking off, \"Shane pictures a bloated cargo plane trolling down a desert runway, not some lithe and silver rocket.\" Shane is continuousl\n\n[...TRUNCATED...]\n\nensively renovated Bernal Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) 2006 M-Class$21,991 2008 A4$20,991 2010 A5$45,991 2008 7 Series$35,991 2008 SLK-Class$31,991 2008 Cayman$37,991 2008 911$64,991 2009 911$69,991 2011 Panamera$79,991 2012 Panamera$95,870 Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.97, \"focus_excerpt\": \"contrast the flashy, glitzy dot-com world of mostly white winners with the gritty reality of black losers in the projects\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1856,
+            "outputTokens": 54,
+            "inputTokensCostNanodollars": "5568000",
+            "outputTokensCostNanodollars": "810000",
+            "totalBackendLatencyMs": "2906"
+          },
+          "id": "epu_q2_medium-fa7db45c-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1856,
+        "outputTokens": 54,
+        "inputTokensCostNanodollars": "5568000",
+        "outputTokensCostNanodollars": "810000",
+        "totalBackendLatencyMs": "2906"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #560"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:51:43.851225Z",
+  "endTime": "2026-03-31T18:51:45.721481Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-c89d9aef",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Saturday, December 3, 2011 Russell Yip / The Chronicle Drew Houston will speak Tuesday. Symbol Ltokup $3.6 billion That's how much Verizon Wireless will pay for access to wireless spectrum in a new pact with cable companies. The idea is for Verizon to improve its coverage and service by buying airwaves owned by cable firms - including Comcast, the dominant provider in the Bay Area. As part of the agreement, Verizon will hawk cable service at its retail stores (and get a percentage of revenue for every customer it signs up). One wrinkle: Verizon is rolling out its own TV service, called FiOS, making it both a friend and foe to the cable industry. \"Retailers aren't getting the engineers from Facebtok. This isn't A-list development talent.\" Sucharita Mulpuru, an e-commerce analyst for Forrester Research, on the kind of programmers who work for retail chains. Tech giants such as Gtogle offer free meals, massages and other perks - something that retailers can't match because of their razor-thin margins. One company struggling with technology issues is Target, whose e-commerce site has crashed repeatedly this year. A spokeswoman says Target is \"working diligently to ensure that the site is operating efficiently for the holiday season.\" Venture capitalists, angel investors and startup executives are meeting Tuesday at Stanford isniversity for the Financing Innovation conference. The inaugural event, sponsored by \n\n[...TRUNCATED...]\n\nnovated Bernal Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) 2009 TL$28,995 2010 Civic$17,995 2010 Caliber$14,995 2010 Sebring$17,995 2010 Sebring$17,995 2004 Ram 1500$9,935 2004 Ram 1500$13,995 2008 Nitro$14,995 2008 Grand Caravan$12,995 2009 Taurus$12,495 Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.9, \"focus_excerpt\": \"Verizon Wireless will pay for access to wireless spectrum in a new pact with cable companies\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1837,
+            "outputTokens": 46,
+            "inputTokensCostNanodollars": "5511000",
+            "outputTokensCostNanodollars": "690000",
+            "totalBackendLatencyMs": "1823"
+          },
+          "id": "epu_q2_medium-c89d9aef-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1837,
+        "outputTokens": 46,
+        "inputTokensCostNanodollars": "5511000",
+        "outputTokensCostNanodollars": "690000",
+        "totalBackendLatencyMs": "1823"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #308"
+}

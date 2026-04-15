@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:36:57.402980Z",
+  "endTime": "2026-03-31T18:36:59.689746Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-15e56e02",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section he\n\nTARGET ARTICLE START\nThe rates on Treasury bills dipped last week to their lowest level since October and continued to hover at or below the Federal Reserve's 3 percent target for the Federal funds rate. But in contrast to October, when the rates on three-month bills fell to a 30-year low of 2.58 percent, the decline now does not seem to signal an expectation that the Federal Reserve will lower interest rates in the near future. Rather, the dip last week is more a response to technical factors, including the seasonal decline in Treasury bill auctions as the Government collects its taxes. In addition, there seems to be a wariness among some portfolio managers about the outltok for the market, which has made them put more money in cash until they have a better feel for where the market is going. In fact, that may be the most significant signal from this move on short-term interest rates. \"We have a lot of customers that are uncertain about the market,\" one government trader said. \"And what do you do when you are uncertain? You buy bills.\" Fed Policy Appears Steady\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section hea"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"the decline now does not seem to signal an expectation that the Federal Reserve will lower interest rates in the near future. Rather, the dip last week is more a response to technical factors\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 799,
+            "outputTokens": 64,
+            "inputTokensCostNanodollars": "286160",
+            "outputTokensCostNanodollars": "107520",
+            "totalBackendLatencyMs": "2057"
+          },
+          "id": "epu_q2_short-15e56e02-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 799,
+        "outputTokens": 64,
+        "inputTokensCostNanodollars": "286160",
+        "outputTokensCostNanodollars": "107520",
+        "totalBackendLatencyMs": "2057"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #326"
+}

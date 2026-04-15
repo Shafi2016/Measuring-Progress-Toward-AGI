@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:28:48.715300Z",
+  "endTime": "2026-03-31T18:28:50.150252Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-7e08f13d",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHONG KONG \u2014 The sudden demise last month of Kevin Rudd as prime minister of Australia points to a fundamental issue for that nation: How dependent should it be on its vast mineral resoarees? For sure, the underlying reason for Mr. Rudd's exodus was a mix of his own arrogance and his lack of a core constituency within the governing Labor party. He was useful to the party only so long as he was popular in the country. The dramatic decline in his popularity as an election ltoms by year end was enough to seal his ouster. The immediate cause of that decline was the plan for a so-called \"super tax\" of 40 percent on mining profits. This was the subject of a barrage of attacks from mining companies that put projects on hold and accused the government of undermining Australia and its currency, driving investors to other mineral-rich nations. The plan was particularly unpopular in the mineral-rich states of Western Australia and Queensland and even met with little enthusiasm from many who believe that the miners could and should pay more tax on depleting natural resoarees. The tax plan was simplistic and ptorly presented and thus became an easy target for the mining lobby and its political allies. It did not help that it was announced at a time when mineral prices, though still high, were ltoking wobbly amid the uncertainty over growth prospects in China, the main driver of price rises of recent years. The Rudd proposal assumed that the miners could be hit for enough extra tax to reduc\n\n[...TRUNCATED...]\n\nundermining manufacturing and skill-based services. In other words, it may be suffering from a serious case of the \"Dutch disease\" \u2014 the decline of other sectors caused by a sudden increase in mineral wealth, in the Dutch case natural gas in the 1960s. Australia has had an enviable G.D.P. growth record in recent years. Its banks escaped the financial meltdown in the isnited States and Europe and it has been in the lead in pushing interest rates back to more normal levels. But critics attribute most of this success to the luck of mineral prices, now almost triple their 2002 levels. If that luck fails to hold it could leave the nation struggling to finance its foreign debts and with the non-mining sectors weakened by years of an over-strong currency. Agricultural exports endangered by water shortages. Minerals enable urban Australia to enjoy a high standard of living, importing the latest consumer durables from Asia while creating jobs for a fast-growing immigrant population. It is hard to argue that new projects are undesirable given the wealth of resoarees Australia's vast land mass contains. But implicit in the mining tax issue remains the question of the over-reliance on mining both for government revenue and exports. In Rtom for Debate: The case for stricter rules on trading, and the case for enforcing the rules we already have. The writer's \"Exegesis,\" Simon Critchley writes, harkens to the future with the second-century Christian Gnostics.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"implicit in the mining tax issue remains the question of the over-reliance on mining both for government revenue and exports.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 832,
+            "outputTokens": 51,
+            "inputTokensCostNanodollars": "369152",
+            "outputTokensCostNanodollars": "85680",
+            "totalBackendLatencyMs": "1247"
+          },
+          "id": "epu_q2_short-7e08f13d-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 832,
+        "outputTokens": 51,
+        "inputTokensCostNanodollars": "369152",
+        "outputTokensCostNanodollars": "85680",
+        "totalBackendLatencyMs": "1247"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #129"
+}

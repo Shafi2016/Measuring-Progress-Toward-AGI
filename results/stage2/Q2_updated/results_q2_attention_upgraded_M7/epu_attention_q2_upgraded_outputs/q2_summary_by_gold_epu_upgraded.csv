@@ -1,0 +1,7 @@
+llm_name,condition,group_name,group_value,n_rows,accuracy,accuracy_sd,valid_prediction_rate,parse_fail_rate,mean_confidence,excerpt_in_target_rate,fp_rate_among_gold0,fn_rate_among_gold1,mean_total_chars,mean_prompt_chars,mean_prompt_tokens
+openai/gpt-5.4-2026-03-05,short,gold_epu,1,250,0.552,0.49828621958318897,1.0,0.0,0.8759600000000001,0.608,,0.448,3000.0,4105.808,1026.996
+openai/gpt-5.4-2026-03-05,short,gold_epu,0,250,0.748,0.43503219656502756,1.0,0.0,0.89876,0.684,0.252,,3000.0,4105.8,1026.992
+openai/gpt-5.4-2026-03-05,medium,gold_epu,1,250,0.572,0.49578140020290046,1.0,0.0,0.86712,0.616,,0.428,7000.0,8105.8,2026.976
+openai/gpt-5.4-2026-03-05,medium,gold_epu,0,250,0.776,0.41775840907564465,1.0,0.0,0.8960799999999999,0.708,0.224,,7000.0,8105.82,2027.0
+openai/gpt-5.4-2026-03-05,long,gold_epu,1,250,0.56,0.49738270801560014,1.0,0.0,0.8695600000000001,0.676,,0.44,13000.0,14105.812,3527.0
+openai/gpt-5.4-2026-03-05,long,gold_epu,0,250,0.728,0.445882546170984,1.0,0.0,0.8917999999999999,0.728,0.272,,13000.0,14105.812,3527.0

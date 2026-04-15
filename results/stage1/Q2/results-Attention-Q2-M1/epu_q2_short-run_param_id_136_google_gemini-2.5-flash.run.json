@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T01:51:47.529864Z",
+  "endTime": "2026-03-31T01:51:50.755373Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-54a7eddb",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Sectio\n\nTARGET ARTICLE START\nMayor Koch, who has forecast fiscal retrenchment for New York City all winter long, yesterday gave the first gentle spring hint that there might be more money to spend in his budget for the coming fiscal year than he has so far found. The Mayor, in a letter to the heads of all city agencies, emphasized that the city's ''basic budget outltok remains unchanged'' from his gltomy preliminary predictions in February. He said his executive budget for the 1989 fiscal year, to be proposed May 9, would contain no money to restore $221 million in already announced service cuts. But Mr. Koch, noting that economic conditions were still uncertain, said he had told his budget office to prepare a list of ''contingency service restorations'' that could be made ''if more resoarees become available before the close of the fiscal year,'' on June 30. The Mayor's letter also amounted to a response to a letter of complaint sent to him Tuesday by the City Council majority leader, Peter F. Vallone, and the Council Finance Committee chairman, Michael DeMarco. They wrote that ''recent economic developments would dictate that the shroud of uncertainty now be lifted'' from the budget and that service cuts be restored. A Revised Projection\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Sectio"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.9, \"focus_excerpt\": \"But Mr. Koch, noting that economic conditions were still uncertain, said he had told his budget office to prepare a list of ''contingency service restorations'' that could be made ''if more resoarees become available before the close of the fiscal year,''\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 796,
+            "outputTokens": 74,
+            "inputTokensCostNanodollars": "238800",
+            "outputTokensCostNanodollars": "1450000",
+            "totalBackendLatencyMs": "3157"
+          },
+          "id": "epu_q2_short-54a7eddb-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 796,
+        "outputTokens": 74,
+        "inputTokensCostNanodollars": "238800",
+        "outputTokensCostNanodollars": "1450000",
+        "totalBackendLatencyMs": "3157"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #137"
+}

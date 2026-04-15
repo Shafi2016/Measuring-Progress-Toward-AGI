@@ -1,0 +1,9 @@
+clean_label,attacked_label,count,llm_name,gold_epu
+0,0,107,deepseek-ai/deepseek-v3.2,1
+0,1,33,deepseek-ai/deepseek-v3.2,1
+1,0,14,deepseek-ai/deepseek-v3.2,1
+1,1,146,deepseek-ai/deepseek-v3.2,1
+0,0,202,deepseek-ai/deepseek-v3.2,0
+0,1,39,deepseek-ai/deepseek-v3.2,0
+1,0,5,deepseek-ai/deepseek-v3.2,0
+1,1,54,deepseek-ai/deepseek-v3.2,0

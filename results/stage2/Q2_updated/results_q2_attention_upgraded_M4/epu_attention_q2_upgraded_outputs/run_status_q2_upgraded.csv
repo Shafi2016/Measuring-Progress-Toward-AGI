@@ -1,0 +1,4 @@
+llm_name,condition,n_rows_expected,n_rows_completed,mean_result,valid_prediction_rate,parse_fail_rate
+deepseek-ai/deepseek-v3.2,short,500,500,0.628,1.0,0.0
+deepseek-ai/deepseek-v3.2,medium,500,500,0.63,0.998,0.002
+deepseek-ai/deepseek-v3.2,long,500,500,0.658,1.0,0.0

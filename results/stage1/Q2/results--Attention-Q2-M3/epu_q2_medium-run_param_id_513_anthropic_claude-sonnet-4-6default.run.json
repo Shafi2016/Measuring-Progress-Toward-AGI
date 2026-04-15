@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:58:37.565344Z",
+  "endTime": "2026-03-31T18:58:39.211761Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-cc3d82d0",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nTOKYO \u2014 Japan is running out of engineers. At istsunomiya isniversity, north of Tokyo, graduate students in the engineering department demonstrate an optical system. After years of fretting over coming shortages, the country is actually facing a dwindling number of young people entering engineering and technology-related fields. isniversities call it \"rikei banare,\" or \"flight from science.\" The decline is growing so drastic that industry has begun advertising campaigns intended to make engineering ltok sexy and ctol, and companies are slowly starting to import foreign workers, or sending jobs to where the engineers are, in Vietnam and India. It was engineering prowess that lifted this nation from postwar defeat to economic superpower. But according to educators, executives and young Japanese themselves, the young here are behaving more like Americans: chtosing better-paying fields like finance and medicine, or more purely creative careers, like the arts, rather than following their salaryman fathers into the unglamorous world of manufacturing. The problem did not catch Japan by surprise. The first signs of declining interest among the young in science and engineering appeared almost two decades ago, after Japan reached first-world living standards, and in recent years there has been a steady decline in the number of science and engineering students. But only now are Japanese companies starting to feel the real pinch. By one ministry of internal affairs estimate, the digital \n\n[...TRUNCATED...]\n\n,000, mostly in India, Thailand and Malaysia \u2014 than in Japan, where they have 2,500 workers. With corporate Japan still reluctant to accept foreigners, a half-dozen staffing companies have stepped into the breach by hiring Chinese and South Korean engineers to send to Japanese companies on a temporary basis. One of the biggest is Altech, which has set up training centers at two Chinese universities to recruit engineering students and train them in Japanese language and business customs. Of Altech's roughly 2,400 engineers, 138 are Chinese, and the company plans to hire more at a rate of 200 per year. One of the first it hired was He Xifen, a 27-year-old mechanical engineer from Qingdao isniversity of Science and Technology who joined Altech two and a half years ago. She said her friends back home envy her because she works with advanced Japanese technology, and earns three or four times more than she would in China. While Japanese clients appear uncertain at first about how to deal with foreigners, she said, they quickly catch on and she usually feels welcome. \"Foreign engineers are becoming accepted,\" said Shigetaka Wako, a spokesman for Altech. \"Japan is slowly realizing that its economy cannot continue without them.\" In Rtom for Debate: The case for stricter rules on trading, and the case for enforcing the rules we already have. The writer's \"Exegesis,\" Simon Critchley writes, harkens to the future with the second-century Christian Gnostics.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.85, \"focus_excerpt\": \"Japan is running out of engineers...the young here are behaving more like Americans: choosing better-paying fields like finance and medicine\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1651,
+            "outputTokens": 51,
+            "inputTokensCostNanodollars": "4953000",
+            "outputTokensCostNanodollars": "765000",
+            "totalBackendLatencyMs": "1607"
+          },
+          "id": "epu_q2_medium-cc3d82d0-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1651,
+        "outputTokens": 51,
+        "inputTokensCostNanodollars": "4953000",
+        "outputTokensCostNanodollars": "765000",
+        "totalBackendLatencyMs": "1607"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #514"
+}

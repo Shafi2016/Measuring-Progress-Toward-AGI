@@ -1,0 +1,4 @@
+llm_name,condition,n_rows_expected,n_rows_completed,mean_result,valid_prediction_rate,parse_fail_rate
+anthropic/claude-sonnet-4-6@default,short,500,500,0.618,0.992,0.008
+anthropic/claude-sonnet-4-6@default,medium,500,500,0.616,0.964,0.036
+anthropic/claude-sonnet-4-6@default,long,500,500,0.638,0.992,0.008

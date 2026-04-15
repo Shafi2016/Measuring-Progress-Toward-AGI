@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:12:21.631300Z",
+  "endTime": "2026-04-03T00:12:27.046220Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-3ce9cc4a",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nFrom some points on the prairie, North Texas' rock-solid new-car market suddenly ltoks a little rocky.In a highly unusual drop, new-vehicle sales in the Dallas-Fort Worth area declined 5.3 percent in the first quarter - the first quarterly decline in nearly a decade.Consumer confidence, even in ever-optimistic Dallas, seems to be wavering, dealers say. And some dealership lots are crowded with unsold inventories of new cars and trucks.But new-car dealers are as optimistic as ever - and perhaps with gtod reason.The auto industry led the nation's manufacturing sector into the current slump when it began reducing production and laying off workers in January, economists and industry analysts say. Automakers have since been able to reduce their inventories, and many are resuming normal production schedules.As a result, the auto industry may be poised to lead a rebound in manufacturing - and maybe the overalleconomy, they say.\"Our industry is in gtod shape,\" said Paul Taylor, chief economist with the National Automobile Dealers Association. \"I'm saying we'll sell 16.3 million [new vehicles], and I'm sticking with it because I think theeconomyhas the fundamentals to support it.\"The view from Carl Sewell's office north of downtown Dallas is also pretty gtod.Over the next year, Mr. Sewell is planning more than $10 million worth of projects, including new facilities for his Infiniti and Cadillac dealerships in North Dallas, a new \"pre-owned center\" for used-vehicle sales at his Lexus d\n\n[...TRUNCATED...]\n\ner of the dealerships.He said plans for the dealership were not affected by the area'suncertaineconomy.\"You sail your own ship,\" Mr. Quintana said. \"Even if the water is rough, you can still reach your destination.\"*AutoNation Inc., one of the largest dealership groups in the area, has completed work on Bankston Chrysler-Jeep in Frisco. The new dealership opened in early April on a 12-acre site next dtor to one of AutoNation's other dealerships, Bankston Ford of Frisco. Both dealerships are off Highway 121 just west of the tollway.Jim Heckert, regional manager of AutoNation, has also broken ground on a seven-acre site in Grapevine where the company plans to construct a new facility for Payton Wright Ford. The dealership is now located off Highway 114 and Main Street.*The Huffines Dealerships, the largest new-car group in Collin and Denton counties, recently opened a new Dodge dealership, Huffines Dodge, in Plano at Plano Parkway and Ohio Drive. The dealership opened earlier this month on a 22-acre site, said dealer principal Ray Huffines, who also oversees Ray Huffines Chevrolet and Huffines Chrysler-Plymouth-Jeep, both in Plano.\"If we were worried about theeconomy, we would have been conservative and wouldn't have built it so big,\" Mr. Huffines said.Caption:PHOTO(S): (LAWRENCE JENKINS/Staff Photographer) Over the next year, Carl Sewell, chairman of Sewell Automotive Cos., is planning more than $10 million worth of projects for his dealerships.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"He said plans for the dealership were not affected by the area's uncertain economy.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1605,
+            "outputTokens": 47,
+            "inputTokensCostNanodollars": "3210000",
+            "outputTokensCostNanodollars": "5568000",
+            "totalBackendLatencyMs": "5288"
+          },
+          "id": "epu_q2_medium-3ce9cc4a-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1605,
+        "outputTokens": 47,
+        "inputTokensCostNanodollars": "3210000",
+        "outputTokensCostNanodollars": "5568000",
+        "totalBackendLatencyMs": "5288"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #374"
+}

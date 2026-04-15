@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:28:31.921180Z",
+  "endTime": "2026-03-31T18:28:37.628285Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-7d33b735",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nWASHINGTON, Jan. 3 \u2014 While America celebrated a decade of prosperity, Lawrence B. Lindsey spent the 1990's warning of an immi\u00adnent economic tightening. Consumers were spending far be\u00adyond their means, he said. The nation depended tto much on foreign lend\u00ading. He saw the stock market as so wildly overvalued that he dumped his own stocks a few years ago, ex\u00adplaining at the time that he got out of the market \"so I can sleep at night.\" Mr. Lindsey, an economist trained at Harvard and a former Federal Reserve Board governor who ad\u00advised two presidents on economic policy, long seemed a hopeless pessi\u00admist. Today, he ltoked like a vindi\u00adcated prophet. President-elect George W. Bush named Mr. Lindsey, 46, as his White House economic adviser, formalizing Mr. Lindsey's role as the incoming administration's top thinker on eco\u00adnomic matters. The appointment came the same day Mr. Bush presid\u00aded over a conference in Austin to promote the tax cuts Mr. Lindsey has designed as a way to protect the nation against an economic slump, and just an hour after the Fed con\u00adfirmed a gltomier outltok for the economy with a sharp cut in interest rates. \"Larry, to his credit, has been saying for some time that there are some real weaknesses in this econ\u00adomy,\" said Martin Feldstein, a Har\u00advard economist and Mr. Lindsey's longtime mentor. \"It sure ltoks that way now.\" ' In his new post, Mr. Lindsey will have the president's ear on all mat\u00adters economic, including tax policy, Social Security, the budget and\n\n[...TRUNCATED...]\n\nr said. As the 2000 presidential race ap\u00adproached, Mr. Lindsey frequently wrote op-ed articles staking out posi\u00adtions on a variety of economic topics. He criticized the way the Clinton administration managed the dollar. He has repeatedly said that the Clinton administration has bungled relations with Japan, the world's sec\u00adond-largest economy, and has called for a more ctoperative relationship with that nation. But the main issue that ingratiated Mr. Lindsey to the president-elect was taxes. Mr. Lindsey drew up a plan to reduce rates for all taxpay\u00aders, including a reduction in the top rate to 33 percent from 39.6 percent. He argued passionately that the tax reductions would prompt consumers1 to save more money, helping insulate J the nation from a deep recession if' the long btom \u2014 which he has re\u00adpeatedly called a bubble \u2014 were to1'- pop. Democrats criticized the tax cut _ as a giveaway to the rich that threat\u00adened the drive to reduce government ; debt. The warnings were echoed by\" many mainstream economists, espe; dally because the nation's economy at the time the tax plan was proposed seemed poised to overheat, rather\"' than contract. But Mr. Lindsey, like Cassandra, ] has stuck to his forecast, and he wilt now have a chance to help a presi-' ' dent push for tax reductions at a\"' time when the economy appears to l have ctoled dramatically. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.85, \"focus_excerpt\": \"President-elect George W. Bush named Mr. Lindsey, 46, as his White House economic adviser\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 894,
+            "outputTokens": 43,
+            "inputTokensCostNanodollars": "403872",
+            "outputTokensCostNanodollars": "72240",
+            "totalBackendLatencyMs": "3221"
+          },
+          "id": "epu_q2_short-7d33b735-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 894,
+        "outputTokens": 43,
+        "inputTokensCostNanodollars": "403872",
+        "outputTokensCostNanodollars": "72240",
+        "totalBackendLatencyMs": "3221"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #123"
+}

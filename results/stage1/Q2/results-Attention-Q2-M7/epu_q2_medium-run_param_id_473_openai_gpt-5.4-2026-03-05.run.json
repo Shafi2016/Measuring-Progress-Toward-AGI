@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:20:02.029960Z",
+  "endTime": "2026-04-03T00:20:03.056979Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-da546836",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nReaders sound off about business issues. A lot of us would trade checks with Ford Re: \"Executive chairman is getting paid again at Ford\" by The Associated Press, Aug. 7 Business section \"Bill Ford gets first check since 2005 for total of $15.8 million.\" Let's see, that works out to $3.16 million per year! Even though it's in today's dollars, I'd bet there isn't a single employee below the executive level anywhere that wouldn't instantly trade his salary for Bill's yearly equivalent. At least he's paid somewhat in relation to his company's present performance, unlike most executives that are continuing to be exorbitantly paid regardless of their company's performance in the marketplace, even during devastating losses and greatly devalued stocks. Otto Bartsch, Plano Estate planning reminder can help many Re: \"Estate planning: not just for the rich\" by Pamela Yip, Aug. 7 Business section While we are well along with our estate planning, I am sure many others are not and do not even know about it. isnfortunately, there will be many who still will not see your article, but there will be many helped by it. Ralph S. Miller, Dallas Turn Valley View mall into an outlet center Re: \"Lenders take control of Valley View mall\" by Steve Brown and Maria Halkias, Aug. 5 Business section Perhaps the lenders who have found they are now the owners of Valley View Center might consider developing the center into an outlet mall. With the Galleria so near, it will be impossible to draw major departm\n\n[...TRUNCATED...]\n\nuld enhance this property and make it useful once again. Frankie L. Horn, Dallas Blame taxuncertaintyfor weak hiring Re: \"Economist fears a double-dip recession\" by Market Watch, Aug. 12 Business section This article quoted Robert Shiller, Yale economics professor, as saying there is a significant likelihtod of double-dip recession if the government doesn't help the unemployed. I continue to read and hear this trumpeted in your paper and on the airwaves, and I think I am living in some level of the recent movie Inception. I am a partner in a small to medium-size business in Dallas, and I think our situation is pretty typical. In the fall of 2008, we eliminated five positions (out of 30 total employees) that we felt were no longer necessary, given the changes in theeconomyand the need to become more efficient. Our company has maintained reasonable profitability without reducing the compensation of any of our remaining employees. However, we have been very cautious about expanding or hiring to create growth, and the reason is very simple:uncertainty. Not knowing what is going to happen to personal tax rates and capital gains rates has us keeping our powder dry. Small-business owners don't want any increases in the personal tax rates or capital gains rates not because it will cost me more money, but because I will be forced to cut back in my business by either not expanding, reducing compensation or laying off more workers. Ron Simmons, Lewisville\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":1,\"confidence\":0.95,\"focus_excerpt\":\"Not knowing what is going to happen to personal tax rates and capital gains rates has us keeping our powder dry.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1578,
+            "outputTokens": 41,
+            "inputTokensCostNanodollars": "3945000",
+            "outputTokensCostNanodollars": "615000",
+            "totalBackendLatencyMs": "891"
+          },
+          "id": "epu_q2_medium-da546836-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1578,
+        "outputTokens": 41,
+        "inputTokensCostNanodollars": "3945000",
+        "outputTokensCostNanodollars": "615000",
+        "totalBackendLatencyMs": "891"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #474"
+}

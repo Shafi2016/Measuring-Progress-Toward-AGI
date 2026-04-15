@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:03:41.016223Z",
+  "endTime": "2026-04-02T23:03:48.602322Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-0767b7a3",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nSlumps in Oil and Electronics Industries Trim Earnings for California Economy Gellene, Denise Los Angeles Times (1923-Current File); Jun 8, 1986; ProQuest Historical Newspapers: Los Angeles Times (1881-1990) pg. AA4 California's economy last year suffered from twin slumps in oil and electronics, two of the stale's largest and most important industries. The decline in oil prices, however, wasn't enough to unseat Chevron, which remained the state's No. 1 industrial company with $45.3 billion in sales for 1985. Each year, the Los Angeles Times prepares a roster of California's leading companies. In last year's report, California firms soared. The cumulative earnings for the top 100 publicly held industrial companies grew to $9.6 billion\u2014up 23% in the first year of the post-recession economy. But in 1985, earnings plummeted to $5.5 billion, nearly a 40% drop. Most of that decline is attributable to Big Oil and electronics. In fact, four giant oil-related concerns\u2014Atlantic Richfield, Occidental Petroleum, isnocal and Fluor\u2014are responsible for more than one-third of the earnings decline. Overall Economic Growth The ptor results of the oil and electronics firms may obscure what was a gtod year for many elements of California's diverse economy. Economists point out that the state's economy as a whole grew. They point to isCLA's estimate that the stale's economy grew by 4.8% in 1985, compared to a 2.2% increase in the is.S. gross national product. A review of The Times Top 100 shows t\n\n[...TRUNCATED...]\n\nompanies were dropped from the list either because of mergers or sales decreases. Economists are optimistic about 1986, although they project California's gross state product\u2014the value of gtods and services produced in the state\u2014will experience a lower growth rate. Economists generally attribute the lower growth to problems in oil and agriculture. The isCLA forecasters predict the gross state product will grow by 3.5% in 1986 to $453.2 million. Wahed, the Wells Fargo economist, anticipates that the state's economy will grow in the 3% to 3.25% range. Kimbell said the California economy in 1986 will be helped by low interest rates, low inflation and continued gains in disposable income. \"There's no reason why it shouldn't be a great year,\" he said.. To be included in The Times Roster, companies must have their principal headquarters in California and, with the exception of certain financial institutions, their stock must be publicly held. Those requirements eliminate many companies in the state generating billions of dollars in sales and profits, because their head offices are located outside California or because they are privately owned. Compilation and analysis for the 1986 Roster were provided by Margaret Wetzel, Maureen Perry and Martha Me Nair of the Los Angeles Times marketing research department. Design: George Carey and Frank Burslnger. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"Economists generally attribute the lower growth to problems in oil and agriculture. The isCLA forecasters predict the gross state product will grow by 3.5% in 1986\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 914,
+            "outputTokens": 69,
+            "inputTokensCostNanodollars": "1828000",
+            "outputTokensCostNanodollars": "8184000",
+            "totalBackendLatencyMs": "7444"
+          },
+          "id": "epu_q2_short-0767b7a3-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 914,
+        "outputTokens": 69,
+        "inputTokensCostNanodollars": "1828000",
+        "outputTokensCostNanodollars": "8184000",
+        "totalBackendLatencyMs": "7444"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #469"
+}

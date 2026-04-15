@@ -1,0 +1,7 @@
+llm_name,condition,group_name,group_value,n_rows,accuracy,accuracy_sd,valid_prediction_rate,parse_fail_rate,mean_confidence,excerpt_in_target_rate,fp_rate_among_gold0,fn_rate_among_gold1,mean_total_chars,mean_prompt_chars,mean_prompt_tokens
+deepseek-ai/deepseek-v3.2,short,gold_epu,1,250,0.464,0.49970272287128864,1.0,0.0,0.84576,0.54,,0.536,3000.0,4105.808,1026.996
+deepseek-ai/deepseek-v3.2,short,gold_epu,0,250,0.792,0.40669102567114235,1.0,0.0,0.87148,0.584,0.208,,3000.0,4105.8,1026.992
+deepseek-ai/deepseek-v3.2,medium,gold_epu,1,250,0.528,0.5002168204587681,1.0,0.0,0.85256,0.572,,0.472,7000.0,8105.8,2026.976
+deepseek-ai/deepseek-v3.2,medium,gold_epu,0,250,0.732,0.44380610115419405,0.996,0.004,0.8639199999999999,0.64,0.264,,7000.0,8105.82,2027.0
+deepseek-ai/deepseek-v3.2,long,gold_epu,1,250,0.568,0.4963481094787534,1.0,0.0,0.86048,0.52,,0.432,13000.0,14105.812,3527.0
+deepseek-ai/deepseek-v3.2,long,gold_epu,0,250,0.748,0.43503219656502756,1.0,0.0,0.8675999999999999,0.632,0.252,,13000.0,14105.812,3527.0

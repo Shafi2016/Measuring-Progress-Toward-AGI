@@ -1,0 +1,2 @@
+llm_name,trend_slope_per_step,long_minus_short_boot_mean,long_minus_short_boot_ci_lo,long_minus_short_boot_ci_hi
+google/gemini-3.1-pro-preview,0.008999999999999904,0.018,-0.002,0.04

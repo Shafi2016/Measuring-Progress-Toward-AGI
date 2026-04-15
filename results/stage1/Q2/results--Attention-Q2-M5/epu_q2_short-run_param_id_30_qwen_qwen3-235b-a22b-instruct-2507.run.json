@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:36:02.688959Z",
+  "endTime": "2026-04-01T17:36:03.868529Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-c0d8002b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nSuburban Schtols isncertain Of Financing Study's Impact Bj; lisa w. foderaro A day after a state commission re\u00adleased its recommendations on over\u00adhauling financing for public educa\u00adtion. schtol officials in the New York suburbs said they were warily opti\u00admistic that ptor districts might stand to benefit while wealthier dis\u00adtricts would at least not be penalized. Gov. George E. Paiaki charged the Commission on Education Reform with examining schtol financing af\u00adter New York's highest court or\u00addered the state last June to calculate the cost of improving the New York City schtols. Mr. Pataki asked the commission to expand its calcula\u00adtions and recommendations to cover the entire state. The commission estimated that an additional S2.5 billion to $5.6 billion a year would have to be spent on public schtols to provide all students with a sound, basic education. The state now apportions about SI 1.5 billion a year to local districts, and it was not clear whether the new money would come mostly from the state or from the local schtol districts as well. Schtols superintendents on Long Island and in Westchester praised one of (he guiding principles of the commission: that no district lose state financing as a result of changes in the slate aid formulas. \"Obyiously, that's a soaree of com\u00adfort,\" said Dr. Bruce L. Dennis, su\u00adperintendent of the Bedford Central Schtol District in Westchester, which takes in rolling horse farms in Bedford but also gritty multifamily buildings in Mount Kisc\n\n[...TRUNCATED...]\n\ny may be. Dr. Johnson, superintendent of the Rockville Centre schtols, said he tried to dispel any notions that the suburbs are uniformly wealthy. \"One of the things we became sensitive to is that there arc large percentages of high-needs students in many of our suburban districts,\" he said. \"The money needs to follow- needy chil\u00addren.\" Yet superintendents like Judith Johnson of the Peekskill City schtols in northern Westchester worried that districts like hers might be over\u00adltoked. Standard & Ptor's, which performed the commission's finan\u00adcial analysis, said in a separate re\u00adport that at least three-quarters of additional financing should go to New York City schtols. \"There arc 53 small cities in New York State,\" said Ms. Johnson, whose district is one of the ptorest in West\u00adchester, with 60 percent of the 3,000 students eligible for a free or re\u00adduced lunch. \"Does that mean that we compete for what little is left?\" Dr. Johnson said yesterday that he believed Standard & Ptor's recom-- mendation for New York City's share \"overstates the problem.\" Despite assurances that districts would at least maintain present state aid levels, some officials fretted that* well-to-do districts could become easy targets for cost-cutters. \"It costs more to do business downstatc,\" said Gary Bixhorn. dis\u00adtrict superintendent of the Eastern Suffolk County Board of Ctoperative Educational Services. \"None of the superintendents can afford to lose that state support.\"\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"it was not clear whether the new money would come mostly from the state or from the local schtol districts as well\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 890,
+            "outputTokens": 51,
+            "inputTokensCostNanodollars": "195800",
+            "outputTokensCostNanodollars": "44880",
+            "totalBackendLatencyMs": "1019"
+          },
+          "id": "epu_q2_short-c0d8002b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 890,
+        "outputTokens": 51,
+        "inputTokensCostNanodollars": "195800",
+        "outputTokensCostNanodollars": "44880",
+        "totalBackendLatencyMs": "1019"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #31"
+}

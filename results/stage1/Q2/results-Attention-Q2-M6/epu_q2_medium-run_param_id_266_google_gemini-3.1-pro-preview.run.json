@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:58:08.468044Z",
+  "endTime": "2026-04-02T23:58:13.082461Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-ccf30289",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nLegislation that brought Americans the future trade accord with Mexico sailed through Congress six years ago, rating barely a blip on the media or public radar screens. But today, opponents and supporters of fast-track trade legislation to negotiate new global trade deals had unsheathed their swords even before President Clinton's bill was delivered to Capitol Hill last Tuesday. The battle about fast track promises to be both swift and stormy, marking a continuation of four years of rancorous debate among Americans about trade. What is different about this fight is that no specific trade accord is yet on the table. Pitted against an umbrella organization of business groups favoring fast track is a coalition of labor, environmental, family farm, human rights and consumer groups opposed to past free trade agreements. isnder fast track, a legislative device first used by former President Nixon in 1974, Congress takes an up or down vote but cannot make any amendments on trade accords. Supporters argue that few countries would be willing to negotiate with the isnited States if such a deal could be amended. The Business Roundtable, the organization of chief executives of the biggest is.S. corporations that spearheaded the campaign to win approval of the North American Free Trade Agreement in 1993 and the General Agreement on Tariffs and Trade in 1994-1995, already has fired up its ``American Leads on Trade'' drive for fast track. In July, these captains of American industry sent ou\n\n[...TRUNCATED...]\n\nch. House Democratic leader Richard Gephardt has declared his opposition to Clinton's bill, calling it ``a retreat to the policies of the past.'' Gephardt's agreement to support Bush's fast track bill in 1991, bringing with him 30 Democratic votes, was the key to passage of fast track that year. In opposing the latest legislation, Gephardt insisted that is.S. workers and the environment must be treated the same as copyrights and investments, whose protection is negotiated in trade accords. Former Democratic representative from Florida, James Bacchus, now a judge at the WTO appellate body that rules on international trade disputes, insisted in a speech in Miami last week that the rest of the world will get ahead of the isnited States without trade negotiations. ``The people of America need to be told by Congress why it is we are negotiating trade agreements,'' Bacchus said at the Miami Herald Americas Conference. ``Trade leads to prosperity, prosperity leads to peace.'' But the opposition dismisses the view that without trade pacts, the is.S. economy will suffer. ``Three or four years have gone by, and we haven't had fast track and our exports are going great guns, according to [is.S. Trade Representative] Charlene Barshefsky,'' said Thea Lee, spokeswoman for the AFL-CIO. ``People in the isnited States are unhappy with how we have done trade policy in the past, they want it done differently.'' Memo: FROM SOisTH FLORIDA TO THE WORLD INTERNATIONAL\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"The battle about fast track promises to be both swift and stormy, marking a continuation of four years of rancorous debate among Americans about trade. What is different about this fight is that no specific trade accord is yet on the table.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1552,
+            "outputTokens": 77,
+            "inputTokensCostNanodollars": "3104000",
+            "outputTokensCostNanodollars": "4104000",
+            "totalBackendLatencyMs": "4482"
+          },
+          "id": "epu_q2_medium-ccf30289-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1552,
+        "outputTokens": 77,
+        "inputTokensCostNanodollars": "3104000",
+        "outputTokensCostNanodollars": "4104000",
+        "totalBackendLatencyMs": "4482"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #267"
+}

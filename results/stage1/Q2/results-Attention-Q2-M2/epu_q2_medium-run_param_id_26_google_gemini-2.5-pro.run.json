@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T03:46:32.938246Z",
+  "endTime": "2026-03-31T03:46:38.787227Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-ff91de7b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Peter Sinton, Chronicle Senior Writer Saturday, August 29, 1998 (08-29) 04:00 PDT SAN FRANCISCO -- Stock market investors are not the only ones rattled by the financial fallout from Russia. Bank of America announced yesterday that it will write off $220 million in the current quarter, primarily the result of trading losses in Russia. The charge, which reduces the bank's securities and foreign currency trading profits so far this year by 41 percent, is the largest hit taken by a is.S. bank in the crisis to date. On Thursday, Republic New York Corp. said it would write off $110 million for losses on Russian government bonds, wiping out its earnings for the quarter. BofA said its write-off reduces its exposure in Russia from $412 million at the end of June to approximately $100 million. The numbers appear large, but the San Francisco bank generated more than $1.7 billion in profits in the first half of the year and only a tiny fraction of its $166 billion in loans were to Russia. Nevertheless, investors did not take the news kindly. BofA's stock skidded $4.18 to $69.56 yesterday after dropping $3.88 on Thursday. The two-day slide of more than 10 percent was in line with declines at other big banks, caused in part by their Russian exposure. Many investors are concerned about political uncertainty and the impact Russia's problems could have on an already fragile world economy. After all, is.S. trade with Russia\n\n[...TRUNCATED...]\n\n Extensively renovated Bernal Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) 2010 TL$26,988 2012 Civic$16,988 2002 S-Series$6,588 2008 Accord$21,988 2009 Accord$21,588 2009 Accord$20,988 2007 Civic$14,988 2011 Civic$17,588 2011 Civic$18,288 2004 Pilot$14,988 Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"Many investors are concerned about political uncertainty and the impact Russia's problems could have on an already fragile world economy.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1731,
+            "outputTokens": 58,
+            "inputTokensCostNanodollars": "2163750",
+            "outputTokensCostNanodollars": "5300000",
+            "totalBackendLatencyMs": "5750"
+          },
+          "id": "epu_q2_medium-ff91de7b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1731,
+        "outputTokens": 58,
+        "inputTokensCostNanodollars": "2163750",
+        "outputTokensCostNanodollars": "5300000",
+        "totalBackendLatencyMs": "5750"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #27"
+}

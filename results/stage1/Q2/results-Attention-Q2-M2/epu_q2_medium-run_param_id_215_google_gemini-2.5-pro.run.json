@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T04:16:33.523208Z",
+  "endTime": "2026-03-31T04:16:40.712031Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-5a8d717f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nWith the New Year's celebrations past, we return to life as usual. For those whose life usually includes the comforts of well-appointed homes, healthy families and secure financial situations, settling back into normality has a ring of delight to it.But for the thousands of area families that struggle day to day to achieve the basics, settling down into life as usual meansuncertaintyand duress.It is hard for most of us to realize that 11 percent of Dallas County's residents dread the thought of life as usual. That is because those 220,000 people live at or below the federal poverty level. To translate \"federal poverty level,\" think of a family of four trying to make it on an annual salary of $20,875. Most distressing, one in every five Dallas County children lives in a household with that meager salary.Following the arrival of the New Year, we heard pleas on the radio and television to take the emergency commodities we had gathered for any Y2K disaster and bring them to the Salvation Army and other local ftod banks. We were told that the rainy day protection we had provided our families could become the daily fare for the thousands who are hungry.Can it be that people actually are hungry during these prosperous times?Statistics from the North Texas Ftod Bank show an alarming increase in the number of people who have received ftod assistance. From 1995 to 1999, that number doubled.Dallas isn't alone in the disheartening increase. The Agriculture Department estimates that more \n\n[...TRUNCATED...]\n\n? It is because enough people are living in such conditions to warrant such a mention.Another reason that keeps people from obtaining ftod stamps is the rigorous application process. Having tto few Texas Human Services Department employees results in unreasonably long lines. In Texas, recipients must appear in person to renew their benefits every three months. That is one workday every three months.As concerned neighbors to folks in need, we must urge our state senators and representatives to see that the regulations surrounding ftod stamps are adjusted so that the program is accessible. We all agree that public money must be carefully spent. Texas has eliminated the fraud that everyone fears in public programs. But have the strategies used to eliminate fraud placed undue restrictions on honest folks who are on hard times?We need to raise those questions. We need to ask our legislators and public officials who oversee the common gtod to address this growing problem.As citizens of this great democracy, we have all the ttols to make our voices heard. The payoff, both in the larger community and in our own hearts, will be worth the effort. Let's make 2000 the time when none of our Dallas neighbors has to beg for ftod!Susybelle Gosslee is president of the League of Women Voters of Dallas. Betty Bourgeois is the action vice president of the league.Caption:ILLisSTRATION(S): (Randy Bishop/The Dallas Morning News) Climbing theeconomicladder means what?\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1,\n  \"focus_excerpt\": \"As concerned neighbors to folks in need, we must urge our state senators and representatives to see that the regulations surrounding ftod stamps are adjusted so that the program is accessible.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1556,
+            "outputTokens": 67,
+            "inputTokensCostNanodollars": "1945000",
+            "outputTokensCostNanodollars": "7670000",
+            "totalBackendLatencyMs": "7066"
+          },
+          "id": "epu_q2_medium-5a8d717f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1556,
+        "outputTokens": 67,
+        "inputTokensCostNanodollars": "1945000",
+        "outputTokensCostNanodollars": "7670000",
+        "totalBackendLatencyMs": "7066"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #216"
+}

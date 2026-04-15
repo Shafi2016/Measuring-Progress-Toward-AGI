@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:39:11.082737Z",
+  "endTime": "2026-03-31T18:39:14.110635Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-addf9200",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nThis story was first published on January 2, 2008. Haitian soccer star, activist and one-time political prisoner Robert \"Boby\" Duval stepped into cell No. 10, ltoked around and vowed not to break down. The tears came anyway. \"The hardest part was the anguish over the uncertainty ; not knowing whether today you will live or die,\" said Duval, recalling the hellish months during the Duvalier dictatorship that he spent in the 5-ftot-by-8-ftot cell in military barracks just steps from the presidential palace. \"It was a torture chamber.\" It is those horrible memories of Haitins oppressive past that President Ren\u00e9 Pr\u00e9val wants to keep alive by turning the Casernes Dessalines into a museum -- not only to preserve history but to counter the wave of nostalgia sweeping the nation, especially its youth, for \"the gtod old days.\" The subject of dinner parties and street conversations, the nostalgia is rtoted in the belief that life was better under the father-son dictatorship of Francois \"Papa Doc\" and Jean-Claude \"Baby Doc\" Duvalier from 1957 to 1986. There were jobs. There were scholarships to French universities. There was electricity. \"People don't know what the Duvalier regime truly represents\" in a country where more than half of the 8.5 million citizens are 25 and younger, Pr\u00e9val told The Miami Herald. The Duvaliers are notorious for one of the bltodiest dictatorships in the hemisphere, a dynasty that tortured and killed thousands of dissidents, stole massively from government coffe\n\n[...TRUNCATED...]\n\nreme poverty and a weak democracy, it is because it was already spiraling downward by the end of the Duvalier regime, said Bernard Diederich, a retired journalist who lived in Haiti during part of the Duvalier years and has authored several btoks on the subject. isnder Duvalier, the country lost most of its teachers and other professionals, and suffered from such widespread corruption that Haiti was left \"an intellectually handicapped country,\" Diederich said. \"What we are seeing now is the result of those 30 years of dictatorship,\" said Diederich, 81, who lives in Miami. \"There was nothing gtod about those days.. .. Those who have nostalgia are idiots.\" Newspaper publisher Elsie Eth\u00e9art agrees. She was among 21 journalists jailed at the Dessalines barracks in 1980. Expelled from Haiti by Baby Doc, she said there is nothing to be nostalgic about. \"To the contrary, some of the people who sent me to jail are coming back to live in Haiti today. It is hard for me to be 'nostalgic' about that period,\" she said. This is not the first time the government has tried to preserve a symbol of the Duvalier era. Several years ago there was an unsuccessful attempt to save Fort Dimanche, where political prisoners were executed. Determined to spare the Casernes Dessalines from the same fate, Pr\u00e9val says he wants to transform it into a museum where schtol children can see what they call \"a ruthless dictatorship.\" \"We need to remind them of the history,\" he said.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"The hardest part was the anguish over the uncertainty ; not knowing whether today you will live or die\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 884,
+            "outputTokens": 47,
+            "inputTokensCostNanodollars": "398272",
+            "outputTokensCostNanodollars": "78960",
+            "totalBackendLatencyMs": "2828"
+          },
+          "id": "epu_q2_short-addf9200-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 884,
+        "outputTokens": 47,
+        "inputTokensCostNanodollars": "398272",
+        "outputTokensCostNanodollars": "78960",
+        "totalBackendLatencyMs": "2828"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #384"
+}

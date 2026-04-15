@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:40:26.397897Z",
+  "endTime": "2026-04-01T17:40:27.007544Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-9276c482",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index lin\n\nTARGET ARTICLE START\nIn contrast to the East European capitals of Prague and Budapest, Warsaw seems uncertain, even shy, about touting itself as a city to visit. This makes it a place of surprises for those who venture here. Situated almost exactly in the center of Continental Europe, Warsaw is definitely ltoking westward these days. Even though the Palace of Culture and Science, an ugly Soviet-designed pile given to Poland by the Soviets in the 1950's, remains the tallest building in the city (at over 660 feet), it now seems irrelevant, as newer structures rise and people talk about pulling it down. In many ways, Warsaw has been tto busy getting on with its own commercial life to bother with tourism. New shops, boutiques, restaurants,cafes and service businesses open daily. In Warsaw, rather than tourists sauntering shoulder to shoulder during the summer season, you see Poles -- young entrepreneurs, students, snappily dressed women, ordinary workers -- enjoying their city. The inroads of Western capitalism -- the bold signs, the display windows filled with well-designed gtods -- have lifted the face of the gray, stolid buildings along the main boulevards. Outdtor cafes add color, and here and there, elegant old apartment houses have been renovated and painted. Across the Vistula River, which cleaves the city in half, prewar houses in the fashionable suburb of Saska Kempa are being spruced up, and the bullet holes from World War II finally covered up.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index lin"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.1,\n  \"focus_excerpt\": \"In many ways, Warsaw has been too busy getting on with its own commercial life to bother with tourism.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 808,
+            "outputTokens": 47,
+            "inputTokensCostNanodollars": "177760",
+            "outputTokensCostNanodollars": "41360",
+            "totalBackendLatencyMs": "469"
+          },
+          "id": "epu_q2_short-9276c482-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 808,
+        "outputTokens": 47,
+        "inputTokensCostNanodollars": "177760",
+        "outputTokensCostNanodollars": "41360",
+        "totalBackendLatencyMs": "469"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #286"
+}

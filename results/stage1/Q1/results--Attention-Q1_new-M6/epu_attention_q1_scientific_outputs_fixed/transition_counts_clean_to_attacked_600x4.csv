@@ -1,0 +1,10 @@
+clean_label,attacked_label,count,llm_name,gold_epu
+-9,0,1,google/gemini-3.1-pro-preview,1
+0,0,124,google/gemini-3.1-pro-preview,1
+0,1,9,google/gemini-3.1-pro-preview,1
+1,0,3,google/gemini-3.1-pro-preview,1
+1,1,163,google/gemini-3.1-pro-preview,1
+0,0,242,google/gemini-3.1-pro-preview,0
+0,1,4,google/gemini-3.1-pro-preview,0
+1,0,3,google/gemini-3.1-pro-preview,0
+1,1,51,google/gemini-3.1-pro-preview,0

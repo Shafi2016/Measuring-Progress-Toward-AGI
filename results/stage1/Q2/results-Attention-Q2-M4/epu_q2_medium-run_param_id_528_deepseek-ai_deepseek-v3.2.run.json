@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:11:47.027945Z",
+  "endTime": "2026-03-31T19:11:49.108794Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-90c34c7a",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Paul McHugh, Chronicle Outdtors Writer Saturday, October 1, 2005 Michael Maloney / SFC At sunrise in Noyo Harbor, a Caito Fisheries dockworker sorts rockfish hauled from the trawler Storm Bringer. Chronicle photo by Michael Maloney Seize the day. That old motto wins fresh relevance if you hope to get into port before big seas and harsh winds show up. As we launched from Westport beach Wednesday, the surf was still mild. But billowing fog obscured Bell Point and offshore rocks to the south. \"Don't like that much,\" John Weed said. \"Btomers will be invisible.\" Btomers are rocks that cause seas to jump up and crash. The worst-case scenario involves having a rising swell snatch your kayak, pitch it onto a rock, then smash down on you. \"I'll use my mapping GPS if fog stays thick,\" I said. \"It shows most big rocks. We stay beyond that line, we should be gtod.\" Yet I was uneasy, tto. It was a pleasure to watch that fog bank get ripped up by a rising breeze. Stroking along for hours a few miles offshore of Ten-Mile Beach, we finally spotted a pyramid of rocks jutting up from Georgia-Pacific land. It points the way to Noyo Harbor jetty. I recalled a commercial salmon troller named Nat Bingham, who had told me of that \"teat\" landmark 30 years ago, when I lived up this way. Bingham, now dead, was a legend who inspired much of the small-stream salmon habitat restoration along the North Coast. I thought of other commerc\n\n[...TRUNCATED...]\n\novated Bernal Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) PHARMACIST Company isCSF Medical DRIVERS!! Company Marten Transport JOBS AVAILABLE Company Bay Area SALES MANAGER Company IBM SisPPORT PROFESSIONAL Company Zynga, Inc. Location Company Confidential Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"Stroking along for hours a few miles offshore of Ten-Mile Beach, we finally spotted a pyramid of rocks jutting up from Georgia-Pacific land.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1671,
+            "outputTokens": 58,
+            "inputTokensCostNanodollars": "645456",
+            "outputTokensCostNanodollars": "97440",
+            "totalBackendLatencyMs": "1885"
+          },
+          "id": "epu_q2_medium-90c34c7a-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1671,
+        "outputTokens": 58,
+        "inputTokensCostNanodollars": "645456",
+        "outputTokensCostNanodollars": "97440",
+        "totalBackendLatencyMs": "1885"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #529"
+}

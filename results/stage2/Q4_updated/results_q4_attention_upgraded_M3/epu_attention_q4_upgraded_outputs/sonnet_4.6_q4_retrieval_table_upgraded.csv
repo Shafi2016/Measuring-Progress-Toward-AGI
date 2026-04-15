@@ -1,0 +1,5 @@
+llm_name,condition,n_rows,section_retrieval_rate,epu_only_acc,joint_acc,json_valid_rate,parse_failure_rate,excerpt_in_target_rate,confidence_mean,mean_target_position_norm
+anthropic/claude-sonnet-4-6@default,easy,500,1.0,0.6579476861167002,0.6579476861167002,0.994,0.006,0.986,0.8566800804828973,0.25
+anthropic/claude-sonnet-4-6@default,hard,500,1.0,0.6446280991735537,0.6446280991735537,0.968,0.032,0.956,0.8622107438016529,0.75
+anthropic/claude-sonnet-4-6@default,medium,500,1.0,0.6537678207739308,0.6537678207739308,0.982,0.018,0.972,0.8585132382892057,0.5
+anthropic/claude-sonnet-4-6@default,very_hard,500,1.0,0.6385542168674698,0.6385542168674698,0.996,0.004,0.986,0.8598995983935743,1.0

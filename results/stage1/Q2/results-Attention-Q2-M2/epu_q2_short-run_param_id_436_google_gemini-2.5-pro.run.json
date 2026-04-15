@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T03:11:04.239404Z",
+  "endTime": "2026-03-31T03:11:16.823598Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-f791d6b7",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nbonds End Little Changed as Investors Mark Time Before Treasury's Financing CREDIT MARKETS By Edward P. Foldessy And Tom Herman Staff Reporter* of Tut: Wall S ratKi-rr Journal NEW YORK\u2014Bond prices wound up lit\u00adtle changed yesterday in quiet trading as investors marked time before the is.S. Treasury's quarterly financing operation. The government is scheduled to an\u00adnounce details of its borrowing plans this afternton. Analysts generally expect the package to consist of $21 billion to S22 bil\u00adlion of new notes and bonds. Investors have been especially jittery about the Treasury financing because of uncertainty over the economic outltok. Some economists contend business activity is picking up steam and interest rates will ston rise. However, others argue that the economy remains anemic and that lower interest rates are needed to keep the na\u00adtion from sliding into recession. Analysts hope that government figures slated to be released this week will help clarify the picture. The Commerce Depart\u00adment plans to disclose this morning its June index of leading economic indicators. Friday the Labor Department will release employment statistics for July, which will provide the first clues to the economy's health in the current quarter. \"Investors aren't willing to make any commitments until they can size up the government's financing package\" and the July employment statistics, said Donald E. Maude, chief economist at Refco Partners. \"There's very little enthusiasm to do any\u00adthing.\" Mr. \n\n[...TRUNCATED...]\n\nne of an economy that is \"beginning to improve\" from its sluggish first-half performance, Mr. Leuzzisaid. In the first half, inflation-adjusted GNP grew at only about a 16V annual rate. In the credit markets yesterday, the Treasury's isriri bonds due 2015 closed at a price of 104 8/32, up slightly from 104 6/32 Monday. That left the yield at about 10.77ri. The government's 11 '4% notes due May 1995 closed yesterday at 103 23 /32, down slightly from 103 25/32. raising the yield to 10.62% from 10.6167. Interest rates on short-term Treasury bills edged higher. The latest three-month bill closed at 7.267<, bid. up from an aver\u00adage rate of 7.2367 set at Monday's auction. The bid on the latest six-month bill rose to 7.436V. from the auction average of 7.40%. On the tax-exempt front, underwriters led by Prudential-Bache Securities Inc. tentatively priced a $167.7 million offering of revenue bonds by the Oklahoma Munici\u00adpal Power Authority. isnder the proposed terms, yields range from 7.267 on bonds due in 1990 to 9.67367 for those due in 2023. Separately, underwriters led by Paine- Webber Inc. charged portions of a pro\u00adposed S225 million offering of Pittsburgh general obligation bonds. isnder the new scale, yields range from 4.5%, on bonds due in 1986 to 9.28167 on those due in 2007. Pre\u00adviously. the scale ranged from 4.75% in 1986 to 9.2367 in 2007. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"Investors aren't willing to make any commitments until they can size up the government's financing package\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 993,
+            "outputTokens": 56,
+            "inputTokensCostNanodollars": "1241250",
+            "outputTokensCostNanodollars": "14040000",
+            "totalBackendLatencyMs": "12484"
+          },
+          "id": "epu_q2_short-f791d6b7-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 993,
+        "outputTokens": 56,
+        "inputTokensCostNanodollars": "1241250",
+        "outputTokensCostNanodollars": "14040000",
+        "totalBackendLatencyMs": "12484"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #437"
+}

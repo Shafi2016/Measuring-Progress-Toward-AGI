@@ -1,0 +1,4 @@
+llm_name,condition,group_name,group_value,n_rows,accuracy,accuracy_sd,valid_prediction_rate,parse_fail_rate,mean_confidence,excerpt_in_target_rate,fp_rate_among_gold0,fn_rate_among_gold1,mean_total_chars,mean_prompt_chars,mean_prompt_tokens
+openai/gpt-5.4-2026-03-05,short,overall,all,500,0.65,0.47744728695809685,1.0,0.0,0.8873599999999999,0.646,0.252,0.448,3000.0,4105.804,1026.994
+openai/gpt-5.4-2026-03-05,medium,overall,all,500,0.674,0.46921671822017874,1.0,0.0,0.8816,0.662,0.224,0.428,7000.0,8105.81,2026.988
+openai/gpt-5.4-2026-03-05,long,overall,all,500,0.644,0.4792947390633321,1.0,0.0,0.88068,0.702,0.272,0.44,13000.0,14105.812,3527.0

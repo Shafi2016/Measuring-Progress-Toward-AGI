@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T05:09:44.254518Z",
+  "endTime": "2026-03-31T05:09:50.053778Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-f356c7b6",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nPowell Electrical Manufacturing, a Houston company that makes industrial power distribution equipment, has expanded its use of just-in-time supply chains. isncertain Economy Hinders High ly Precise Supply System By DANIEL ALTMAN In an economy subdued by the threat of war, is just-in-time becoming just tto diffi\u00adcult? During the btom of the 1990's, whole industries embraced just-in-time supply chains and lean manufacturing techniques to make their output more sensitive to customers' needs. Now, thanks to econom\u00adic and geopolitical uncertainty, those prac\u00adtices have become harder to carry out. Cost-cutting remains as important as ever to manufacturers, but slack demand has made just-in-time delivery an expen\u00adsive proposition for their suppliers and shippers. New regulations on border cross\u00adings, intended to protect the nation from terrorism, could throw another wrench into the well-oiled works later this year. \"In various industries, they're strug\u00adgling to forecast the indefinite nature of theworld situation,\" said Norbert J. Ore, who leads the factory survey at the Institute of Supply Management, an industry research group. \"Are we going to war or are we not going to war? What's happening to energy prices and transportation costs? Those things have made forecasting very diffi\u00adcult, and just-in-time really operates on a gtod forecast.\" The Chrysler group of DalmlerChrysler unloads about 8,000 truckloads of materials at its plants each day, including 1,500 that travel across the\n\n[...TRUNCATED...]\n\nrose 0.7 percent in February \u2014 the big\u00adgest jump since April 1995. For shipping companies that spe\u00adcialize almost exclusively in just-in\u00adtime orders, the manufacturing slowdown poses deeper problems. The Active Aero Group of Belle\u00adville, Mich., sells air charter services to auto makers with last-minute needs for parts. \"Those decisions to procure on*demand charters gener\u00adally are driven by stresses in the supply chain, profitability at the manufacturer such that they can't afford to be without the parts, that sort of thing,\" said Brian M. Hcrme- lin, Active Aero's president. isnfortu\u00adnately for him, he said, \"supply chains aren't stretched right now.\" New regulations requiring ship\u00adpers to notify border officials in ad\u00advance of freight entering the isnited States by air, rail and truck \u2014 the main channels for just-in-time sup\u00adply chains \u2014 could further unsettle the system. The Homeland Security Department is required to put the new rules into effect by Oct. 1. Its initial proposals, intended to be de\u00adbated, called for 8 to 12 hours' notice for air shipments, 4 hours for trucks and 24 hours for trains. An advisory committee was set to submit a coun\u00adterproposal yesterday. William E. Primosch, director of international business policy at the National Association of Manufactur\u00aders, a lobbying group, said that the sensitivity of logistics today cannot be overstated. \"Even an hour ad\u00advance notification could be difficult for some companies,\" he said.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1,\n  \"focus_excerpt\": \"New regulations requiring shippers to notify border officials in advance of freight entering the isnited States by air, rail and truck \u2014 the main channels for just-in-time supply chains \u2014 could further unsettle the system. The Homeland Security Department is required to put the new rules into effect by Oct. 1.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1605,
+            "outputTokens": 95,
+            "inputTokensCostNanodollars": "2006250",
+            "outputTokensCostNanodollars": "5780000",
+            "totalBackendLatencyMs": "5693"
+          },
+          "id": "epu_q2_medium-f356c7b6-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1605,
+        "outputTokens": 95,
+        "inputTokensCostNanodollars": "2006250",
+        "outputTokensCostNanodollars": "5780000",
+        "totalBackendLatencyMs": "5693"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #549"
+}

@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:16:50.374828Z",
+  "endTime": "2026-03-31T02:16:52.257535Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-f454f95b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nStarts of Housing isp 2.6%, But Key Category Is Weak: Growth Is Sluggish in Single-Family Home By Bltomberg News New York Times (1923-Current file); May 17, 1997; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. 34 ,' By Bltomberg News ', WASHINGTON, May 16 - Con- structlon of single-family houses was weak last month, providing another sign of economic slowing. But a sur- 1 vey found that consumer confidence remained strong. The Commerce Department said ^ today that housing starts over all u rose 2.6 percent in April, to an annual f[ rate of 1.473 million, exceeding ana\u00ad\") lysts' expectations. But almost all of J'' the gain came in the volatile catego-. ry of apartment construction. Starts f' on multifamily projects increased 1 '* 10.9 percent from March, while sin\u00adgle-family housing starts rose just 4 three-tenths of 1 percent. \u25a0' Moreover, the number of applica\u00adtions for construction permits fell. J\" \"This is really another sign of moderation in the economy,*' said r Eileen Neely, manager of economic '\u2022< forecasting at Fannie Mae. \"Single\u00adfamily starts were a little bit weaker ' - than most analysts expected.\" c,'' Still, real estate markets have been bolstered by the highest levels ^ of consumer confidence in the econ\u00adomy in decades, the lowest unem\u00adployment rate in almost a quarter- century and record gains in the stock ' market The isniversity of Michigan '' said today that its preliminary index ' of consumer sentiment for May ' ' climbed to 104.6 from \n\n[...TRUNCATED...]\n\nously. Though construction this year may not beat 1996's level, which was the highest in eight years, starts remain strong because demand in parts of the country is exceeding the supply of new homes, analysts said. Additionally, the Midwest fltoding restrained starts in March and April, possibly setting the stage for the \"mother of all rebounds in May or June,\" said Ian Shepherson, an econ\u00adomist at HSBC Securities Inc. in New York. Permits for new construction will also rebound, he said. By region, housing starts rose 11.3 percent in the South and seven-tenths of 1 percent in the Midwest Starts fell 7.4 percent in the Northeast and percent in the West Ltoking ahead, home builders ex\u00adpect the housing industry to hold its own, according to a survey by the National Association of Home Build\u00aders, although their optimism slipped a bit this month. The trade group's housing market index, released on Thursday, declined to 54 in May from 56 in April. \"We are optimistic,\" said James Martell Jr., president and chief exec\u00adutive of Fortress Group Inc., a home builder in Vienna, Va, that has re\u00adported a 70 percent increase in reve\u00adnue for the first quarter. \"Working through our backlog will result in strong closings and revenues in the second half of 1997.\" Relatively low mortgage rates are helping the market. Although the av\u00aderage rate on a 30-year fixed mort\u00adgage rose to 8.14 percent in April from 7.9 percent in March, rates are below last summer's levels.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 1.0, \"focus_excerpt\": \"The Commerce Department said ^ today that housing starts over all u rose 2.6 percent in April, to an annual f[ rate of 1.473 million, exceeding ana\u00ad\\\") lysts' expectations.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 946,
+            "outputTokens": 67,
+            "inputTokensCostNanodollars": "283800",
+            "outputTokensCostNanodollars": "722500",
+            "totalBackendLatencyMs": "1817"
+          },
+          "id": "epu_q2_short-f454f95b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 946,
+        "outputTokens": 67,
+        "inputTokensCostNanodollars": "283800",
+        "outputTokensCostNanodollars": "722500",
+        "totalBackendLatencyMs": "1817"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #484"
+}

@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:06:29.724426Z",
+  "endTime": "2026-04-03T00:06:30.890170Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-961eb53f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nBy WILLIAM A. ORME Jr. JERisSALEM, June 5 \u2014 Before last fall, the Israeli economy was m the best shape of its history. Now, battered by eight months of violence and bludgeoned by Nasdaq, it is slow\u00ading to a crawl The signs of a plunge are nearly everywhere At least 25 Israeli hotels have closed their dtors since Octo\u00adber \u2014 10 in Nazareth alone The white-hot real estate market in the high-tech hinterlands of Tel Aviv has ctoled. Here in Jerusalem, hillside apartments now within sight of gun battles sit vacant and unsold Container traffic is down m once- congested seaports Banks have re\u00adported steep first-quarter losses, sending the stock exchange into a tailspin Israel's national airline, El Al, overbtoked a year ago and order\u00ading new planes, is now canceling routes, selling jumbo jets and laying off hundreds of employees isnemployment is rising, exports are falling, and foreign investment has plunged by half. The Internation\u00adal Monetary Fund recently down\u00adgraded its growth projection for Is\u00adrael this year to 2 percent or less \u2014 far below the 4 5 percent expansion government economists were pre\u00addicting just a few months ago And some experts consider even the I M.F predictions optimistic \"Industrial output is at a standstill,\" said Globes, Israel's leading finan\u00adcial daily, on May 30 as the govern\u00adment issued figures showing a con\u00adtinuing decline since October in man\u00adufacturing, construction and con\u00adsumer spending The only apparent beneficiary is Mossad, the Israeli espionage a\n\n[...TRUNCATED...]\n\nhe Federation of jsrae- i li Chambers of Commerce contends that its members are owed tens of, millions of dollars by Palestinian businesses that say they cannot pay Robust last year, and now suddenly feeling stricken. their debts because of Israel's block\u00adade policy Further evidence of the impact of the violence is buried in Israel trade statistics a one-third drop in cut- flower exports to Europe (marketed by Israel but often cultivated in greenhouses in Gaza and the West Bank), and a sharp fall in imports of luxury items sold in shopping malls, where traffic drops steeply after ev\u00adery terror bombing. \"Consumers consume more when they are happy, and less when they are not happy,\" said Dan Propper, leader of the Israeli Manufacturers Association \"This is not a happy situation\" ' Business leaders have called on the government to confront the slump by selling state businesses\" the government still owns Israel's, five biggest companies, measured by domestic sales \u2014 and channeling money to job programs! Some also urge cuts m social wel\u00adfare subsidies to the religious right. But Israel's current unity govern\u00adment, itself a byproduct of the \"vlo: lence, is unlikely to take any step that would distress either its nght'or left flank. And the continuing vio-. lence makes it even harder for \"ting government to focus on economic issues, Mr Propper said - Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":1,\"confidence\":0.72,\"focus_excerpt\":\"Business leaders have called on the government to confront the slump by selling state businesses... Some also urge cuts in social welfare subsidies... But Israel's current unity government... is unlikely to take any step\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 839,
+            "outputTokens": 57,
+            "inputTokensCostNanodollars": "2097500",
+            "outputTokensCostNanodollars": "855000",
+            "totalBackendLatencyMs": "1011"
+          },
+          "id": "epu_q2_short-961eb53f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 839,
+        "outputTokens": 57,
+        "inputTokensCostNanodollars": "2097500",
+        "outputTokensCostNanodollars": "855000",
+        "totalBackendLatencyMs": "1011"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #378"
+}

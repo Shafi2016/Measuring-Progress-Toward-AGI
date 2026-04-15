@@ -1,0 +1,7 @@
+llm_name,condition,gold_epu,mean,std,count
+🤖 deepseek-ai/deepseek-v3.2,short,1,0.4533333333333333,0.49864923451845544,300
+🤖 deepseek-ai/deepseek-v3.2,short,0,0.83,0.3762604235825435,300
+🤖 deepseek-ai/deepseek-v3.2,medium,1,0.49666666666666665,0.5008242926709127,300
+🤖 deepseek-ai/deepseek-v3.2,medium,0,0.7933333333333333,0.4055908059796304,300
+🤖 deepseek-ai/deepseek-v3.2,long,1,0.51,0.5007352453674272,300
+🤖 deepseek-ai/deepseek-v3.2,long,0,0.7766666666666666,0.4171758315991676,300

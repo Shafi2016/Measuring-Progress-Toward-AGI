@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:57:44.117422Z",
+  "endTime": "2026-03-31T18:57:45.576849Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-33eff94a",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nPassenger traffic on airlines may not return to 2000 levels for three or four more years, although carriers could see a noticeable recovery next year, a top Delta Air Lines Inc. executive predicted Wednesday.Delta president and chief operating officer Fred Reid said he is assuming that the industry must recover at some point because airlines are so important to the worldeconomy.\"There's a pent-up demand for travel because travel serves a purpose,\" Mr. Reid said. \"It drives prosperity, increases globalization, drives mergers and acquisitions.\"Mr. Reid said there will be \"all kinds of consequences for all kind of industries if there's a permanent recession. There never has been one in modern history. Could there be one now? I suppose. Could it be longer? Yes.\"After a healthy 2000, the airline industry began to sink in 2001 - first with average fares going down, then a tremendous drop in traffic and revenues after terrorist attacks Sept. 11. The result was the worst year financially for the industry.Mr. Reid's best guess is that traffic will begin to increase in April to October 2003.However, \"that doesn't mean 2000 levels,\" Mr. Reid said. \"I agree with a lot of people we won't see 2000 levels for indefinitely - not till '05, '06 at the earliest.\"Airline stocks, which have plummeted along with profits and traffic, continued their plunge Wednesday after a Wall Street analyst issued negative opinions on several airlines and on the industry. A trade group also said revenues remaine\n\n[...TRUNCATED...]\n\n,\" he added. \"At the very least, theuncertaintycan't be gtod for major carriers' bottom lines.\"Adding to industry gltom was the Air Transport Association's report on industry revenues and average air fares, released late Tuesday.The ATA reported that the average fare (for a 1,000-mile domestic trip) fell to $108.83, down 9.4 percent from August 2001 and the lowest August fare in 10 years.Combined with lower traffic, industry revenues systemwide were down 15.9 percent, the airlines' trade group said.Mr. Reid met Wednesday with investment analysts and reporters as Delta and Air France hosted a two-day briefing on SkyTeam, the international airline alliance led by the two carriers.Mr. Reid said he sees the emergence of \"a few large, well- established low-cost carriers all over the world - carriers that derive their value from a Southwest-type model\" over the next decade.Dallas-based Southwest Airlines Co. is currently the only major airline that is profitable.Other airlines have been mimicking Southwest's low-cost strategy.\"I think their segment of the market will grow from 20 percent, which it is in the isnited States today, to 30 or 40 percent in the not-tto-distant future,\" he said.\"But I also see the development of a handful of strong, profitable, full-service hub-and-spoke airlines that fill a different need, and alliances will be a big part of that business model,\" Mr. Reid said.E-mail tmaxon@dallasnews.comCaption:CHART(S): PROLONGED DESCENT\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.82, \"focus_excerpt\": \"the uncertainty can't be good for major carriers' bottom lines\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1711,
+            "outputTokens": 37,
+            "inputTokensCostNanodollars": "5133000",
+            "outputTokensCostNanodollars": "555000",
+            "totalBackendLatencyMs": "1421"
+          },
+          "id": "epu_q2_medium-33eff94a-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1711,
+        "outputTokens": 37,
+        "inputTokensCostNanodollars": "5133000",
+        "outputTokensCostNanodollars": "555000",
+        "totalBackendLatencyMs": "1421"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #486"
+}

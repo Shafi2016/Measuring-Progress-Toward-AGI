@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:48:44.165339Z",
+  "endTime": "2026-04-01T17:48:45.199364Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-3c3402d9",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nEstimates Reduced On 2d-Half Growth Estimates Reduced On 2d-Half Growth By NICHOLAS D. KRISTOF After saying for months that the na\u00adtion's economy would rebound vigor\u00adously in the second half of 1985, many business economists now are down\u00adgrading their estimates of that re\u00adbound, or pushing it further back. Last week's burst of sobering eco\u00adnomic statistics from Washington \u2014 rising inventories, sluggish industrial production and falling sales and hous\u00ading starts \u2014 contributed significantly to such doubts, the economists said. \"We're all rethinking our posi\u00adtions,\" said Michael W. Keran, chief economist at the Prudential Insur\u00adance Company of America. \"What you've got is a lot of conflicting sig\u00adnals without a lot of hard data about where the economy is going.\" Mr. Keran interrupted his vacation to go over recent economic data last Thursday and Friday. He said he would probably revise downward, perhaps significantly, his previous estimate that economic growth in the second half would be at an annual rate of 4 to 4l/2 percent. Other Factors Involved So far, the alarm among business economists appears not to have trans\u00adlated widely into such concrete ac\u00adtions as curtailed orders, delayed ex\u00adpansions or otherwise trimmed ac\u00adtivity. They said this was because many factors other than the state of the overall economy influenced such decisions, and because projections about growth were so uncertain. \"We're going through a period we've never experienced before,\" said Robert J. Corkhill\n\n[...TRUNCATED...]\n\naid Rosalind Wells, chief economist of the J.C. Penney Company. \"So we wouldn't pull back.\" \"I don't think inventories are see as unduly high in industry,\" said John Deaver, chief economist of the Ford Motor Company. Other econo\u00admists also noted that the btost in in\u00adventories in June came at the whole\u00adsale and manufacturing level, while retail inventories fell. That could mean that any problem was cor\u00adrected as retailers continued in July and August to order more gtods. Mr. Deaver added that the concern about the economy's prospects had probably spread to the Federal Re\u00adserve System. The Federal Open Market Committee, which controls sales and parehases of securities by the Fed as a way of stimulating or reining in the economy, will meet tomorrow in Washington and could decide to ease monetary policy, he said. \"My guess is that they are pretty nervous at the Fed right now,\" Mr. Deaver added. \"There may be some on the board arguing for easier, more accommodative policies.\" The dilemma facing the Fed was exacerbated by last Thursday's an\u00adnouncement that the narrowest measure of the nation's money supply had soared $5.3 billion in the week ended Aug. 5. Some economists said that the unusually large increase, on top of a generally rapid btost in the basic money supply so far this year, might make the Fed wary of a further easing of monetary policy. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"The Federal Open Market Committee, which controls sales and purchases of securities by the Fed as a way of stimulating or reining in the economy, will meet tomorrow in Washington and could decide to ease monetary policy, he said.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1612,
+            "outputTokens": 70,
+            "inputTokensCostNanodollars": "354640",
+            "outputTokensCostNanodollars": "61600",
+            "totalBackendLatencyMs": "880"
+          },
+          "id": "epu_q2_medium-3c3402d9-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1612,
+        "outputTokens": 70,
+        "inputTokensCostNanodollars": "354640",
+        "outputTokensCostNanodollars": "61600",
+        "totalBackendLatencyMs": "880"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #122"
+}

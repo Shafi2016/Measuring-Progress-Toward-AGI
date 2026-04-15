@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:14:18.169163Z",
+  "endTime": "2026-04-03T00:14:19.380975Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-15081de3",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nMANY Florida companies are leaner and meaner this year than last, having cut back payrolls and overhead costs. In the third quarter a year ago, the country was on the brink of war, and companies faced an uncertain marketplace. For some, this meant reduced revenues and profits. In the most recent quarter, things appear better. Despite the continuing recession, 65 percent of the 72 companies surveyed by The Miami Herald reported improved earnings -- either greater profits or reduced losses -- compared with the same quarter a year ago. As the recession deepened, many companies made drastic moves. Some offered early retirement or otherwise cut back on staff. Some sold off unprofitable divisions. The results are showing up in the latest quarter. \"Many have done it (laid off employees) as a result of the recession,\" said Lynn Cambest, chief financial officer of Miamins SunBank. \"With the failures of companies and earning performances, it's not only the lower-level workers who have lost jobs, but middle management and the higher-paid people. We haven't see that in other recessions.\" One of the brightest spots in South Florida's economy is in the medical-equipment and pharmaceuticals sector. Take Ivax Corp. A year ago, the Miami-based pharmaceuticals company lost more than $2 million. Since that time, the company's profits have soared. The kick-in of a worldwide distribution network and recent acquisitions have helped. Ivax has see its stock rise to more than $40 per share from $6 a \n\n[...TRUNCATED...]\n\n were hurt the most, like construction and retail, are more important to Florida than the rest of the nation,\" he said. One major company that benefited substantially from streamlining was FPL Group. The parent company of Florida Power & Light Co. had been dragged down in part by losses from its insurance subsidiary, Colonial Penn Group. With the sale of Colonial Penn earlier this year and a 2 percent growth in the number of its electric-power customers, FPL was able to turn a profit of $188 million this quarter. There weren't many signs of a turnaround for Florida's economy in the third quarter. Though the state's unemployment rate dropped to 7.2 percent from 8 percent, it was still higher than the nationwide rate of 6.8 percent. And while the state's growth rate generally approaches 6 percent a year, the number of jobs in Florida is off by 70,000 in the past year, half of them in Miami. Another indicator of things to come, the national Index of Leading Economic Indicators, which foreshadows the economy six to nine months down the road, fell by 1 percent in October. Vitner, the Barnett economist, said he isn't sure that falling interest rates will fuel a turnaround. \"We're not out of the wtods yet. This economy has a lot of troubles,\" he said. \"This recession is very broad.\" Caption: chart: How Florida Companies Fared, How Florida Companies Fared, Big Gainers for Quarter, Big Turnarounds Memo: CORPORATE SCORECARD; see microfilm for charts, box\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":0,\"confidence\":0.94,\"focus_excerpt\":\"In the third quarter a year ago, the country was on the brink of war, and companies faced an uncertain marketplace.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1583,
+            "outputTokens": 43,
+            "inputTokensCostNanodollars": "3957500",
+            "outputTokensCostNanodollars": "645000",
+            "totalBackendLatencyMs": "1058"
+          },
+          "id": "epu_q2_medium-15081de3-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1583,
+        "outputTokens": 43,
+        "inputTokensCostNanodollars": "3957500",
+        "outputTokensCostNanodollars": "645000",
+        "totalBackendLatencyMs": "1058"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #186"
+}

@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:18:33.778817Z",
+  "endTime": "2026-04-03T00:18:41.425789Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-833f45d1",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nStraw hats wavered in the wind and paperback copies of islysses sopped up the rain Sunday as devotees of James Joyce made a pilgrimage to Dublin to recreate a day in the life of the novel's main character. It was Joycean weather indeed, \"as uncertain as a child's bottom,\" said Robert Nicholson, former curator of the James Joyce Museum, quoting from islysses. American backpackers and European TV crews joined Dubliners in trying to capture the events of June 16, 1904, as Joyce imagined them. Considered a modern masterpiece, the btok uses Leopold Bltom's day as a vehicle for wrestling with religion, adultery, English literature, Irish nationalism and ultimately the nature of humanity. Some Dubliners, however, were more interested in the surprise visit of Julia Roberts, who flew to Ireland after canceling her wedding last week. \"I need a rest. I am sick,\" the actress said in Dublin. \"She's better ltoking than Joyce,\" a cab driver said. Sunday's celebrations began as the novel does, at 8 a.m. at the Martello tower in Sandycove, seven miles southeast of Dublin. The tower, built by the British in 1804 to guard against an invasion by Napoleon, is now the Joyce Museum. Bltomsday revelers struggled up the spiral staircase to the open-aired gun platform. Swiss, Dutch and German TV crews filmed actors reading from islysses as Joyceans, curled up against the wind, followed along in their dog-eared copies. islysses was published in 1922, but no one is certain when the annual pilgrimage beg\n\n[...TRUNCATED...]\n\nd until sanctions are totally ordered to be lifted and all (Iraqi) assets freed, only then will the relief agencies be able to work to the full tilt.\" * A British court martial reprimanded and fined ($1,200 each) a male navy flier and a woman officer who were found naked together aboard a British frigate in the Gulf war zone. The couple -- a lieutenant helicopter observer and a sub-lieutenant -- said in their defense that sexual intercourse did not take place on their frigate, Brilliant. They decided, before they were found kneeling naked on a bunk, that their relationship risked \"turning into something wrong.\" The defense said close bonds were inevitably formed among crew members on warships under combat stress. There were 20 women among the frigate's crew of 250. The defendants pleaded guilty to being naked together without reasonable excuse. Today's chuckle The Pentagon has announced that the Persian Gulf War was so expensive, if we go to war again it won't be on CNN -- it'll be on pay-per-view. -- Jay Leno Hometown on parade The centennial celebration of Merricourt, N.D., parade and all, was a big hit with townsfolk. Both of them. About 1,500 visitors cheered Emil and Elsie Geisler, the town's only residents, as the couple rode down the main street in an open convertible. Caption: photo: Julia ROBERTS, Robert Nicholson & Paddy Skehan and Jimmy Skehan (LOOK-A-LIKE), John SisNisNis, Kurt Vonnegut (n), Vanessa REDGRAVE Memo: THE PEOPLE COLisMN\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"It was Joycean weather indeed, \\\"as uncertain as a child's bottom,\\\"\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1628,
+            "outputTokens": 48,
+            "inputTokensCostNanodollars": "3256000",
+            "outputTokensCostNanodollars": "7920000",
+            "totalBackendLatencyMs": "7522"
+          },
+          "id": "epu_q2_medium-833f45d1-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1628,
+        "outputTokens": 48,
+        "inputTokensCostNanodollars": "3256000",
+        "outputTokensCostNanodollars": "7920000",
+        "totalBackendLatencyMs": "7522"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #419"
+}

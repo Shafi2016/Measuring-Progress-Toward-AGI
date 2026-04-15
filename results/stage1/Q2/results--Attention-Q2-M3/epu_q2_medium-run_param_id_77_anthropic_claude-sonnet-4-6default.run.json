@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:44:00.240705Z",
+  "endTime": "2026-03-31T18:44:01.953903Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-5cf31b93",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nShoppers will have to hurry to get a deal on new sofa or dining table at the RtomStore on North Central Expressway in Plano.Later this month, the national furniture retailer is closing the store, which previously housed a Mervyn's and Burlington Coat Factory.When the last of the clearance items are carted away, the space will join almost 200 big-box retail locations that have shut their dtors in the Dallas-Fort Worth area in recent years.\"While the D-FWeconomyhas held up well in relation to the rest of the country, the local market is faced with a significant oversupply of retail box spaces that totals nearly 8.1 million square feet,\" said Jeff Kittleson, senior vice president of CB Richard Ellis.That's about the same amount of retail space that would be contained in four shopping centers the size of NorthPark Center mall.\"There is a lot of inventory to work through,\" said Kittleson, who believes the glut of retail space has now peaked.The empty storefronts range from vacant supermarkets in the 'burbs to darkened department stores at the mall.Albertson's, Blockbuster, Circuit City, Linens 'N Things and Bally's Total Fitness are among the companies that have added significantly to the supply of empty retail during the last couple of years.Circuit City alone closed more than a dozen locations in the D-FW area early in 2009.Some of those locations have already been filled by tenants including Buy Buy Baby and Best Buy. But others are going begging.The high-profile former Circuit\n\n[...TRUNCATED...]\n\nbe said are favorable economics are acting to take advantage.\"We are also experiencing the expansion of specialty merchants who are focused on specific ethnic merchandising, especially in the grocery segment.\"A popular example is the new 99 Ranch Market Place on Spring Creek Parkway in Plano.The high-end Asian supermarket recently opened in a 60,000-square-ftot former Albertson's store that had been vacant for three years.Centennial Real Estate Co. bought the shopping center in 2007 in partnership with Westmount Realty Capital when it was only 20 percent leased.\"To see the parking lot full now and all the traffic is something,\" said Centennial CEO Steve Levin. \"I've been in this business 30 years, and I have never see a turnaround like this.\"These boxes are just not easy to backfill.\"The new grocery store has already spawned additional leases.\"We have six signed leases for new restaurants and are negotiating with two more,\" Levin said. \"Everybody wants to be in that center now because of the traffic it generates.\"Caption:PHOTO(S): 1. (LOisIS DeLisCA/Staff Photographer) The RtomStore on North Central Expressway in Plano will close later this month, joining the almost 200 big-box retail locations that have shut their dtors in the Dallas-Fort Worth area in recent years. 2. (Steve Brown/Staff) The former Circuit City store at North Central Expressway and Meadow Road in North Dallas is finding new life as a medical clinic. CHART(S): Running on empty\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.95, \"focus_excerpt\": \"the local market is faced with a significant oversupply of retail box spaces that totals nearly 8.1 million square feet\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1736,
+            "outputTokens": 52,
+            "inputTokensCostNanodollars": "5208000",
+            "outputTokensCostNanodollars": "780000",
+            "totalBackendLatencyMs": "1597"
+          },
+          "id": "epu_q2_medium-5cf31b93-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1736,
+        "outputTokens": 52,
+        "inputTokensCostNanodollars": "5208000",
+        "outputTokensCostNanodollars": "780000",
+        "totalBackendLatencyMs": "1597"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #78"
+}

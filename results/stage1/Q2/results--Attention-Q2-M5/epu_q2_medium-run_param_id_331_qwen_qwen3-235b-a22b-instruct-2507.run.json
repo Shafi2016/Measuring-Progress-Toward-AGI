@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:52:41.731725Z",
+  "endTime": "2026-04-01T17:52:42.495205Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-07a6e3fa",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. C\n\nTARGET ARTICLE START\nWelcome to the \"new normal.\" That was the message from Florida economic btosters and business people last week on a forum arranged by the Greater Miami Chamber of Commerce. Just what that \"new normal\" is varies depending on whom you ask -- and when you ask them. Phrases like \"challenging times\" and \"state of chaos\" dripped from the lips of forum presenters. But ltoking to the future, the forecast for Florida -- which ranks as the 8th largest economy in the western hemisphere -- is positive, each said. \"Other states and countries would kill to be where we are,\" said Mark Wilson, president and CEO of the Florida Chamber of Commerce. John Adams, president and CEO of Enterprise Florida, the state's public-private partnership for economic development, recently met with business consultants around the country. \"I had no questions about taxes or insurance,\" he said. Instead, these firms were focused on South Florida's gateway status. \"They're saying: Get ready, we're coming.\" Those upbeat predictions may be years away. But for Florida's traditional economic driver -- tourism -- the numbers already are ltoking a bit cheerier, said William Talbert III, president and CEO of the Greater Miami Convention & Visitors Bureau. Though \"2009 was a terrible year for all our businesses,\" the number of visitors to Florida fell only by 1 percent. And Miami is faring better, with an 8.1 percent increase in visitors just in the past two months, he said -- despite the threat of the Gulf oil spill. As Hannah Sampson's cover story (page 14) explains, neighborhtods from Hollywtod to Coral Gables are ready to snag their share of tourist bounty. Sure, South Beach is still the \"it\" destination for most South Florida visitors. But there's no reason they can't be enticed up the beach or over the causeway. Still, here as elsewhere, the \"new normal\" adds up to a wobbly economic picture, at least in the short run. Last week's jobless numbers reflected that uncertainty, with a slightly higher unemployment rate in Miami-Dade County for July -- up .1 percent from June -- but with slightly greater job growth statewide over July in 2009. And while we can hang our hopes on that vibrant future, for now, businesses and workers have given up pining for the gtod old days and are going on as best they can. C.L. Conroy, who runs local public relations firm, The Conroy Martinez Group, told me she sees far more companies and agencies asking for proposals this year summer than last. \"They're saying, 'I don't know what the future is going to be, but I've got to move forward.'\" Jane Wtoldridge is the Miami Herald's Business Editor.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. C"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.3,\n  \"focus_excerpt\": \"They're saying, 'I don't know what the future is going to be, but I've got to move forward.'\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1610,
+            "outputTokens": 52,
+            "inputTokensCostNanodollars": "354200",
+            "outputTokensCostNanodollars": "45760",
+            "totalBackendLatencyMs": "604"
+          },
+          "id": "epu_q2_medium-07a6e3fa-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1610,
+        "outputTokens": 52,
+        "inputTokensCostNanodollars": "354200",
+        "outputTokensCostNanodollars": "45760",
+        "totalBackendLatencyMs": "604"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #332"
+}

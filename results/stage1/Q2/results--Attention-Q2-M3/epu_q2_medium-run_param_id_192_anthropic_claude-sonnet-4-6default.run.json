@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:47:46.342312Z",
+  "endTime": "2026-03-31T18:47:47.685507Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-93dc626e",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nWASHINGTON \u2014 The House ttok another step on Thursday in a running political fight over unemployment insurance by ignoring a veto threat from President Bush and easily approving an extension of benefits for idle workers whose aid is running out. Less than a day after coming up just short in a vote on the same measure, the House approved granting an extra 13 weeks of unemployment benefits nationwide beyond the standard 26 weeks; the vote was 274 to 137, the minimum margin needed to override a veto. Republicans said the result was misleading because a number of lawmakers were absent. They expressed confidence they could sustain a rejection of the bill by Mr. Bush if it were to get to the White House. But in an illustration of the election-year unease among Republicans about the unemployment issue, 49 of them again broke with their party leadership and joined 225 Democrats in backing the proposal, which would also extend benefits even longer in states with unemployment above 6 percent. In those states, benefits would be extended for a total of 26 weeks. Representative Nancy Pelosi, the House speaker, blamed the Bush administration for a souring economy that was shedding jobs, and she rejected any insinuation that the extra aid amounted to an incentive to remain out of work. \"This isn't about people sitting on their butts back home and saying, 'Gtody, I am getting an unemployment check,'\" Ms. Pelosi said. \"These people want to provide for their families and to imply anything else \n\n[...TRUNCATED...]\n\ny as 10 percent of those eligible for extended benefits could be denied them if the 20-week requirement was retained. They said that it particularly penalized low-wage workers, minorities and women and that anyone who qualified with a brief work history would get a very modest amount of unemployment compensation. Democrats said that Republicans appeared to be following the dictates of the White House, even though Senator John McCain of Arizona, the party's presidential candidate, has said he would support an extension of benefits. \"They are obeying the position if not the orders of the White House instead of the orders from the people at home,\" said Representative Sander Levin, a Michigan Democrat whose state has been particularly hard hit by joblessness due to cutbacks in the automotive industry. Other states that could qualify for the full 26-week extension include Alaska, California and Rhode Island as well as the District of Columbia. About 8.5 million Americans were reported unemployed in May, but Democrats said that figure is understated because it does not count job seekers who have become discouraged and have given up seeking a new job. Congress and the administration last extended unemployment benefits in 2002. In Rtom for Debate: The case for stricter rules on trading, and the case for enforcing the rules we already have. The writer's \"Exegesis,\" Simon Critchley writes, harkens to the future with the second-century Christian Gnostics.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.92, \"focus_excerpt\": \"ignoring a veto threat from President Bush and easily approving an extension of benefits for idle workers whose aid is running out\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1650,
+            "outputTokens": 50,
+            "inputTokensCostNanodollars": "4950000",
+            "outputTokensCostNanodollars": "750000",
+            "totalBackendLatencyMs": "1307"
+          },
+          "id": "epu_q2_medium-93dc626e-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1650,
+        "outputTokens": 50,
+        "inputTokensCostNanodollars": "4950000",
+        "outputTokensCostNanodollars": "750000",
+        "totalBackendLatencyMs": "1307"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #193"
+}

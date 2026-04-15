@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:04:38.178192Z",
+  "endTime": "2026-04-03T00:04:39.318597Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-8322a551",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nAbstract: A sharp increase in unemployment in September was just the latest indication that the economy is falling into recession. BY KEVIN G. HALL khall@mcclatchydc.com WASHINGTON -- The strongest sign yet that the is.S. economy is in recession came in a Labor Department report Friday that employers had cut 159,000 jobs in September, twice as many as the average over the previous eight months. That was the worst monthly job-loss report since March 2003. Combined with a stream of earlier data from declining factory orders to auto sales, it left analysts with no doubt that the economy is sinking fast. \"Previous monthly job losses averaged about 75,000 from January through August, so the September report shows clear evidence that we have taken another step down into a deepening recession,\" said Stuart Hoffman, chief economist for the PNC Financial Services Group. \"The employment report is just the latest in a series of indicators showing that the economy was deteriorating rapidly as the third quarter progressed,\" Nigel Gault, chief is.S. economist for forecaster Global Insight, said in a note to investors. \"These include weak retail sales, weak auto sales, declining durable-gtods orders, and. .. the economy was on the way down even before the latest tightening in the credit crunch.\" October's job losses are sure to be worse given the widening financial crisis, which has banks unwilling to lend to many businesses and even to one another. Despite the job losses, the unemployment \n\n[...TRUNCATED...]\n\nis basically canceled. Not fun. I am sure we are not alone.\" Walsh Construction, in Portland, Ore., saw a bank suddenly pull the plug on an $11.5 million building project. \"The owner is seeking funding from a different bank and anticipates a six-eight week delay,\" the company said. On Thursday, California Treasurer Bill Lockyer said the credit crunch threatened the ability of the nation's most populous state to issue bonds to build highways and carry out other public works projects. Republican Gov. Arnold Schwarzenegger said Friday that he would try to sell $7 billion in state bonds ston, and that if the freeze in the credit markets didn't thaw he might ask the federal government for a loan of that amount. \"State governments from California to Maine have been shut out of the bond market, while developers have had bank credit windows slammed shut on their fingers as they reached for their loans,\" Simonson said. Commerce Secretary Carlos Gutierrez, in an interview with McClatchy, expressed disappointment in the numbers and expected the credit crisis to continue to hit employers hard. \"There are already small businesses that are having trouble,\" he said. He voiced hope that the Bush administration's controversial $700 billion banking-rescue package, which cleared Congress on Friday, may help ease the uncertainty that's hanging over the financial sector. JOBLESS RATE Percent of civilian labor force that is unemployed, by month, seasonally adjusted:\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":1,\"confidence\":0.64,\"focus_excerpt\":\"He voiced hope that the Bush administration's controversial $700 billion banking-rescue package, which cleared Congress on Friday, may help ease the uncertainty that's hanging over the financial sector.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 800,
+            "outputTokens": 54,
+            "inputTokensCostNanodollars": "2000000",
+            "outputTokensCostNanodollars": "810000",
+            "totalBackendLatencyMs": "977"
+          },
+          "id": "epu_q2_short-8322a551-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 800,
+        "outputTokens": 54,
+        "inputTokensCostNanodollars": "2000000",
+        "outputTokensCostNanodollars": "810000",
+        "totalBackendLatencyMs": "977"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #280"
+}

@@ -1,0 +1,7 @@
+llm_name,condition,gold_epu,mean,std,count
+🤖 google/gemini-2.5-flash,short,1,0.5566666666666666,0.49760855075870913,300
+🤖 google/gemini-2.5-flash,short,0,0.75,0.4337361989746802,300
+🤖 google/gemini-2.5-flash,medium,1,0.59,0.49265508228408095,300
+🤖 google/gemini-2.5-flash,medium,0,0.71,0.45452021821096344,300
+🤖 google/gemini-2.5-flash,long,1,0.58,0.4943831669050469,300
+🤖 google/gemini-2.5-flash,long,0,0.68,0.46725556090572584,300

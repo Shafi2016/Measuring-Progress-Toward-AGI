@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:34:15.874992Z",
+  "endTime": "2026-03-31T18:34:19.602100Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-32228cfd",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nBond Traders Remain Wary: Whipsawing Remembered By KENNETH N. GILPIN New York Times (1923-Current file); Jun 29, 1987; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. D9 CREPBT MARKETS Whipsawing Remembered By KENNETH N. GILPIN Instead of heaving a sigh of relief because a tumultuous second quarter is coming to an end, participants in the fixed-income markets are holding their breath over what could happen during the next three months. There is little doubt, however, about the short-term forecast, ac\u00adcording to analysts: Bond prices, which traded in a very narrow range last week and closed little changed at the end of five trading sessions, will remain relatively stable. After that, the outltok gets muddier. The uncertainty about the direction of interest rates seems to stem as much from the memory of what hap\u00adpened during the quarter as from worries about how a number of criti\u00adcal events will play out over the next several weeks. Conditions have improved since early in the second quarter, when a declining dollar sent interest rates moving sharply upward. After rising to a yield of more than 9 percent in May, a stable and then rising dollar has brought down the yield on the Government's 30-year Treasury bond by more than 50 basis points, to a bid of 8.48 percent late Friday. However, the sharp, unexpected rate moves early in the quarter caused trading losses of as much as $1 billion for Wall Street firms and hit Japanese and European money man\u00adagers hard. T\n\n[...TRUNCATED...]\n\ne, the for\u00adeign-exchange value of the dollar will be the main influence on daily move\u00adments in interest rates. Developments in Washington But analysts said market partici\u00adpants were also becoming wary of developments in Washington, such as a meeting of the Federal Open Mar\u00adket Committee next week, an impend\u00ading reduction in the debt ceiling on July 18 and continued wrangling be\u00adtween Congress and the Administra\u00adtion over the Federal budget. \"The market is basically treading water, for fear of what could happen Economic Calendar Listed below are the scheduled dates for major economic indicators to be released this week. Monday New-Home Sales May Tuesday Inventory-Sales Ratio April Leading Indicators May Wednesday Construction Spending May Thursday isnemployment June Friday None \"I think the long bond is going to rally to around the 8 Vi percent level over the next few weeks,\" said Ed\u00adward J. Hyman, vice chairman of C. J. Lawrence & Company, a New York investment house. \"Bonds are trading off the dollar, and I am bull\u00adish about the dollar. Our trade ac\u00adcounts are turning a lot \u2014 $60 billion at an annual rate \u2014 and 1 think that will spark a dollar rally.\" The improvement is not likely to be long-lived, Mr. Hyman said, because \"I think the economy and inflation are turning up, and bond yields will be heading toward 9.5 percent by early next year.\" Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.8, \"focus_excerpt\": \"market participants were also becoming wary of developments in Washington, such as a meeting of the Federal Open Market Committee next week, an impending reduction in the debt ceiling on July 18 and continued wrangling between Congress and the Administration over the Federal budget.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 883,
+            "outputTokens": 72,
+            "inputTokensCostNanodollars": "397712",
+            "outputTokensCostNanodollars": "120960",
+            "totalBackendLatencyMs": "3497"
+          },
+          "id": "epu_q2_short-32228cfd-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 883,
+        "outputTokens": 72,
+        "inputTokensCostNanodollars": "397712",
+        "outputTokensCostNanodollars": "120960",
+        "totalBackendLatencyMs": "3497"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #256"
+}

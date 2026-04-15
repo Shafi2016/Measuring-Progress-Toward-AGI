@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:56:57.311746Z",
+  "endTime": "2026-04-01T17:56:58.484219Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-d1dc5c19",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nOn Eve of War By Paul Duke Jr.. Staff Reporter of The Wall Street Journal WASHINGTON \u2014 A Federal Reserve Board survey of national economic condi\u00adtions on the eve of war in the Middle East depicted an economy limping along with few regions or industries displaying much strength. The Fed survey, a periodic Report that gives an early ltok at the economic cli\u00admate, said weakness was continuing in re\u00adtail sales, manufacturing and construction. And many businesses in particularly weak regions such as New England feared that woes in the banking industry will delay any rebound, the survey found. Moreover, the Fed reported that the chill of the current downturn continued spreading to the West and, to a more mod\u00aderate degree, the Midwest, two regions that had shown lingering vigor in previous months when the rest of the country was more clearly in an economic slump. \"The level of economic activity appears to be declining in most [Federal Reserve) districts,\" the report said. The survey was based on information collected up to. Jan. 14, one day before the isnited Nations' deadline calling for Iraq to withdraw from Kuwait, and two days be\u00adfore is.S.-led forces attacked Iraq. Business people across the is.S. cited the uncertainty leading up to the deadline as a major factor behind the economic tor\u00adpor, the survey said. Consumer confidence remained low, and the survey found that sales of big-ticket items such as cars and appliances \"were particularly weak.\" That is a sign that the cloudy e\n\n[...TRUNCATED...]\n\nff.\" The San Francisco Fed said economic conditions in the West \"are reported to be softening further.\" Retail sales were some\u00adwhat better than in the rest of the country, with \"weak sales\" in Southern California balanced by Hawaiins 9% sales increase from the 1989 holiday period. Manufactur\u00ading \"continues to slow,\" and agriculture has been hurt by lower prices and trouble\u00adsome weather. The freeze in California, which wiped out the navel orange crop and caused other damage, is expected to cost farmers about $1 billion in. lost revenue. There were a few positive points in the report, however. Businesses across the country said inventories aren't growing out of control, a point noted by Fed Chairman Alan Greenspan in congressional testimony this week. If inventories were growing sig\u00adnificantly, the recession might last longer as businesses sold off the inventories be\u00adfore restarting-' production and :hirtng workers. - \u00ab\u2022 '' -Also, the Southwest region, blighted with economic problems over the past sev\u00aderal years, appears to be doing a bit better than the eastern half of the country, if only because the Southwest had nowhere to go but up. The Dallas Federal Reserve re\u00adported that auto sales have risen in the .re\u00adgion and construction has increased. Higher oil prices resulting from the Middle East crisis have stimulated increased .oil production. Houston, the home of the na\u00adtion's oil industry, has see \"modestly\" gtod retail sales, the survey said.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.6,\n  \"focus_excerpt\": \"Business people across the is.S. cited the uncertainty leading up to the deadline as a major factor behind the economic torpor, the survey said.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1584,
+            "outputTokens": 55,
+            "inputTokensCostNanodollars": "348480",
+            "outputTokensCostNanodollars": "48400",
+            "totalBackendLatencyMs": "1014"
+          },
+          "id": "epu_q2_medium-d1dc5c19-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1584,
+        "outputTokens": 55,
+        "inputTokensCostNanodollars": "348480",
+        "outputTokensCostNanodollars": "48400",
+        "totalBackendLatencyMs": "1014"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #530"
+}

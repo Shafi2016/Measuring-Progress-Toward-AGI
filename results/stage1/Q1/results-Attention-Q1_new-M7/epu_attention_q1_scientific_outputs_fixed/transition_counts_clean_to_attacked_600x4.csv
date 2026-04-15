@@ -1,0 +1,9 @@
+clean_label,attacked_label,count,llm_name,gold_epu
+0,0,86,openai/gpt-5.4-2026-03-05,1
+0,1,10,openai/gpt-5.4-2026-03-05,1
+1,0,8,openai/gpt-5.4-2026-03-05,1
+1,1,196,openai/gpt-5.4-2026-03-05,1
+0,0,177,openai/gpt-5.4-2026-03-05,0
+0,1,8,openai/gpt-5.4-2026-03-05,0
+1,0,13,openai/gpt-5.4-2026-03-05,0
+1,1,102,openai/gpt-5.4-2026-03-05,0

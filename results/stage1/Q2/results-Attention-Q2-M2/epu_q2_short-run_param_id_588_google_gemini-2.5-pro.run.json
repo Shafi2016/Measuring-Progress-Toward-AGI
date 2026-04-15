@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T03:39:47.898826Z",
+  "endTime": "2026-03-31T03:39:57.161088Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-b32197cb",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nIt was a one-two punch for ViroGroup. The environmental engineering company in Cape Coral already was feeling the ill effects of a slumping economy. Then came uncertainty about what the newly elected Clinton administration had in store. \"Everyone had the perception that this new administration would be very pro-environment, and there might be significant changes in regulation\" from the Environmental Protection Agency, said Bob Fletcher, ViroGroup's president and chief executive. \"That didn't happen.\" While waiting for signals from the White House, private companies \"put their discretionary spending for environmental projects on hold,\" Fletcher said. The result? Fewer companies hired ViroGroup to assess air, soil or groundwater contamination at work sites and supervise cleanups. ViroGroup, coming off a profitable 1992, reported a $11.5 million loss last year. The reversal gives the company a measure of distinction that it would probably prefer to have avoided: It was tops among Florida companies that saw profits transformed into losses last year, ranked by change in income as a percentage of sales. Others on the downturn list, including manufacturers, mining businesses and restaurants, cited competition and sluggishness in their markets for their troubles. ViroGroup responded to its weak results by shuttering two offices in New York and Atlanta that were losing a combined $200,000 annually. It laid off 25 engineers, hydrogeologists and administrators in Florida and five other \n\n[...TRUNCATED...]\n\nr firms staged turnarounds. At Sports/Leisure in Hialeah, it started when an outside group, headed by Milton Barbarosh, ttok control of the women's aerobic clothing maker in early 1993. The new group agreed to inject $2.4 million into the ailing company, brought in new top managers and shed an unprofitable golf apparel business. Last year, Sports/Leisure reported a $14,000 profit, in contrast to a $3.3 million loss in 1992. Sports/Leisure has announced the acquisition of Islander Sportswear, which makes screen-printed T-shirts. If $3 million in financing goes through, the deal would double the size of the company, whose Softouch subsidiary makes sports apparel distributed in stores like Burdines, Dillard's and Neiman- Marcus. Another company reporting a turnaround was F.F.O. Financial Group of St. Cloud. The lending company reported a $4.6 million loss in 1992 after several of its commercial loan holders declared bankruptcy. By halting loans on commercial properties and focusing instead on residential mortgages, F.F.O. returned to profitability. \"We finally suffered through the bankruptcy system,\" said Jim Davis, president and chief executive. \"We were able to get the properties back and get them back into an income-producing status.\" F.F.O. has $230 million in total assets, half its size a few years ago, which improved capital ratios, Davis said. Caption: chart: Recoveries, Downturns (see microfilm for list) Memo: THE HERALD 100: PROFITABILITY\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1,\n  \"focus_excerpt\": \"Then came uncertainty about what the newly elected Clinton administration had in store. \\\"Everyone had the perception that this new administration would be very pro-environment, and there might be significant changes in regulation\\\" from the Environmental Protection Agency\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 871,
+            "outputTokens": 78,
+            "inputTokensCostNanodollars": "1088750",
+            "outputTokensCostNanodollars": "10300000",
+            "totalBackendLatencyMs": "9167"
+          },
+          "id": "epu_q2_short-b32197cb-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 871,
+        "outputTokens": 78,
+        "inputTokensCostNanodollars": "1088750",
+        "outputTokensCostNanodollars": "10300000",
+        "totalBackendLatencyMs": "9167"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #589"
+}

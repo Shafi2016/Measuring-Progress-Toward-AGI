@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:42:34.083650Z",
+  "endTime": "2026-04-01T17:42:35.181090Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-d3272c56",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Jim Rutenberg, David E. Sanger, New York Times Sunday, July 1, 2007 (07-01) 04:00 PDT Kennebunkport, Maine -- President Bush, seeking to change the tone of an increasingly caustic, fraught relationship with Russian President Vladimir Putin, will press him today to support a major escalation of economic pressure against Iran, senior administration officials said. On Friday, just 48 hours before Putin was scheduled to arrive at the Bush family compound on the edge of this historic seaside town swelled with summer residents, the administration discussed for the first time with Russia and other members of the is.N. Security Council a proposal that would require all nations to inspect cargo for illicit nuclear-related shipments or arms that enter their ports from Iran or are destined for the country. The meeting ttok place by telephone, and the isnited States was represented by Nicholas Burns, the undersecretary of state. While the inspection regimen is cast as a preventive measure, American officials know that, like a proposed asset freeze on a number of Iranian banks, its true effect could be to slow the Iranian economy drastically. Two successive resolutions at the Security Council have resulted in less punitive actions against Iran, with only modest economic effect. None has achieved the Security Council's goal: to force the country to suspend its enrichment of uranium. While Bush is not expected to discuss\n\n[...TRUNCATED...]\n\n Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) 2008 Caliber$16,888 2011 200$24,150 2010 Sebring$11,995 2012 Grand Cherokee$39,105 2003 Ram 1500$12,995 2006 Ram 1500$22,995 2003 Ram 1500$14,888 2005 F-150$8,888 2008 Cobalt$13,888 2009 Silverado 2500HD$45,995 Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.1,\n  \"focus_excerpt\": \"President Bush, seeking to change the tone of an increasingly caustic, fraught relationship with Russian President Vladimir Putin, will press him today to support a major escalation of economic pressure against Iran\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 988,
+            "outputTokens": 64,
+            "inputTokensCostNanodollars": "217360",
+            "outputTokensCostNanodollars": "56320",
+            "totalBackendLatencyMs": "944"
+          },
+          "id": "epu_q2_short-d3272c56-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 988,
+        "outputTokens": 64,
+        "inputTokensCostNanodollars": "217360",
+        "outputTokensCostNanodollars": "56320",
+        "totalBackendLatencyMs": "944"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #388"
+}

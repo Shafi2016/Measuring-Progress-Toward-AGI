@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:56:41.211134Z",
+  "endTime": "2026-03-31T18:56:42.574442Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-e44706cd",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nGtod Old Federalism New York Times (1923-Current file); Feb 21, 1985; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. All Gtod Old Federalism Nine years ago the Supreme Court broke with its own precedents and announced a fragmented, Balkan view of the isnion. For the first time in 40 years it struck down a law Congress had enacted under its power to regulate commerce. States' rights, the Court said, prevailed over a Federal law regulating the national economy because the law in\u00adterfered with a state's \"traditional governmental functions.\" But which functions are those? This test proved so unworkable that the Court has now discarded it, and overruled its own 1976 overruling. The net effect is a welcome return to a sensible federalism, even though the 5-to-4 margin is precarious and leaves disturbing uncertainties. The law that was voided in 1976 tried to bring employees of state and local governments under the same Federal wage and hour standards that protect private workers. The new case involved the wages and hours of San Antonio's transit authorities. Jus\u00adtice Harry Blackmun, writing for the new majority, despaired of trying to decide whether urban transit, historically private but lately public, was \"tradi\u00adtionally\" governmental. Instead he went back to first principles. The 10th Amendment reserves to the states and the peo\u00adple all constitutional power not delegated to the Federal Government. But that, he said, is no shield against the commerce clause, w\n\n[...TRUNCATED...]\n\nstate policies it favors and which it dis\u00adlikes.\" That was a direct challenge to the dissent\u00aders, Chief Justice Burger and Justices Rehnquist, O'Connor and Powell. They like to be see wearing the robes of judicial restraint. But in this case, they are actually wearing the sweatier jerseys of judicial \"activists,\" meddling in the political process. Ob\u00adserve Justice O'Connor invoking not the words but \"the spirit of the Constitution.\" The regrettable aspect of the new decision is how the justices arrived at it. Monumental pro\u00adnouncements on the nature of federalism ought not to turn so tightly on whether Justice Blackmun, who was also with the previous majority, is comfortable with a particular rule of law. Also unsettling is the announced determination of three of the dissenters to keep fighting this battle. Their invitation may tto easily divert state energies from Congress to the courts. States and localities often have legitimate com\u00adplaints about Federal power, as when Congress or\u00adders them to perform public services without providing the money this requires. But our constitu\u00adtional scheme, including the Electoral College and equal Senate representation, gives states plenty of political power in Washington. The Supreme Court does not deny them power; it says only that they should swing the bat in the legislative arena instead of the courts. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.72, \"focus_excerpt\": \"The law that was voided in 1976 tried to bring employees of state and local governments under the same Federal wage and hour standards that protect private workers.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1686,
+            "outputTokens": 58,
+            "inputTokensCostNanodollars": "5058000",
+            "outputTokensCostNanodollars": "870000",
+            "totalBackendLatencyMs": "1318"
+          },
+          "id": "epu_q2_medium-e44706cd-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1686,
+        "outputTokens": 58,
+        "inputTokensCostNanodollars": "5058000",
+        "outputTokensCostNanodollars": "870000",
+        "totalBackendLatencyMs": "1318"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #455"
+}

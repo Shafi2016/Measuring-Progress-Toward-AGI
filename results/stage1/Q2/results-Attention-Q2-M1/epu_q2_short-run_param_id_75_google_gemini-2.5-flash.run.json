@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T01:47:19.717570Z",
+  "endTime": "2026-03-31T01:47:23.096365Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-d16d9663",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nCarttons flicker silently on the dozens of TV sets that line the wall opposite a bank of CD players pulsating to a salsa beat. Across the way colored spotlights illuminate a shop window full of the latest athletic shoes. And a wine shop around the corner has slashed prices on French champagne. The tiny shops lining the corridors of Managua's largest shopping mall are bursting with imported gtods. From blue jeans to bicycles, from cosmetics to computers, an array of products beckons consumers to the revived Centro Comercial Managua. But the corridors are quiet. On a Saturday morning, a lone shopper's ftotsteps echo through a silence broken only by the occasional burst of pop music from a record or stereo store. \"Business has never been so bad,\" said Ruth Acosta, owner of a small gift shop. \"Before, people had money but nothing to buy. Now they have things to buy, but no money.\" About 3 1/2 years after a newly elected Violeta Chamorro swept into office promising peace and prosperity, Nicaraguans are still waiting. Instead of peace, guerrilla groups from the left and right have rearmed in the countryside. Instead of prosperity, unemployment is hitting record levels. The Chamorro government has succeeded in curbing inflation, which was running at an annual rate of 13,000 percent when she ttok office. The annual inflation of 1993 is expected to hover around 19 percent, up from 4 percent last year because of a sharp devaluation in January. And her government claims to have halted t\n\n[...TRUNCATED...]\n\n falling sales. The market has mushrtomed over the past three years, spreading its small stalls over several more city blocks. Many of the new vendors are former state employees, thrown out of work because of government spending cuts. Shoppers weaving their way through the labyrinth of stalls can find anything from cheap clothing to ceiling fans, still unassembled, in boxes piled up along a curb. Several dozen vendors along one row specialize in auto parts, new or used -- i.e., stolen. But whether because of falling demand or added competition or both, the vendors at the Eastern Market are as pessimistic as the merchants at the Managua mall. \"Bad,\" says Olga Cruz, when asked how her business was going. \"Malisimo.\" Cruz has worked 45 of her 75 years in the market. Her stall was filled with hand-woven baskets and straw brtoms, plastic mats and coils of nylon rope. But little of it was being sold. \"No one has any money to spend,\" she said. \"There's no work and no money.\" Like most market women, Cruz was anti-Sandinista. During the years of hyperinflation the Front attacked the vendors of the Eastern Market as speculators, because of their resistance to price controls. Market women were dubbed the \"la burguesia del delantal\" -- the \"aproned bourgeoisie.\" But now she remembers the Sandinista years with some nostalgia. \"Before at least you could sell,\" she said. \"You could survive. Now -- who knows what will happen?\" Caption: photo: Violeta Chamorro.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.9, \"focus_excerpt\": \"Now -- who knows what will happen?\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 870,
+            "outputTokens": 30,
+            "inputTokensCostNanodollars": "261000",
+            "outputTokensCostNanodollars": "1187500",
+            "totalBackendLatencyMs": "3302"
+          },
+          "id": "epu_q2_short-d16d9663-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 870,
+        "outputTokens": 30,
+        "inputTokensCostNanodollars": "261000",
+        "outputTokensCostNanodollars": "1187500",
+        "totalBackendLatencyMs": "3302"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #76"
+}

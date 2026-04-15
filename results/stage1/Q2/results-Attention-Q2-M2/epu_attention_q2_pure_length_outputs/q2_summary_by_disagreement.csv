@@ -1,0 +1,7 @@
+llm_name,condition,disagreement_flag,mean,std,count
+🤖 google/gemini-2.5-pro,short,0,0.7202797202797203,0.44938578651883876,429
+🤖 google/gemini-2.5-pro,short,1,0.5614035087719298,0.4976726017934394,171
+🤖 google/gemini-2.5-pro,medium,0,0.7016317016317016,0.45807617262551187,429
+🤖 google/gemini-2.5-pro,medium,1,0.5847953216374269,0.49420445778607797,171
+🤖 google/gemini-2.5-pro,long,0,0.0,0.0,429
+🤖 google/gemini-2.5-pro,long,1,0.0,0.0,171

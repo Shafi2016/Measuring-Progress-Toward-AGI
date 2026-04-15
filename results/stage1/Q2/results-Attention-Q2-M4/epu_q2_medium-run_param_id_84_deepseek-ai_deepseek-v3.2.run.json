@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:52:07.940174Z",
+  "endTime": "2026-03-31T18:52:10.517894Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-f5f9c2a3",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption\n\nTARGET ARTICLE START\nIn Latin America, a Free Trade Rush: A three-nation pact today. A By JAMES BROOKESpecial to The New York Times New York Times (1923-Current file); Jun 13, 1994; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. D1 By JAMES BROOKE Special to The New York Times RIO DE JANEIRO, June 12 \u2014 Cre\u00adating a huge building block for a Western Hemisphere free trade zone, the presidents of Colombia, Mexico, and Venezuela will meet in Colombia on Monday to place their nations' 150 million people under a duty-free um\u00adbrella. \"This is our step into the big leagues,\" Juan Manuel Santos, Co\u00adlombia's Minister of Foreign Trade proclaimed in a recent interview in Bogota. \"This is a step toward the isS. market.\" Many South American business people complain that the Clinton Ad\u00administration has been slow to expand the North American Free Trade As\u00adsociation, which links Canada, the isnited States and Mexico. They hope this new trade group, whose three nations have a total of $400 billion in economic activity, will provide mo\u00admentum for the eventual creation of a A three-nation pact today. A duty\u00adfree hemisphere tomorrow? Latin American free trade zone stretching from Mexico to Argentina. Even as the ink dries on the accord, Ecuador will ask to join, and it is likely to be accepted. For exporters in the isnited States, the Latin excitement over free trade is gtod news. As they create regional trade pacts, Latin American nations have slashed their tariffs outside their re\u00adgion, to an average of 12 percent today from 56 percent a decade ago. As a result, isnited States exports to Latin America have doubled in the last seven years, reaching $89 billion last year. \"American exports to Colombia have gone up 80 percent\" since Co\u00adlombia opened its borders three years ago, a isnited States diplomat said. \"During the same time, Colom\u00adbia's exports to the isnited States have gone up 7 percent.\" Further fueling demand for isnited States gtods \u2014 from Jeep Grand Cherokees to jars of peanut butter \u2014 Latin America's economy is expected to grow by 3 percent this year. This expansion is taking place despite po\u00adlitical uncertainty surrounding presi\u00addential elections later this year in the region's two most populous nations, Brazil and Mexico. Also, Latin American policy mak\u00aders are finding that increasingly, the trading pacts are helping to enforce a more politically stable environment in the nations that have them. The pacts, which are predicated on ortho\u00addox free market rules \u2014 free ex\u00adchange rates, free prices, and free Continued on Page D5\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.75,\n  \"focus_excerpt\": \"This expansion is taking place despite political uncertainty surrounding presidential elections later this year in the region's two most populous nations, Brazil and Mexico.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1630,
+            "outputTokens": 54,
+            "inputTokensCostNanodollars": "622496",
+            "outputTokensCostNanodollars": "90720",
+            "totalBackendLatencyMs": "2370"
+          },
+          "id": "epu_q2_medium-f5f9c2a3-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1630,
+        "outputTokens": 54,
+        "inputTokensCostNanodollars": "622496",
+        "outputTokensCostNanodollars": "90720",
+        "totalBackendLatencyMs": "2370"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #85"
+}

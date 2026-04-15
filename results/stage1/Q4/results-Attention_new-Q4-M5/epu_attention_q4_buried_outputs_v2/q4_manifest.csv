@@ -1,0 +1,10 @@
+file_name,description
+q4_results_wide.csv,Row-level wide table with retrieval and classification outputs for easy/medium/hard/very_hard dossiers.
+q4_results_long.csv,Long-format table with one row per model x article x difficulty level.
+q4_summary_overall.csv,Main Q4 summary table using JOINT retrieval+classification accuracy.
+q4_pairwise_proof.csv,"Paired scientific proof for easy->medium, easy->hard, and easy->very_hard."
+q4_summary_by_disagreement.csv,Q4 metrics split by disagreement_flag.
+q4_summary_by_gold_epu.csv,Q4 metrics split by gold_epu.
+q4_retrieval_table.csv,"Retrieval support table: section retrieval, joint accuracy, EPU-only accuracy, excerpt-in-target, JSON validity, confidence."
+q4_most_harmed_rows.csv,Rows most harmed when moving from easy to very_hard.
+pilot_rows_q4.csv,The exact pilot rows and generated dossiers used for Q4.

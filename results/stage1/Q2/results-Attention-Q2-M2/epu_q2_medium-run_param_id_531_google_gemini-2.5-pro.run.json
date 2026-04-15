@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T05:06:52.233347Z",
+  "endTime": "2026-03-31T05:07:01.983922Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-e8d19a2f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nIn 1980, while seeking the Republican presidential nomination, George Bush denounced Ronald Reagan's proposed \"supply-side\" tax cuts as \"vtodto economics.\" Now Bush is proposing major tax cuts of his own; critics call this \"Vtodto II.\" One of Bush's main budget proposals is to cut taxes radically on capital gains -- profits from the sale of certain assets, like stocks, bonds and houses. Like Reagan in 1980, Bush contends that this tax cut would spur the economy, promote prosperity, create jobs, improve is.S. competitiveness and generate extra revenue to help close budget deficits. Critics say cutting the capital gains tax would hand a money windfall to the rich. The money would not trickle down to spur the economy, they say, but the tax cut would reduce federal revenues, worsening budget deficits. Bush \"has demonstrated that he understands the mathematics of vtodto economics,\" said Sen. Bill Bradley, D-N.J., the intellectual godfather of the 1986 tax reform. \"If anyone really believed that cutting the tax rates would increase revenues, they'd cut them to almost nothing and eliminate the deficit.\" Economists disagree over those conflicting contentions. Harvard experts have produced rival studies. Most analyses, however, favor Bush's critics. isndermine overhaul? Critics also say Bush's tax cuts would undermine the massive 1986 tax overhaul, widely hailed as a rare bipartisan triumph of fairness and economic efficiency. Capital gains are now taxed up to 33 percent of their full\n\n[...TRUNCATED...]\n\n tax break for capital gains was an essential trade-off, economically and politically, to achieve the 1986 overhaul. That lowered the tax rate for the wealthiest Americans to 28 percent from 50 percent without significantly reducing the total taxes they paid. Now Bush proposes to cancel the trade-off, keeping the low rates while giving back a big tax break on capital gains. Bush's proposed cut faces an uphill fight in Congress. Sen. Lloyd Bentsen, D-Texas, the chairman of the tax-writing Senate Finance Committee, says he would consider cutting the capital gains tax only in combination with higher taxes on the wealthy, a condition Bush rules out. Rep. Dan Rostenkowski, D-Ill., the chairman of the tax- writing House Ways and Means Committee, considers Bush's capital gains proposal \"the beginning of the unraveling\" of the 1986 tax overhaul. He vows to oppose it. \"I'm not about to tell the wage earners in Chicago that they should pay a higher tax rate than the stockbrokers,\" Rostenkowski said in a recent speech. CAPITAL GAINS TAX PROPOSAL: President Bush wants to cut the capital gains tax rate from 33 to 15 percent, while excluding 45 percent of the asset's value from any tax. He says this will spur the economy. CRITICISM: Critics contend that cutting the capital gains tax would hand a windfall to the rich. They say the tax cut would reduce revenues, worsening budget deficits. Caption: photo: Bill BRADLEY Memo: see end of text for CAPITAL GAINS TAX\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"Bush's proposed cut faces an uphill fight in Congress. Sen. Lloyd Bentsen, D-Texas, the chairman of the tax-writing Senate Finance Committee, says he would consider cutting the capital gains tax only in combination with higher taxes on the wealthy, a condition Bush rules out.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1595,
+            "outputTokens": 94,
+            "inputTokensCostNanodollars": "1993750",
+            "outputTokensCostNanodollars": "9860000",
+            "totalBackendLatencyMs": "9646"
+          },
+          "id": "epu_q2_medium-e8d19a2f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1595,
+        "outputTokens": 94,
+        "inputTokensCostNanodollars": "1993750",
+        "outputTokensCostNanodollars": "9860000",
+        "totalBackendLatencyMs": "9646"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #532"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:20:48.259112Z",
+  "endTime": "2026-04-02T23:20:55.588131Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-695d40be",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nSEOisL, South Korea - Any day now, South Korea's collapsing currency will put Rim Min-ston out of business.The 42-year-old widow knows the end is near, and she knows how it will happen: The company that imports the Chinese baskets she sells at Seoul's Nam Dae Mun market must raise prices to offset the effects of a weakening currency. When it does, Ms. Rim will no longer be able to afford the merchandise she sells to support her four children.\"It's very difficult for me to sleep at night because I'm so worried about theeconomy,\" Ms. Rim said Friday as she displayed her baskets in the subfreezing weather. \"I used to worry only about the effect on my family. Now, I'm worried about my country.\" One week after negotiating a $57 billion financial rescue package, South Korea'seconomicagony continues to worsen by the day. On Friday, the country's fourth-largest securities firm failed, the stock market sagged another 7 percent and the currency barely avoided setting an all-time low - only after the government intervened.Economicanalysts are now warning that the record rescue package put together by the International Monetary Fund might not be enough to stop South Korea's meltdown. The more the currency - the won - sinks, the more unlikely it becomes that the government, banks and corporations will be able to pay off huge foreign currency borrowings without more international assistance, financial analysts said.As they watch theireconomicmiracle slip away, South Koreans who helped writ\n\n[...TRUNCATED...]\n\nut to go out of business.Sales of about 500,000 won a day two months ago have fallen lately to barely 100,000 won. On Friday, after selling baskets for eight hours in the numbing cold, she ttok in a little more than 50,000 won.\"When I have to give this up, I'll try to go into the ftod business,\" she said, packing her baskets into a shed as darkness fell. \"I'm thinking about selling baked gtods. People have to eat. \"Caption:CHART(S): (The Dallas Morning News) SOisTH KOREA'S CRISIS CONTINisES; PHOTO(S): 1. (Associated Press) Investors (above) flock to a counter Friday as they dealing screen shut off at a Seoul, South Korea, foreign currency dealership when dollar-won trading hit a daily limit quicker than the dealer's computer could handle. Investors increasingly wonder whether they can trust South Korea to honor the terms of the $57 billion bailout. 2. A South Korean man (at left) lowers his head Thursday at a Seoul bank, where he tried to convert his Korean won into is.S. dollars. On Friday, the stock market sagged an additional 7 percent, and the currency barely avoided setting an all-time low, only after the government intervened. 3. (New York Times) Kim Ston-hwa, a Seoul, South Korea, coffee vendor who works in a street market, says she resents conditions imposed for South Korea's $57 billion bailout. Some citizens say the isnited States and Japan made the measures more difficult than necessary to gain greater access to the country'seconomy.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"Investors increasingly wonder whether they can trust South Korea to honor the terms of the $57 billion bailout.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 916,
+            "outputTokens": 51,
+            "inputTokensCostNanodollars": "1832000",
+            "outputTokensCostNanodollars": "8316000",
+            "totalBackendLatencyMs": "7213"
+          },
+          "id": "epu_q2_short-695d40be-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 916,
+        "outputTokens": 51,
+        "inputTokensCostNanodollars": "1832000",
+        "outputTokensCostNanodollars": "8316000",
+        "totalBackendLatencyMs": "7213"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #587"
+}

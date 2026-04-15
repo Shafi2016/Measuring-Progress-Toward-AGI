@@ -1,0 +1,3 @@
+llm_name,was_truncated,n_rows,easy_acc,easy_epu_only_acc,easy_section_retrieval_rate,medium_acc,medium_epu_only_acc,medium_section_retrieval_rate,hard_acc,hard_epu_only_acc,hard_section_retrieval_rate,very_hard_acc,very_hard_epu_only_acc,very_hard_section_retrieval_rate
+google/gemini-3.1-pro-preview,0,162,0.6728395061728395,0.6728395061728395,1.0,0.6894409937888198,0.6894409937888198,1.0,0.6708074534161491,0.6708074534161491,1.0,0.654320987654321,0.654320987654321,1.0
+google/gemini-3.1-pro-preview,1,338,0.6863905325443787,0.6863905325443787,1.0,0.6804733727810651,0.6804733727810651,1.0,0.6834319526627219,0.6834319526627219,1.0,0.6893491124260355,0.6893491124260355,1.0

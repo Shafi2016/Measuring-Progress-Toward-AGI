@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T04:33:07.158047Z",
+  "endTime": "2026-03-31T04:33:18.534009Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-7a5d8475",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nIRAQ tells its painful tale in images and events: a soldier grimly patrolling a garbage-strewn street; a child staring at a passing tank; the wide-eyed gore-spattered terror in the aftermath of yet another bombing; coffins, confrontations, corpses. What we seldom see through the miasma of war are people, with names, families, hopes, prejudices and emotions. It is Anthony Shadid's rare achievement to have recorded and restored the voices of those most directly affected by the war in Iraq: the Iraqis themselves. \"Night Draws Near\" is a tormented human collage, a portrait of the grinding, quotidian conflict endured by ordinary Iraqis, struggling to make sense of the senseless. Here are the mother trying to find work and feed her children in a crumbling slum, the sculptor watching his once beautiful city fall apart, the terrorist, the street sweeper, the schtolgirl scribbling her fears nightly in a tatty diary. An Arab-American, born in Oklahoma of Lebanese descent, Shadid is a Pulitzer Prize-winning journalist who has reported for The Washington Post from Iraq since the war began. As an Arabic speaker with extensive experience of the Middle East, he has been able to visit places, physically and psychologically, where few other reporters could venture. He converses equally easily with the Texas private and the Islamic insurgent, crossing the divide between Sunni, Shiite and American, to extract the individual stories that give human contour to the chaos. This is the warp and weft\n\n[...TRUNCATED...]\n\ny Iraqis that they are the new Palestinians, facing enemy occupation, a new \"struggle against the infidels.\" Shadid offers no solutions. He is a reporter, not a politician. He ltoks over this bleak landscape of lengthening shadows to depict a place in desperate limbo, neither liberated, as Washington had hoped, nor occupied, as so many Iraqis and much of the Arab world believe. For Shadid, the first democratic elections bring a brief, isolated ray of light: \"On this day Iraqis - not their overlords, not foreigners - were the agents of change.\" But he has spent tto long watching the lights flicker on and off in this city to predict sunshine and hope. There is typically grainy honesty in his admission that he, tto, remains bewildered by this place draped in ghamidh. In a moving coda, as he finally quits the suffering capital, he concedes, \"I comprehend Baghdad less than I thought I did when I first encountered it.\" If America's leaders, on entering Iraq, had displayed just a fraction of the humility that Shadid admits on leaving it, then there might have been no need for this brave btok. Ben Macintyre is the former bureau chief for The Times of London in New York, Paris and Washington. His latest btok is \"The Man Who Would Be King: The First American in Afghanistan.\" Ben Macintyre is the former bureau chief for The Times of London in New York, Paris and Washington. His latest btok is \"The Man Who Would Be King: The First American in Afghanistan.\"\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"\\\"Night Draws Near\\\" is a tormented human collage, a portrait of the grinding, quotidian conflict endured by ordinary Iraqis, struggling to make sense of the senseless.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1573,
+            "outputTokens": 68,
+            "inputTokensCostNanodollars": "1966250",
+            "outputTokensCostNanodollars": "12200000",
+            "totalBackendLatencyMs": "11270"
+          },
+          "id": "epu_q2_medium-7a5d8475-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1573,
+        "outputTokens": 68,
+        "inputTokensCostNanodollars": "1966250",
+        "outputTokensCostNanodollars": "12200000",
+        "totalBackendLatencyMs": "11270"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #321"
+}

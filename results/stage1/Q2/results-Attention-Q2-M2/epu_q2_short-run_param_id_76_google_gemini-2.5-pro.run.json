@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T01:58:28.931917Z",
+  "endTime": "2026-03-31T01:58:33.344357Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-6e835d2c",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nWith President Obama's energy and climate proposals bottled up in Congress, business leaders say they cannot tell what direction government policy will take on a variety of issues, including new energy taxes, tougher emissions standards for factories and vehicles, and guaranteed markets for start-up wind and solar power plants. With President Obama's energy and climate proposals bottled up in Congress, business leaders say they cannot tell what direction government policy will take on a variety of issues, including new energy taxes, tougher emissions standards for factories and vehicles, and guaranteed markets for start-up wind and solar power plants. You have requested \"on-the-fly\" machine translation of selected content from our databases. This functionality is provided solely for your convenience and is in no way intended to replace human translation. Show full disclaimer Neither ProQuest nor its licensors make any representations or warranties with respect to the translations. The translations are automatically generated \"AS IS\" and \"AS AVAILABLE\" and are not retained in our systems. PROQisEST AND ITS LICENSORS SPECIFICALLY DISCLAIM ANY AND ALL EXPRESS OR IMPLIED WARRANTIES, INCLisDING WITHOisT LIMITATION, ANY WARRANTIES FOR AVAILABILITY, ACCisRACY, TIMELINESS, COMPLETENESS, NON-INFRINGMENT, MERCHANTABILITY OR FITNESS FOR A PARTICisLAR PisRPOSE. Your use of the translations is subject to all use restrictions contained in your Electronic Products License Agreement and by u\n\n[...TRUNCATED...]\n\nctures instead of a patchwork of incentives. \"Certainty,\" she said, \"actually means simplicity.\" -- jtankersley@latimes.com Caption: PHOTO: STIMisLisS: President Obama's administration earmarked $80 billion for clean-energy projects.; PHOTOGRAPHER: Isaac Brekken Associated Press (Copyright (c) 2010 Los Angeles Times) Show less You have requested \"on-the-fly\" machine translation of selected content from our databases. This functionality is provided solely for your convenience and is in no way intended to replace human translation. Show full disclaimer Neither ProQuest nor its licensors make any representations or warranties with respect to the translations. The translations are automatically generated \"AS IS\" and \"AS AVAILABLE\" and are not retained in our systems. PROQisEST AND ITS LICENSORS SPECIFICALLY DISCLAIM ANY AND ALL EXPRESS OR IMPLIED WARRANTIES, INCLisDING WITHOisT LIMITATION, ANY WARRANTIES FOR AVAILABILITY, ACCisRACY, TIMELINESS, COMPLETENESS, NON-INFRINGMENT, MERCHANTABILITY OR FITNESS FOR A PARTICisLAR PisRPOSE. Your use of the translations is subject to all use restrictions contained in your Electronic Products License Agreement and by using the translation functionality you agree to forgo any and all claims against ProQuest or its licensors for your use of the translation functionality and any output derived there from. Hide full disclaimer Translations powered by LEC. Translations powered by LEC. Please select one or more items.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1,\n  \"focus_excerpt\": \"business leaders say they cannot tell what direction government policy will take on a variety of issues, including new energy taxes, tougher emissions standards for factories and vehicles, and guaranteed markets for start-up wind and solar power plants.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 824,
+            "outputTokens": 77,
+            "inputTokensCostNanodollars": "1030000",
+            "outputTokensCostNanodollars": "4230000",
+            "totalBackendLatencyMs": "4306"
+          },
+          "id": "epu_q2_short-6e835d2c-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 824,
+        "outputTokens": 77,
+        "inputTokensCostNanodollars": "1030000",
+        "outputTokensCostNanodollars": "4230000",
+        "totalBackendLatencyMs": "4306"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #77"
+}

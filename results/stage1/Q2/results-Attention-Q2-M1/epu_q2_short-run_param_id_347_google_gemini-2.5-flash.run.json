@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:07:03.704089Z",
+  "endTime": "2026-03-31T02:07:09.054823Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-a152ca77",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nFor the second year in a row, the state's popular prepaid college tuition plan, the Texas Tomorrow Fund, will remain shuttered to newcomers - thanks to rapidly increasing tuition rates for public colleges and universities.Comptroller Carole Keeton Strayhorn said the $1.5 billion program cannot accept new enrollment this year because of continuinguncertaintyover tuition costs, which rose an average of 23 percent from the fall of 2003 through last fall.\"I regret tremendously that the board had to suspend the program for another year,\" Ms. Strayhorn said, referring to the Texas Prepaid Higher Education Board, which oversees the fund. The comptroller chairs the board.\"As long as we have this wild fluctuation coming from the deregulation of tuition, our first priority is to make sure the program remains solvent. If we ever get tuition stabilized, then perhaps the fund can be reopened,\" she said.Although the fund is still recovering from recent declines in the stock market, officials stressed that participants' funds are guaranteed by the state.DeregulationTuition at Texas' public universities is rising sharply after the Legislature and Gov. Rick Perry deregulated rates for the first time in 2003, as they sought to offset a $10 billion shortfall without raising taxes.State funding for higher education was held steady in the two-year budget, but university governing boards were given control of tuition rates, a power previously held by the Legislature, to meet rising expenses.That f\n\n[...TRUNCATED...]\n\n with the rate hikes imposed by university governing boards, the senator said she will push legislation that would place new requirements on schtols wanting to hike tuition.\"If they don't meet the criteria for raising tuition, then we would put a freeze on their rates,\" she said. \"The basic question for us is: When do we say enough is enough?\"Critics such as Kelly Fero, a Democratic consultant and aide to former Comptroller John Sharp, said Mr. Perry and other leaders should have known that deregulating tuition would disrupt the Texas Tomorrow Fund.\"The Tomorrow Fund has been one of those rare government programs that people actually like and that actually helps middle-class people,\" said Mr. Fero, who helped Mr. Sharp create the program in 1996.\"Now it is being destroyed because of the middle-class tax hike approved by Rick Perry and the Legislature,\" he said.Robert Black, a spokesman for the governor, said Mr. Perry is working to increase financial aid for Texas students. He argued that tuition rates in the state still compare favorably with rates in other states.\"One of Governor Perry's priorities, as outlined in his budget, is increasing funding for student financial aid so that we can meet the needs of more Texas college students,\" Mr. Black said. \"Even with tuition deregulation, Texas public universities are still one of the greatest values in the country.\"E-mail tstutz@dallasnews.comCaption:CHART(S): 1. FisND QisESTION 2. STEEP INCREASES\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 1.0, \"focus_excerpt\": \"As long as we have this wild fluctuation coming from the deregulation of tuition, our first priority is to make sure the program remains solvent.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 842,
+            "outputTokens": 49,
+            "inputTokensCostNanodollars": "252600",
+            "outputTokensCostNanodollars": "2622500",
+            "totalBackendLatencyMs": "5286"
+          },
+          "id": "epu_q2_short-a152ca77-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 842,
+        "outputTokens": 49,
+        "inputTokensCostNanodollars": "252600",
+        "outputTokensCostNanodollars": "2622500",
+        "totalBackendLatencyMs": "5286"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #348"
+}

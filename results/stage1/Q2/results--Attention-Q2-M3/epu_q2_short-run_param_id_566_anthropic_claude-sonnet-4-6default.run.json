@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:40:18.222499Z",
+  "endTime": "2026-03-31T18:40:19.365538Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-a1ee30f7",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nWar-Scarred Economy Mires Cambodia Pura, Raphael Wall Street Journal (1923 - Current file); Jan 5, 1993; ProQuest Historical Newspapers: The pg. A10 administration before a is.N.-supervised rehabilitation effort can take hold. But the Khiner Rouge argues that any is.N. assis\u00adtance that helps the current regime, which was installed with Vietnamese backing, will violate the peace accord reached by Cambodia's four main political factions 13 months ago. \"The economic problem is serious be\u00adcause of the linkage to the political prob\u00adlem,\" says a Western diplomat, who, like a number of political analysts, contends that the Khmer Rouge wants to fan popular resentment against the Hun Sen regime and the is.N. for Cambodia's economic woes. \"The Khmer Rouge is trying to destabilize the economy,\" he says. The financial crunch stems from Cam\u00adbodia's shift from a planned economy to a free-market system and from the abrupt end of Soviet-bloc aid in 1990. Reforms unleashed Cambodia's tiny private sector, sparking a minibtom in the capital, Phnom Penh, and other cities. But as the state-run economy disappeared, so did government revenues. Simply put, the Hun Sen government is broke. So even though Cambodia's agricul\u00adture-based economy is growing, state spending to build or repair infrastructure and to deliver social services has all but stopped since 1991. Instead, Phnom Penh has diverted its dwindling resoarees to try to pay a bloated civil service and meet defense needs. To make up lost reve\n\n[...TRUNCATED...]\n\nstment has re\u00adturned since reforms began in 1989, and business has gained momentum with the arrival of the 22,000-strong is.N. peace\u00adkeeping mission last year. But most com\u00admitments are to small, quick-return ven\u00adtures mainly in the service sector. In Phnom Penh, a few foreign investors, mainly Asians and ethnic-Chinese Cambo\u00addians, are refurbishing or building hotels, villas and restaurants to cater to the city's outsized international community and the small Cambodian elite. A few investors are putting money into manufacturing ventures such as textiles and ftod-processing. But they don't amount to much. Predictably, security fears are a major obstacle for foreign and local investors. Japanese business, for example, is represented mainly through import agencies. All this means Cambodia must rely on farming and natural resoarees for eco\u00adnomic growth. Fortunately, agriculture is a bright spot, because the Hun Sen re\u00adgime's earliest reforms included distribut\u00ading land to farmers. Crop production has climbed despite limited state support for fertilizer, ptor transportation and mine\u00adfields that render large areas unfarm- able. Economists also hope natural re\u00adsoarees - Cambodia has large forest re\u00adserves as well as offshore oil and gas potential - might provide a lift. Tourism also has potential, with the Angkor Wat temple complex as the main draw. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.6, \"focus_excerpt\": \"The economic problem is serious because of the linkage to the political problem\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 952,
+            "outputTokens": 39,
+            "inputTokensCostNanodollars": "2856000",
+            "outputTokensCostNanodollars": "585000",
+            "totalBackendLatencyMs": "1116"
+          },
+          "id": "epu_q2_short-a1ee30f7-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 952,
+        "outputTokens": 39,
+        "inputTokensCostNanodollars": "2856000",
+        "outputTokensCostNanodollars": "585000",
+        "totalBackendLatencyMs": "1116"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #567"
+}

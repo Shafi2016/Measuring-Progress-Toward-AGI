@@ -1,0 +1,3 @@
+llm_name,condition,main_acc_when_aux_high,main_acc_when_aux_low,n_aux_high,n_aux_low
+google/gemini-3.1-pro-preview,full_focus_epu_first,0.7730496453900709,0.6406685236768802,141,359
+google/gemini-3.1-pro-preview,full_focus_epu_last,0.7835820895522388,0.6202185792349727,134,366

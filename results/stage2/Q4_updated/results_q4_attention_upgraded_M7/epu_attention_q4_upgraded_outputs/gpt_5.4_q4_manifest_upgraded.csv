@@ -1,0 +1,12 @@
+file
+pilot_rows_q4_upgraded.csv
+q4_results_wide_upgraded.csv
+q4_results_long_upgraded.csv
+q4_summary_overall_upgraded.csv
+q4_retrieval_table_upgraded.csv
+q4_pairwise_proof_upgraded.csv
+q4_summary_by_gold_epu_upgraded.csv
+q4_summary_by_disagreement_upgraded.csv
+q4_summary_by_truncation_upgraded.csv
+q4_most_harmed_rows_upgraded.csv
+run_status_q4_upgraded.csv

@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T21:53:41.096067Z",
+  "endTime": "2026-04-02T21:53:52.863990Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-66687e75",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nNTT's Cutbacks Signal isncertain Transition in Japan: Economy and ... Schlesinger, Jacob;Hamilton, David Wall Street Journal (1923 - Current file); Feb 26, 1993; ProQuest Historical Newspapers: The pg. B4 \u2014 CORPORATE FOCisS By Jacob M. Schlesinger And David P. Hamilton Staff Reporters of Ton Wall Stiif.kt Journal TOKYO - When Nippon Telegraph & Telephone Corp. announces today that It will slash staff and close offices, It will spotlight a major economic struggle under\u00adway In Japan: the bumpy transition from cozy, controlled stability to the more uncertain free market. Japan's huge part-public, part-private telecommunications centaur - under at\u00adtack by new competitors but tightly reined in by regulators, publicly traded but ma\u00adjority-owned by the government - will un\u00adveil a new cost-cutting plan likely to trim its payroll by more than 10%, or 30,000 employees, as well as a consolidation of many offices and retail outlets over the next three years, \"The market struggle Is getting harder and harder,\" says an NTT spokesman. \"We must become more efficient.\" Critics say NTT's new plan will barely scratch the surface. \"In the long run, they will have to cut more,\" says Sachio Sem- moto, who quit NTT about a decade ago out of frustration with the bureaucratic com\u00adpany and who now helps run one of its biggest competitors, DDI Corp. \"Other\u00adwise they will not survive,\" The catalyst for NTT's actions is tum\u00adbling profits. The company estimates its pretax profit in the year ending March 3\n\n[...TRUNCATED...]\n\nployees. \"Of course, they cannot cut, so they transfer their employees to their subsidiaries,\" he says, noting that the subsidiaries bear the added costs by charg\u00ading more to their NTT contracts. Many of the employees affected by the latest reduc\u00adtions will also likely end up at NTT affili\u00adates. \u2022 As if NTT management's job wasn't tough enough, there's one other group to placate: the long-suffering shareholders. When the company went public in 1987, Japanese citizens eagerly bought the stock, and the share price soared in the. first few months. Many critics later ar\u00adgued, however, that the initial public offer:.. ing was rigged. The powerful finance,, ministry, they say, convinced securities;- houses to hype the stock: The brokerages); got their high fixed commissions, and the\" government raked in the proceeds from the- mammoth sale. NTT's shares couldn't defy gravity for'- long, however, and crashed even before';; the broader market did. The stock is now'1 trading at 80% below its peak. Thosev shareholders who invested their life sav-'u ings In NTT shares may get some satisfac-;; tion from the fact that they're not alone:-;- The government, which arguably created;; the mess in the first place, now needs to.'i raise money, but also is loathe to dump its. NTT shares. For now, the share price has simply fallen tto far to make that worths, while. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"the bumpy transition from cozy, controlled stability to the more uncertain free market.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 915,
+            "outputTokens": 46,
+            "inputTokensCostNanodollars": "1830000",
+            "outputTokensCostNanodollars": "8424000",
+            "totalBackendLatencyMs": "11636"
+          },
+          "id": "epu_q2_short-66687e75-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 915,
+        "outputTokens": 46,
+        "inputTokensCostNanodollars": "1830000",
+        "outputTokensCostNanodollars": "8424000",
+        "totalBackendLatencyMs": "11636"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #118"
+}

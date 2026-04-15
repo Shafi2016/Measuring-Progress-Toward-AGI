@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:21:45.533286Z",
+  "endTime": "2026-03-31T02:21:48.671415Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-e6826f6b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Saturday, August 13, 2011 Symbol Ltokup $100 That's how much Hewlett-Packard cut the price of its TouchPad tablet computer, only a month after rolling out the product. The TouchPad now costs $400 for a 16-gigabyte model and $500 for a 32-gigabyte version. That's $100 less than comparable iPad 2 tablets. Apple continues to dominate the category, selling $6 billion worth of iPads in the most recent quarter. \"Consumers are very fatigued and very uncertain. In the short term, people are going to pull back on spending.\" Chris Christopher, IHS Global Insight economist, on the latest plunge in consumer confidence. In preliminary figures released Friday, the isniversity of Michigan index of consumer sentiment dropped to 54.9 this month from 63.7 in July. Analysts had expected a decline to 62. The current reading is the lowest since May 1980, adding to concern that weak job growth and wild swings in the stock market will prompt households to retrench. How are htodies and ironic T-shirts selling in this economy? isrban Outfitters will give a sense of that on Monday when it delivers its quarterly results. While the company is expected to post a 10 percent revenue increase, higher costs are weighing on profit. Analysts estimate that net income fell 27 percent. The Philadelphia chain has six locations in the Bay Area and plans to open another (at Stanford Shopping Center) this fall. This article appeared on page D - 1 \n\n[...TRUNCATED...]\n\nmer... Extensively renovated Bernal Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) 2001 CL$8,753 2009 Civic$13,970 2009 Civic$16,500 2010 Civic$16,970 2012 Civic$19,595 2012 Civic$19,595 2012 Civic$19,595 2012 Civic$19,595 2012 Civic$19,595 2012 Civic$19,595 Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 1.0, \"focus_excerpt\": \"Consumers are very fatigued and very uncertain. In the short term, people are going to pull back on spending.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1011,
+            "outputTokens": 44,
+            "inputTokensCostNanodollars": "303300",
+            "outputTokensCostNanodollars": "1292500",
+            "totalBackendLatencyMs": "3071"
+          },
+          "id": "epu_q2_short-e6826f6b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1011,
+        "outputTokens": 44,
+        "inputTokensCostNanodollars": "303300",
+        "outputTokensCostNanodollars": "1292500",
+        "totalBackendLatencyMs": "3071"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #550"
+}

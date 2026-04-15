@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:00:29.199204Z",
+  "endTime": "2026-03-31T19:00:31.295831Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-d71f2697",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nEconomy Grew At 1.7% Rate In 4th Quarter: Weak Pace Held *86 Growth ... ROSE GisTFELD Staff Reporter of THE WALL STREET JOisRNAL Wail Street Journal (1923 - Currentjile); Jan 23, 1987; ProQuest Historical Newspapers: The P8' 2 _, Economy Grew At 1.7% Rate In 4th Quarter Weak Pace Held '86 Growth To 2.5%, Reflects Drop In Consumer Spending By Rf isi: Gvtfei.u Staff Kapartcr (if Tin-: Wai.i. Stiu:kt Jcii;h\\ai WASHINGTON \u2014 Economic growth slowed to a lackluster 1.7G annual rate in the fourth quarter as consumer spending fell, the Commerce Department said. The ptor performance in the final pe\u00adriod held 1986 growth to 2.5G. the weakest showing since a 2.5'T decline in the re\u00adcession year of 19S2. The fourth-quarter economic growth, measured by the real gross national prod\u00aduct\u2014the inflation-adjusted value of the na\u00adtion's output of gtods and services\u2014fol\u00adlowed a rise at a 2.8G annual rate in the third quarter. GNP grew 2.7G in 1985. The report is preliminary and is subject to re\u00advision. Deputy Commerce Secretary Clarence Brown said that 19S6 growth, which was weaker than the Reagan administration predicted, was held down by several fac\u00adtors. They included the nation's huge trade deficit, the damage to energy-sector in\u00advestment as a result of the oil-price decline and uncertainty about tax revision, he said. The fourth-quarter decline in consumer spending resulted from a drop in motor ve\u00adhicle sales following a third-quarter car\u00adbuying spree sparked by generous financ\u00ading incentives\n\n[...TRUNCATED...]\n\nuarter. James Cochrane, chief economist at Texas Commerce Bum-shares in Hous\u00adton, predicted that growth could remain \"relatively weak\" if consumer spending on durables continues to be modest following the third-quarter binge. \"We had a fantas\u00adtic third quarter. It will take half a year to recover.\" he said.\" Mr. Wescott said, however, that an im\u00adproving trade balance and relatively low level of business inventory investment could set the stage for a significant accel\u00aderation in economic growth. He also noted that many consumers are getting a tax cut this year, an effect that he said will be ex\u00adaggerated for awhile. Current paychecks are especially big for many people, he said, because they haven't yet accurately readjusted their withholding under the new tax law. The 2.5o; rise in GNP for 1986 is below the Reagan administration's prediction early last year of 3.4';; real growth in 1986. In August, that forecast was cut to 2.9\",. Before adjustment for inflation, fourth- quarter GNP ran at tin annual rate of 4th Qtr. 19W. 3702.4 less: inventory change - 115 equals: final sales 3713 9 Components of Final Sales Personal Consumption 2445 1 Nonresidential Invest 4510 Residential Invest 199 3 Net Exports. 155 $ Gov't Parehases 774.1 iiln'.^e Quarter, the implicit price detlator rose to M5.3 o ot the 1982 average, from 115.0\u00b0\u00b0 in the previous quarter. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.85, \"focus_excerpt\": \"uncertainty about tax revision, he said\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1869,
+            "outputTokens": 32,
+            "inputTokensCostNanodollars": "5607000",
+            "outputTokensCostNanodollars": "480000",
+            "totalBackendLatencyMs": "2044"
+          },
+          "id": "epu_q2_medium-d71f2697-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1869,
+        "outputTokens": 32,
+        "inputTokensCostNanodollars": "5607000",
+        "outputTokensCostNanodollars": "480000",
+        "totalBackendLatencyMs": "2044"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #572"
+}

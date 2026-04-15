@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:06:32.304412Z",
+  "endTime": "2026-03-31T19:06:36.277952Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-d966dd8b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nThe proposed free-trade agreement with Mexico is one of the best things that could happen to our country. Within our grasp is the chance to have a prosperous and stable ally on our southern border, a large and almost completely unrestricted market for our products, and a shiningeconomicmodel for the rest of Latin America.Don't blow it now, Mr. Clinton.Your recent declarations of support are encouraging. Youpraised the free-trade agreement's potential to create jobs and raise living standards in both countries. Yet the ambivalence in your statements supporting tough negotiations on side agreements perpetuates the impression that you are an unsteady advocate. That harms the prospects of an initiative that faces a bruising trial in the halls of public opinion.We understand your demand that Mexico enter into new side agreements on the environment, worker rights and import surge safeguards. By packaging the free-trade agreement and the side agreements, you hope to assuage the labor and \"green' interests that helped you become president and provide political cover to your fellow Democrats in Congress. Viewed in this context, the side agreements are brilliantly expedient. They may even do some gtod.We hope your strategy works; we fear it may not. Holding free trade hostage to peripheral issues risks stifling the vision of a isnited States, Mexico and Canada linked in a preponderantly strong North American market. History would not forgive you for such an outcome. A surer, more appro\n\n[...TRUNCATED...]\n\nur administration. On Tuesday, is.S. trade representative Mickey Kantor moved the goal posts again, telling Congress he would use the new negotiations to seek changes in Mexico's court system.What is it about Mexico that makes you think you can behave in such a condescending, judgmental manner? Prejudice? Japan also has one dominant political party and persistent allegations of official corruption, but we do not presume to micromanage that country's internal politics. How would you feel if our majoreconomicpartners, Japan or Germany, treated the isnited States in the arrogant way Mr. Kantor is addressing Mexico?Mexican President Carlos Salinas de Gortari, who has been a patient man, says the side agreements must adhere to a few sensible parameters. They must not touch on issues already settled in the free-trade agreement, must makeeconomicsense and must not infringe on Mexico's sovereignty. He will try hard to accommodate you because Mexico stands to benefit most from free trade, but press him hard on any of these areas, and you force him from the bargaining table.is.S.-Mexico relations have been marked for centuries by suspicion and antagonism. They have evolved only recently into something resembling normality. The moment is right to seal a deal that would bind our countries in friendship with ties of commerce and mutualeconomicdependence.Follow the admonition of the ancient Romans, Mr. President. Carpe diem. Seize the day. Don't blow it now.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"Your recent declarations of support are encouraging. You praised the free-trade agreement's potential... Yet the ambivalence in your statements supporting tough negotiations on side agreements perpetuates the impression that you are an unsteady advocate.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1561,
+            "outputTokens": 70,
+            "inputTokensCostNanodollars": "583856",
+            "outputTokensCostNanodollars": "117600",
+            "totalBackendLatencyMs": "1451"
+          },
+          "id": "epu_q2_medium-d966dd8b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1561,
+        "outputTokens": 70,
+        "inputTokensCostNanodollars": "583856",
+        "outputTokensCostNanodollars": "117600",
+        "totalBackendLatencyMs": "1451"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #397"
+}

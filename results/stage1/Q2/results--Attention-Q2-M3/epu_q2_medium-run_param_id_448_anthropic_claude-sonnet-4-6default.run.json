@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:56:30.186626Z",
+  "endTime": "2026-03-31T18:56:31.676309Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-f08b1333",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nFor the Economy: Better Times, But Not the Gtod Old Days. By KIRK JOHNSON New York Times (1923-Current file); Sep 28, 1997; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. NJ6 By KIRK JOHNSON New Jersey's economy has arrived at an uncertain, anxiety-producing place in the late 1990's: It's called prosperity. The state has now recovered \u2014 far in advance of New York and Connecticut \u2014 almost all the jobs that were lost in the three-year-long recession of the late 1980's and early 1990's. Its clout and image as a center of tele\u00adcommunications research, one of the hottest areas of the national economy, has grown. The statewide unemployment rate has reached a seven-year-low. But the problem for residents, and for Governor Whitman, who has struggled mightily to convince voters that things are in fact doing quite well in the state,' is that this 1990's-style economic growth is not at all familiar. The state still rumbles with the after\u00adshocks of corporate restructuring and down\u00adsizing. The dizzy pace of change in telecom\u00admunications, a bedrock industry, makes the future harder to predict. And what is perhaps most disturbing to the equilibrium of a place where the culture and identity \u2014 not to mention a majority of the voters \u2014 are so firmly middle class, is that many of the economic gains are going to people in the economic strata above and below the mid-range. \"In the 90's, the high-end occupations in New Jersey have done very well and the low-end have done O.K.,\"\n\n[...TRUNCATED...]\n\nly labor costs, fell further' in New York City and Long Island and south\u00adern Connecticut than they did anywhere in New Jersey between 1989 and 1996, accord\u00ading to an analysis by Mr. Zandins firm. \u25a0 \"It's not a slam-dunk for New Jersey anymore,\" as Mr. Zandi put it. Business people and economists say that Mrs. Whitman does deserve credit for help\u00ading make the state friendlier to businesses and more responsive to companies in times of trouble as well.\" Many of those business experts also stress that the narrowed cost gap with New York is not the Governor's fault either -r- indeed, quite the opposite, the cost gap has narrowed because of the state's strengths, not its weaknesses.. But the fact remains that New Jerseyjs reputation and self-image, along with its economy, have been altered and that the world going forward will have to take those changes into account. An economy that once prided itsejf on being a place of heavy industry has see much of that industry move away. The rock-ribbed stability that once reso\u00adnated in places like AT&T has become -a scrambling, clawing free-for-all as telecom\u00admunications reinvents itself. The corpora\u00adtions that once needed thousands of middle managers no longer do.. There is, in other words, no going back, only forward. Better times may yet return for all the state's residents, but the gtod oid days will not.. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.72, \"focus_excerpt\": \"Mrs. Whitman does deserve credit for helping make the state friendlier to businesses and more responsive to companies in times of trouble\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1736,
+            "outputTokens": 52,
+            "inputTokensCostNanodollars": "5208000",
+            "outputTokensCostNanodollars": "780000",
+            "totalBackendLatencyMs": "1456"
+          },
+          "id": "epu_q2_medium-f08b1333-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1736,
+        "outputTokens": 52,
+        "inputTokensCostNanodollars": "5208000",
+        "outputTokensCostNanodollars": "780000",
+        "totalBackendLatencyMs": "1456"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #449"
+}

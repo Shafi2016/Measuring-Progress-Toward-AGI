@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:49:24.589627Z",
+  "endTime": "2026-04-01T17:49:25.555096Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-3f7f1105",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nAnxious South Florida investors fltoded their local brokerages offices and financial advisers with inquiries Wednesday, a day after the biggest plunge of the year in the Dow Jones Industrial Average. Many investors, relatively new to the stock market, watched the value of their portfolios drop for the first time ever and were uncertain whether to buy or sell. Concern rose as the sell-off continued Wednesday, but the Dow eventually rebounded from a sharp drop of 125 points in the last half hour of trading to close up 59.47. The Dow, measuring the movements of 30 big-name companies from IBM to isnion Carbide, is closely followed as a popular gauge of the stock market's health. Wall Street strategists were calling Tuesday's decline an overreaction and local investment pros mostly were telling clients to hold on to their stocks for the long term and ltok for buying opportunities. ``We're telling investors that the near term may be rocky but we expect the market will be higher in the next 12 months than it is now,'' said David Henwtod, chief investment officer for Raymond James & Associates, a Florida brokerage firm. ``This is market where you can find some unusual values.'' Nationally and locally, experts are divided over whether the market is experiencing a one-time correction or caught in the throes of something far more severe. Tuesday, the Dow lost 299.43, or 3.4 percent, to 8,487.31, its lowest close since March 5. The Dow is off 9.1 percent from the record it set July 17. G\n\n[...TRUNCATED...]\n\nn Coral Gables, said his clients have barely broken a sweat over the stock market's recent fall. ``What went on is pure noise. .. smoke and no substance,'' said Harold Evensky. ``No one really knows what's going to happen in the next few months. The market could turn to bear or a roaring bull. I tell my clients to ltok at the companies they have stock in. They are just as gtod today as yesterday.'' If the market continues to go down, Evensky said he will advise clients to review their stock and bond portfolios and rebalance -- sell what's high and buy what's low. Herald wire services contributed to this report. Abby Joseph Cohen, Goldman Sachs and Co.: Sticking with her Dow prediction of 9,300 by year-end. Ralph Acampora, Prudential Securities: isrges investors to ltok at stocks that can `weather the storm.' Meg Green, of Meg Green & Assoc.: `This is not a market to play in.' Harold Evensky, of Evensky Brown Katz and Levitt: `What went on is pure noise. .. smoke and no substance.' CisTLINESRICHARD DREW /AP STEALING THE SHOW: A lion, a public relations gimmick courtesy of the South African company Anglogold, takes part in New York Stock Exchange opening bell ceremonies Wednesday with officials from the exchange and the company. Caption: photo: A lion a public relations gimmick courtesy of the South African company Anglogold at New York Stock Exchange (a), Maeg GREEN, Harold EVENSKY, Ralph ACAMPORA, Abby Joseph Cohen (a); chart: A Volatile Market\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.1,\n  \"focus_excerpt\": \"Anxious South Florida investors fltoded their local brokerages offices and financial advisers with inquiries Wednesday, a day after the biggest plunge of the year in the Dow Jones Industrial Average.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1651,
+            "outputTokens": 62,
+            "inputTokensCostNanodollars": "363220",
+            "outputTokensCostNanodollars": "54560",
+            "totalBackendLatencyMs": "829"
+          },
+          "id": "epu_q2_medium-3f7f1105-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1651,
+        "outputTokens": 62,
+        "inputTokensCostNanodollars": "363220",
+        "outputTokensCostNanodollars": "54560",
+        "totalBackendLatencyMs": "829"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #163"
+}

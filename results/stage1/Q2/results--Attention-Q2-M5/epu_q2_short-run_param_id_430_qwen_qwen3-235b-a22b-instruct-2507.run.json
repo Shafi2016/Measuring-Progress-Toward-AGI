@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:43:17.607782Z",
+  "endTime": "2026-04-01T17:43:18.550038Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-28ee3d2b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nBusiness Diary: THE ECONOMY A Plan Is Born, Now, Watch Out! REAL ECONOMIC GROWTH Herring, Hubert B New York Times (1923-Current file); Oct 31, 1993; ProQuest Historical Newspapers: The New York Times (1851-2010) pg.F2 October 24 - 29 THEECONOMY A Plan Is Born. Now, Watch Out! O.K., it's 1,342 pages, and it's so complicated that to try to understand it all could put you in need of some heavy-duty health care. But ltok at it this way, President Clinton said, as he plunked his mammoth health care plan in Congress' lap last week: \"None of uscould devise a system more complex, more burden\u00adsome, more administratively costly than the one we have now.\" He's got a point there. But then again, the present system wasn't built in a day, and he's trying to create a brand new labyrinth in a single stroke. The plan has evolved during its months of gestation, nota\u00adbly in new limits on Government subsidies \u2014 an attempt to allay fears that Big Govern\u00adment will take on an unworkable burden. But for all the talk of his waffling, all the plan's re\u00advisions, he's stuck to one razor-sharp goal: \"health care security for all Americans.\" HEALTH SECisRITY, REVISED Changes In the plan since Sept! 22 speech Expected date of universal coverage delayed by a year, to Jan. 1,1998. a- Mors generous coverage of mammo\u00adgrams and children's denial care. \u2022a- Extra services for children now In Medicaid. \u00abr- New F.T.C. powers to regulate insurers. \u00ab- Health plans must offer patients the option 6eek outside care. Few\n\n[...TRUNCATED...]\n\nrdld say he got an \"extraordinary offer.\" Merck Tries to Buy Some Loyalty Many employees are not feeling loyal these days. Why should they, with colleagues being laid off right and left? Drug makers are feel\u00ading special pressure as political scrutiny of drug prices mounts. So last week Merck tossed its workers a bone \u2014 the ones who are left, anyway (Merck has done its fair share of job pruning). In a gesture Dr. P. Roy Vage- Ios, the chairman, said was meant to show \"we are confident about our future,\" Merck is giving all 37,000 employees an option to buy 300 of its shares for $32.50 each. That would have been a gtod deal a year ago, when the stock was around $45, but it's now about 532. A Lot of Takers at Prudential A lot of people out there must feel that Prudential Securities owes them something. After Pruden\u00adtial settled charges of de\u00adfrauding customers by setting aside $330 million to pay them back, callers last week fltoded a toll- free line set up by regulators. It's a 24-hour line, so if you awake at 2 a.m. angry about the limited partnerships you bought, that's a gtod time to call. (The number: 1-800-220-9125.) \u2022 The scandal is reaching into Prudential's past.Word came last week that George L. Ball, who headed Prudential until 1901, was leaving his job at Smith Barney. Mr. Ball re\u00adportedly is being investigated for his role at Prudential, and Smith Barney apparently did\u00adn't want its own reputation tarnished. Tokyo's Explosive New Stock\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"political scrutiny of drug prices mounts\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1014,
+            "outputTokens": 34,
+            "inputTokensCostNanodollars": "223080",
+            "outputTokensCostNanodollars": "29920",
+            "totalBackendLatencyMs": "792"
+          },
+          "id": "epu_q2_short-28ee3d2b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1014,
+        "outputTokens": 34,
+        "inputTokensCostNanodollars": "223080",
+        "outputTokensCostNanodollars": "29920",
+        "totalBackendLatencyMs": "792"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #431"
+}

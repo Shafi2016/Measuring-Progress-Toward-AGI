@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:19:29.889122Z",
+  "endTime": "2026-03-31T02:19:33.297408Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-ae28ddf1",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Beth Teitell, Boston Globe Sunday, November 16, 2008 Gabrielle Mancuso adores shopping. American Eagle, TJ Maxx, H&M, those are her haunts. But with bad economic news bombarding her daily, there's something that brings the stylish Mancuso more pleasure than buying jeans and tops: returning those jeans and tops - unworn. \"I get cash back,\" Mancuso, a 19-year-old nursing student from Franklin, Mass., explained as she browsed at the Prudential Center recently. \"It's instant gratification.\" With many fashionistas reinventing themselves as \"recessionistas\" - style lovers who buy lower-priced versions of their beloved designer gtods - Mancuso is taking fiscal restraint one step further. She's a \"returnista,\" and she's engaging in one of the biggest trends for Fall/Winter '08. Call it circle shopping. It goes like this: Fashionistas make a parehase, stress out about it, return the item unused, exalt. And, of course, repeat. \"There's a weird euphoria when you return something,\" said Michelle Foss, 33, as she shopped. \"You're relieved that it's coming off your credit card.\" isnlike \"wardrobers\" - crtoked shoppers who buy with the intention of using their parehases before returning them - returnistas are guilty of nothing more than buyer's remorse. Some have lost jobs and know they shouldn't be shopping at all, others haven't see a decrease in income but worry they should be saving for an uncertain future. Some feel\n\n[...TRUNCATED...]\n\n. Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) 6 BR / 7.1 BA$4,995,000.00 4 BR / 2.1 BA$499,000.00 3 BR / 2.1 BA$509,500.00 3 BR / 1.1 BA$759,000.00 3 BR / 3.1 BA$446,000.00 3 BR / 2.1 BA$739,500.00 3 BR / 2.3 BA$1,649,000.00 3 BR / 2.1 BA$1,300,000.00 5 BR / 5.3 BA$1,785,000.00 3 BR / 2.1 BA$439,000.00 Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1,\n  \"focus_excerpt\": \"Some have lost jobs and know they shouldn't be shopping at all, others haven't see a decrease in income but worry they should be saving for an uncertain future.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1083,
+            "outputTokens": 63,
+            "inputTokensCostNanodollars": "324900",
+            "outputTokensCostNanodollars": "1257500",
+            "totalBackendLatencyMs": "3345"
+          },
+          "id": "epu_q2_short-ae28ddf1-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1083,
+        "outputTokens": 63,
+        "inputTokensCostNanodollars": "324900",
+        "outputTokensCostNanodollars": "1257500",
+        "totalBackendLatencyMs": "3345"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #522"
+}

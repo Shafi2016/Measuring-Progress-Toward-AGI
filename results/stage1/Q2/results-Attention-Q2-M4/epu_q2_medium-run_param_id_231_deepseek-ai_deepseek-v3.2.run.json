@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:58:50.964864Z",
+  "endTime": "2026-03-31T18:58:55.636653Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-d1010585",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nARARE, Zimbabwe - A few yards from Raymond Majongwe's office, on the apron of a four-lane highway outside this capital city's downtown, a cherry red sedan sat recently beneath a clutch of trees, its engine off, the driver idle. The sedan has been there for weeks, Mr. Majongwe said. It will be there next week, tto. Mr. Majongwe is the head of a rebel schtolteacher's union. The sedan, he says, belongs to the state security agents who regularly tail him. It testifies to what political and human-rights advocates here call the growing suppression of civic life in Zimbabwe as President Robert G. Mugabe girds for national elections that his government cannot afford to lose. Mr. Mugabe and the governing Zimbabwe African National isnion-Patriotic Front, or ZANis-PF, came unexpectedly close to being swept from office in parliamentary and presidential elections in 2000 and 2002, and they have taken a series of measures designed to minimize the chances of another competitive ballot. During the 2002 election the government enacted laws sharply curbing freedoms of the press and public assembly, citing national security. Now, with new national elections ltoming in March, new laws and other measures promise to silence the remaining independent press and activist groups that have been vehicles for dissent. In November alone, Zimbabwe's Parliament enacted legislation mandating a two-year prison term for practicing journalism without a license. A second law made it illegal to conduct voter educ\n\n[...TRUNCATED...]\n\na chief's field,\" a sort of community garden to feel the destitute. \"But now we're not even getting those.\" Mr. Mukowamombe came to Harare in late November to complain about the use of ftod as a political weapon. Along the way, the police arrested him on a charge of fomenting violence at a Nov. 7 political rally in Mutare. He was chained to a bench for two days before being released, he said. It was not his first brush with the law. In eight years as chief - still a politically powerful position in tribal-oriented Zimbabwe - he has been arrested five times. Nor was it his worst. Rolling up a sleeve, he displayed a row of scars where, he said, he had been beaten with a chain during a past detention. \"People are being forced to support ZANis-PF,\" Mr. Mukowamombe said. \"People are afraid.\" \"They're afraid of being beaten, or having their houses burned, or being killed because they support the M.D.C.,\" he said, referring to the opposition party. The argument against resisting, he said, is compelling. \"When you live in a rural area, it's remote,\" he said. \"You don't have a phone. You can't run away.\" Mr. Mukowamombe says he is resisting anyway, because he believes people should have the right to say what they think, and support whom they chtose in March. \"They say, 'I am coming for you. And you are going to disappear,'\" he said. \"And I tell them, 'If I die, you die. Because we will meet again in another place, and this time, God will be the judge.'\"\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"Mr. Mugabe and the governing Zimbabwe African National isnion-Patriotic Front, or ZANis-PF, came unexpectedly close to being swept from office in parliamentary and presidential elections in 2000 and 2002, and they have taken a series of measures designed to minimize the chances of another competitive ballot.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1641,
+            "outputTokens": 91,
+            "inputTokensCostNanodollars": "628656",
+            "outputTokensCostNanodollars": "152880",
+            "totalBackendLatencyMs": "4464"
+          },
+          "id": "epu_q2_medium-d1010585-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1641,
+        "outputTokens": 91,
+        "inputTokensCostNanodollars": "628656",
+        "outputTokensCostNanodollars": "152880",
+        "totalBackendLatencyMs": "4464"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #232"
+}

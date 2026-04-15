@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T01:57:07.719799Z",
+  "endTime": "2026-03-31T01:57:17.222725Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-0c3f730f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nIt may seem strange to hear a teacher say it, but summer vacation is just tto long. It isn't the never-ending heat we're experiencing or the fact that I love teaching that makes me think this way. I say it because I know there is a steep price to be paid for all this time off, and it's our students and schtols who are paying it.For many students, particularly low-income and English language learners, the long summer break means a huge loss in learning. I'll see it in the coming weeks, as I get to know my new crop of students. We'll begin the year already behind and play catch-up all year long.In education circles, this is known as \"summer learning loss,\" and it should be at the top of the list of things we need to address in public schtols. Studies have shown that low-income students experience two or more months of learning loss in reading and math over the summer. Meanwhile, middle- and upper-income students may begin the schtol year at a higher reading level than when they left for summer vacation (although they, tto, appear to lose math learning).These losses add up year after year, so by the time my third-grade students reach ninth grade, as much as two-thirds of the achievement gap separating them from their more well-off peers will be attributable to the vicious cycle of summer learning loss.The reasons for the gap are obyious. For students from higher income households, summers are filled with educational opportunities - science camps, frequent visits to btokstores an\n\n[...TRUNCATED...]\n\ns need to be much different than the traditional summer schtol model. We need to include a broader population of students, especially those living in poverty and learning English. We need all-day programs, ideally six weeks long. And the learning has to be collaborative, hands-on and engaging. Summer programs should incorporate the arts and music and physical activities. Students have to get outside schtol on field trips and service learning projects.The reality is that these solutions will cost money, since schtols must be accessible, materials parehased and teachers hired. In the currenteconomicand political climate of the country, the outltok is less than promising, to put it mildly. Continuing the present course, however, would be even more costly.With the release of the last round of TAKS scores and new accountability ratings, a lot of people are pointing fingers at teachers, administrators and schtols. Their anger and frustration are misplaced. Don't ltok only at what happens in schtol, but at what doesn't happen after schtol is out.isntil we get serious about doing something about summer learning loss, we're focusing all our attention and energy trying to squeeze out a few last drops during the schtol year, while ignoring the fruit wilting on the vine in the summer heat.Evan Engwall is a third-grade bilingual teacher at Hastings Elementary in the Duncanville ISD and a Teacher Voices volunteer columnist. His address is eengwall@yahto.com.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.8, \"focus_excerpt\": \"In the currenteconomicand political climate of the country, the outltok is less than promising, to put it mildly.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 863,
+            "outputTokens": 49,
+            "inputTokensCostNanodollars": "258900",
+            "outputTokensCostNanodollars": "3377500",
+            "totalBackendLatencyMs": "9429"
+          },
+          "id": "epu_q2_short-0c3f730f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 863,
+        "outputTokens": 49,
+        "inputTokensCostNanodollars": "258900",
+        "outputTokensCostNanodollars": "3377500",
+        "totalBackendLatencyMs": "9429"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #213"
+}

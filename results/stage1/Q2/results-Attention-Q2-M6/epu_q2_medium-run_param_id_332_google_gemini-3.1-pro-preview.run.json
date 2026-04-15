@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:06:59.048729Z",
+  "endTime": "2026-04-03T00:07:08.028032Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-2eef4a75",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nThe presidential aspirants and congressional leaders who recently addressed Midwestern Republicans in Indianapolis were noticeably divided over the balanced-budget legislation.House Speaker Newt Gingrich and 1996 vice presidential nominee Jack Kemp backed the tax- and spending-cut measure, while former Vice President Dan Quayle, 1996 candidate Steve Forbes and Tennessee Sen. Fred Thompson denounced it.Mr. Thompson, whose presidential intentions remainuncertain, had to stick with the vote he had cast against the plan. But Mr. Quayle and Mr. Forbes, both considered among the more likely GOP contenders, may have taken a gamble by criticizing it.Initial surveys show that three of every four Americans _ including Republicans _ back the recently enacted plan.There is widespread public skepticism that the legislation actually will produce a balanced budget by 2002. But a continuing strongeconomycould achieve that stoner.For that to happen, there would have to be a near-record period ofeconomicexpansion, not to mention a continuation of the congressional and presidential budgetary restraint. Already, there are signs that the latter ultimately may be a greater threat to a balanced budget.In their speeches to the Midwestern Republican Conference, Mr. Quayle and Mr. Forbes didn't mince words.The former vice president called the tax and budget measure \"a raw deal for taxpayers that betrayed some of the party's core principles. isnder this agreement, government got larger, not smaller. is\n\n[...TRUNCATED...]\n\nsults in married couples paying more than they would have if they had stayed single.The GOP leadership reacted cautiously to the sophomores' suggestion, noting that any additional cuts would have to be offset by spending cuts to keep within the budget agreement. And even if the Republicans find places to make cuts, they easily could run into resistance from the Clinton administration.Meanwhile, another group of Republicans, led by the chairman of the House Transportation Committee, Rep. Bud Shuster of Pennsylvania, is trying to pass a highway construction bill that would punch a big hole in the spending limits in the balanced-budget bill.In the instances of both tax cuts and spending increases, the administration is likely to seek to maintain the integrity of the 1997 agreement. It recognizes that President Clinton's place in history may depend on whether a balanced budget actually is achieved.In addition, if the 2002 target for a balanced budget can be beaten, especially before the 2000 election, Vice President Al Gore could reap the benefits when he runs.Such a scenario could have another beneficial side effect for the Democrats: The Republicans who decried the 1997 balanced-budget plan could wind up as embarrassed as their colleagues who mistakenly predicted dire results for theeconomywhen Mr. Clinton's first deficit-reduction plan was enacted without GOP support in 1993.Carl P. Leubsdorf is Washington Bureau chief of The Dallas Morning News\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"There is widespread public skepticism that the legislation actually will produce a balanced budget by 2002.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1533,
+            "outputTokens": 52,
+            "inputTokensCostNanodollars": "3066000",
+            "outputTokensCostNanodollars": "9504000",
+            "totalBackendLatencyMs": "8844"
+          },
+          "id": "epu_q2_medium-2eef4a75-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1533,
+        "outputTokens": 52,
+        "inputTokensCostNanodollars": "3066000",
+        "outputTokensCostNanodollars": "9504000",
+        "totalBackendLatencyMs": "8844"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #333"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:24:12.322091Z",
+  "endTime": "2026-03-31T18:24:13.557816Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-5df797d9",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nThose who are puzzling over the recent volatility in technology stocks may want to check the winds blowing from Washington, D.C., and from Redmond, Wash.Of course, everyone's attention has been focused on the federal government's antitrust case against Microsoft Corp. Settlement talks that fell apart over the weekend, coupled with a judge's scathing verdict late Monday, are contributing touncertaintyamong investors. What was once unthinkable, a breakup of the software giant, now appears to be a possibility.And no one knows what a breakup of Microsoft would mean for all the \"neweconomy\" companies that have been driving the stock market in recent years.At the same time investors are fearful about what a weakened Microsoft would mean for the industry, they are nervous about whether Microsoft will continue to act like a bully.Last week, Microsoft announced its intention to enter the arena of companies that are creating Internet marketplaces for business-to-business transactions. The result? Shares in companies that might find themselves in the sights of Bill Gates - including Ariba Inc., Commerce One Inc. and Farmers Branch-based i2 Technologies Inc. - all ttok major hits.\"It's the 3-ton gorilla, and they have all the time and resoarees in the world,\" Fred Bush, research analyst at Tejas Securities Group Inc., an investment banking firm in Austin, said of Microsoft. \"Even if you're talking about companies that do $150 million to $200 million a year, if they decide to throw their \n\n[...TRUNCATED...]\n\nxpectations because the company added more customers.Shares in Ariba rose $9.94 to close at $98.63, though the issue is still off from its high of $183.34 on March 8.Investors ttok a wild ride on a number of Dallas-area Internet stocks on Tuesday.Entrust Technologies Inc., a Plano-based maker of software for secure e-commerce transactions, saw its stock swing between $49.75 and $70, closing for the day at $58, off $6.69.Efficient Networks Inc. of Dallas, which supplies high-speed digital subscriber line technology for broadband Internet connections, traded as low as $76 and as high as $111.25. For the day, it was up $3.06 to $108.06.For the B2Bs, Mr. Royo said, reaction to both bits of Microsoft news doesn't make sense.For example, Microsoft isn't likely to be much of a competitive threat to makers of customer-relationship management software such as Austin-based Vignette Corp., he said.Vignette shares peaked on March 10 at $302 each before they began a serious slide, closing Monday at $123.03.On Tuesday, Vignette began to recover, climbing nearly 25 percent to $153.25.\"On the Internet, Microsoft has only been successful in crushing Netscape,\" Mr. Royo said.Technology editor Alan Goldstein writes about the Internet and electronic commerce for The Dallas Morning News. His e-mail address is agoldstein@dallasnews.com.Caption:CHART(S): (1-3 The Dallas Morning News) 1. REVERSING FORTisNE. 2. TAKING TOLL OF TEXAS TECHS. 3. TRACKING THE E-MARKETPLACE.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.72, \"focus_excerpt\": \"Settlement talks that fell apart over the weekend, coupled with a judge's scathing verdict late Monday, are contributing to uncertainty among investors. What was once unthinkable, a breakup of the software giant, now appears to be a possibility.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 994,
+            "outputTokens": 76,
+            "inputTokensCostNanodollars": "2982000",
+            "outputTokensCostNanodollars": "1140000",
+            "totalBackendLatencyMs": "1199"
+          },
+          "id": "epu_q2_short-5df797d9-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 994,
+        "outputTokens": 76,
+        "inputTokensCostNanodollars": "2982000",
+        "outputTokensCostNanodollars": "1140000",
+        "totalBackendLatencyMs": "1199"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #17"
+}

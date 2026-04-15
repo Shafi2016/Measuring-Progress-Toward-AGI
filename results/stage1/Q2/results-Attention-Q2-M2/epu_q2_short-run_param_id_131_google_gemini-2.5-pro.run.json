@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:09:06.784671Z",
+  "endTime": "2026-03-31T02:09:19.364031Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-3f471a9a",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nis.S. Economic Recovery Begins to Trickle Into Mexico By ELISABETH MALKIN New York Times (1923-Current file); Feb 18, 2004; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. W1 is.S. Economic Recovery Begins to Trickle Into Mexico By ELISABETH MALKIN MEXICO CITY, Feb. 17 \u2014 The re\u00adcent hews that the American auto parts maker Tower Automotive would shut a plant in Milwaukee and move production, and 600 jobs, to a joint venture partner in northern Mexico was greeted here as a sign that after three years in the dol\u00addrums, Mexico was finally feeling the effects of the recovery in the isnited States. Last year, as American growth picked up, Mexico languished. Ana\u00adlysts puzzled over why the economy, which is tightly tied to the isnited States through exports and invest- Easing some fears that China is dominating low-wage production. ment, failed to follow in tandem. Gross domestic product rose 1.3 percent in 2003 and 2 percent in the fourth quarter compared with the pe\u00adriod a year earlier, the finance minis\u00adtry reported on Tuesday. The gov\u00adernment is forecasting growth of 3.1 percent this year, though many pri\u00advate analysts expect it could be high\u00ader. Seeking an explanation for the economy's disappointing perform\u00adance, many business leaders blamed China. They argued that its low wages, lax regulation and govern\u00adment incentives were siphoning off Mexico's much-needed manufactur\u00ading jobs. Mexico's role as the chief low-wage producer for the American market appeared to\n\n[...TRUNCATED...]\n\nille, Mich., and move to Mexico. LG Electronics, which is based in South Korea, makes televisions, re\u00adfrigerators and monitors at three plants in northern Mexico and spent $160 million to expand those plants last year. It expects to spend an addi\u00adtional $30 million this year. Medtronics, a medical equipment maker, is moving jobs from its vas\u00adcular division in Santa Rosa, Calif., to a plant it owns in Tijuana. \"The prox\u00adimity alone is gtod for us,\" a spokes\u00adman, Rob Clark, said. \"Cost is a fac\u00adtor as well. The cost of operating and manufacturing there is less than manufacturing here in California.\" Despite the positive news, invest\u00adors warn that Mexico needs to do more to attract business. \"Other countries are advancing on their structural reforms much more so than Mexico is,\" said James Cal\u00adlahan, president of the American Chamber of Commerce of Mexico and managing director of BankBos- ton Mexico. \"Mexico could be much more competitive and attracting more foreign direct investment with more competitive energy policies, improvements in the legal system, judicial transparency, and tax re\u00adform. \"We have a certain level of frustra\u00adtion. Most of our member companies operate on a global basis. We've see what works in other countries. We believe that Mexico's potential is to grow on average 6 percent per annum with the proper structural re- ' forms.\" Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"Mexico could be much more competitive and attracting more foreign direct investment with more competitive energy policies, improvements in the legal system, judicial transparency, and tax reform.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 905,
+            "outputTokens": 66,
+            "inputTokensCostNanodollars": "1131250",
+            "outputTokensCostNanodollars": "13400000",
+            "totalBackendLatencyMs": "12469"
+          },
+          "id": "epu_q2_short-3f471a9a-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 905,
+        "outputTokens": 66,
+        "inputTokensCostNanodollars": "1131250",
+        "outputTokensCostNanodollars": "13400000",
+        "totalBackendLatencyMs": "12469"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #132"
+}

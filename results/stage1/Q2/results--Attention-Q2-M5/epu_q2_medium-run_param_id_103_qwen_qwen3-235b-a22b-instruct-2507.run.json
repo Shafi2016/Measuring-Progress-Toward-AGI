@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:48:26.208833Z",
+  "endTime": "2026-04-01T17:48:27.596660Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-c4cb58f6",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nOne of an increasing number of police roadblocks imposed this month in Naples. In one recent 10-day period, there were 12 drug-related killings. NAPLES, Italy, Nov. 4 \u2014 Marco L. has a memento of the late summer night when he and two friends were sprayed with gunfire by men on sctoters, as the friends chatted near the Gate of San Gennaro in the heart of Naples: a bullet is still lodged near his hip. Two members of the Camorra were shot dead on the street on Oct. 31. The ochre walls of the piazza are also scarred, with pockmarks from bullets gone astray. The security grate on the toy store has 80 bullet holes, the owner estimates. \"They must have mistaken us for someone else,\" said Marco, a baby-faced 22-year-old in a red sweatshirt and jeans, who spent 15 days in the hospital. \"They fired 12 or 13 shots, and all three of us were hit.\" He refused to give his full name for fear of retribution. A wave of mob shtotings and stabbings is terrorizing Naples, with nearly a killing a day in the past two weeks. The violence, amplified by an amnesty that freed 2,700 minor criminals from local prisons, is so rampant that Prime Minister Romano Prodi visited Naples to discuss sending in the army. Living in a city that has long been synonymous with organized crime, Neapolitans are inured to a measure of violence. But recent changes in the home-grown mob, the Camorra, have made the violence more frequent and unpredictable \u2014 and more likely to intrude on the lives of ordinary citizens. The Cam\n\n[...TRUNCATED...]\n\nes a capo, it immediately creates space for a new Camorrista.\" The gangs that step in are always \"allying or fighting.\" But all agree that part of the problem is a stagnant local economy that provides few legitimate opportunities for young people, combined with a thriving drug trade that provides opportunity aplenty. Ltokouts for the drug dealers \u2014 a kind of an internship \u2014 are paid 1,500 euros a month, Mr. Roberti said, about $1,900, which is more than his police officers earn. Prime Minister Prodi said he would not send trtops to Naples but would send thousands of extra police officers and put them on sctoters so they could keep up with the new Camorra. Mr. Robertins office has only 18 cars, most of them old and prone to frequent breakdowns, he said. Mr. Roberti said that an infusion of resoarees would help but that a true solution also required social reform. \"You need to find a way to offer young people legal jobs,\" he said. \"They may be less profitable, but you have security, you don't have to worry about retribution.\" Meanwhile, Marco L. is a fugitive in his own neighborhtod. \"I've learned you can't hang out in one fixed place,\" he said, \"and I don't sit out here at night anymore.\" Also in T Magazine \u00bb Jim Crow is dead but segregation is still alive. Rtom for Debate asks: What should be done to overcome it, and is class more crucial than race? For members of China's Communist elite, sending money overseas makes sense as a political hedge.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.1,\n  \"focus_excerpt\": \"Prime Minister Prodi said he would not send trtops to Naples but would send thousands of extra police officers and put them on sctoters so they could keep up with the new Camorra.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1677,
+            "outputTokens": 66,
+            "inputTokensCostNanodollars": "368940",
+            "outputTokensCostNanodollars": "58080",
+            "totalBackendLatencyMs": "1250"
+          },
+          "id": "epu_q2_medium-c4cb58f6-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1677,
+        "outputTokens": 66,
+        "inputTokensCostNanodollars": "368940",
+        "outputTokensCostNanodollars": "58080",
+        "totalBackendLatencyMs": "1250"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #104"
+}

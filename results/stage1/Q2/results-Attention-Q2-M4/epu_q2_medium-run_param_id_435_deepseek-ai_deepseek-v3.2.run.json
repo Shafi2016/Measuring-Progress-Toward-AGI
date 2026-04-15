@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:07:59.141818Z",
+  "endTime": "2026-03-31T19:08:00.643192Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-5f7cab3c",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nEconomy Warms isp, and Eyes Turn to the Fed: But analysts are wary ... By ROBERT D. HERSHEY Jr. New York Times (1923-Current file); Jan 9, 1997; ProQuest Historical Newspapers: The New York Times (1851-2010) pg.Dl Economy Warms isp, and Eyes Turn to the Fed WASHINGTON, Jan. 8 \u2014 Less than two weeks ago, the economy seemed to be plodding sedately ahead and discussion focused on when the Federal Reserve might have to relax its monetary grip to keep the long-running expansion intact. But suddenly analysts are more optimis\u00adtic about the economy's vigor and talk in many quarters has now turned to how long the inflation-wary Fed can wait before tightening policy. \"Momentum has picked up,\" according to Michael P. Niemira, economist at Bank of Tokyo-Mitsubishi in New York. The overall picture, however, is far from clear. In recent days, preliminary .Christ\u00admas tallies have shown disappointing re\u00adsults for many retailers, although others. ranging from Wal-Mart to sellers of luxury gtods, seem to have done quite well. At the same time, the Government and various private groups were issuing statis\u00adtics about other aspects of the economy that almost without exception surpassed expectations. Sales of both new and exist\u00ading homes, consumer confidence, construc\u00adtion spending and results of surveys of production and inventory officials as well as of corporate parehasing managers were all more robust than specialists anticipat\u00aded. But unlike this Friday's report on the labor market in December\n\n[...TRUNCATED...]\n\nr and early January \"are a reminder that it would not take much additional economic growth to kindle some in\u00adflationary pressures\" since the labor market is \"already stretched.\" But while most analysts agree that fourth-quarter growth will prove to be faster than the Federal Reserve can long endure, opinion appears to have polarized about prospects for 1997, no doubt more challenging to predict than the past. Some, including Mr. Gendreau at Morgan Guaranty, predict a robust 3 percent pace of growth in the Janu- ary-March period, saying that will contribute to a decision by the Fed\u00aderal Reserve to raise short-term in\u00adterest rates as early as its March policy meeting. But others, such as Paul A. McCul- ley, chief economist at isBS Securi\u00adties in New York, believe the eco\u00adnomic vigor of late 1996 will be tem\u00adporary. They noted that the fourth- quarter lift came despite the fact that retail sales during the holidays generally disappointed merchants hoping for sizable improvement from a ptor 1996 season and that the automotive market faded in Decem\u00adber. Consumers account for two- thirds of economic activity, half of this at retail counters. The economy isn't able to \"take off before it has landed, taxied and re\u00adfueled,\" Mr. McCulley said, predict\u00ading first-quarter growth no faster than a 2 percent pace. \"I think the next Fed move is down,\" he said. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"talk in many quarters has now turned to how long the inflation-wary Fed can wait before tightening policy.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1630,
+            "outputTokens": 48,
+            "inputTokensCostNanodollars": "622496",
+            "outputTokensCostNanodollars": "80640",
+            "totalBackendLatencyMs": "1301"
+          },
+          "id": "epu_q2_medium-5f7cab3c-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1630,
+        "outputTokens": 48,
+        "inputTokensCostNanodollars": "622496",
+        "outputTokensCostNanodollars": "80640",
+        "totalBackendLatencyMs": "1301"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #436"
+}

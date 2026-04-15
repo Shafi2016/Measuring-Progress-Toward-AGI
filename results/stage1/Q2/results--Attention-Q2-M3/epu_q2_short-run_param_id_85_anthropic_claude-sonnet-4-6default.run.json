@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:25:57.870455Z",
+  "endTime": "2026-03-31T18:25:58.973121Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-e07ab180",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nAntisemitism alarmingRe: \"Anti-Straus e-mails cite speaker's Judaism - They emphasize rivals' Christianity, say he'll lose 'in Jesus' name,'\" Wednesday news story.How long before Jews or people of other religions living in Texas, and maybe the entire country, who are not defined as Christians will have to wear a symbol on our clothing to identify our differences, as was the custom in Germany under Hitler?When will we seek first to understand, celebrate our differences and use our diversity of thought to be a stronger and more respectful society?The headline of this story is unsettling to see in print - regardless of my political or religious affiliation.Perri Brackett, LewisvilleAttorneys cleaning upRe: \"Rangel walks out of ethics trial - House panel denies request for extra time to hire new legal team,\" Tuesday news story.It's a great time to be a lawyer in the is.S. New York Rep. Charles Rangel has incurred $2 million in attorney fees with another million expected. Army Maj. Nidal Hasen's defense is running up millions.What are the attorneys doing to run up the fees - drinking coffee while telling jokes, sitting around listening to endless undisputed testimony and motions, shuffling endless pages of meaningless paper, and God-knows-what-else to charge \"whatever the market will bear?\"As a lawyer myself, I don't know whether to be jealous that I'm not in on the fee-gouging or to grieve for the legal system that allows such a travesty.Ralph Gary, GrapevineYes, people do forget\n\n[...TRUNCATED...]\n\nsame.When it comes to alcohol parehases, I'm voting to boycott your stores. Forever.Thomas Morris, DallasYes, I am blessedRe: \"Why do we tell others: 'We're so blessed'? - As Thanksgiving approaches, Christine Horstman wonders if we misuse this word,\" Saturday Viewpoints.Some of us tell others \"We're so blessed\" because we feel we truly are.I do agree there are, at times, public professions of blessings are smug-sounding and self- serving.However, in the world today, with unrest,economicuncertaintyand just the ups and downs of life in general, we can't take for granted that even hard work and smart decisions are enough to provide health, wealth or happiness.I'm from a family of seven children who are all contributing members of society. I have two children who are healthy, happy and successful. I have my health, am happily married and gainfully employed.Yes, I feel blessed. I would much prefer someone count his or her blessings than ask for more.There were occasions when it referred to a third person, as \"Bless his heart. He's really going through a bad time.\" This was to ask for blessings and convey sympathy.I particularly remember one of my father's favorites, Tennessee Ernie Ford, saying \"Bless your little pea-pickin' heart,\" and he was never being accused of slurring anyone.So maybe Horstman is just a little cynical, bless her heart.Sandra isrban, GrapevineCaption:ILLisSTRATION(S): (WILLIAM \"BisBBA\" FLINT/Special contributor) State Agencies\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.85, \"focus_excerpt\": \"with unrest, economic uncertainty and just the ups and downs of life in general\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 997,
+            "outputTokens": 41,
+            "inputTokensCostNanodollars": "2991000",
+            "outputTokensCostNanodollars": "615000",
+            "totalBackendLatencyMs": "1043"
+          },
+          "id": "epu_q2_short-e07ab180-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 997,
+        "outputTokens": 41,
+        "inputTokensCostNanodollars": "2991000",
+        "outputTokensCostNanodollars": "615000",
+        "totalBackendLatencyMs": "1043"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #86"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:44:21.641641Z",
+  "endTime": "2026-04-01T17:44:22.592712Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-a1c5087a",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section list\n\nTARGET ARTICLE START\nBRisSSELS, Belgium -- The top trade negotiators for the isnited States and the European Community said Thursday that they had made important, potentially decisive progress on a range of issues, including the nettlesome matter of farm exports, that could lead to a world trade accord.\"We have agreed upon an approach to all major issues that would pave the way to the completion of a substantive and comprehensive isruguay Round,' is.S. Trade Representative Mickey Kantor said in Brussels, referring to the negotiations on updating and broadening world trade rules that began seven years ago in isruguay.The talks, under the auspices of the General Agreement on Tariffs and Trade, are widely see as crucial foreconomicand political reasons. Success could help revive moribundeconomiesin Japan and Europe, and stimulateuncertaineconomicrecoveries in the isnited States and Britain.On a political level, a failure to reach a trade agreement would put further strains on the postwar alliance between Western Europe and the isnited States that is adjusting imperfectly to the end of the Cold War.Neither Mr. Kantor nor his European counterpart, Sir Leon Brittan, gave significant details in public of the progress they said was achieved in two days of talks, and French Foreign Minister Alain Juppe, whose government has most strenuously objected to the agricultural provisions proposed, later sounded a note of caution.\"The basis of an overall agreement has not yet been laid,' Mr. Juppe said. Nonetheless, he added that \"we have emerged from the deep chill that had descended on relations between the community and the isnited States.'Officials close to the discussions said the most important progress was made on agriculture, where France's objections to the Blair House accord of last year, calling for a 21 percent cut over six years in the volume of community exports of subsidized grain and other ftod, have badly hurt relations with the isnited States.Thursday, Mr. Kantor said, \"We have formulated an approach which would successfully remove all the issues in the area ofagriculture.'Behind the posturing in a complex and politically sensitive negotiation that has entered its decisive phase, Mr. Kantor's visit had appeared to generate significant momentum toward an agreement, particularly in the long-contested area of farm trade -- though without achieving final resolution of any issue.The is.S. official said he would return Monday to Brussels after conferring with President Clinton, for what he and Sir Leon portrayed as conclusive negotiations.\"We are, I hope, in the final strait,' the European trade chief said.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listi"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"Success could help revive moribund economies in Japan and Europe, and stimulate uncertain economic recoveries in the United States and Britain.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 795,
+            "outputTokens": 53,
+            "inputTokensCostNanodollars": "174900",
+            "outputTokensCostNanodollars": "46640",
+            "totalBackendLatencyMs": "821"
+          },
+          "id": "epu_q2_short-a1c5087a-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 795,
+        "outputTokens": 53,
+        "inputTokensCostNanodollars": "174900",
+        "outputTokensCostNanodollars": "46640",
+        "totalBackendLatencyMs": "821"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #487"
+}

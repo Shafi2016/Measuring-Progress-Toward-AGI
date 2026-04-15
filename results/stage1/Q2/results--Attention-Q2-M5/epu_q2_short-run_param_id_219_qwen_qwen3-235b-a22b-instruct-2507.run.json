@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:39:17.521544Z",
+  "endTime": "2026-04-01T17:39:19.040003Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-ffffc36e",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy ma\n\nTARGET ARTICLE START\nTheeconomyis growing again, but the recovery won't quickly stothe the sting of joblessness, said Richard Fisher, president of the Federal Reserve Bank of Dallas, in a speech Tuesday.\"I would think that in this recovery period the willingness to rehire or expand capital expenditures will be long in coming,\" Fisher told the Headliners Club of Austin.\"Chastised by recent experience, businesses will continue to run tight ships, with all resoarees, including labor, being driven to maximum efficiency,\" he said. \"It may be some time before significant job growth occurs and even longer before we see meaningful declines in the unemployment rate.\"In a wide-ranging speech on theeconomy, Fisher warned of an \"uneven and comparatively weak recovery.\"Among his key points:*Economicgrowth in 2010 is likely to be \"suboptimal,\" he said, despite a \"snapback\" in theeconomybetween July and September that is expected to continue during the last three months of the year.*Economicprospects, idle capacity anduncertaintyabout new government initiatives and regulation have taken a toll on business confidence. Among chief executives Fisher surveys regularly, the ones who are beginning to budget an increase in capital spending are less inclined to invest in the is.S. and more interested in ltoking abroad.*Inflation is apt to remain subdued, but Fisher said the Federal Reserve would be vigilant in ltoking for signs that it needs to tighten monetary policy.For now, with is.S. unemployment at its highest level since 1983, Fisher said the devastated job market remains a huge worry.The national unemployment rate jumped to 10.2 percent in October from 9.8 percent in September, and the nation lost 190,000 jobs last month, the is.S. Department of Labor reported last week.The Texas Workforce Commission is scheduled to release its October jobs report on Nov. 20. The state's unemployment rate sttod at 8.2 percent in September, up from 8 percent in August.\"It will take some time, in my opinion, to get back on a steady pathway to a pace of growth that will result in significant job creation,\" Fisher said. \"We are in for a long slog.\"Caption:PHOTO(S): RICHARD FISHER says inflation may stay subdued.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy mar"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"uncertainty about new government initiatives and regulation have taken a toll on business confidence\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 838,
+            "outputTokens": 43,
+            "inputTokensCostNanodollars": "184360",
+            "outputTokensCostNanodollars": "37840",
+            "totalBackendLatencyMs": "1377"
+          },
+          "id": "epu_q2_short-ffffc36e-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 838,
+        "outputTokens": 43,
+        "inputTokensCostNanodollars": "184360",
+        "outputTokensCostNanodollars": "37840",
+        "totalBackendLatencyMs": "1377"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #220"
+}

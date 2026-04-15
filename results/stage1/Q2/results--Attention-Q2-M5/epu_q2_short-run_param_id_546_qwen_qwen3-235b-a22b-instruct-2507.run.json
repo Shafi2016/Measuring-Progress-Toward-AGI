@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:45:27.351125Z",
+  "endTime": "2026-04-01T17:45:28.198138Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-808e0741",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nCredit Card isse Durng Holidays Rose At Record Rate, but Outltok Is isncertain Pae, Peter Wall Street Journal (1923 - Current file); Dec 31, 1992; ProQuest Historical Newspapers: The Pg- A2 Credit Card isse During Holidays Rose AtRecordRate, butOutltokls isncertain By PeiesPae Staff Reporter of Tl fE Wall Street Journal Holiday credit card parehases rose at a record rate, exceeding even the initial optimistic projections and providing fur\u00adther sign of a rebound in consumer spend\u00ading. But analysts and card issuers immedi\u00adately cautioned that the more important indication of economic optimism will come next month when consumers start receiv\u00ading their card bills- That's when consumers will either de\u00adcide they've spent tto much during the holidays and retrench, or feel comfortable with the level of debt incurred and start spending again in the spring. Visa is.S.A. the largest issuer of credit cards, said total charge volume from Thanksgivingday to Saturday - the heavi\u00adest spending period of the year - rose 17% from a year earlier. It marked the best growth period for the company. The growth rate between 1990 and 1991 was about 7%. ' In addition, MasterCard International, the second-largest issuer in the is.S. said its total charge volume for the same period climbed 23.4%. MasterCard's year- to-year growth rate in 1991 was 9%. Total charge volume includes all credit card transactions, most of which are retail sales. American Express Co. couldn't provide comparable figures. It did,\n\n[...TRUNCATED...]\n\n account for another two days left in the month. How well credit card issuers do this holiday season has implications for the general economy. Credit cards account for about a fifth of total consumer spending, a key measure of the economy. Robert Burke, head of Bank of New York Corp.'s credit card business, said the bank began noticing a pickup in use \"as ston as we saw the consumer confidence indicators go up.\" Indeed, the Conference Board, a New York business research firm, said con\u00adsumer confidence climbed in December to its highest level in more than a year and a half. In addition to consumer confidence, card issuers are attributing the surge to a major reduction in personal card debt and an increase in holiday promotions that provide incentives and discounts to use the card. Nevertheless, analysts are hesitant to predict a long-term pickup, saying a better indication will come after the holidays, when card use traditionally declines. They note that in addition to mounting debt, spending plans also will be deter\u00admined by how well President-elect Clinton fares in the first 100 days. Also, news of layoffs could be a drag on spending, particularly if the latest round of cuts begins to hit close to home. Another reason for caution is that there is likely to be fewer tax refunds. When President Bush authorized the IRS to with\u00adhold less money from paychecks, it wiped out refunds for millions of. taxpayers and reduced the size of refunds for more.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.3,\n  \"focus_excerpt\": \"spending plans also will be determined by how well President-elect Clinton fares in the first 100 days\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 864,
+            "outputTokens": 49,
+            "inputTokensCostNanodollars": "190080",
+            "outputTokensCostNanodollars": "43120",
+            "totalBackendLatencyMs": "706"
+          },
+          "id": "epu_q2_short-808e0741-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 864,
+        "outputTokens": 49,
+        "inputTokensCostNanodollars": "190080",
+        "outputTokensCostNanodollars": "43120",
+        "totalBackendLatencyMs": "706"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #547"
+}

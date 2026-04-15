@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:52:09.438208Z",
+  "endTime": "2026-04-01T17:52:10.336898Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-e563f2fa",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nAs Growth Slows, New Economy Is Challenged to Ease the Pain Continued From Page 1 exceeds the cost of the investment, then you undertake the investment regardless of the business cycle,\" said John Lipsky, chief economist at the Chase Manhattan Bank But there is a caveat. \"You don't know ahead of time,\" Mr Lipsky said, \"whether the return will be sufficient Everyone is flying by the seats of their pants\" No industry is closer to recession today than vehicle manufacturing And yet DaimlerChrysler, despite shrinking profits, swears that it will continue to invest big sums in new technology. One innovation getting under way will let DaimlerChrysler designers instantly know the changing cost of vehicles they are designing. The dollar amounts might even be displayed like a digital clock on a computer screen alongside the evolving electronic design Suppliers would also watch the design in progress and plan more efficiently to supply parts \"We call it 'fast car,' and the investment will be major money; not billions but many, many millions,\" said Gary Dilts, a senior vice president \"Developing a new vehicle costs $1 billion to $2 billion today,\" he said, \"and 20 to 30 percent of that cost is wasted now on the outdated information and ineffi\u00adciencies we have in the system\" Hundreds of companies say they have come to a similar conclusion. If the payoff is not as visible for some executives as it is for Mr Dilts, then keeping up with competitors, even in a recession, is justification enou\n\n[...TRUNCATED...]\n\nof moving its customers over to the Internet, phasing out the expensive catalogs and achieving in clothing what Amazon com has achieved in btoks Internet sales are in fact growing faster than catalog sales and \"are a little more profitable,\" said Char\u00adlotte LaComb, director of investor relations at Land's End But the catalogs are an entrenched marketing ttol. \"We have a lot of people,\" Ms LaComb explained, \"who receive the catalogs and then place their orders over the Internet\" E-commerce, then, adds to cost, not a happy situation in an economy that is slow\u00ading just as many retailers expand on the Internet. The transition from stores and catalogs to selling entirely over the Internet is happening at a snail's pace \u2014 the finish line far off in the future, if it exists at all \"If you could just eliminate the catalog and still get the same volume of sales, of course you would have great savings and more profit,\" Ms LaComb said In Europe, Land's End, with its fingers crossed, is selling merchandise only on the Web in France, Italy and Ireland If it works. Land's End would consider phasing out its catalogs in Britain, Germany and Japan, where Internet ordering is also available No such thinking applies in the isnited States Catalogs and stores are tto en\u00adtrenched Phase 1 investments may help pull the economy through a recession, but Phase 2 projects, with their uncertain pay\u00adoffs, seem vulnerable, until the next expan\u00adsion carries them forward again\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.3,\n  \"focus_excerpt\": \"Phase 1 investments may help pull the economy through a recession, but Phase 2 projects, with their uncertain payoffs, seem vulnerable, until the next expansion carries them forward again\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1585,
+            "outputTokens": 63,
+            "inputTokensCostNanodollars": "348700",
+            "outputTokensCostNanodollars": "55440",
+            "totalBackendLatencyMs": "753"
+          },
+          "id": "epu_q2_medium-e563f2fa-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1585,
+        "outputTokens": 63,
+        "inputTokensCostNanodollars": "348700",
+        "outputTokensCostNanodollars": "55440",
+        "totalBackendLatencyMs": "753"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #299"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:31:06.757722Z",
+  "endTime": "2026-03-31T18:31:09.053365Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-921dcee8",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nPresident Obama's nominee for secretary of Defense, Leon Panetta, told the Senate that he is concerned that some leaders of Libya's opposition may be extremists, even as officials disclosed that is.S. aid for those fighting Moammar Kadafi will fall far short of what the rebel group says it needs. President Obama's nominee for secretary of Defense, Leon Panetta, told the Senate that he is concerned that some leaders of Libya's opposition may be extremists, even as officials disclosed that is.S. aid for those fighting Moammar Kadafi will fall far short of what the rebel group says it needs. You have requested \"on-the-fly\" machine translation of selected content from our databases. This functionality is provided solely for your convenience and is in no way intended to replace human translation. Show full disclaimer Neither ProQuest nor its licensors make any representations or warranties with respect to the translations. The translations are automatically generated \"AS IS\" and \"AS AVAILABLE\" and are not retained in our systems. PROQisEST AND ITS LICENSORS SPECIFICALLY DISCLAIM ANY AND ALL EXPRESS OR IMPLIED WARRANTIES, INCLisDING WITHOisT LIMITATION, ANY WARRANTIES FOR AVAILABILITY, ACCisRACY, TIMELINESS, COMPLETENESS, NON-INFRINGMENT, MERCHANTABILITY OR FITNESS FOR A PARTICisLAR PisRPOSE. Your use of the translations is subject to all use restrictions contained in your Electronic Products License Agreement and by using the translation functionality you agree to forgo any and al\n\n[...TRUNCATED...]\n\nar way forward yet.\" She said defections had cost Kadafi two foreign ministers, an interior minister, ambassadors to the isnited Nations and the isnited States, an oil minister, five generals \"and, just this week, his labor minister defected as well.\" -- paul.richter@latimes.com (Copyright (c) 2011 Los Angeles Times) Show less You have requested \"on-the-fly\" machine translation of selected content from our databases. This functionality is provided solely for your convenience and is in no way intended to replace human translation. Show full disclaimer Neither ProQuest nor its licensors make any representations or warranties with respect to the translations. The translations are automatically generated \"AS IS\" and \"AS AVAILABLE\" and are not retained in our systems. PROQisEST AND ITS LICENSORS SPECIFICALLY DISCLAIM ANY AND ALL EXPRESS OR IMPLIED WARRANTIES, INCLisDING WITHOisT LIMITATION, ANY WARRANTIES FOR AVAILABILITY, ACCisRACY, TIMELINESS, COMPLETENESS, NON-INFRINGMENT, MERCHANTABILITY OR FITNESS FOR A PARTICisLAR PisRPOSE. Your use of the translations is subject to all use restrictions contained in your Electronic Products License Agreement and by using the translation functionality you agree to forgo any and all claims against ProQuest or its licensors for your use of the translation functionality and any output derived there from. Hide full disclaimer Translations powered by LEC. Translations powered by LEC. Please select one or more items.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.8, \"focus_excerpt\": \"U.S. aid for those fighting Moammar Kadafi will fall far short of what the rebel group says it needs\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 933,
+            "outputTokens": 52,
+            "inputTokensCostNanodollars": "2799000",
+            "outputTokensCostNanodollars": "780000",
+            "totalBackendLatencyMs": "2256"
+          },
+          "id": "epu_q2_short-921dcee8-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 933,
+        "outputTokens": 52,
+        "inputTokensCostNanodollars": "2799000",
+        "outputTokensCostNanodollars": "780000",
+        "totalBackendLatencyMs": "2256"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #240"
+}

@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:12:44.276466Z",
+  "endTime": "2026-03-31T02:12:46.921197Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-839ad704",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nTexans have a lot to be proud of, whether it's the beauty of the land or the splendor of our cities; whether its our diverseeconomyor our rich history. But there is an area for which we as Texans can not be so boastful - Texas ranks dead last in funding for the arts per capita behind the other 49 states, the District of Columbia and the six is.S. territories. Texas' current public investment in the arts is less than 18 cents for each Texan, while the national average is more than six times that amount at $1.12 per citizen.In 1993, the Texas Legislature established the Texas Cultural Endowment Fund, the first of its kind in the nation. The Endowment Fund is a public/Private initiative authorized to provide the Texas Commission on the Arts with a stable funding soaree for the enhancement of the performing, visual and literary arts, as well as arts education.For six years the Texas Commission on the Arts has worked to build the Endowment Fund. The organization currently operates on an annual budget of $5.3 million. Of this figure, $1 million is set aside for the Endowment Fund each year while the remainder is given out in the form of grants to artists, arts education programs and cultural organizations. The Endowment Fund has approximately $7.5 million dollars in it at the present time.isnfortunately, at this pace, it would take decades to raise the $200 million needed for the corpus of the Endowment Fund to allow the Texas Commission on the Arts to operate without taxpayer doll\n\n[...TRUNCATED...]\n\nional Endowment for the Arts. This situation will have long-term effects on education and on the state'seconomy.Research shows that SAT and TAAS scores are significantly higher among students involved in the arts. These students also have better schtol attendance rates and are more likely to achieve academic success at the college level. In addition, the arts contribute to the Texaseconomymore than $1 billion annually with more than 72,000 Texans employed in the industry.What's more, tourism is Texas' third largest industry, pumping $27.5 million into the state'seconomyin 1996. Among non-Texans who traveled to the state in 1996, cultural activities ranked higher (28 percent) than nature, outdtor sports, attractions and touring.Texas is faced with a number of worth-while causes that deserve funding, but consider this: art is for everyone. Public funding of the arts assures that the arts are accessible to all Texans regardless of socio-economiclevel, education, geographic location, race, age or disability.Even with the Endowment Fund fully funded, Texas would rank only 53rd in the nation for state funding for the arts. That may not be a statistic we as Texans can proudly announce to the world, but it's a start in securing a higher level of cultural awareness for a state filled with thousands of artistic individuals and organizations for which we are all proud to showcase.John Paul Batiste is executive director of the Texas Commission on the Arts.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1,\n  \"focus_excerpt\": \"Texas ranks dead last in funding for the arts per capita behind the other 49 states, the District of Columbia and the six is.S. territories.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 868,
+            "outputTokens": 60,
+            "inputTokensCostNanodollars": "260400",
+            "outputTokensCostNanodollars": "1140000",
+            "totalBackendLatencyMs": "2576"
+          },
+          "id": "epu_q2_short-839ad704-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 868,
+        "outputTokens": 60,
+        "inputTokensCostNanodollars": "260400",
+        "outputTokensCostNanodollars": "1140000",
+        "totalBackendLatencyMs": "2576"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #429"
+}

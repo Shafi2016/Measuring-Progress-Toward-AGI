@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:42:14.073737Z",
+  "endTime": "2026-04-01T17:42:14.872133Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-bc54a745",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nGrowth Still Fuels Southland's 'Factory': Expansion Likely to ... Brtoks, Nancy Los Angeles Times (1923-Current File); Nov 15, 1987; ProQuest Historical Newspapers: Los Angeles Times (1881-1990) Pg-Dl immigration from other countries and other states. The regional economy, long admired for its diversity, is growing ever more diverse, thus Insulating the area from the wide swings experienced by those depen\u00addent on a few industries \u2014Texas and oil, for example, or Detroit and automobiles. Rising international trade, particularly with Pacific Basin countries, will become a bigger segment of the economy. As such trade matures, Southern California will be a hub for foreign investors bringing their wealth here\u2014buying office buildings and homes, and buying or starting businesses. Los Angeles will gain stature as a world financial center. It has already overtaken San Francisco as the banking and investment capital of the West by most measures, and some now predict that the region could rival New York, London or Tokyo by the turn of the century. Relatively new \"HEFs\" such as high tech, apparel and health care are expected to draw more jobs and wealth to the area. They will join old standbys, such as aerospace, retailing, entertainment, tour\u00adism, construction and agriculture, most of which are expected to do fairly well over the next decade. A healthy entrepreneurial spirit will mean more business starts and more jobs as well as a decreasing reliance on large, traditional employers. Mor\n\n[...TRUNCATED...]\n\n penalizes employers for hir\u00ading Illegal aliens, will be In stem\u00adming Illegal Immigration. Hensley says the isCLA Business Forecasting Project has found ear\u00adly Indications that the new law Is having at least a temporary effect, although it Is tto ston to determine If there will be any lasting impact on Immigration and economic growth, Employment In California's manufacturing Industries, a big employer of Illegal Immigrants, declined at a 0.6% annual rate during the second quarter, Hensley says, The state has been adding manufacturing jobs at four to five times the national rate since 1960. What's more, many manufactur\u00ading Industries that employ large numbers of Mexican Immigrants, both legal and Illegal, have lost job share compared to the rest of the nation since the end of last year, Those Industries include leather, furniture and textiles. If the Immigration and Naturali\u00adzation Service vigorously enforces the law, \"1 Just can't believe that It's not going to have some impact,\" Hensley says. \"It seems to me that's one of the most Important Issues in the state.\" ' Despite the problems ahead, Southern California will remain fairly healthy, Levy predicts. \"Whatever Is going on, it's prob\u00adably true that most cities would envy having Los Angeles' attrac\u00adtions,\" Levy says. \"If you've got a healthy economy, you can buy your way out of most things.\" Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.75,\n  \"focus_excerpt\": \"it Is tto ston to determine If there will be any lasting impact on Immigration and economic growth\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 851,
+            "outputTokens": 48,
+            "inputTokensCostNanodollars": "187220",
+            "outputTokensCostNanodollars": "42240",
+            "totalBackendLatencyMs": "648"
+          },
+          "id": "epu_q2_short-bc54a745-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 851,
+        "outputTokens": 48,
+        "inputTokensCostNanodollars": "187220",
+        "outputTokensCostNanodollars": "42240",
+        "totalBackendLatencyMs": "648"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #368"
+}

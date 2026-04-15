@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:46:56.378983Z",
+  "endTime": "2026-03-31T18:46:58.046873Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-dc81829e",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nWill the World Flock to WICHITA FALLS?: Conversations end with ... By William Hauptman New York Times (1923-Current file); Aug 7, 1988; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. SM26 By William Hauptman T here was a time not so long ago when my hometown of Wichita Falls was known as the worst town in Texas. The novel\u00adist Larry McMurtry, a Texan, once had a character call it \"the ugliest place on earth.\" Its people had a reputation for being mean- spirited and hostile to outsiders, and its weather \u2014 which features blistering sum\u00admer heat and a high incidence of tornadoes \u2014 made it the butt of countless jokes. In 1978, Texas Monthly published a list of the \"worst jobs\" in Texas. Sixth, after handling dead animals and high explosives, was \"full\u00adtime resident of Wichita Falls.\" Additionally, Wichita Falls had an image problem of almost metaphysical propor\u00adtions: it was a city of just under 100,000 peo\u00adple, but nobody knew exactly where it was. The other cities of the plains \u2014 Amarillo, Lubbock, Midland and Odessa \u2014 were North Texas.\" The entertainment included the country-rock singer Joe Ely and the isnited States Army's Golden Knights parachute team. Willard Scott of NBC's \"Today\" show even broadcast the weather from there. All this ttok me by surprise. In the two years since I had last visited my mother and my brother, who still live there, the bottom had fallen out of the price of oil, and Texas was going through some hard times. But Wichita Falls was \n\n[...TRUNCATED...]\n\n number of county fairs in my youth, with one exception: there were no fistfights. There was not even any shoving at the beer tent. The five policemen I saw seemed to be on gtod terms with the crowd, and no one even gave them a hostile ltok. Later, I walked a mile or so through the park to the falls. A handful of people were there \u2014 mostly older, taking pictures. I sttod at the ftot of the lowest cascade and ltoked up. Four thousand gal\u00adlons a minute were pouring over the lip, filling the air with humidity. The artificial\u00adity of the falls was evident \u2014 it ltoked something like the Roaring Rapids at Six Flags Over Texas \u2014 but somehow this didn't bother me. I was reminded of the earth art of the late Robert Smithson, works like \"Amarillo Ramp\" and \"Spiral Jetty.\" Authen\u00adticity had nothing to do with it; this was a site, a location on which people could pin their associations and, in this case, their hopes. In this, the falls may be a better symbol than people know. Wichita Falls may have run out of oil, but it does have water. Since the 1920's, the city has built four artifi\u00adcial lakes \u2014 Kemp, Kickapto, Diversion and Arrowhead \u2014 and wants to build another. It's not the best drinking water in the world, but it's perfectly suitable for indus\u00adtrial use, and its availability was one of the reasons the in\u00addustries came here. When I was a child, water Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.95, \"focus_excerpt\": \"the bottom had fallen out of the price of oil, and Texas was going through some hard times\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1787,
+            "outputTokens": 44,
+            "inputTokensCostNanodollars": "5361000",
+            "outputTokensCostNanodollars": "660000",
+            "totalBackendLatencyMs": "1627"
+          },
+          "id": "epu_q2_medium-dc81829e-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1787,
+        "outputTokens": 44,
+        "inputTokensCostNanodollars": "5361000",
+        "outputTokensCostNanodollars": "660000",
+        "totalBackendLatencyMs": "1627"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #165"
+}

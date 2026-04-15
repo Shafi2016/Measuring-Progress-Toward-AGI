@@ -1,0 +1,10 @@
+file_name,description
+q3_results_wide.csv,"Row-level wide table with one row per model x article and predictions for single_focus, multi_focus_epu_first, and multi_focus_epu_last."
+q3_results_long.csv,Long-format table with one row per model x article x condition.
+q3_summary_overall.csv,Main Q3 summary table with condition accuracies and the strongest pairwise focus-shift effect.
+q3_pairwise_proof.csv,"Paired scientific proof for single->first, single->last, and first->last comparisons."
+q3_summary_by_disagreement.csv,Q3 metrics split by disagreement_flag.
+q3_summary_by_gold_epu.csv,Q3 metrics split by gold_epu.
+q3_subtask_table.csv,Per-subtask completion and correctness table to show which tasks get lost as prompt burden changes.
+q3_most_harmed_rows.csv,Rows most harmed when EPU must be answered last rather than alone.
+pilot_rows_q3.csv,The exact pilot rows used for Q3.

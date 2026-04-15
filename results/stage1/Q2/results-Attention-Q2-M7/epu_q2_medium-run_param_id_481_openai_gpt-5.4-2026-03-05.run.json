@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:20:11.559645Z",
+  "endTime": "2026-04-03T00:20:12.713030Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-abc28e2c",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nIf you're confused about the recent barrage of financial news, you're in gtod company. From corporate boardrtoms to leading business schtols, nobody else seems to fully understand it either. Which is a big part of the problem: Markets hate uncertainty. In the past couple weeks, the government and the Federal Reserve have bailed out mortgage giants Fannie Mae and Freddie Mac, investment bank Bear Stearns and the nation's largest insurance firm, AIG. Meanwhile, investment bank Lehman Brothers went into bankruptcy and Merrill Lynch was sold at a fire-sale price to Bank of America. This string of events is complicated, confusing and unprecedented. So The Miami Herald asked some experts to help us get a handle on the situation. Here's a sampling of what they had to say. Q. Is the nation's financial system really worse off this week than last week, or does it just ltok that way because so much bad news came out in a short period? A. The nuts and bolts of the financial services industry remain the same as last week, said isniversity of Florida finance professor Mark J. Flannery. But the spate of news will make investors -- and lenders -- nervous. \"People have been waiting for gtod news and they got bad news,\" said Flannery, a specialist in financial industry regulation. \"A lot of investors have decided their appetite for risk is not what it was last week.\" Also, some financial services firms are still doing well, said Joseph Nader, managing director of Zenith Capital Partners in Cor\n\n[...TRUNCATED...]\n\nadvises wealthy individual and families on their investments. \"This is the kind of thing that will be determined weeks and months ahead.\" Q. Who is making these decisions? President Bush? A. These are extremely technical matters, and many observers think the president is putting a lot of stock in the advice of the government's top finance specialists, notably Treasury Secretary Henry Paulson and Federal Reserve Chairman Ben Bernanke. Paulson is the former chief executive of Goldman Sachs. Bernanke is a respected economist and an expert on the Great Depression. Q. Do the financial services industry's problems have special implications for South Florida? A. Flannery said banks may pull back on lending and charge more for loans, which would be bad news for the region's flagging real estate market. Q. Is there anything to feel gtod about in the economy? A. Falling oil prices are gtod news in that they should lead to lower prices for gasoline, ftod and other products. The government said this week that inflation fell nationally in August, although it was flat in South Florida. Nader noted that lower inflation reduces pressure on the Federal Reserve to raise interest rates, which would slow economic growth. And Flannery said the government is acting to mitigate the economic damage. In contrast, he said, Japan's government in the 1990s worked with finance companies to downplay problems instead of dealing with them, which ultimately made matters worse.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":1,\"confidence\":0.68,\"focus_excerpt\":\"Markets hate uncertainty. In the past couple weeks, the government and the Federal Reserve have bailed out mortgage giants Fannie Mae and Freddie Mac\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1558,
+            "outputTokens": 47,
+            "inputTokensCostNanodollars": "3895000",
+            "outputTokensCostNanodollars": "705000",
+            "totalBackendLatencyMs": "978"
+          },
+          "id": "epu_q2_medium-abc28e2c-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1558,
+        "outputTokens": 47,
+        "inputTokensCostNanodollars": "3895000",
+        "outputTokensCostNanodollars": "705000",
+        "totalBackendLatencyMs": "978"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #482"
+}

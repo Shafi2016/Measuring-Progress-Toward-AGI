@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:51:38.181678Z",
+  "endTime": "2026-04-01T17:51:39.709145Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-b41d812d",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nIt was a hot, hungry morning when Maria Altiaga finally crossed the line into desperate poverty. Her nine children were clamoring for ftod. Her husband couldn't find construction work. Prices were skyrocketing. Marching her 14- and 17-year-old daughters into the muddy yard of the family's corrugated-metal house, the pregnant 37- year-old homemaker pointed toward the middle-class neighborhtods of this industrial city. \"I said, 'If you don't find work, ask people for ftod or clothing,'\" she recalled. \"I was so worried, I was crying. I called to God, help them!\" Throughout oil-rich Venezuela, a crisis is pushing people to the brink. Thousands are being laid off. Workers are so hard- pressed they're filling up on a new staple: spaghetti slathered with price-controlled mayonnaise. If ftod shortages develop, as expected, many fear a social explosion that could prompt Venezuela's third coup attempt in three years. \"It's the most serious problem we have in the hemisphere,\" said one is.S. official in Washington. \"Venezuela is going downhill.\" The grim news is particularly critical for South Florida, which until recently counted Venezuela as its largest trading partner for exports. \"We used to say Miami was going to be Venezuela's 21st state. Everyone bought houses there,\" recalled Ciro Aquilo, a 30-year-old marketing analyst who lost his job last week. Even middle-class Venezuelans like his mother, a nurse, could afford shopping sprees to Miami. \"Now, she doesn't even go to Colombia,\"\n\n[...TRUNCATED...]\n\nz estimates real incomes will decline on average 10 to 15 percent this year. Some people will suffer much more. Maria Altiaga's daughters, who first went to beg in January, now do so two or three times a week. Her husband has found only occasional work. Last month, Maria lost her 10th child just a week before it was due. \"There were days in which we had practically nothing. I had only coffee,\" she said, tears welling in her eyes. \"Since I had no ftod, I lost the baby.\" * Venezuela is South Florida's main trading partner. It is also a key soaree of foreign investment and tourism for the region. * More than $1.50 of every $10 worth of gtods shipped through South Florida's airports and seaports goes to or comes from Venezuela. * Last year, South Florida's trade with Venezuela totaled $2.6 billion, down 12 percent from the year before. Trade fell another 13 percent in the first quarter of this year. * Nine Venezuelan multinational companies have offices in South Florida. Two major Venezuelan airlines, VIASA and Avensa, service Miami International Airport. * Venezuelan investors own at least four local banks: Commercebank, Consolidated Bank, Eastern National Bank and Ocean Bank of Miami. Venezuelans own part of Spanish-language television network isnivision, which owns Channel 23. * Vestrust Asset Management, a Brickell Avenue investment firm, is associated with Venezuela's largest investment bank. Memo: THE AMERICAS; See FLORIDA TIES at end of text\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.3,\n  \"focus_excerpt\": \"Prices were skyrocketing. Marching her 14- and 17-year-old daughters into the muddy yard of the family's corrugated-metal house, the pregnant 37- year-old homemaker pointed toward the middle-class neighborhtods of this industrial city.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1638,
+            "outputTokens": 82,
+            "inputTokensCostNanodollars": "360360",
+            "outputTokensCostNanodollars": "72160",
+            "totalBackendLatencyMs": "1380"
+          },
+          "id": "epu_q2_medium-b41d812d-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1638,
+        "outputTokens": 82,
+        "inputTokensCostNanodollars": "360360",
+        "outputTokensCostNanodollars": "72160",
+        "totalBackendLatencyMs": "1380"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #271"
+}

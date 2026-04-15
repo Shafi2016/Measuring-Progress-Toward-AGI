@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T01:45:23.374871Z",
+  "endTime": "2026-03-31T01:45:26.305886Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-0d6b775f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nIndustry Flounders Fishermen See Profits Sink, Costs Mount Gary Soderberg peered into the dark tank and estimated: 70 sctops. It had not been the best of nights for the Pamela Rose, a commercial fishing vessel whose home port is Newport Harbor. On a gtod night, the tanks aboard the 54-ftot vessel ORANGE might contain 800 COisNTY sctops of ancho\u00advies, sardines or squid, said Soderberg, one of four crewmen on the boat. Each sctop is about equivalent to a bucketful. Skipper Steve Greyschock dis\u00admissed the anemic catch\u2014they would do better tomorrow night, he reckoned. Greyschock had enough anchovies to satisfy the live bait needs of three commercial sport fishing boats, with enough left over to supply sport boats that leave later in the day from Newport Landing and the Balboa Pavilion. Earning a living from the sea has always been a rugged enterprise, but it has become particularly Please see FISH, Page 5 Reproduced with permission of the copyright owner. Further reproduction prohibited without permission. Continued from Page 1 tough in recent years because of intense foreign competition, the closing of domestic canneries that cannot compete with cheaper overseas facilities and rocketing liability insurance costs, which have become the bane of just about every business. \"We're in the same boat as farmers, only worse,\" said Bill Perkins, manager of the San, Die- go-based Western Fishing Boat Owners Assn. Like farmers, fisher\u00admen tend to have-large invest\u00adments in equipment and are\n\n[...TRUNCATED...]\n\nmer to get out,\" said Hatfield, who neverthe\u00adless says he has no interest in going back to carpet installation, his previous occupation. As the only regular night-oper\u00adating commercial fisherman home- ported in Newport Beach, Greys\u00adchock, 35, is part of a shrinking fraternity of men in Orange County who make their living from the sea. Greyschock, whose father operated charter sport-fishing boats at Newport Harbor, \"fell in love with the ocean\" as a boy and has been fishing commercially for 15 years. Commercial fishing crewmen are an independent breed. Most crew\u00admen work, save and dream for the day when they will be able to skipper their own boat. Crewmen typically split a third of the catch. New Difficulties Greyschock started as a crew\u00adman and eventually saved enough to buy his own boat. But that route to success at sea has become signif - icantly tougher. In addition to low prices, liability woes and intense competition, commercial fishing operators at Newport Harbor face additional economic pressures. As the harbor has developed into a home for luxury pleasure boats and became the focal point for one of the nation's most expensive residential and commercial areas, commercial fishing has gradually moved out of the harbor. It's a trend that seems likely to continue. With its high slip rents and lack of facilities for commercial fisher\u00admen. further tightening of the commercial fishing industry seems inevitable. Jeff Rowe is a free-lance writer.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 1.0, \"focus_excerpt\": \"Earning a living from the sea has always been a rugged enterprise, but it has become particularly Please see FISH, Page 5 Reproduced with permission of the copyright owner. Further reproduction prohibited without permission. Continued from Page 1 tough in recent years because of intense foreign competition, the closing of domestic canneries that cannot compete with cheaper overseas facilities and rocketing liability insurance costs, which have become the bane of just about every business.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 863,
+            "outputTokens": 109,
+            "inputTokensCostNanodollars": "258900",
+            "outputTokensCostNanodollars": "1060000",
+            "totalBackendLatencyMs": "2863"
+          },
+          "id": "epu_q2_short-0d6b775f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 863,
+        "outputTokens": 109,
+        "inputTokensCostNanodollars": "258900",
+        "outputTokensCostNanodollars": "1060000",
+        "totalBackendLatencyMs": "2863"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #54"
+}

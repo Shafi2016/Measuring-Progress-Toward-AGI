@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:54:54.285190Z",
+  "endTime": "2026-03-31T18:54:55.895825Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-4e655325",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nWhat had promised to be a season of expansion has turned out to be one of sheer survival for Maximum Dance Company. And in that, there's some success. Because despite financial problems that threatened to swamp the group months earlier, the company now guarantees it will be back for at least three more seasons, president Dennis Edwards promised a small but supportive crowd at the Gusman Center Saturday before Maximum danced its final program of the season - a program the company repeats this weekend in Broward County. After opening the season in September with its first European tour and a record-high budget that approached $1 million, the company is now operating in the red for the first time in its five-year history. The economic downturn, which has hurt many local and national arts organizations, hit newly ambitious groups such as Maximum especially hard. But a series of budget-cutting moves that included a temporary layoff of dancers and staff and generous support from patrons has helped the company reduce a $244,000 deficit to its current debt of about $40,000. The company tried to avoid cutting corners on stage, however. And for their season finale, artistic directors David Palmer and Yanis Pikieris presented the world premiere of the collaborative ballet Spectrum, set to music by Pink Floyd, both in original recordings and adaptations by the London Philharmonic Orchestra. The melding of ballet and contemporary dance, the contrast of rock and classically trained musicia\n\n[...TRUNCATED...]\n\nghting by Eric Fliss created the perfect ambience. The first half of the performance closed with Childhtod's End, a pulsating, upbeat contrast to the deeper tones presented in Paranoid Eyes. In Childhtod's End, nine of the company's 10 dancers worked in trios to form sculptural shapes that grew in complexity as the music grew in intensity. The choreographers have a talent for creating this type of kaleidoscopic imagery, as demonstrated in this piece and in Welcome to the Machine, the second work of the evening in which dancers, standing behind volcano-shaped pillars, appeared and disappeared. The second half of the performance contained random imagery: monochromatic structures resembling heaps of rubble and black-and-white umbrellas, possibly representing adversity and endurance. Whether these sets and props were intended to refer to the aftermath of Sept. 11 or the company's own struggles, their abstract form left the work open to one's own interpretation. At the end of The Great Gig in the Sky, an anguish-laden solo by Sally Ann Isaacks, a rainbow of light landed gently at her feet. She then emerged from her long white dress wearing a soft yellow shirt, her grief-ridden moves giving way to more light-hearted dance before she walked off the stage with an air of calm determination. Although this was not the last piece in the performance, it seemed a fitting metaphor for where the company has been - and where it intends to go. Memo: DANCE REVIEW\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.85, \"focus_excerpt\": \"The economic downturn, which has hurt many local and national arts organizations, hit newly ambitious groups such as Maximum especially hard.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1561,
+            "outputTokens": 47,
+            "inputTokensCostNanodollars": "583856",
+            "outputTokensCostNanodollars": "78960",
+            "totalBackendLatencyMs": "1386"
+          },
+          "id": "epu_q2_medium-4e655325-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1561,
+        "outputTokens": 47,
+        "inputTokensCostNanodollars": "583856",
+        "outputTokensCostNanodollars": "78960",
+        "totalBackendLatencyMs": "1386"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #145"
+}

@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:42:13.315742Z",
+  "endTime": "2026-03-31T02:42:17.854334Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-c66dde9c",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nis.S. Trade Benefits From War: is.S. Trade Is Beneficiary Of Gulf War By SYLVIA NASAR New York Times (1923-Current file); Mar 13, 1991; ProQuest Historical Newspapers: The New York Times (1851-2010) pg.Dl isS. Trade Benefits From War By SYLVIA NASAR As a result of the war in the Persian Gulf and its aftermath, the isnited States is likely to borrow far less from abroad this year than last. Many forecasters expect the deficit in the current account \u2014 the broadest gauge of the nation's imports and ex\u00adports of gtods and services \u2014 to shrink sharply in 1991. \"We'll see a remarkable improve\u00adment,\" said David Rolley, an econo\u00admist at DRI/McGraw Hill, an eco\u00adnomic consulting firm. According to a report released by the Department of Commerce yester\u00adday, the isnited States' current ac\u00adcount deficit amounted to $99.3 billion in 1990, down from $110 billion in 1989. The $99.3 billion figure is the smallest gap since 1984. Here is how the gulf war could nar\u00adrow the gap even more: For starters, the invasion of Kuwait helped touch off the recession, ctoling the nation's appetite for imports. Then, the allied victory caused crude prices to plunge, slashing the bill for imported oil. \u2022 $51 Billion for the War Kitty In addition, America's allies are contributing about $51 billion to the isnited States' war kitty, money that otherwise would have had to have been borrowed from private invest\u00adors overseas. Finally, postwar rebuilding in the Middle East will increase business for American constru\n\n[...TRUNCATED...]\n\ne same token, the dent made by last fall's budget-cutting deal on the Federal deficit will show through a few years from now. \"With fewer demands on resoarees by the is.S. Government, the isnited States wouldn't have to import as many re\u00adsoarees from abroad,'' said William Cline, senior fellow at the Institute for International Economics. Compelling Arithmetic While long-term trends are highly uncertain, the arithmetic for this year seems compelling. Total allied pledges amount to more than $51 bil\u00adlion, just $4.3 billion of which had ar\u00adrived by the end of the year. Federal officials seem reasonably confident, at this point, that the payments will in fact be made. According to yesterday's Com\u00admerce Department report, last fall's allied contributions were more than offset by $7.1 billion in American asssistance to Egypt and Israel. \"What matters is that six or seven months ago, everyone thought the war was purely a is.S. burden,\" said Maria Ramirez, president of Maria Ramirez Capital Consultants. \"is.S. rates went up, the dollar was sliding and the stock market fell apart. Now it's the other way around.\" Lower prices and smaller volumes could trim the 1991 oil import bill. In the last two years, by contrast, more expensive oil increased the current account deficit by $10 billion a year. \"The moderation in oil prices is likely to last,\" said Robert D. Hormats, vice chairman of Goldman, Sachs. \"The is.S. is in effect the 14th member of OPEC now.\"\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.9, \"focus_excerpt\": \"While long-term trends are highly uncertain, the arithmetic for this year seems compelling.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1665,
+            "outputTokens": 39,
+            "inputTokensCostNanodollars": "499500",
+            "outputTokensCostNanodollars": "1692500",
+            "totalBackendLatencyMs": "4470"
+          },
+          "id": "epu_q2_medium-c66dde9c-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1665,
+        "outputTokens": 39,
+        "inputTokensCostNanodollars": "499500",
+        "outputTokensCostNanodollars": "1692500",
+        "totalBackendLatencyMs": "4470"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #265"
+}

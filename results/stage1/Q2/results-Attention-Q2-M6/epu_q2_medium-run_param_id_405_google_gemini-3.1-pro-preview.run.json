@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:16:23.094638Z",
+  "endTime": "2026-04-03T00:16:33.638034Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-3026637b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nThe Btoming, Bulging Tex-Mex Border: The Btoming, Bulging Tex-Mex Border By ALLEN R. MYERSONDALLAS New York Times (1923-Current file); Aug 7, 1994; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. FI Dallas 1. G. (Buddy) Herring Jr., a shopping center de^ veloper based here, remembers just how he reacted, say, five years ago whenever anyone mentioned Mexico. \"We didn't even think about it,\" he said, sweeping his right arm in front of him as if fending off someone trying to serve him an unfamil\u00adiar, overspiced dish. \"We had enough op\u00adportunities in the isnited States.\" Today, an easel in his conference rtom holds a map of Mexico, with orange adhe\u00adsive dots on Leon, Torreon, Chihuahua and Monterrey. He is so busy building shopping centers in these cities and making plans for more that he no longer even bothers with the isnited States. When Mr. Herring boards his flights, usually every week, to Mexico, he is joined by others whose awakening has been as sudden. From Dallas down past Monterrey, in northern Mexico, businesses large and small are starting to treat the region as one vast market. Call it the broadening border. Or, better yet, la frontera amplianda. Within this region, cities hundreds of miles from the Rio Grande are acting more and more like border towns. The border has been broadening through\u00adout the Southwest, but nowhere as much as in' Texas. Here, astride the rail and highway routes to Mexico's major cities, the North American Free Trade Agreemen\n\n[...TRUNCATED...]\n\ne plane was empty, Mr. Hyland said. \"Now it's packed.\" Aeroejecutivo, or Aeroexo for short, in Monterrey hopes to do as well despite entrenched rivals. Aer\u00adoexo has been competing against Continental to Houston since July 21, and, next month, takes on American to Dallas. Aeroexo advertised $199 round-trip fares to Houston, under\u00adcutting Continental's normal coach fare by about $65. Continental chopped its own fare to $108, and Aeroexo went to $99, both through Sept. 4. Taxes add about $35. A daily 6 P.M. Aeroexo flight- from Monterrey two weeks ago had only 10 passengers, including the airline own\u00ader's son, bound for the family's home and office in Houston. The free drinks added conviviality. By last Thursday, the evening flight had about 30 pas\u00adsengers.. Alejandro Morales Mega, the air\u00adline's owner, intends to funnel more passengers from the 85 or so Mexican travel agencies that he controls. With a large charter business con\u00adnecting cities in Texas and Mexico to Mexican beaches, and investments in Monterrey banks including one that just bought a Texas bank, Mr. Mo\u00adrales can ride out his losses long enough to give the Americans some competition. Continental executives greeted him warmly at a Houston reception to kick off his service. \"Like gentlemen, they said, 'Go ahead,'\" Mr. Morales recalled. \"Maybe that's because they don't know me yet.\" B Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"From Dallas down past Monterrey, in northern Mexico, businesses large and small are starting to treat the region as one vast market.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1649,
+            "outputTokens": 55,
+            "inputTokensCostNanodollars": "3298000",
+            "outputTokensCostNanodollars": "8244000",
+            "totalBackendLatencyMs": "10400"
+          },
+          "id": "epu_q2_medium-3026637b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1649,
+        "outputTokens": 55,
+        "inputTokensCostNanodollars": "3298000",
+        "outputTokensCostNanodollars": "8244000",
+        "totalBackendLatencyMs": "10400"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #406"
+}

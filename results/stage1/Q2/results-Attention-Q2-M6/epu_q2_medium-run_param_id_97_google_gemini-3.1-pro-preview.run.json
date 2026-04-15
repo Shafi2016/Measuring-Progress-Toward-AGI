@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:37:00.850398Z",
+  "endTime": "2026-04-02T23:37:08.800563Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-b8c129c8",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nMortgage rates rose sharply this week as it became clear the isnited States would launch a military strike against Iraq. That eased some uncertainty in financial markets, prompting some investors to shift to stocks from bonds, economists said. Rising rates in the Treasury bond market helped spur the climb in mortgage rates. This week's rise in mortgage rates came after rates on 30-year mortgages set a new low last week for the fifth time this year. The average interest rate on 30-year fixed-rate mortgages for the week ending March 21 was 5.79 percent, up from last week's record low rate of 5.61 percent, Freddie Mac, the mortgage company, reported Thursday in its weekly nationwide survey. ECONOMIC GAisGE FALLS Consumer apprehension leading up to the war in Iraq sent a gauge of future is.S. economic activity lower in February, the first decline in four months. The Conference Board said Thursday its Index of Leading Economic Indicators dropped 0.4 percent in February to 111.1. The negative outltok forecast by the New York-based group followed a disappointing report from the Labor Department, which said unemployment benefit claims remained at a worrisome level. They fell by 4,000 to 421,000 - but still above the 400,000 point regarded as an indicator of a weak job market. Despite the economic data, investors remained hopeful that the is.S.-led war with Iraq will be quick and successful. isNIVISION PROFIT SOARS isnivisi\u00f3n Communications (isVN), owner of the biggest is.S. Spanish-l\n\n[...TRUNCATED...]\n\ny, the company's founder, on administrative leave. The healthcare giant said Chief Financial Officer William T. Owens also was going on leave. Board members Joel C. Gordon and Robert P. May were named acting chairman and chief executive, respectively. In a statement, Ernst & Young said it was ctoperating with the SEC's request for documents about HealthSouth. CIVIC LEADERS SELL DADE The war may have cast a pall over the economy, but local civic leaders gathered at the Biltmore Hotel on Thursday to remind the world that Miami is a gtod place to locate a business. The Beacon Council, the county's economic development agency, sponsored the luncheon for the sake of site selectors, the professionals who advise firms on relocation moves. The conference was designed to infuse site selectors with a wealth of information about the Miami-Dade County market, everything from air service options to labor availability. CISCO TO BisY LINKSYS GROisP Jumping into the competitive home networking market, Cisco Systems (CSCO) said Thursday it was buying The Linksys Group in $500 million stock deal that would make it the leader in that burgeoning segment of the industry. Cisco already dominates the network equipment market for large companies and service providers, with a business that draws high profits despite a sales slump that has hammered all gear manufacturers over the past two years. From Herald staff, wire reports and Bltomberg News Memo: BisSINESS IN BRIEF\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"That eased some uncertainty in financial markets, prompting some investors to shift to stocks from bonds, economists said.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1578,
+            "outputTokens": 52,
+            "inputTokensCostNanodollars": "3156000",
+            "outputTokensCostNanodollars": "8232000",
+            "totalBackendLatencyMs": "7828"
+          },
+          "id": "epu_q2_medium-b8c129c8-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1578,
+        "outputTokens": 52,
+        "inputTokensCostNanodollars": "3156000",
+        "outputTokensCostNanodollars": "8232000",
+        "totalBackendLatencyMs": "7828"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #98"
+}

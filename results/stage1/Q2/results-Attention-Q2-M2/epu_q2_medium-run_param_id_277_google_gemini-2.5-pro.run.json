@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T04:25:53.424602Z",
+  "endTime": "2026-03-31T04:26:03.728521Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-9cf5dac3",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nINTERNATIONAL A3-7 Pentagon Says Data Shows Missile Brought Down Jet Pentagon officials said they strongly believed that a long-range anti-aircraft missile fired in a iskrainian military training exercise struck a Siberian Airways jet on Thursday, causing it to crash with a loss of 78 lives. iskrainian officials, who initially denied suggestions that one of their missiles was responsible, said they were now uncertain about the cause of the crash. Russian officials demanded that the isnited States provide evidence to back up its version. A6 Iran Reviews Foreign Policy Parliament established a special panel to study Iran's international relations in the face of a possible military strike by the isnited States against Afghanistan. A6 G-7 Seeks Economic Remedies Treasury Secretary Paul H. O'Neill said the Group of Seven leading industrial nations would explore ways of stimulating their economies when they meet in Washington this weekend. A5 World Briefing A6 OBITisARIES C15-16 Mike Mansfield The former Senate majority leader, a Democrat from Montana, who also served as the isnited States ambassador to Japan, was 98. A1 SCIENCE/HEALTH A Cosmic 'Building Block' Astronomers have detected the faint light from a small congregation of stars so far away that they think it is a vision of the early universe at the beginning of its transformation from virtual emptiness to a place of arching galaxies on a majestic scale. A9 Anthrax Patient Dies The 63-year-old South Florida man hospitalized\n\n[...TRUNCATED...]\n\now gained 58.89 points, to 9,119.77; the Nasdaq rose 7.99 points, to 1,605.30; and the S.& P. 500 edged up 1.75 points, to 1,071.38. The gains followed President Bush's calling on Congress to approve $60 billion in tax cuts to buttress the economy. C4 Airline Board Empowered The Bush administration issued rules giving a special emergency board led by Alan Greenspan wide discretion to support the troubled airline industry, even allowing it to use government-backed loans to underwrite mergers if it sees fit. C1 Sun Warns of Bigger Loss Sun Microsystems said it would post a wider-than-expected loss for its first fiscal quarter and lay off about 3,900 employees, or 9 percent of its work force, in an effort to become profitable again by June. C4 Price War Costs Chip Maker Advanced Micro Devices said a price war with Intel, its chief rival, had driven down third-quarter revenue by 22 percent from the second quarter and widened its net loss to as much as $220 million. C4 Business Digest C1 EDITORIAL A22-23 Editorials: The case against bin Laden; the fading appeal of farm subsidies; a flawed stimulus plan. Columns: Bill Keller, Anthony Lewis. Bridge A19 Public Lives A8 Crossword A20 Weather A10 TV Listings A24 Photo Jim Crow is dead but segregation is still alive. Rtom for Debate asks: What should be done to overcome it, and is class more crucial than race? For members of China's Communist elite, sending money overseas makes sense as a political hedge.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1,\n  \"focus_excerpt\": \"Treasury Secretary Paul H. O'Neill said the Group of Seven leading industrial nations would explore ways of stimulating their economies when they meet in Washington this weekend.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1615,
+            "outputTokens": 65,
+            "inputTokensCostNanodollars": "2018750",
+            "outputTokensCostNanodollars": "11210000",
+            "totalBackendLatencyMs": "10210"
+          },
+          "id": "epu_q2_medium-9cf5dac3-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1615,
+        "outputTokens": 65,
+        "inputTokensCostNanodollars": "2018750",
+        "outputTokensCostNanodollars": "11210000",
+        "totalBackendLatencyMs": "10210"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #278"
+}

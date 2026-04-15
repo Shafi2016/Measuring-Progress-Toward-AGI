@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:46:51.263364Z",
+  "endTime": "2026-03-31T18:46:53.299543Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-1b07bf87",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle James Glanz, New York Times Tuesday, July 6, 2004 (07-06) 04:00 PDT Khor al Amaya Oil Terminal, Iraq -- The oil wealth that Iraq is counting on as its best hope for a stable future flows through rattling pipelines to lonely, rusting depots 15 miles offshore, so isolated that an armada of American, British and Australian warships is circling them to prevent the threat of waterborne suicide attackers. Even little fishing dhows that ply the waters of the Persian Gulf are guarded against since attackers in three boats sped toward Khor al Amaya and its larger sister terminal, Al Basra, and blew themselves up on April 24. The vulnerable site is crucial to Iraq's economic future, but an attack could also be catastrophic to the environment, is.S. military and industry officials say. \"Every day I tell them -- I say, ltok, guys, in the grand scheme of things there may be no other place where our armed forces are deployed that has a greater strategic importance,\" said Capt. Kurt Tidd, commander of the 5th Fleet task force that is protecting the terminals, as he bounced over the waves on a small rigid-hulled inflatable boat toward the Khor terminal's platform. \"We can't win the war here, but we can lose it in a flash,\" Tidd said. The April attacks cost the lives of two is.S. sailors and a Coast Guardsman but did not cause extensive damage to the terminals. The ctordinated attacks served notice that someone with deep k\n\n[...TRUNCATED...]\n\ny renovated Bernal Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) DRIVERS!! Company Marten Transport JOBS AVAILABLE Company Bay Area SALES MANAGER Company IBM SisPPORT PROFESSIONAL Company Zynga, Inc. Location Company Confidential EXPERIENCE DESIGNER Company Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"The vulnerable site is crucial to Iraq's economic future, but an attack could also be catastrophic to the environment\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 903,
+            "outputTokens": 49,
+            "inputTokensCostNanodollars": "408912",
+            "outputTokensCostNanodollars": "82320",
+            "totalBackendLatencyMs": "1837"
+          },
+          "id": "epu_q2_short-1b07bf87-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 903,
+        "outputTokens": 49,
+        "inputTokensCostNanodollars": "408912",
+        "outputTokensCostNanodollars": "82320",
+        "totalBackendLatencyMs": "1837"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #564"
+}

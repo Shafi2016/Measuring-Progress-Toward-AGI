@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:01:28.894311Z",
+  "endTime": "2026-04-02T23:01:44.448384Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-69716042",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nPuzzling Economy Awaits Traders: A Puzzling Economy Awaits Traders By JOHN CRisDELE New York Times (1923-Current file); Sep 3, 1985; ProQuest Historical Newspapers: The New York Times (1851-2010) pg.Dl Puzzling- Economy Awaits Traders By JOHN CRisDELE Like schtolchildren coining back from summer vacation, Wall Street investors are expected to show re\u00adnewed excitement over stock trading in the post-Labor Day period. But analysts believe that the reality of an uncertain economy as well as ques\u00adtions about the Federal budget deficit and tax reform will ston spoil their fun. \"After Labor Day is the start of the new year for Wall Street,\" said Monte Gordon, director of research for the investment firm of Dreyfus & Compa\u00adny, who believes the first order of business may be a stock market rally. Prices could rise, briefly at least, as a result of a surge in volume. But Mr. Gordon does not expect the returning investors' vigor to last long, sapped by concern that the isnited States economy is expanding at no\u00adwhere near the pace that economists expected a few months ago. Even more troubling to many ex\u00adperts on Wall Street is the apparent bind in which the Federal Reserve Board finds itself with regard to monetary policy. Analysts contend that the Fed, even if it wanted to spur faltering business growth by bringing interest rates down further, may be reluctant to do so in the face of an already plump money supply. A ltosening of credit also may be discouraged by the re\u00adcent erratic beha\n\n[...TRUNCATED...]\n\naddition to the economy, such problems include inaction in Washington, said Mr. Conlon, warn\u00ading that Wall Street may be discour\u00adaged by the \"increasing realization that another year is going to pass without any meaningful action on the deficit.\" Before its summer break, Congress agreed to trim more than $55 billion from Federal spending. Wall Street's initial reaction to this move was posi\u00adtive, but since then the opinion of many financial specialists has shift\u00aded. Now they feel that the spending cuts will not be large enough to have the desired effect on interest rates. Although the stock market is ap\u00adproaching the fourth quarter bur\u00addened by a number of problems, there may be some gtod news for the longer term, according to analysts. One automatic benefit may come from corporate earnings in the first quarter of 1986. Since the profits of multinational companies were hurt in 1985's first half by the strength of the dollar, many of these companies, such as the International Business Machines Corporation, may have favorable earnings comparisions early next year. And while stocks tumbled as the dollar peaked in early 1985, equities may get a btost from the present weaker currency. And analysts say investors may not have to wait until the end of the first quarter for the stock market to react if there is gen\u00aderal anticipation of higher earnings. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"questions about the Federal budget deficit and tax reform\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 871,
+            "outputTokens": 41,
+            "inputTokensCostNanodollars": "1742000",
+            "outputTokensCostNanodollars": "6828000",
+            "totalBackendLatencyMs": "15338"
+          },
+          "id": "epu_q2_short-69716042-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 871,
+        "outputTokens": 41,
+        "inputTokensCostNanodollars": "1742000",
+        "outputTokensCostNanodollars": "6828000",
+        "totalBackendLatencyMs": "15338"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #454"
+}

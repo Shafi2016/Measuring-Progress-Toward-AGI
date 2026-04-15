@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:54:19.887752Z",
+  "endTime": "2026-03-31T02:54:37.657078Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-cbc800c5",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Claire Trageser, Chronicle Foreign Service Sunday, June 29, 2008 By Claire Trageser / Special to The Chronicle A Burmese refugee who identifies herself as Nid Paw unwraps a toy with her son, Saw, in their apartment in Mae Sot, Thailand. (06-29) 04:00 PDT Mae Sot, -- Thailand - Nid Paw remains calm when describing the Burmese government's destruction of her village, her forced relocation to a refugee camp in Thailand and threats of deportation by local police. But it's a question about her future that seems to agitate her the most. \"In America, it's very hard for people who resettle,\" said Nid Paw, 28, who asked that her real name not be used because she is an illegal immigrant. \"I know it will be difficult, but I have hope for the next generation.\" Thanks to a new is.S. policy, Nid Paw hopes to become one of 18,000 Burmese refugees allowed to settle in the isnited States in 2008. Before the change in law, the Patriot Act had barred refugee status for those who had provided \"material support\" to organizations on the State Department terrorist list. Because many Burmese refugees had lived in regions where ethnic armies have fought for independence against government trtops for decades, they were typically denied entry simply for giving ftod, water or housing to guerrilla fighters - even if under duress. In 2006, the Department of Homeland Security recognized that Burmese refugees were unlikely to be terroris\n\n[...TRUNCATED...]\n\nrian in Eureka Valley... 1971 VW Beetle Beyond pineapple: Hawaiian farmer... Extensively renovated Bernal Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) 2003 MDX$12,991 2010 Odyssey$31,887 2012 M37$45,994 2008 EX35$23,992 2008 EX35$26,982 2008 RX 400h$31,991 Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 0,\n  \"confidence\": 1,\n  \"focus_excerpt\": \"Thanks to a new is.S. policy, Nid Paw hopes to become one of 18,000 Burmese refugees allowed to settle in the isnited States in 2008. Before the change in law, the Patriot Act had barred refugee status for those who had provided \\\"material support\\\" to organizations on the State Department terrorist list.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 982,
+            "outputTokens": 105,
+            "inputTokensCostNanodollars": "1227500",
+            "outputTokensCostNanodollars": "18720000",
+            "totalBackendLatencyMs": "17670"
+          },
+          "id": "epu_q2_short-cbc800c5-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 982,
+        "outputTokens": 105,
+        "inputTokensCostNanodollars": "1227500",
+        "outputTokensCostNanodollars": "18720000",
+        "totalBackendLatencyMs": "17670"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #353"
+}

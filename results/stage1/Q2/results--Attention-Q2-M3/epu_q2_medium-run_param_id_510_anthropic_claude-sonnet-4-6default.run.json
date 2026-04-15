@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:58:32.417895Z",
+  "endTime": "2026-03-31T18:58:34.220646Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-5a3b0c1d",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nWhen Flower Mound added about 5,000 acres to its western border in 1999, speculation abounded that the area would see an imminent building btom.But six years after the annexation that increased the town's size by 23 percent, the area remains pristine countryside. That's despite the desire of landowners and developers who are ready to start moving dirt in an area that some say may be the last great development near Dallas/Fort Worth International Airport.Town officials say they will ston begin giving more thought to how they want the area to develop. The focus will be on the Denton Creek District, a roughly 1,500-acre development district the town created, most of which lies between Interstate 35W and is.S. Highway 377.The process is part of a planned update of the town's master plan that began recently with the appointment of a steering committee.The town delayed plans to extend water and sewer lines to the western area, citing aneconomicdownturn after Sept. 11, 2001, and reduced utility revenues from unusually wet summers. Water and sewer service is about two years away, officials say.Landowners sue townSome landowners said they need those utilities now to begin development. Two of them have sued the town over failure to provide municipal services to the western part of town.A majority of property owners there want the entire 5,000 acres removed from the town's borders. The disannexation lawsuit is ongoing, creating someuncertaintyfor developers.\"We've got to get the issue o\n\n[...TRUNCATED...]\n\n \"the market hadn't ripened yet.\"Mr. Whitman said another barrier to development is the town's burdensome regulations.\"If the court agrees with everyone else who wants to be back in the county, then development will begin immediately,\" he said. \"We're not going to do anything until we know the outcome [of the lawsuit]. It's in limbo.\"Mr. Ryan said the perception that the town is not friendly to development is inaccurate. He said many different developments have been approved in recent years.\"Our community standards are reflective of our community. If they are stringent, it's because the community wants it,\" he said.Most observers say development is two to four years away. But that hasn't stopped speculators from buying and selling land in the area, especially near FM1171 and is.S. 377.Dallas Cowboys owner Jerry Jones' Blue Star Land company bought about 180 acres several years ago as an investment until utilities arrive.Jim Striegel, agent for a company that is selling 62 acres, said he receives calls from interested buyers daily. He said he's optimistic.\"The town, in my opinion, is trying to work more and more with people,\" he said. \"They're not as hard-core as they used to be.\"Mr. Baen said he envisions that the region will develop similar to Las Colinas, with high-rise office buildings and condos.\"There's no shortage of land. It's a blank easel,\" he said.E-mail kkrause@dallasnews.comCaption:CHART(S): (JAMES A. BLACK/Staff Artist) LAND FIGHT.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.7, \"focus_excerpt\": \"The disannexation lawsuit is ongoing, creating some uncertainty for developers. We're not going to do anything until we know the outcome [of the lawsuit]. It's in limbo.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1710,
+            "outputTokens": 63,
+            "inputTokensCostNanodollars": "5130000",
+            "outputTokensCostNanodollars": "945000",
+            "totalBackendLatencyMs": "1748"
+          },
+          "id": "epu_q2_medium-5a3b0c1d-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1710,
+        "outputTokens": 63,
+        "inputTokensCostNanodollars": "5130000",
+        "outputTokensCostNanodollars": "945000",
+        "totalBackendLatencyMs": "1748"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #511"
+}

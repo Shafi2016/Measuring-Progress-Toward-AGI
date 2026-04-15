@@ -1,0 +1,13 @@
+llm_name,condition,field,prompt_order_index,completion_rate,correctness_mean,correctness_ci_low,correctness_ci_high
+anthropic/claude-sonnet-4-6@default,multi_focus_epu_first,epu,1,1.0,0.6566666666666666,0.6177849875650621,0.6935550127839782
+anthropic/claude-sonnet-4-6@default,multi_focus_epu_first,who,2,1.0,0.38,0.3420413232803356,0.4194854849629526
+anthropic/claude-sonnet-4-6@default,multi_focus_epu_first,actions,3,1.0,0.31833333333333336,0.2823163761575769,0.35666170854406787
+anthropic/claude-sonnet-4-6@default,multi_focus_epu_first,effects,4,1.0,0.20666666666666667,0.1761828266922091,0.24088270456916197
+anthropic/claude-sonnet-4-6@default,multi_focus_epu_first,mention_foreign,5,1.0,0.665,0.6262896001039409,0.701611038561538
+anthropic/claude-sonnet-4-6@default,multi_focus_epu_first,mainly_foreign,6,1.0,0.765,0.7294538938786385,0.7971744045841002
+anthropic/claude-sonnet-4-6@default,multi_focus_epu_last,epu,6,1.0,0.6633333333333333,0.6245876395002602,0.7000008715019309
+anthropic/claude-sonnet-4-6@default,multi_focus_epu_last,who,1,1.0,0.18,0.1513253010749538,0.2127461875738147
+anthropic/claude-sonnet-4-6@default,multi_focus_epu_last,actions,2,1.0,0.2816666666666667,0.2471516585830582,0.3189596175262579
+anthropic/claude-sonnet-4-6@default,multi_focus_epu_last,effects,3,1.0,0.20166666666666666,0.1715049695752588,0.2356241786962493
+anthropic/claude-sonnet-4-6@default,multi_focus_epu_last,mention_foreign,4,1.0,0.6533333333333333,0.6143867503543639,0.6903289946681013
+anthropic/claude-sonnet-4-6@default,multi_focus_epu_last,mainly_foreign,5,1.0,0.7833333333333333,0.7486223270376837,0.8144393757212192

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:04:45.647310Z",
+  "endTime": "2026-03-31T19:04:47.625602Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-4ac97fd5",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nHanson Trust to Acquire Kidde Inc. in $1.6-Billion Deal NEW YORK OB\u2014Britain's Hanson Trust PLC announced an agreement Wednesday to acquire Kidde Inc. for $1.6 billion in cash and stock rights, capping months of specu\u00adlation that had pegged the diversified is.S. company as a takeover target. The friendly deal is a slight departure for Hanson Trust, the giant conglomerate whose biggest deals have included hostile takeovers of SCM Corp. and Britain's Imperial Group PLC. Although the merger included provisions for the possible spinoff of the Saddlebrtok, N.J.-based firm's temporary employment services unit to shareholders, Hanson indi\u00adcated that it had no immediate plans to sell any of Kidde's myriad consumer and industrial lines, which include Jacuzzi whirlptol baths, Farberware ctokware, isniversal gym equipment and Kidde fire extinguishers. \"The acquisition of Kidde fits perfectly with Hanson's strategy of operating basic businesses which meet essential human needs,\" said Sir Gordon White, chairman of Hanson Industries, the conglomerate's is.S. division. White also said that Fred Sullivan, Kidde's chairman and president, had agreed to retain that post after the merger. isnder the definitive agreement, Kidde shareholders would exchange each of the company's 26.7 million common sharesoutstanding for $60.10 in cash and a seven-year warrant allowing them to buy one Hanson Trust American Depositary Receipt\u2014representing five Hanson shares\u2014for $18. Kidde also granted Hanson Trust the\n\n[...TRUNCATED...]\n\n past strategy following acquisitions has been to divest businesses that were unproductive or fetched a gtod price. In March, Hanson completed the friendly acquisition of Kaiser Ce\u00adment Corp. of Oakland for about $250 million, but in its biggest deals Hanson has been predator rather than savior. Hostile History Hanson acquired SCM for $930 million In March, 1986, following a months-long, bitter takeover bat\u00adtle against an Investor group led by Merrill Lynch & Co. Hanson later raised more than $900 million by selling most of SCM's major units, while retaining Its Smith Corona typewriter busi\u00adness and profitable industrial pig\u00adments unit. Later last year, Hanson won a hostile $3.9-bllison takeover fight for Imperial Group, the giant Brit\u00adish ftod, tobacco and brewing con\u00adglomerate, and raised money from the sale of Imperial's Courage brewing operation and its leisure products businesses. ' Carol Neves, who follows both companies for Merrill Lynch, said that aside from Kidde's lighting and office products businesses, which were gtod fits with existing Hanson units, much of the firm's lines were likely to be up for sale. \"A lot of them are attractive, because in almost every case they are leaders in their niche of busi\u00adness,\" she said. Hanson also said Kidde might spin off the stock of Kidde Business Services Inc., its temporary em\u00adployment services unit with more than 100 offices in the isnited States and Canada and $125 million in annual revenue.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.95, \"focus_excerpt\": \"Hanson Trust PLC announced an agreement Wednesday to acquire Kidde Inc. for $1.6 billion in cash and stock rights, capping months of speculation that had pegged the diversified U.S. company as a takeover target.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1611,
+            "outputTokens": 69,
+            "inputTokensCostNanodollars": "611856",
+            "outputTokensCostNanodollars": "115920",
+            "totalBackendLatencyMs": "1761"
+          },
+          "id": "epu_q2_medium-4ac97fd5-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1611,
+        "outputTokens": 69,
+        "inputTokensCostNanodollars": "611856",
+        "outputTokensCostNanodollars": "115920",
+        "totalBackendLatencyMs": "1761"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #364"
+}

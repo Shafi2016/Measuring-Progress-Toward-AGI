@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:45:56.147397Z",
+  "endTime": "2026-04-01T17:45:57.110125Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-c34512ad",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nDelays in dealing with global warming are making it increasingly hard for entrepreneurs in the isnited States and around the world to know how to plan for the regulations that they know are going to come. \"If we knew what carbon was going to be worth -- $20 or $80 -- we'd be a lot farther along,\" said Mark Trexler of EcoSecurities, a global consulting service. Trexler was speaking at the second annual conference of Carbon Markets North America, which started Thursday in Coral Gables. The problem is that regulators have not made long-term plans. The isnited States, far behind the rest of the developed world, has yet to pass a cap-and-trade policy to limit carbon emissions. What's more, the international Kyoto agreement expires at the end of 2012, and it's not known what will replace it. Entrepreneurs are reluctant to put money -- sometimes hundreds of millions or even billions of dollars -- behind efforts if they don't know how much regulators are going to penalize a ton of carbon dioxide, which is a shorthand measure for greenhouse gases. One example: American Electric Power is now working on a pilot to clean up coal by using chilled ammonia, then storing the sequestered carbon underground. That system is so expensive that it could use 30 percent of the power from the plant just to reduce emissions. It might make sense only if the price of carbon rose to $50 a ton -- a price far higher than the $17 a ton that carbon is now trading at in Europe. Other technologies might make s\n\n[...TRUNCATED...]\n\n and innovators to know what will make sense. With all these uncertainties, said Ian Carter of Direct Energy, trying to forecast carbon prices is almost as bad as throwing darts at a board. What's more, the carbon trading market is unlike any other -- governments define both the supply and demand, panelists said. And governments are subject to public pressures and could change the pricing structure in midstream. Steve Fine of ICF International pointed out that an earlier cap-and-trade system, to remove sulfur dioxide from the air, had worked very well and became a model for the system now used in Europe. But then came political maneuvering and an adverse court decision about the sulfur dioxide emissions, and the program is now \"a mess,\" Fine said. Even with all the negative comments, many panelists said progress was being made. The Regional Greenhouse Gas Initiative (RGGI) in the Northeast, where states have created a carbon trading market, has had considerable start-up problems, \"but RGGI is real, RGGI is alive,\" said Franz Litz of the World Resoarees Institute. The process is started, and that is the most important fact, Litz said. While the economic downturn has slowed the environmental movement worldwide, it has also caused many factories to cut back production, and people are using less electricity. \"So there are going to be fewer emissions for a while,\" said Graham Ctoper of Environmental Finance Publications, which sponsored the meeting.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"Delays in dealing with global warming are making it increasingly hard for entrepreneurs in the isnited States and around the world to know how to plan for the regulations that they know are going to come.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 838,
+            "outputTokens": 66,
+            "inputTokensCostNanodollars": "184360",
+            "outputTokensCostNanodollars": "58080",
+            "totalBackendLatencyMs": "811"
+          },
+          "id": "epu_q2_short-c34512ad-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 838,
+        "outputTokens": 66,
+        "inputTokensCostNanodollars": "184360",
+        "outputTokensCostNanodollars": "58080",
+        "totalBackendLatencyMs": "811"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #575"
+}

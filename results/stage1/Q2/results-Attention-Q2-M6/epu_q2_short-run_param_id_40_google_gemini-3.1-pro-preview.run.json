@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T21:39:00.811019Z",
+  "endTime": "2026-04-02T21:39:07.349973Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-bf6a04a0",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nB ^ OR four decades, through btoms, i-g busts and bubbles, Silicon Valley B has maintained an amazingly in\u00ad ** novative business environment. Companies and technologies rise and fall. Hot start-ups morph into giant corpo\u00adrations. Cutting-edge products become mature commodities. Business models change. Through it all, the area remains creative and resilient \u2014 and more suc\u00adcessful than other technology centers, no\u00adtably the Route 128 area around Boston. What makes Silicon Valley special? Thanks to some new data, economists have finally been able to test statistically some popular explanations. In her influential 1994 btok \"Regional Advantage: Culture and Competition in Silicon Valley and Route 128\" (Harvard ' isniversity Press), AnnaLee Saxenian, an economic development scholar at the isni\u00adversity of California, Berkeley, argued that Silicon Valley's innovative edge comes from two unusual characteristics. First, talented employees move easily and often to new employers, far more so than people elsewhere. \"The joke is that you can change jobs and not change park\u00ading lots,\" one of her interview subjects said. Second, instead of vertically integrat\u00ading, Silicon Valley computer makers rely on networks of suppliers. They also de\u00adsign open systems that can flexibly ac\u00adcommodate all sorts of new components. \"The system's decentralization encour\u00adages the pursuit of multiple technical op\u00adportunities through spontaneous regroup\u00adings of skill, technology land capital,\" she wrote. Many peo\n\n[...TRUNCATED...]\n\n employer-to-employ- ' er job change by 0.8 percentage point.\" ; \"This effect is both statistically and be- havioraliy significant \u2014 suggesting em- ployer-to-employer mobility rates are 40 percent higher than the sample average.\", Computer industry employees in other \u25a0 California technology clusters also seem to switch jobs more often than those in other states. This result supports an argu\u00adment made by Ronald J. Gilson, a law professor at Stanford and Columbia. In a 1999 article, he suggested that a I9th-cen- ' tury California law helped create Silicon Valley's hypermobility by prohibiting the enforcement of noncompete agreements. In other states, businesses use these agreements to keep employees from easi\u00adly hopping to other companies in the same industry. (That article is available at\" papers.ssrn.com/sol3/papers.cfm- \"> ?abstractjd=124508.) ; Finally, the economists test whether : computer industry employees are more \u2022 likely to move than employees in other in-\" dustries, as the modularity hypothesis 1 would predict. Again, statistical tests sug\u00adgest that the theory is right. Ltoking at cities within California, they write: \"We find no evidence that outside the computer industry, job changes are more likely within Silicon Valley. Indeed, rates of job hopping appear to be lower in ' Los Angeles and SanTJiego than else- where in the nation.\" Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"What makes Silicon Valley special? Thanks to some new data, economists have finally been able to test statistically some popular explanations.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 860,
+            "outputTokens": 54,
+            "inputTokensCostNanodollars": "1720000",
+            "outputTokensCostNanodollars": "6276000",
+            "totalBackendLatencyMs": "6419"
+          },
+          "id": "epu_q2_short-bf6a04a0-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 860,
+        "outputTokens": 54,
+        "inputTokensCostNanodollars": "1720000",
+        "outputTokensCostNanodollars": "6276000",
+        "totalBackendLatencyMs": "6419"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #41"
+}

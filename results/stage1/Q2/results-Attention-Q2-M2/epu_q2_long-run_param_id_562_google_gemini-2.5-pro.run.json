@@ -1,0 +1,28 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_long",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_long\")\ndef epu_q2_long(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, long_pre, long_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T05:31:51.427074Z",
+  "endTime": "2026-03-31T05:31:52.893654Z",
+  "conversations": [
+    {
+      "id": "epu_q2_long-f3eddc71",
+      "metrics": {},
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_long-Run #563"
+}

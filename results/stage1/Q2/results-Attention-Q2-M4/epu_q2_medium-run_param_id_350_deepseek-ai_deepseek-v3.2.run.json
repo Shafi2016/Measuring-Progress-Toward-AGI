@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:04:10.599990Z",
+  "endTime": "2026-03-31T19:04:12.033838Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-be5e1a9b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted.\n\nTARGET ARTICLE START\nSales of new homes dropped in July by the largest amount since February while the inventory of unsold homes climbed to a record high. Piling on more prtof that the housing btom is over, the Commerce Department reported Thursday that new home sales fell by 4.3 percent last month to a seasonally adjusted annual sales pace of 1.072 million units. The decline was the largest since an 11.5 percent plunge in February. The July level of 1.072 million units sold was down 21.6 percent from a year earlier and below the 1.100 million that had been expected by analysts. ``Builders are offering many extras to entice buyers,'' said Peter Morici, a professor at the isniversity of Maryland's business schtol. ``Overall, values are falling and builders' profits are threatened.'' Sales of both new and existing homes set records for five consecutive years as the housing industry enjoyed a btom powered by the lowest mortgage rates in four decades. But rates steadily rose earlier this year as the Federal Reserve tightened credit conditions to slow the economy and keep inflation under control. Analysts expect home sales to drop by some 10 percent this year. In other economic news, orders to is.S. factories for big-ticket manufactured gtods fell 2.4 percent in July as demand for aircraft and automobiles weakened. And the Labor Department reported Thursday that the number of Americans filing claims for unemployment benefits last week slipped by 1,000 to 313,000. Prospective home buyers have turned cautious about making such a big-ticket parehase as mortgage rates have gone up and uncertainty has risen over whether the economy and job creation will keep slowing, analysts said. The government reported that the median price of a new home was $230,000 in July, down from $233,800 in June and up from $229,200 a year ago. The inventory of unsold new homes reached 568,000 at the end of July, up from 562,000 in June and an all-time high. The data follow another report Wednesday that also provided evidence of how much the once-sizzling housing market has ctoled. Sales of previously owned homes dropped 4.1 percent in July from June to a 2 1/2-year low, while the inventory of unsold homes climbed to a record high, the National Association of Realtors reported Caption: Photo:Construction workers build a new home in Houston. Sales of new homes dropped in July by the largest amount since February (a) COOLING MARKET: Construction workers build a new home in Houston. Sales of new homes dropped in July by the largest amount since February.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted."
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"uncertainty has risen over whether the economy and job creation will keep slowing\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1594,
+            "outputTokens": 43,
+            "inputTokensCostNanodollars": "602336",
+            "outputTokensCostNanodollars": "72240",
+            "totalBackendLatencyMs": "1219"
+          },
+          "id": "epu_q2_medium-be5e1a9b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1594,
+        "outputTokens": 43,
+        "inputTokensCostNanodollars": "602336",
+        "outputTokensCostNanodollars": "72240",
+        "totalBackendLatencyMs": "1219"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #351"
+}

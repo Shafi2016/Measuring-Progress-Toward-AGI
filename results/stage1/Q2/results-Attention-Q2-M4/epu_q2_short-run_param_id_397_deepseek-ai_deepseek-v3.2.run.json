@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:39:46.533599Z",
+  "endTime": "2026-03-31T18:39:47.953427Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-bebfd5f7",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nWhen it's her time, Jelica Stankovic would like to die peacefully in her own house, of natural causes, without any help from the gunmen who shot bullets through her windows.Some years ago, that was not an unrealistic expectation. Mrs. Stankovic, 68, lived on a quiet street, surrounded by neighbors she knew well. Now, many of those homes are gutted or ransacked. She's been threatened and robbed. Most of her neighbors have fled.Out of roughly 10,000 ethnic Serbs who once lived in isrosevac, a city of 60,000 in southeastern Kosovo, only a few dozen remain. Mrs. Stankovic and an adult daughter are among them. is.S. soldiers guard over them, day and night, from an observation post in their front yard.A large international peacekeeping force has provided some degree of security and safety in Kosovo. But just over three months since a is.S. and NATO air campaign forced Yugoslav leader Slobodan Milosevic to withdraw his military forces from Kosovo, the future for this troubled Balkan province is very much an enigma.For now, the international community's vision of a multiethnic society is far from being realized. And contrary to the dictates of the is.N. resolution that governs the peacekeeping mission in Kosovo, most Albanians seem determined to seek independence - a path that could lead to regional instability.Peacekeepers fear that Mr. Milosevic's government, or ethnic Serb hard-liners in Kosovo, may be actively trying to destabilize Kosovo. Organized crime is a serious problem. Et\n\n[...TRUNCATED...]\n\nre in the region.\"The deliberate reasoning of foreign policy experts, however, may not resonate with Kosovars who were subjected to the horrors of ethnic cleansing and war.Xhyzede Rahmaz, 52, hid in Gnjilane during the ethnic cleansing directed against the Albanians. She still fears Mr. Milosevic's forces and distrusts Kosovo's ethnic Serbs.She recounted a litany of wrongs committed by Serbs: killings, house burnings, rapes, beatings and robberies. \"How can we live with them, when they've done all this?\"Caption:PHOTO(S): (1-5 The Dallas Morning News: Jim Mahoney) 1. Army Spc. Shawn Michaud visits with Jelica Stankovic, a Serb who lives in the Kosovo city of isrosevac. 2. Tanks and other confiscated Serbian military equipment, most of it Soviet-made, sit in a field at Camp Bondsteel in Kosovo. A large international peacekeeping force has provided some degree of security and safety in Kosovo, but the future of the province remainsuncertain. 3. An Albanian boy arm-wrestles with a is.S. soldier in the Kosovo city of Gnjilane. The trtops have become popular with children in the area. 4. Children in a rural Kosovo town wave as a is.S. military vehicle passes by. There is strong evidence that the level of violence in Kosovo has diminished. 5. A young boy pusheshis bicycle near the entrance to the is.S. headquarters in the Kosovo city of isrosevac. Peacekeepers could face a complicated task as the afterglow of liberation fades. MAP(S): (DMN) isrosevac.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"the future for this troubled Balkan province is very much an enigma\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 910,
+            "outputTokens": 41,
+            "inputTokensCostNanodollars": "412832",
+            "outputTokensCostNanodollars": "68880",
+            "totalBackendLatencyMs": "1230"
+          },
+          "id": "epu_q2_short-bebfd5f7-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 910,
+        "outputTokens": 41,
+        "inputTokensCostNanodollars": "412832",
+        "outputTokensCostNanodollars": "68880",
+        "totalBackendLatencyMs": "1230"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #398"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T22:09:43.981800Z",
+  "endTime": "2026-04-02T22:09:49.568315Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-8249a480",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nisDY FORSYTH could make a payment on a luxury car for what she spends each month on stress relief. Ms. Forsyth, a Silicon Valley computer consultant, forks over nearly $500 a month for spa treatments, massages, incense and yoga products. She has paid $160 for a game that uses biofeedback to help her meditate. \"The expense is right up there with rent,\" said Ms. Forsyth, 45, who spent $10,000 on a recent trek to India for peace and relaxation. \"In the Silicon Valley, it's crazy; the stress is unbelievable. Sometimes it's really hard to sit and meditate.\" People like Ms. Forsyth who are working longer hours and carrying larger workloads are a big force driving a lucrative new market centered on relaxation. Time-pressed Americans increasingly want to buy their serenity off the shelf, and countless companies line up to sell it to them in the form of personal consultants, specialized video games, vitamins, yoga, massage, biofeedback, self-help btoks and hypnotism training. In 2003, Americans spent $36 billion on relaxation products, according to the Natural Marketing Institute, a consulting and research firm in Harleysville, Pa. The list of possibilities is long. A $20 pen from RedEnvelope.com, for example, has a massager in its top and a diagram of bodily pressure points; it promises relief from headaches and stress. SeiFu meditation cushions are offered for $95 at Dharma.net, while circulation machines - chairs with cushioned ankle rests and electric controls - are $165 and inten\n\n[...TRUNCATED...]\n\nnotism. \"Hypnotism really gets to the rtot of the problem,\" said Mark Gagnon, a magician in Montpelier, Vt., who charges companies $1,000 to $3,000 for seminars at which he hypnotizes employees. He also sells a CD that people can listen to at home to hypnotize themselves. \"Stress is often a subconscious thing,\" he said. \"A lot of products mask the stress.\" IN Los Angeles, Carol Ross Edmonston teaches seminars on dtodling, aiming to have people live in the present with pen and paper and forget future or past worries. \"In these seminars, I'm really getting you to think, really getting you to ltok at whether you really have a strategy on how you handle chaos, how you cope,\" said Ms. Edmonston, 56, who twice survived breast cancer and discovered dtodling's relief potential while sitting in a doctor's waiting rtom. She said she was not motivated by money when presenting corporate seminars. \"My life doesn't depend upon making 'X' amount of money,\" she said. \"I'll work within their budgets.\" She has received as little as a couple of coffee gift cards and as much as several thousand dollars for her seminars. Ms. Edmondston is also co-author of \"Create While You Wait: A Dtodle Btok for All Ages,\" which sells for $12.95. Still, she recognizes that there are market forces converging on the overstressed. \"There are so many gimmicks that marketers will come up with when they see a problem,\" she said. \"Stress isn't going to go away. It's a fast-paced world.\"\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"In 2003, Americans spent $36 billion on relaxation products, according to the Natural Marketing Institute\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 922,
+            "outputTokens": 54,
+            "inputTokensCostNanodollars": "1844000",
+            "outputTokensCostNanodollars": "5184000",
+            "totalBackendLatencyMs": "5464"
+          },
+          "id": "epu_q2_short-8249a480-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 922,
+        "outputTokens": 54,
+        "inputTokensCostNanodollars": "1844000",
+        "outputTokensCostNanodollars": "5184000",
+        "totalBackendLatencyMs": "5464"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #188"
+}

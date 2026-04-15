@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:46:17.737447Z",
+  "endTime": "2026-03-31T18:46:19.460729Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-6ab8077e",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nIn his first 100 days in office, President Carlos Menem has managed to bring a ray of confidence to Argentina's faltering economy, but his honeymton is about to come to an abrupt end. Organized labor, the so-called \"spinal column\" of the Peronist movement that Menem leads, is balking at the government's determination to hold wage increases to less than 15 percent for the next six months. A showdown is approaching, and nervousness regarding the outcome has caused the first quivers of anxiety in Menem's delicately balanced economic house of cards. After nearly three months of relative stability, Argentina's currency, the austral, recently started to wander upward, trading at 755 per is.S. dollar at one point last week, 15.3 percent more than the official rate of 655 australs per dollar.\" isncertainty is causing turbulence in the exchange rate, and is generally making people nervous,\" said economic analyst Roberto Frenkel. \"Nobody has a great deal of confidence, and many people are waiting to see whether the government falls on its face.\" The dangers are substantial. Argentina is $4.4 billion behind in interest payments on its $64 billion foreign debt. isnemployment and underemployment stand at 17 percent, according to government estimates, while industrial capacity is 40 percent idle. Frenkel calculates that real parehasing power has declined 40 to 50 percent since mid-1985. The government now must feed about two million ptor people each day, this in a grain- producing nation r\n\n[...TRUNCATED...]\n\nne group of businessmen in the government is going to end up telling another group of businessmen to pay up,\" Frenkel said. \"This is going to be very conflictive.\" Also conflictive are the government's efforts to keep the five million-member General Confederation of Labor on board for the next six-month phase of economic austerity. The confederation, known by its Spanish initials CGT, split in two on Oct. 11 over whether to support a government proposal that would hold wage increases to less than 15 percent through next March. The militant CGT, led by Secretary General Saul isbaldini, represents unions that are asking for raises of as high as 80 percent. Several unions have staged strikes to press their demands. Frenkel said that Menem needs \"a quick solution\" to this impasse, not only for economic stability, but also to reaffirm the traditional bond between Peronism and organized labor. \"If Menem can't control the labor movement, then he will be see as not being able to control Peronism,\" Frenkel said. He added that he believed that isbaldini eventually would have to step down so Menem can reforge at least the semblance of an amicable partnership with the CGT. Success, however, is by no means assured: \"Many of us owe our careers to Peronist unionism,\" Matzkin said. \"The union leadership can feel the pressure from the rank and file, and so do we. We can't be ignorant of it.\" Caption: photo: Carlos MENEM Memo: AROisND THE AMERICAS: NEWS ANALYSIS\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.92, \"focus_excerpt\": \"uncertainty is causing turbulence in the exchange rate, and is generally making people nervous... the government's determination to hold wage increases to less than 15 percent for the next six months\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1736,
+            "outputTokens": 63,
+            "inputTokensCostNanodollars": "5208000",
+            "outputTokensCostNanodollars": "945000",
+            "totalBackendLatencyMs": "1630"
+          },
+          "id": "epu_q2_medium-6ab8077e-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1736,
+        "outputTokens": 63,
+        "inputTokensCostNanodollars": "5208000",
+        "outputTokensCostNanodollars": "945000",
+        "totalBackendLatencyMs": "1630"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #146"
+}

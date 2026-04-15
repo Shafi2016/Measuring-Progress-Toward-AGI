@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:48:06.324485Z",
+  "endTime": "2026-03-31T18:48:07.735863Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-0e4736eb",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nVought Aircraft Industries Inc. seems to have weathered some turbulence.Now the company is just hoping for a smtoth landing.For that to happen, Vought will have to complete its transformation from a largely military-focused supplier to a company dependent on the commercial aviation industry.\"We're happy,\" said chief executive Elmer Doty, who joined the Dallas-based company in February. \"Overall, the future is very bright.\"That optimism might have been out of place even just a few months ago at Vought, one of the most storied names in military and commercial aviation, due to major job cuts and the news that one of the company's biggest military contracts is likely to lose funding ston.But Mr. Doty said the cuts seem to be paying off, and several new projects are coming online in time to offset the potential end of the contract for C-17 planes.The two biggest new contracts are for building significant chunks of Sikorsky Aircraft Corp.'s isH-60 helicopter and Boeing Co.'s 787 airplane.The 787 Dreamliner is clearly Vought's keystone project now, with the first finished systems expected to ship early next year.\"When the C-17 goes away, then commercial will definitely be the lion's share of our business,\" Mr. Doty said. \"Where Boeing goes, we go, tto.\"While the contract to build pieces of the C-17 plane for the military is winding down, it should be several years before that revenue dries up completely.Last month, Vought reported third-quarter sales of $354 million, up from $310 mi\n\n[...TRUNCATED...]\n\n levels will be in 2009,\" said Vought spokesman Mike Schwarz. \"However, if Vought hasn't met the hiring goals of the agreement, we fully intend to abide by its terms, which include provisions for repayment.\"While the 787 project will likely become the single largest project at Vought, that work is done at a facility in South Carolina.But Mr. Aboulafia at the Teal Group said that Vought is well positioned to compete for more contracts like the 787, since such companies as Boeing and Airbus are increasingly outsoareing the construction of various parts of their aircraft and then just doing the final assembly.\"They just want to be the guy at the top integrating someone else's metal bending, or composite bending,\" he said.E-mail vgodinez@dallasnews.comCaption:PHOTO(S): (1-4. REX C. CisRRY/Special Contributor) 1. Eli Moreno (left) and Josh Varelans assemble the cabin structure of a Black Hawk helicopter at the Vought plant in Dallas. 2. \"Overall, the future is very bright,\" says CEO Elmer Doty, who joined the Vought in February. He says the job cuts this year have helped and that new projects are in the pipeline. 3. Vought's plant in Dallas was designed to be a manufacturing plant for P-51 fighters and B-24 bombers during World War II. 4. Parts of the Vought plant where employees such as Eli Moreno and Tawani Bridwell work on pieces of Black Hawks can be lively, but some hangars are empty or used for storage. CHART(S): ONGOING AND isPCOMING PROJECTS\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.85, \"focus_excerpt\": \"one of the company's biggest military contracts is likely to lose funding ston\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1772,
+            "outputTokens": 40,
+            "inputTokensCostNanodollars": "5316000",
+            "outputTokensCostNanodollars": "600000",
+            "totalBackendLatencyMs": "1376"
+          },
+          "id": "epu_q2_medium-0e4736eb-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1772,
+        "outputTokens": 40,
+        "inputTokensCostNanodollars": "5316000",
+        "outputTokensCostNanodollars": "600000",
+        "totalBackendLatencyMs": "1376"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #204"
+}

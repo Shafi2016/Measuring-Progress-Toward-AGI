@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:42:23.163557Z",
+  "endTime": "2026-03-31T02:42:34.199621Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-67b850f8",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Editi\n\nTARGET ARTICLE START\nWith fireworks in the night and the spectacle of the visiting Nicaraguan President, Daniel Ortega Saavedra, riding an Arabian horse in a beachfront race, the Libyan leader, Col. Muammar el-Qaddafi, today wound up a celebration of 20 years of what the official press agency called ''the greatest revolution ever waged.'' But the three days of razzmatazz, with a cost that has been estimated at $300 million, registered no apparent major new gains for what diplomats call a drive by Colonel Qaddafi to end years of isolation. The 47-year-old leader, who ttok power in a coup on Sept. 1, 1969, has moved recently to befriend neighbors and seek bridges to the West, particularly in Europe. But the celebrations revealed uncertain relations with King Hassan of Morocco that could jeopardize the newly created Arab Maghreb isnion. They also revealed ambiguous European attitudes toward the Libyan leader and a continued and chilly distance between him and the mainstream of Arab diplomacy. According to some Palestinian and Western officials, Colonel Qaddafi has moved to greatly reduce, if not sever, his support for Damascus-based Palestinian movements, including followers of Ahmed Jabril suspected of involvement in downing Pan Am flight 103 over Lockerbie, Scotland, last December. But many Western governments, including the isnited States, remain wary of the depth of his commitment to withdraw support from terror groups and thus maintain embargoes and sanctions imposed years ago. Sponsored Many Groups\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Editio"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"But many Western governments, including the isnited States, remain wary of the depth of his commitment to withdraw support from terror groups and thus maintain embargoes and sanctions imposed years ago.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 798,
+            "outputTokens": 71,
+            "inputTokensCostNanodollars": "997500",
+            "outputTokensCostNanodollars": "11490000",
+            "totalBackendLatencyMs": "10870"
+          },
+          "id": "epu_q2_short-67b850f8-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 798,
+        "outputTokens": 71,
+        "inputTokensCostNanodollars": "997500",
+        "outputTokensCostNanodollars": "11490000",
+        "totalBackendLatencyMs": "10870"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #296"
+}

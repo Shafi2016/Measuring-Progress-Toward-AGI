@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:06:28.705497Z",
+  "endTime": "2026-04-03T00:06:29.721929Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-9de534d2",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nis.S. Firms to Cut Spending in 1986: Projected 1% Drop in Funds for ... By Anne Swardson and Jane Seaberry Washington Post Staff Writers The Washington Post (1974-Currentfile); Dec 20, 1985; ProQuest Historical Newspapers: The Washington Post (1877-1997) pg. D7 is.S. Firms to Cut Spending in 1986 Projected I % Drop in Funds for Expansion, Modernization Is Sharpest in Four Years By Anne Swardson and Jane Seaberry W;isitittKlnu Post Staff Writers is.S. corporations, nervous about possible changes in tax laws, plan to reduce real spending on modern\u00adization and expansion by 1 percent next year, the sharpest drop in cap\u00adital spending plans since the 1982 recession, the Commerce Depart\u00adment reported yesterday. The announcement was another indication that congressional con\u00adsideration of tax revision, capped this week by passage of a bill in the House, is crimping spending and investment plans. While uncertainty about the tax bill is causing some consumers and companies to save money they had planned to spend, it's also prompt\u00ading others to spend money they might have saved, depending on whether they would be better or worse off under the revamped tax code should it become law. Either way, the total effect of their deci\u00adsions is expected to distort econom\u00adic activity, economists said. \"isncertainty over the tax provi\u00adsions or any kind of uncertainty is no kind of beneficial treatment for capital spending,\" said Commerce Department chief economist Robert Ortner. Increased capital spen\n\n[...TRUNCATED...]\n\nue: how to deal with 13 provi\u00adsions of the current tax code that will expire at the end of this year unless they are extended. Among those provisions were the tax credit for increases in research spending, the credit for residential energy expenditures, the credit for hiring disadvantaged workers, and the tax exemptions for legal ser\u00advices provided by an employer and employer-paid educational ex\u00adpenses. The House was debating a proposal to extend and modify the provisions, while the Senate plan would simply extend them all for six months. The Commerce survey of busi\u00adnesses showed that the decline in spending next year compares with a 5.6 percent increase in investment spending planned for this year. That rise is smaller than the 15.3 per\u00adcent gain in 1984, the largest in 20 years. According to the Commerce re\u00adport, manufacturers said their spending on new plant and equip\u00adment, adjusted for inflation, would drop from $68.59 billion this year to $65.83 billion next year. Spend\u00ading by durable-gtods industries, which make products lasting more than three years, would drop from $35.26 billion to $33.08 billion in 1986. Spending by nondurable gtods industries would fall from $33.33 billion this year to $32.75 billion in 1986, Commerce said. However, nonmanufacturing spending is projected to increase slightly, from $109.52 billion to $110.53 billion. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":1,\"confidence\":0.96,\"focus_excerpt\":\"U.S. corporations, nervous about possible changes in tax laws, plan to reduce real spending on modernization and expansion by 1 percent next year\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 862,
+            "outputTokens": 47,
+            "inputTokensCostNanodollars": "2155000",
+            "outputTokensCostNanodollars": "705000",
+            "totalBackendLatencyMs": "865"
+          },
+          "id": "epu_q2_short-9de534d2-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 862,
+        "outputTokens": 47,
+        "inputTokensCostNanodollars": "2155000",
+        "outputTokensCostNanodollars": "705000",
+        "totalBackendLatencyMs": "865"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #377"
+}

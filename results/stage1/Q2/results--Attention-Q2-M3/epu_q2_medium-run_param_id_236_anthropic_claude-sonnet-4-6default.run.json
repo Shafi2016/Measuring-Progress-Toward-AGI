@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:49:11.298269Z",
+  "endTime": "2026-03-31T18:49:12.918763Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-aa28850f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nThe education and training job market in Dallas-Fort Worth is fraught withuncertainty, riding on factors ranging from the state budget to the health of the overalleconomy, experts say.Hiring is expected in certain pockets, such as language and special education teachers for the Dallas Independent Schtol District and teacher trainers for community colleges. But otherwise, the prospects for the field aren't clear.\"It is really difficult to get any kind of a fix on hiring,\" said Paul Forte, assistant district director for human resoarees at the Dallas County Community College District. \"isntil we know the appropriation from the state, it is hard to make that kind of determination.\"Here's an overview of what employers see so far.SchtolsThe Dallas Independent Schtol District, which employs nearly 19,500 people, plans to hire 1,600 teachers for 2003-2004. This is roughly the same number as in the previous schtol year.The district estimates that there will be vacancies for certified teachers in hard-to-fill areas such as English as a second language, special education, math and science. Experts say competition from other schtol districts is strong for these educators.Willie Crowder, the district's associate superintendent for human resoaree service, said there will also be a need for schtol counselors and librarians. The district is ltoking for Hispanic employees because of the changing demographics of the district, he added.He said the district needs Hispanic employees in all emplo\n\n[...TRUNCATED...]\n\nn and other state agencies are increasing at a time when the resoarees to fund those efforts are decreasing,\" Mr. Mtore said. \"The Legislature has some very daunting challenges in setting the priorities.\"Meanwhile, private universities do not have these constraints. Southern Methodist isniversity is projecting that it will hire 37 faculty members in business, sciences, humanities, engineering and communications in 2003.Market for trainersAs for trainers, even though the market has dipped in general, industry experts predict an uptick in certain segments.Pat Galagan, managing director for content at the American Society of Training and Development, said that IT trainers and health care trainers will be in demand for the year.\"Like every other profession, a lot depends on what is happening with theeconomy,\" she said.Ms. Galagan said trainers can improve their chances of getting hired if they have technology skills, teamwork skills and the business savvy to tailor training to company objectives.There is also gtod news for trainers for the long term. The is.S. Department of Labor projects 40,000 job openings in the training market by 2010 through growth and net replacement - an increase of 19.4 percent.E-mail araghunathan@dallasnews.comCaption:PHOTO(S): (COisRTNEY PERRY/Special Contributor) Paul Forte, assistant district director for human resoarees at the Dallas County Community College District, says the hiring outltok depends on the Legislature.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.82, \"focus_excerpt\": \"Until we know the appropriation from the state, it is hard to make that kind of determination... The Legislature has some very daunting challenges in setting the priorities.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1679,
+            "outputTokens": 59,
+            "inputTokensCostNanodollars": "5037000",
+            "outputTokensCostNanodollars": "885000",
+            "totalBackendLatencyMs": "1509"
+          },
+          "id": "epu_q2_medium-aa28850f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1679,
+        "outputTokens": 59,
+        "inputTokensCostNanodollars": "5037000",
+        "outputTokensCostNanodollars": "885000",
+        "totalBackendLatencyMs": "1509"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #237"
+}

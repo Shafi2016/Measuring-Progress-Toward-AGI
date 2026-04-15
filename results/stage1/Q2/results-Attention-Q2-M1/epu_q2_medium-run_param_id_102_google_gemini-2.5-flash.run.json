@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:32:02.631697Z",
+  "endTime": "2026-03-31T02:32:04.977138Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-c2823189",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nWASHINGTON\u2014 LESS than six months after his landslide, Ronald Reagan seems, quite suddenly, politically vulnerable. His decision to proceed with the visit to a German military cemetery next Sunday despite the rage of Jewish and veterans' groups and bipartisan opposition in Congress was a ''disaster,'' several senior White House officials acknowledged. Other setbacks, uncharacteristic of the Reagan Presidency, seemed to overlap: the rebuke that the House of Representatives handed out in rejecting aid for the rebels in Nicaragua, the uncertainty that dominated the end-of-the-week Senate debate on the President's compromise budget proposal, the resistance in Congress to a possible tax overhaul. ''Some of the shine is off,'' said Senator Charles E. Grassley, an Iowa Republican who describes himself as ''a loyal Reaganite.'' ''People are just a little less willing to follow the President now than four years ago.'' Dr. Austin Ranney, former president of the American Political Science Association and now resident scholar at the American Enterprise Institute, said Mr. Reagan was finally becoming a lame duck. ''A lot of Republicans who are up in '86 are saying they've got to run their own show, it's not a question of being loyal to the President anymore,'' Dr. Ranney said. ''There's such a thing as negative momentum in politics. isnless it's checked in a big way, starting now, the continued weakness could lead to further weakness. He needs to turn this around before the rot feeds on it\n\n[...TRUNCATED...]\n\nthey've received all the political flap they're going to receive is very erroneous. If the President goes over there, he will be wounded and the Republican Party will be wounded.'' In the White House and on Capitol Hill, there were rumblings about the effectiveness of Mr. Reagan's chief of staff, Donald T. Regan, and his director of communications, Patrick J. Buchanan. Mr. Regan told aides that he views his job as reinforcing the President but not actually questioning Mr. Reagan's judgment. Mr. Reagan's first-term chief of staff, James A. Baker 3d, now the Treasury Secretary, shielded Mr. Reagan and essentially ''served as his ftod taster,'' in the words of Mr. Matthews, the aide to Representative O'Neill. Beyond this, Mr. Baker was a shrewd and pragmatic political operative who cut White House losses when mishaps ttok place. White House officials and Republican strategists say privately that it seems improbable that the Bitburg trip would have proceeded under Mr. Baker. ''In terms of political impact, the last few weeks have been devastating for the President,'' said Senator Daniel P. Moynihan, Democrat of New York. ''What you're hearing now is people saying, 'My God, he's not a political genius after all.' '' Drawings The writer's \"Exegesis,\" Simon Critchley writes, harkens to the future with the second-century Christian Gnostics. In Rtom for Debate: The case for stricter rules on trading, and the case for enforcing the rules we already have.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 1.0, \"focus_excerpt\": \"the uncertainty that dominated the end-of-the-week Senate debate on the President's compromise budget proposal, the resistance in Congress to a possible tax overhaul.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1568,
+            "outputTokens": 55,
+            "inputTokensCostNanodollars": "470400",
+            "outputTokensCostNanodollars": "880000",
+            "totalBackendLatencyMs": "2279"
+          },
+          "id": "epu_q2_medium-c2823189-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1568,
+        "outputTokens": 55,
+        "inputTokensCostNanodollars": "470400",
+        "outputTokensCostNanodollars": "880000",
+        "totalBackendLatencyMs": "2279"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #103"
+}

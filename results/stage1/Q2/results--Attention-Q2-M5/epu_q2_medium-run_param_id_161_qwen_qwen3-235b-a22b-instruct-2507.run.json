@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:49:23.694642Z",
+  "endTime": "2026-04-01T17:49:24.587094Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-83ba3aa7",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nThe Wilmer-Hutchins schtol district - plagued by rampant fiscal and academic improprieties - will officially draw its last breath today, but officials and developers are hoping the bitter end will lead to sweet beginnings.\"There toward the end of Wilmer-Hutchins ISD, you could see the city of Hutchins start to grow and develop despite the negative publicity from the schtol district,\" Hutchins Mayor Artis Johnson said. \"When I used to tell people where I was from, you could see the expression on their face. They seemed to know all about the schtol district's problems. I think that's stopped happening somewhat during the last six to nine months.\"A combination of fiscal mismanagement, criminal investigations, allegations of cheating on state-mandated tests and failing facilities led state education officials to permanently merge the Wilmer-Hutchins district with the Dallas district. Students from Wilmer-Hutchins were sent to DISD schtols last year.Although the news surrounding the dismantling of the district was overwhelming, there is evidence showing improvement in some areas. Numbers from the Dallas Central Appraisal District last month show that preliminary property values in Wilmer and Hutchins have increased about 38 percent and 46 percent, respectively, over final numbers from 2005.Rail facilityWilmer's overall property value increased about $21.98 million in 2005, while Hutchins' jumped about $80.6 million. The lion's share of both those increases was in commercial constr\n\n[...TRUNCATED...]\n\nive director of the LancasterEconomicDevelopment Corp. \"I think having Wilmer-Hutchins around discouraged many residential developers.\"And Mike Anderson, a commercial developer, said he believes the intermodal facility will provide theeconomicjuggernaut the area needs.\"That will have a greater impact than the schtol district,\" Mr. Anderson said. \"It will produce 20,000 new jobs in the area, which will obyiously spur residential development. The lack of development over the last 15 years will help create that demand, tto.\"Mr. Anderson had tried to get DISD to allow some of that Wilmer-Hutchins land to become part of the Lancaster schtol district because children from a nearby residential project will be less than a mile from the new Lancaster High Schtol when it opens in August.\"We've dropped that fight,\" Mr. Anderson said. \"Philosophically, I think kids should go to schtol in the city where they live. The impact of the independent schtol district change from Wilmer-Hutchins to Dallas is still new. Dallas [test] scores are much higher than Wilmer-Hutchins', but we'll have to see what impact it has on development.\"E-mail hbtoth@dallasnews.comDigitalEXTRAArchive: Read previous articles on the district and its demiseDallasNews.com/extraCaption:PHOTO(S): (FILE/Staff photo) Rtosevelt High Schtol Principal Leon Dudley helped Ashley Veals find her classrtom last year, as the schtol was one of several DISD campuses that ttok in Wilmer-Hutchins students.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.1,\n  \"focus_excerpt\": \"The Wilmer-Hutchins schtol district - plagued by rampant fiscal and academic improprieties - will officially draw its last breath today\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1614,
+            "outputTokens": 54,
+            "inputTokensCostNanodollars": "355080",
+            "outputTokensCostNanodollars": "47520",
+            "totalBackendLatencyMs": "754"
+          },
+          "id": "epu_q2_medium-83ba3aa7-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1614,
+        "outputTokens": 54,
+        "inputTokensCostNanodollars": "355080",
+        "outputTokensCostNanodollars": "47520",
+        "totalBackendLatencyMs": "754"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #162"
+}

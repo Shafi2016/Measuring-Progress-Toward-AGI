@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:51:04.380773Z",
+  "endTime": "2026-03-31T18:51:06.808837Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-d4aa8acb",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nBarack Obama and Hillary Clinton carried their rivalry Monday across this ice-crusted state, where notoriously hard-to-predict Democratic voters are primed to give one of them a significant btost on Tuesday. The candidates fought over who may have stolen whose speech lines, over debates and over economic policies, but it remained unclear which of them will wind up with the victory that each so badly wants. Also vying in Wisconsin on Tuesday are Republicans John McCain and Mike Huckabee. Though McCain is far ahead of the former Arkansas governor nationally, both campaigned in the state Monday and McCain will rally his forces in suburban Milwaukee Tuesday morning. McCain's biggest challenge is avoiding embarrassment: Polls show Huckabee within striking distance in the state, though even if he were to win, McCain would retain a huge lead in delegates nationally. Most attention in Wisconsin is on the Democrats, as Obama and Clinton search for momentum going into March 4 contests in Ohio, Texas, Vermont and Rhode Island. Polls suggest that the race is close. Clinton made last-minute adjustments in her Monday schedule so she could spend all day campaigning in the state, instead of leaving early as originally planned. Obama's wife, Michelle, stumped from Milwaukee to the Minnesota border, while her husband headed for a late-evening rally in Beloit. Clinton and Obama both presented themselves as populists in the tradition of former Democratic candidate John Edwards, whose support -- \n\n[...TRUNCATED...]\n\name theme. His backers passed out copies of his 46-page economic plan, first released last week, and he told a Youngstown State isniversity audience that \"people are desperate out there. I meet them every day, see them here in town.\" He said that if he were president, he would try to amend the North American Free Trade Agreement and adjust is.S. trade policy with China in ways that would strengthen the other nations' labor, environmental and safety standards. He also pledged to prod is.S. companies to keep jobs from going abroad. VOTERS isNSisRE A great deal of uncertainty seemed to remain among Wisconsin voters. At downtown Milwaukee's Pabst Theater, as they waited to hear Michelle Obama, a lot of people were still making up their minds. George Warner, a retiree, and his wife, Carol, a social worker, are torn. \"In the [Bill] Clinton years, we were happy. Everybody seemed to have money,\" Carol Warner said. \"But Obama has a lot of gtod ideas, and he's very frank.\" Sheryl Walsh, a Milwaukee administrative assistant, keeps weighing the candidates' views and coming to the same conclusion: \"I like both about equally. Nothing stands out.\" But some voters didn't like one thing: sniping between the candidates. The one who seems to do it most will not get their votes. \"The negative stuff just doesn't do it. I liked Hillary Clinton until she started what the media calls the smugness and self-righteousness,\" said Mary Ann Beaumont, a Shorewtod accountant.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.7, \"focus_excerpt\": \"He said that if he were president, he would try to amend the North American Free Trade Agreement and adjust is.S. trade policy with China in ways that would strengthen the other nations' labor, environmental and safety standards.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1661,
+            "outputTokens": 71,
+            "inputTokensCostNanodollars": "4983000",
+            "outputTokensCostNanodollars": "1065000",
+            "totalBackendLatencyMs": "2366"
+          },
+          "id": "epu_q2_medium-d4aa8acb-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1661,
+        "outputTokens": 71,
+        "inputTokensCostNanodollars": "4983000",
+        "outputTokensCostNanodollars": "1065000",
+        "totalBackendLatencyMs": "2366"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #290"
+}

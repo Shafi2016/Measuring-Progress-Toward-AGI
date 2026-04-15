@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:24:04.526948Z",
+  "endTime": "2026-03-31T02:24:09.695569Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-c719d471",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nAbstract: Secretary of State Condoleezza Rice's hopes for launching new Middle East peace negotiations are clouded by concerns about the policies of the Palestinian unity government being formed. JERisSALEM -- Secretary of State Condoleezza Rice leaves today for the Middle East to launch a long-awaited is.S. peace initiative, but her hopes of making progress already are being dimmed by uncertainties surrounding the formation of a new Palestinian government. \"I'll be very candid. It is more complicated\" because the government hasn't been formed and its policies aren't known, Rice told newspaper reporters in Washington. Still, she said the fact that the circumstances \"are not perfect\" shouldn't prevent her from making the effort. Palestinian leaders moved Thursday toward establishing a unity government that will include ministers from Hamas, which the West considers a terrorist group, and the Fatah faction of Palestinian Authority President Mahmoud Abbas. Prime Minister Ismail Haniyeh officially resigned as head of the 11-month-old Cabinet, and under a deal worked out in Mecca last week, Abbas immediately asked him to form a new government with Fatah and smaller parties. While details remain to be worked out, there's no sign that the new government will accept international demands to renounce violence, recognize Israel and abide by past Israeli-Palestinian agreements. Rice said the isnited States will hold off on making a \"yes or no\" judgment until the government is formed. Bu\n\n[...TRUNCATED...]\n\nhard-line Hamas into power. Abbas' pact with Hamas has increased suspicion of him in Israel, even though he retains strong support in Washington. Over the past year, Israel, the isnited States and the international community have severed most political, military and economic ties with the Hamas-led Palestinian Authority. Despite the debilitating isolation, Hamas leaders have refused to abandon their pledge to destroy Israel and establish a new Islamic nation. In response, Israel and the isnited States have sought to strengthen Abbas, who vowed not to join a coalition with Hamas unless it accepted the international demands. Abbas backed away from that stand last week in Mecca after weeks of increasingly volatile street clashes between Hamas and Fatah gunmen. Rice said the Bush administration will continue to back Abbas, whom she described as a force for peace. On Thursday, Olmert said he still intends to work with Abbas -- for now. \"I am against cutting off ties with Abu Mazen,\" Olmert told reporters traveling with him in Turkey, using Abbas' informal name. \"I don't see anything to deter a meeting with Abu Mazen.\" Privately, however, some Israeli leaders are suggesting that they may rethink their view if the new coalition government rejects the international demands. Strobel reported from Washington. Caption: MOHAMMED ABED/AFP-GETTY IMAGES IN GAZA CITY: Palestinian Prime Minister Ismail Haniyeh, left, and President Mahmoud Abbas greet each other\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 1,\n  \"focus_excerpt\": \"Secretary of State Condoleezza Rice's hopes for launching new Middle East peace negotiations are clouded by concerns about the policies of the Palestinian unity government being formed.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 810,
+            "outputTokens": 60,
+            "inputTokensCostNanodollars": "243000",
+            "outputTokensCostNanodollars": "2325000",
+            "totalBackendLatencyMs": "5111"
+          },
+          "id": "epu_q2_short-c719d471-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 810,
+        "outputTokens": 60,
+        "inputTokensCostNanodollars": "243000",
+        "outputTokensCostNanodollars": "2325000",
+        "totalBackendLatencyMs": "5111"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #584"
+}

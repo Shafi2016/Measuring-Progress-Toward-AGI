@@ -1,0 +1,4 @@
+llm_name,condition,mean,std,count
+🤖 google/gemini-3.1-pro-preview,short,0.6366666666666667,0.48136099020767337,600
+🤖 google/gemini-3.1-pro-preview,medium,0.645,0.47891258294547423,600
+🤖 google/gemini-3.1-pro-preview,long,0.6516666666666666,0.47683978706315266,600

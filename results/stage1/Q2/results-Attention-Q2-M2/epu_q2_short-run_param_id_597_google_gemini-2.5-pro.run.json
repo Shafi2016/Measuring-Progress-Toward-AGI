@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T03:41:32.451795Z",
+  "endTime": "2026-03-31T03:41:46.795300Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-5522ef87",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nFree trade is getting a bum rap everywhere. Long gone is the spirit of the early 1990s when the Americas jointly raised the banner of integration. Held in Miami, the first Summit of the Americas embraced the idea of the Free Trade Area of the Americas (FTAA). What in 1994 seemed to be a gtod beginning ultimately went nowhere. Fourteen years later, free trade in the Western Hemisphere comes in pairs. The North American Free Trade Agreement (NAFTA) and the Central America-Dominican Republic Free Trade Agreement (CAFTA-DR) are regional pacts. The isnited States has bilateral agreements with Chile (2003) and Peru (2007). FTAs with Colombia and Panama are pending. Though free trade can never be politics-free, politics is interfering all over. In April, the Bush administration and congressional Democrats played politics with the Colombian FTA: the president by submitting it without prior talks to soften the opposition; the Democrats by voting to exempt the FTA from the fast-track rule of an up-or-down vote within 90 days. In another venue, Sens. Hillary Clinton and Barack Obama are railing against NAFTA to win over blue-collar voters. Costa Rica still on hold In October 2007, President Oscar Arias of Costa Rica barely won a referendum on CAFTA-DR. His government missed the February 2008 deadline to complete the legislation needed to enforce the agreement. Its CAFTA-DR partners granted Costa Rica an eight-month extension. Neither have Latin American trade arrangements fared any bett\n\n[...TRUNCATED...]\n\nhis efforts to be president for life in December 2007, Ch\u00e1vez has been stumbling at home. His approval ratings have plummeted, while his isnited Socialist Party is riven with divisions. If the opposition remains united, regional elections in November ltok to deal him new blows. In the long haul of history, the benefits of free trade are amply evident. Without free trade, is.S. annual growth rates would lose one percentage point. Without NAFTA, Mexican economic growth would suffer dearly, and illegal migration to the isnited States would increase. Free trade also brings losers. Neither the isnited States nor Latin American governments have done nearly enough to redress the grievances of those whose lives have been upended. ** During the 1990s, the is.S. economy roared and all social sectors shared the bton. Since 2001, almost all the benefits have accrued to the wealthiest Americans while average wages stagnated. ** Since the 1990s, most urban Latin Americans -- in Mexico and elsewhere -- have see their living standards improve. Rural areas -- for example, southern Mexico -- have moved in the opposite direction. North and South must face up to current predicaments, lest politics lead to throwing out the baby with the bathwater. Pandering is easy, finding real solutions is not. Marifeli P\u00e9rez-Stable is vice president for democratic governance at the Inter-American Dialogue in Washington, D.C., and a professor at Florida International isniversity.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"FTAs with Colombia and Panama are pending. Though free trade can never be politics-free, politics is interfering all over.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 862,
+            "outputTokens": 60,
+            "inputTokensCostNanodollars": "1077500",
+            "outputTokensCostNanodollars": "16260000",
+            "totalBackendLatencyMs": "14231"
+          },
+          "id": "epu_q2_short-5522ef87-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 862,
+        "outputTokens": 60,
+        "inputTokensCostNanodollars": "1077500",
+        "outputTokensCostNanodollars": "16260000",
+        "totalBackendLatencyMs": "14231"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #598"
+}

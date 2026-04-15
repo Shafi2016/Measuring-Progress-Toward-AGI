@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:12:47.794076Z",
+  "endTime": "2026-03-31T19:12:49.762903Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-3e7e4cd3",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nSolving the Economic Puzzle: Variety of Indicators Are Helping Businesses Track Region's isps and ... Anne Swardson Washington Post Staff Writer The Washington Post (1974-Current file); Jun 4, 1990; ProQuest Historical Newspapers: The Washington Post (1877-1997) Pg- 1 By Anne Swardson W.Juif on tw SuSWnicr W hen George and Eunice Grier came to town in 1960, the Capital Beltway was a plan\u00adner's dream, the Metro sys\u00adtem was unimagined\u2014and experts on the local economy were as scarce as Washington Senators' victories. Not that there was much for them to study. The few statistics available about the region were squirreled away in bu\u00adreaucrats' offices. The local economy con\u00adsisted principally of the federal govern\u00adment, a few hotels, a handful of local retailers and the occasional law firm. Today, with the Washington metropoli\u00adtan area a full-fledged economic entity, a host of statistics have bltomed to meas\u00adure, describe and forecast it. And the Griers have become the best known and most quoted among a growing and in\u00adcreasingly influential cadre of experts who watch the ups and downs of that economy\u2014these days, mostly the downs. Thirty years ago, \"even when the sta\u00adtistics were available, very little was known about them,\" said George Grier. \"Now, we have better numbers here than other cities do.\" The role of Washington's economy- measurers assumed new importance inthe 1980s, as the metropolitan area btomed and local jurisdictions struggled to cope with needs they had not foresee\n\n[...TRUNCATED...]\n\nx, like many of the figures available on the Washington economy, suf\u00adfers from one failing: a long lag time. The in\u00addex for the first quarter of 1990 will not be released until the end of the second. Such delays are not uncommon in the world of economic statistics, and they may help explain why even the best gurus in the area miss the boat sometimes. \"One of the biggest problems right now is the slow availability of some of the statis\u00adtics,\" said George Grier. \"We've never really had a gtod handle on what was going to hap\u00adpen next.\" \u25a0 Key Indicators of the Washington-area economy: METRO EMPLOYMENT: Released the first Friday of every month, for the month two months before, by the office of D.C. Mayor Marion Barry. Includes employment and unemployment for the District and the Washington metropolitan area. Not adjusted for seasonal variations. MARYLAND EMPLOYMENT: Released the first week of each month, for the month two months before, by the Maryland Department of Economic and Employment Development. Includes employment and unemployment for the state, the Washington suburban area and each county. Not adjusted for seasonal variations. VIRGINIA EMPLOYMENT. Released the last week of the month for the previous month by the Virgu Employment Commission. Includes employment and unemployment for the state, the Washington subuiban area and each county and Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.95, \"focus_excerpt\": \"Not that there was much for them to study. The few statistics available about the region were squirreled away in bureaucrats' offices.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1623,
+            "outputTokens": 51,
+            "inputTokensCostNanodollars": "618576",
+            "outputTokensCostNanodollars": "85680",
+            "totalBackendLatencyMs": "1754"
+          },
+          "id": "epu_q2_medium-3e7e4cd3-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1623,
+        "outputTokens": 51,
+        "inputTokensCostNanodollars": "618576",
+        "outputTokensCostNanodollars": "85680",
+        "totalBackendLatencyMs": "1754"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #555"
+}

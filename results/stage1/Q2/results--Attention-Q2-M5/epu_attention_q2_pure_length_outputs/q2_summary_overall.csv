@@ -1,0 +1,4 @@
+llm_name,condition,mean,std,count
+🤖 qwen/qwen3-235b-a22b-instruct-2507,short,0.65,0.477367572910132,600
+🤖 qwen/qwen3-235b-a22b-instruct-2507,medium,0.66,0.47410402273547153,600
+🤖 qwen/qwen3-235b-a22b-instruct-2507,long,0.6633333333333333,0.4729641078359512,600

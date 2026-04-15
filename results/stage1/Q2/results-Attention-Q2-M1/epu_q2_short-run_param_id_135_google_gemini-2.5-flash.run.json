@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T01:51:36.970884Z",
+  "endTime": "2026-03-31T01:51:47.527283Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-2f98aa55",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nBy Allanna Sullivan Slaff Reporter of The Wall Stheet Journal Crude oil futures surged in the last min\u00adutes of trading yesterday, reflecting ex\u00adtremely light volume and uncertainty among traders over the future price of oil. Much of the price gain was based on technical factors, with the late spate of buying triggering previously placed orders known as \"stop-loss\" parehases. In addi\u00adtion, the market was thinly traded, as many traders gathered in London to attend industry functions scheduled for this week. The London meeting \"has taken a lot of volume out of the market, one of the rea\u00adsons why the prices exploded so suddenly\" yesterday, said R. B. Htover, a broker for Prudential-Bache Securities Inc. Refiners parehased many of the con\u00adtracts that changed hands during the buy\u00ading spree. \"Refiners see crude as a gtod buy at $17 a barrel; they're anticipating that the Organization of Petroleum Export\u00ading Countries will adhere to its agree\u00adment\" to reduce production to 18.5 million barrels a day from much higher levels last year, said Andrew Lebow, analyst for D.& F. Man International Futures Inc. isntil representatives of non-OPEC pro\u00adducing nations meet again next week, crude prices are expected to remain in a trading range of $16.70 a barrel and S18.60 a barrel, some traders say. Mr. Htover noted that crude prices settled between S17.25 and S17.75 a barrel during 13 of the last 16 trading days. Yesterday, Marcli de\u00adlivery crude closed on the New York Mer\u00adcantile Exchange at S17\n\n[...TRUNCATED...]\n\ncent an ounce to $5.8450, while April platinum was up 80 cents an ounce at $525.80. Al\u00adthough the gold price declined to a two- year low, the selling appeared to lack ag\u00adgressiveness: the April price hit $387 and bounced back, John Norris, director of pre\u00adcious metals trading at Citibank New York, said. While the unexpectedly strong gain in producer prices last month, re\u00adported Friday, might be expected to fan in\u00adflation fears and thus spur gold prices up, the Federal Reserve is widely thought to be reacting to that report by pushing short\u00adterm interest rates even higher to ctol the economy and Inflation. In addition, Mr. Norris said, demand for bullion is slow. GRAINS AND SOYBEANS - Futures prices fell in moderate trading. March-de\u00adlivery soybeans fell 11 cents a bushel to settle at $7.24, amid \"gtod rains\" over the weekend in grain-growing regions In Brazil and Argentina, said Victor Lespinasse, a fltor broker with Dean Witter Reynolds Inc. Soybean futures also fell as selling by commercial grain companies continued from last week. The May contract for wheat closed at $4.2550 a bushel, down four cents, on the Chicago Board of Trade. The decline in wheat futures prices reflected yesterday's snowfall across many Midwest growing regions, which traders say should improve conditions for spring planting. Com futures prices followed soybeans lower. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"the Federal Reserve is widely thought to be reacting to that report by pushing short-term interest rates even higher to ctol the economy and Inflation.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 919,
+            "outputTokens": 59,
+            "inputTokensCostNanodollars": "275700",
+            "outputTokensCostNanodollars": "4540000",
+            "totalBackendLatencyMs": "10484"
+          },
+          "id": "epu_q2_short-2f98aa55-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 919,
+        "outputTokens": 59,
+        "inputTokensCostNanodollars": "275700",
+        "outputTokensCostNanodollars": "4540000",
+        "totalBackendLatencyMs": "10484"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #136"
+}

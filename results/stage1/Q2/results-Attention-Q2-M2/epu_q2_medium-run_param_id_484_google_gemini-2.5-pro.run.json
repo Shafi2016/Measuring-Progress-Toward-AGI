@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T04:59:33.354151Z",
+  "endTime": "2026-03-31T04:59:55.349068Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-3c055767",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nSouthern Dallas County is finally beginning to develop after years of watching communities to the north enjoy theeconomicbenefits of a building btom.But the biggest challenge in the southern sector may be getting everyone to agree on how to handle the development.Commissioner John Wiley Price has led a regional effort to devise a master plan for the trade corridor in his district that runs along Interstate 45. Mr. Price said the area needs to attract high-quality development with adequate infrastructure that will provide the most jobs and biggest increase to the tax base.But some developers object to the plan, saying it will add unnecessary delays anduncertaintyas well as another layer of bureaucracy that will scare off investors with new regulations. The Allen Group, which owns 6,000 acres, is one of several developers who said they were left out of the planning process.Next month, commissioners will vote on whether to pull out of the planning process. At least two commissioners, Kenneth Mayfield and Maurine Dickey, expressed concerns Tuesday about how it has been handled.\"There are tto many questions that need to be answered,\" Mr. Mayfield said.Ms. Dickey said: \"We need to start all over. This is a skewed process.\"The county's proposed comprehensive plan would identify the infrastructure needs, such as water, sewer and roads, and provide a framework for building them.The North Central Texas Council of Governments, the city of Dallas and the county are each expected to chip \n\n[...TRUNCATED...]\n\n their efforts so that 25,000 acres along I-45 can get basic infrastructure.Rick Loessberg, the county's director of planning and development, said the comprehensive plan will not supersede local zoning regulations or result in a new governmental entity. He blamed the recent dustup on miscommunication.Mr. Price noted that about a third of the area in question lies in unincorporated Dallas County. And, he said, the developers are using scare tactics and conspiracy theories to derail the plan.He called it \"planning 101.\"In other business on Tuesday, commissioners voted 3-2 not to seek an attorney general's opinion on whether District Attorney Craig Watkins created a conflict by representing Sheriff Lupe Valdez in a legal fight against the commissioners.Mr. Watkins' office represents commissioners in legal matters, but he sided with the sheriff in a legal fight he lost over allowing jail access to a documentary film crew.Commissioners Dickey and Mayfield voted for the AG opinion.Budget adoptedDallas County Commissioners approved a new budget Tuesday for the 2008-09 fiscal year that begins Oct. 1.HIGHLIGHTS:-Total budget: $888.4 million-General fund: $512.7 million-Increase over current year: 2.4 percent-New positions: 39-Deleted positions: 87-Frozen positions: 53-Salary increases: none-Tax rate: 22.81 cents per $100 of valuation. The owner of a $182,000 home, the Dallas County average, will pay $415 in county taxes.Caption:CHART(S): Budget adopted\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"But some developers object to the plan, saying it will add unnecessary delays anduncertaintyas well as another layer of bureaucracy that will scare off investors with new regulations.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1588,
+            "outputTokens": 68,
+            "inputTokensCostNanodollars": "1985000",
+            "outputTokensCostNanodollars": "21970000",
+            "totalBackendLatencyMs": "21901"
+          },
+          "id": "epu_q2_medium-3c055767-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1588,
+        "outputTokens": 68,
+        "inputTokensCostNanodollars": "1985000",
+        "outputTokensCostNanodollars": "21970000",
+        "totalBackendLatencyMs": "21901"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #485"
+}

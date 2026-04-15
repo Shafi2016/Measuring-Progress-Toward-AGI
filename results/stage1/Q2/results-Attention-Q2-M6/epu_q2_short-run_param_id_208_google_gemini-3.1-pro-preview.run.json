@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T22:13:55.918602Z",
+  "endTime": "2026-04-02T22:14:06.879259Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-0b5b69b3",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Charlie Gtodyear, Chronicle Staff Writer Tuesday, April 4, 2006 Candlestick Point Special isse District. Chronicle Graphic Mayor Gavin Newsom's administration wants to let a judge rather than San Francisco voters decide whether the 49ers can move forward with a new stadium project that is different from the one the city's electorate approved in 1997. At the request of the mayor's office, state Sen. Carole Migden, D-San Francisco, quietly introduced legislation last month that would let the city seek a Superior Court ruling that the 49ers and the city can legally proceed despite changes from what was presented to voters nine years ago. A top real estate development aide to the mayor said the Newsom administration is not trying to avoid public scrutiny, but merely to settle at the outset important legal questions that will have direct bearing on the feasibility of a new stadium project and presumably on how or if the 49ers will proceed. \"In no way does it short-circuit the public vetting or approval process through multiple city commissions and multiple stops at the Board of Supervisors,\" said Michael Cohen, a former deputy city attorney who oversees military base reuse projects for the mayor's economic development office. \"It doesn't limit anyone's ability to sue or stop the project,\" said Cohen. \"It simply allows us to validate that what we're doing is consistent with voter-approved measures.\" Passage of M\n\n[...TRUNCATED...]\n\nvely renovated Bernal Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) 2012 Passat$31,635 2012 Passat$31,635 2012 Passat$30,535 2012 Passat$30,535 2012 Passat$25,940 2012 Passat$27,835 2012 Passat$26,630 2012 Passat$27,835 2012 Passat$26,665 2012 Passat$26,665 Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"settle at the outset important legal questions that will have direct bearing on the feasibility of a new stadium project\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 983,
+            "outputTokens": 53,
+            "inputTokensCostNanodollars": "1966000",
+            "outputTokensCostNanodollars": "8208000",
+            "totalBackendLatencyMs": "10822"
+          },
+          "id": "epu_q2_short-0b5b69b3-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 983,
+        "outputTokens": 53,
+        "inputTokensCostNanodollars": "1966000",
+        "outputTokensCostNanodollars": "8208000",
+        "totalBackendLatencyMs": "10822"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #209"
+}

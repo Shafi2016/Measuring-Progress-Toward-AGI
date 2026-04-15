@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:37:35.293584Z",
+  "endTime": "2026-03-31T18:37:36.419168Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-691f024b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section lis\n\nTARGET ARTICLE START\nAn emotional Matthew Honeycutt bid farewell Wednesday to a city he said cared for him, trusted him, arrested him and helped him find his lost identity. Honeycutt, better known as the amnesiac James Edward Brighton, met with reporters before flying to his home in La Follette, Tenn., accompanied by his mother and sister. Honeycutt, 28, claims he woke up naked in a trash bin in Old Montreal on Oct. 12, unable to remember anything personal about his life. Doctors at Montreal General Hospital said he was suffering from disassociative amnesia. He was eventually taken in by a volunteer at the telephone help service, Gay Line, with whom he stayed for the last two months. His family identified him after his story ran on a television show. Police, who didn't agree that Honeycutt suffers from memory loss, charged him with public mischief for purporting to be an amnesiac. Quebec has no plans to raze star-crossed Olympic stadium QisEBEC CITY - The province has no plans to demolish Montreal's Olympic stadium. Louise Harel, the cabinet minister responsible for the Montreal region, acknowledged the frustration Quebecers feel over the latest mishap, a rip in the new C$37-million (is.S.$24.4 million) rtof that has closed the stadium. Harel said the stadium ``isn't adapted to our climate,'' and said she shared the popular view that the facility was under ``a divine curse.'' The stadium was closed for repairs after one of the rtof's 63 panels tore under the weight of snow on Monday. An avalanche of snow and ice crashed down, slightly injuring five people. Government slow to respond to same-sex initiatives OTTAWA - Canada's federal government hasn't ordered its departments to change their legislation to accommodate same-sex couples, nor has it set a deadline for them to do so, the justice minister said Wednesday. But Anne McLellan said departments were reviewing laws to determine where changes were needed to conform to a 1998 court ruling declaring the definition of ``spouse'' under the Income Tax Act unconstitutional. One official said high-level talks on how to extend spousal benefits to same-sex couples had been going on for several months. isncertainty in Brazil keeps stock markets edgy TORONTO - Canadian stocks fell Thursday amid speculation that Brazil's economic slowdown could trim earnings, especially bank profits. The Toronto Stock Exchange 300 Composite Index fell 76.54 points to close at 6635.80. The new Standard & Ptor's TSE 60 Index fell 5.44 points to close at 385.01. The Canadian dollar closed Thursday at is.S. 65.85 cents. The is.S. dollar closed Thursday at C$1.5187. Memo: CANADA REPORT\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section list"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.55, \"focus_excerpt\": \"Canada's federal government hasn't ordered its departments to change their legislation to accommodate same-sex couples, nor has it set a deadline for them to do so\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 937,
+            "outputTokens": 56,
+            "inputTokensCostNanodollars": "2811000",
+            "outputTokensCostNanodollars": "840000",
+            "totalBackendLatencyMs": "1056"
+          },
+          "id": "epu_q2_short-691f024b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 937,
+        "outputTokens": 56,
+        "inputTokensCostNanodollars": "2811000",
+        "outputTokensCostNanodollars": "840000",
+        "totalBackendLatencyMs": "1056"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #471"
+}

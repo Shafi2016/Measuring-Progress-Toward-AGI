@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:31:31.085329Z",
+  "endTime": "2026-03-31T18:31:32.137794Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-9d825f68",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nThe rugged mountains of Lesotho were fortresses for tribal chiefs fleeing hostile armies, but offer little protection to modern leaders in this politically chaotic country. Two military coups and several attempts, race riots and poverty have made the Kingdom in the Sky a place of turmoil in the past years. Economic problems and the repeal of apartheid in South Africa, Lesotho's overpowering neighbor on all sides, raise even more questions about what lies ahead. Sympathetic foreign powers have donated millions to Lesotho. South Africa also has provided aid to maintain gtod relations and to limit support for anti-apartheid groups such as the African National Congress. The result is a nation almost completely dependent on outside help, with no visible means of support if the aid dries up. \"Here, when people talk of development or social work, they speak of donors, always donors,\" said Ntsu Mokhehle, leader of the Basotho Congress Party, the main political opposition. \"It seems we can't do anything without foreign assistance. We have been left without self-reliance.\" At odds with that situation is a fierce spirit of independence and a nationalist streak that peaked in May, when blacks rioted against Asians, most of whom are of Indian descent. They accused the Asians of taking jobs from Basothos, who make up almost the entire population of 1.7 million. More than 30 people were killed and 76 Asian-run businesses were ltoted in four days of attacks. Lesotho, which rises like a bubbl\n\n[...TRUNCATED...]\n\ndeveloped nations. Thatched-rtof huts of stone cling to steep slopes that have a golden tint in the dry season. In the dusty capital, Maseru, women wrapped in blankets against the mountain cold sell medicinal herbs on the street and turn curious eyes to the occasional white face. Chief Moshoeshoe led the Basotho people into the mountains in the early 19th Century to escape tribal wars ravaging southern and central Africa. Britain adopted the land as a protectorate in 1868 and granted it independence in 1966. After two kings and three governments in five years, Lesotho does not always keep up with the changes. A picture of King Moshoeshoe II, dethroned in October, hangs above a roster of the previous military government. Col. Elias Ramaema, head of the new government, promises elections and a return to civilian rule by next year. It is as uncertain as most things in Lesotho. Whoever takes power will inherit a beautiful but impoverished country. More than 90 percent of the people live in rural areas, but only 10 percent of the land is arable, and much of it has been severely eroded by overuse. More money can be made across the border. Nearly half the men cross the narrow Maseru Bridge to South Africa to work in gold mines or as domestic servants. The 130,000 miners are Lesotho's greatest soaree of income, but the South African mining industry is struggling and 70,000 Basothos could be laid off ston. Caption: map: Lesotho Memo: REPORT FROM LESOTHO\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.7, \"focus_excerpt\": \"Col. Elias Ramaema, head of the new government, promises elections and a return to civilian rule by next year. It is as uncertain as most things in Lesotho.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 957,
+            "outputTokens": 66,
+            "inputTokensCostNanodollars": "2871000",
+            "outputTokensCostNanodollars": "990000",
+            "totalBackendLatencyMs": "1009"
+          },
+          "id": "epu_q2_short-9d825f68-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 957,
+        "outputTokens": 66,
+        "inputTokensCostNanodollars": "2871000",
+        "outputTokensCostNanodollars": "990000",
+        "totalBackendLatencyMs": "1009"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #252"
+}

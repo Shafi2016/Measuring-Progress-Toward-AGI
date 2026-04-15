@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T21:58:15.270028Z",
+  "endTime": "2026-04-02T21:58:22.133816Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-d4233a21",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nNew Data Point to Weakening is.S. Economy: Drop in 3 Measures Prompts ... By ROBERT D. HERSHEY Jr.Special to The New York Times New York Times (1923-Current file); Jun 30, 1993; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. D1 New Data Point to Weakening is.S. Economy Special to The New York Times WASHINGTON, June 29 \u2014 In a three-pronged indication of a weaken\u00ading economy, fresh reports today showed a plunge in new-home sales and unsettling, albeit moderate, de\u00adclines in consumer confidence and the Government's chief forecasting index. Although most analysts continued to expect growth for the second half of the year to exceed that of the very sluggish first half, today's data prompted expressions of concern that the risks to further expansion had grown. 'Economy Could Turn Down' \"The economy could turn down \u2014 or it could slow down\" some more, said Larry Moran, a Commerce De\u00adpartment economist. He referred spe\u00adcifically to the three-tenths of 1 per\u00adcent decline in the department's in\u00addex of leading indicators for May, the fifth straight month in which the in\u00addex reversed direction. The index had risen a revised two-tenths of 1 per\u00adcent in April. Home sales dropped so sharply in May \u2014 21 percent \u2014 that a huge April gain was more than wiped away, the Government also reported. The plunge, the biggest in 13 years, came despite the fact that buyers enjoyedsome of the lowest interest rates m two decades and relatively appealing prices. In a third report, the Con\n\n[...TRUNCATED...]\n\n, the first in eight months, was the main soaree of upward pressure on the index. The others were higher con\u00adtracts and orders for plant and equip\u00adment, a rise in building permits and an uptick in stock prices. The length of the average workweek, the 11th component, was unchanged. Just as worrisome to some ana\u00adlysts as the leading index, whose com\u00adponents move ahead of the economy as a whole, is the performance of its companion, the coincident index. The coincident index, composed of indicators that tend to move at the same time as business activity, is only slightly higher, at 125.8, than it was in December \u2014 despite a four- tenths of 1 percent May gain. And it st&nds less than two. points above the level of March 1991, the month inwhich the latest recession officially ended. In other words, the economy has been going almost nowhere for some time as gauged by the items making up the coincident index \u2014 the size of nonfarm payrolls, personal incomes, industrial production and factory and trade sales. Still another indicator, the lagging index of elements that tend to move after a time lag in the direction of the coincident index, edged up one-tenth of 1 percent last month. 'A Little Nervous' The dive in new-home sales last month, to an annual rate of 571,000, was roughly twice as large as antici\u00adpated following an April bulge that would have been almost impossible to sustain. Michael S. Carliner, an economist for the National Association of Home\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"\\\"The economy could turn down \\u2014 or it could slow down\\\" some more, said Larry Moran, a Commerce Department economist.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 923,
+            "outputTokens": 59,
+            "inputTokensCostNanodollars": "1846000",
+            "outputTokensCostNanodollars": "7044000",
+            "totalBackendLatencyMs": "6759"
+          },
+          "id": "epu_q2_short-d4233a21-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 923,
+        "outputTokens": 59,
+        "inputTokensCostNanodollars": "1846000",
+        "outputTokensCostNanodollars": "7044000",
+        "totalBackendLatencyMs": "6759"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #139"
+}

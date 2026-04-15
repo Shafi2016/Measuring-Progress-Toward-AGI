@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:55:09.823362Z",
+  "endTime": "2026-04-01T17:55:10.848685Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-568ff59f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nBY SisE COCKING AND PATRICK DANNER pdanner@MiamiHerald.com The housing slump, higher fuel prices and overall uncertainty about the economy are putting a dent into boat sales, but boat manufacturers and dealers are cautiously optimistic that this week's Miami International Boat Show and Strictly Sail, which both open Thursday, will provide some much-needed tail wind for the industry. Boat sales are expected to be flat or slightly down this year, said Thom Dammrich, president of the National Marine Manufacturers Association, which runs the show. That follows a 14 percent drop in unit sales and a 9 percent decline in dollar volume last year. Clearwater's Marinemax, the largest recreational boat retailer in the country, is feeling the pain. The company said half the sales it made at October's Fort Lauderdale International Boat Show later fell through. Many prospective customers have simply put off buying, said Marinemax boss William McGill Jr. With all the economic bad news, \"it gets you saying, 'Well, geez, do I want to be the only [one] out there that's spending my money when maybe things really are that bad?'\" McGill said during a conference call last week. BIG CROWD EXPECTED Still, the Miami boat show sold out its 2,200 exhibitors' slots, and event organizers expect as many as many as 150,000 attendees -- which would top last year's figure. At the same time, the Yacht and Brokerage Show, at Indian Creek Waterway and Collins Avenue, will offer yachts for sale or charter. While\n\n[...TRUNCATED...]\n\nare taking longer to accept bids, which often are lower than than minimum price they are willing to accept, he said. Not everyone is lamenting conditions. Business at California-based Porta-Bote International, maker of portable foldable boats priced from $1,350 to $1,860, is up 40 percent, said President Sandy Kaye. \"When economies falter, we do better,\" Kaye said. \"Our customer is a man who wants to go fishing. They live to fish. He says to himself, 'I want to go fishing, but I don't want to go into debt.'\" PARKING There is a severe parking shortage in Miami Beach, so those who are driving should park off-site and take available shuttle buses to all show locations. Parking is available at AmericanAirlines Arena ($10) and the adjacent Bicentennial Park in downtown Miami Caption: PATRICK FARRELL MIAMI HERALD STAFF AT THE MIAMI BEACH CONVENTION CENTER: Workers put the last touches on displays Wednesday for Thursday's opening of the Miami International Boat Show. While interest-rate cuts and tax rebates likely won't encourage Americans to buy a boat at the show, foreign buyers may find some bargains because of the weak dollar. PATRICK FARRELL/MIAMI HERALD STAFF IN MIAMI BEACH: Yachts line the Indian Creek waterway Wednesday as they are readied for Thursday's opening of the Yacht and Brokerage Show along Collins Avenue. PATRICK FARRELL/MIAMI HERALD STAFF PREPARING: Marta Pedraja cleans the Contender Boats btoth at the Miami Beach Convention Center.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.3,\n  \"focus_excerpt\": \"overall uncertainty about the economy are putting a dent into boat sales\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1649,
+            "outputTokens": 39,
+            "inputTokensCostNanodollars": "362780",
+            "outputTokensCostNanodollars": "34320",
+            "totalBackendLatencyMs": "659"
+          },
+          "id": "epu_q2_medium-568ff59f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1649,
+        "outputTokens": 39,
+        "inputTokensCostNanodollars": "362780",
+        "outputTokensCostNanodollars": "34320",
+        "totalBackendLatencyMs": "659"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #445"
+}

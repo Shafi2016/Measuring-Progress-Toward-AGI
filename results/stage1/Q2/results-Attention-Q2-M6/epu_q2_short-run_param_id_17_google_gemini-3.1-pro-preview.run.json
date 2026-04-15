@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T21:33:22.043153Z",
+  "endTime": "2026-04-02T21:33:29.730188Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-f3dfb680",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nDeath of Pakistan's Zia Worries Afghan Rebels: 'We Have Lost Our Biggest Friend' Timothy Weaver Special to The Washington Post The Washington Post (1974-Current file); Aug 26, 1988; ProQuest Historical Newspapers: The Washington Post (1877-1997) Pg. A16 death of Pakistan's Zia Worries Afghan Rebels 'We Have Lost Our Biggest Friend' By Timothy Weaver Soeci.il to The Washington Post JAJI DISTRICT, Afghanistan\u2014 The death of Pakistani president NJphammed Zia ul-Haq in a plane crash last week has left Afghan reb\u00adels here stunned at the loss of \"our biggest friend\" and uncertain about future Pakistani support for their cSuse. \"No one knows what will happen. It is in the hands of Allah,\" said Haji Fakil, a guerrilla commander here in Paktia Province in eastern Af\u00adghanistan. Since the Soviets invaded Af\u00adghanistan in December 1979, Zia had given unswerving support to the rebels, who used Pakistan as a base for their operations and transit point for their weapons. About 3 million Afghans fleeing the conflict at home received refuge in Pakis\u00adtan Now, many opponents of the communist regime in Kabul fear all tfiat will change. \"Zia was a kind of father. He was the supporter of the Afghan muja\u00adheddin [resistance fighters] and refugees. We have lost our biggest friend,\" said Jan Aga, a mining en\u00adgineering student in Kabul before the war. ;Zia wanted to see a strong Islam- ic'.government installed in Kabul to counter both the communist threat and that of Pakistan's traditional rival, India, \n\n[...TRUNCATED...]\n\ng Pakistani support, although re\u00adsistance and diplomatic soarees in Pakistan estimate that the guerril\u00adlas have enough arms stockpiled in\u00adside Afghanistan to see them through two years of fighting. The bulk of the rebels' arms came from the isnited States but were distributed through Pakistan's secret service. One Afghan commentator, a for\u00admer resistance commander now liv\u00ading in Peshawar, said he believed that Zia's death would result in a decline in the fortunes of Gulbuddin Hekmatyar's fundamentalist Hezbi- i-Islami group, which has received the bulk of the American-supplied weapons. He said he did not expect Pakis\u00adtan's support for the Afghjan cause to waver, both because of its wish to help fellow Moslems and for oth\u00ader, nonreligious reasons, such as the indirect btost to Pakistan's economy through funds brought in by aid organizations serving the Af\u00adghan refugees and by the arms flow. Moreover, since the Soviet inva\u00adsion of Afghanistan, the isnited States has acted to bolster ties with Pakistan as its major ally in the Moslem world, cementing the re\u00adlationship with generous amounts of aid. One result of Zia's death may be to increase pressure on the rebels to accept a broader-based govern\u00adment for Afghanistan in the future, according to western diplomats in Islamabad. The interim government announced in May by the seven-par\u00adty alliance in Peshawar, represent\u00ading some but not all of the resis\u00adtance groups, is \"bogged down,\" a diplomat said.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"uncertain about future Pakistani support for their cSuse. 'No one knows what will happen.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 914,
+            "outputTokens": 50,
+            "inputTokensCostNanodollars": "1828000",
+            "outputTokensCostNanodollars": "8316000",
+            "totalBackendLatencyMs": "7560"
+          },
+          "id": "epu_q2_short-f3dfb680-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 914,
+        "outputTokens": 50,
+        "inputTokensCostNanodollars": "1828000",
+        "outputTokensCostNanodollars": "8316000",
+        "totalBackendLatencyMs": "7560"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #18"
+}

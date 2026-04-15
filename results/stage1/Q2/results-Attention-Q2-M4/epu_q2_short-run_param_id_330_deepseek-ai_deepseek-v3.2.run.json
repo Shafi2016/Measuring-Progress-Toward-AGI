@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:37:08.338759Z",
+  "endTime": "2026-03-31T18:37:09.567728Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-9fb6c0fa",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Reviewed by Elaine Margolin Sunday, September 1, 2002 War Torn Stories of War From the Women Reporters Who Covered Vietnam By Tad Bartimus, Denby Fawcett, Jurate Kazickas, Edie Lederer, Ann Bryan Mariano, Anne Merrick, Laura Palmer, Kate Webb and Tracy Wtod RANDOM HOisSE; 288 PAGES; $24.95 Vietnam was where the nine female journalists of \"War Torn\" went, as war reporters for the New York Times, isPI, ABC News, Associated Press and other news organizations. It was the late 1960s, and these women were young and energetic, ready to take on the world. This was a first; they were an untested commodity. Many believed it would not work. The women would go to Vietnam and return quickly, unable to endure the hardships of covering warfare. But as \"War Torn\" shows, they didn't come back. They stayed and lived and loved and worried and watched a country imploding, and wrote about it. They told the stories that weren't being told. They spoke about the children. They spoke about the soldiers. They spoke about the utter destruction. They taught us about the people of Vietnam, their history, their customs. They talked of wayward sergeants, and the atrocities they committed, their arrogance fueled by the idea that nobody seemed to be watching. They brought a different lens to the war, one that wasn't dominated by notions of winning or losing, or blind patriotism or the glorification of killing and death. Their reporting wa\n\n[...TRUNCATED...]\n\niian farmer... Extensively renovated Bernal Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) 2006 Explorer$16,900 2010 tC$15,900 2004 Phaeton$22,500 2010 V50$20,900 2012 S60$28,900 2011 c30$23,500 2011 c30$27,800 2011 S40$27,900 2011 S40$24,900 2011 S40$27,500 Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.95, \"focus_excerpt\": \"Vietnam was where the nine female journalists of \\\"War Torn\\\" went, as war reporters\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 963,
+            "outputTokens": 41,
+            "inputTokensCostNanodollars": "442512",
+            "outputTokensCostNanodollars": "68880",
+            "totalBackendLatencyMs": "1041"
+          },
+          "id": "epu_q2_short-9fb6c0fa-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 963,
+        "outputTokens": 41,
+        "inputTokensCostNanodollars": "442512",
+        "outputTokensCostNanodollars": "68880",
+        "totalBackendLatencyMs": "1041"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #331"
+}

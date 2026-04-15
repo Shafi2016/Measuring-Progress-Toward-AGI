@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:51:28.305873Z",
+  "endTime": "2026-04-01T17:51:29.660785Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-dd6e84cc",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nGet ready for the new Middle East. It's not Israeli statesman Shimon Peres' vision of region-wide peace that ushers in economic prosperity for all, say analysts. The region is a place beset today by bloated bureaucracies, not-ready-for-Internet regimes, vast numbers of underemployed, scheming militants, oil prices falling off the table and ltoming leadership succession that scares the dickens out of is.S. policymakers. The succession of King Abdullah of Jordan from the late King Hussein, who was buried Monday, is likely to be the easiest and most trouble-free among an expected new generation of leaders. And how is the isnited States reacting? With great fear, say analysts. That was well illustrated by what President Clinton ttok with him to the funeral: a promise of $300 million in funding - triple what the administration had set aside for Jordan before Hussein's death. ``Everyone in the world is infiltrating their agents and putting forth their concerns in Jordan,'' said Geoffrey Aronson, director of the Foundation for Middle East Peace, a Washington think tank. ``The game has begun. Let us not pretend that we are giving this kid a chance because we are at the front of the line. There is a full-court press in Jordan to make sure that the isnited States' investment in the region does not go down the drain.'' is.S. interests are transparent: moving ahead the Israeli-Palestinian peace process, preserving access to cheap Persian Gulf oil and isolating Iraq. Much rides on the May\n\n[...TRUNCATED...]\n\ns, Qusay and isday, already control security forces. Syria's Hafez Assad, who suffers from heart trouble and diabetes, is preparing his only surviving son, Bashir, an ophthalmologist who is set to take over the security apparatus this month. Libya's Moammar Gadhafi sent his son, Saadi, to King Hussein's funeral, raising speculation that the son may be in line to succeed him. But even if these new leaders do take over without major incident - and few believe that will happen - they will assume control of societies that are falling farther behind the technological edge of the global economy. The Arab world accounts for only 0.3 percent of Internet users around the globe, according to one recent estimate. Syrians don't dream of Internet access; they wish for a fax line, which still requires multiple, hard-to-get permits. Iraq's civil society is decimated. isnemployment in the Gaza Strip, where the average fertility rate is 7.57 children born per woman, registers at around 80 percent. And, said Kenneth Stein, professor of Middle East history at Emory isniversity in Atlanta, the people of the Persian Gulf have to be muttering to themselves now. ``If I were a Saudi or a Kuwaiti, I want to know, `how did we waste all our money?' Oil money generated enormous expectations and they haven't been met. It's going to make it much harder for the new leaders.'' Caption: graphic: The Middle East's isncertain Future with chart: Falling Oil Prices (see microfilm)\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"ltoming leadership succession that scares the dickens out of is.S. policymakers.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1605,
+            "outputTokens": 43,
+            "inputTokensCostNanodollars": "353100",
+            "outputTokensCostNanodollars": "37840",
+            "totalBackendLatencyMs": "1198"
+          },
+          "id": "epu_q2_medium-dd6e84cc-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1605,
+        "outputTokens": 43,
+        "inputTokensCostNanodollars": "353100",
+        "outputTokensCostNanodollars": "37840",
+        "totalBackendLatencyMs": "1198"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #262"
+}

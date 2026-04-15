@@ -1,0 +1,9 @@
+file,path
+q2_results_raw.csv,/kaggle/working/epu_attention_q2_pure_length_outputs/q2_results_raw.csv
+q2_summary_overall.csv,/kaggle/working/epu_attention_q2_pure_length_outputs/q2_summary_overall.csv
+q2_degradation_table.csv,/kaggle/working/epu_attention_q2_pure_length_outputs/q2_degradation_table.csv
+q2_summary_by_gold_epu.csv,/kaggle/working/epu_attention_q2_pure_length_outputs/q2_summary_by_gold_epu.csv
+q2_summary_by_disagreement.csv,/kaggle/working/epu_attention_q2_pure_length_outputs/q2_summary_by_disagreement.csv
+q2_hardest_rows.csv,/kaggle/working/epu_attention_q2_pure_length_outputs/q2_hardest_rows.csv
+q2_article_model_matrix.csv,/kaggle/working/epu_attention_q2_pure_length_outputs/q2_article_model_matrix.csv
+pilot_rows_q2.csv,/kaggle/working/epu_attention_q2_pure_length_outputs/pilot_rows_q2.csv

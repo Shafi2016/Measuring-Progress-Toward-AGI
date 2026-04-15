@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:30:41.894485Z",
+  "endTime": "2026-03-31T02:30:46.767455Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-9e179c83",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nKLEIN MACHNOW, Germany - The Berlin Wall of cement and barbed wire used to block every northbound street leaving this tidy village, which locals called \"the end of the world.\"Three years after German unification, every trace of the old wall has fallen. Wealthy Wessis build new homes amid the village's prewar bungalows. Pensions and salaries are higher than ever before, even for the unemployed.But a \"Wall in the Head\" still runs through the town, separating Easterner from Westerner and neighbor from neighbor. Itspersistence testifies to the difficulties of remaking any of Eastern Europe's societies, even under ideal circumstances.\"There is tension. Two completely different ways of life collide here,\" said Deputy Mayor Wolfgang Blasig, 40.On the sunny side of the wall live the town's new Western occupants, BMW-driving yuppies from Berlin. For them, unification has meant mostly the inconvenience of slightly higher taxes and the bitter knowledge that they are pumping up the East with $100 billion annually in mostly borrowed funds.On the grimmer side of the Klein Machnow Wall live the town's traditional residents, such as Hildegard Faber, 59.Pale and chain-smoking, she props herself against an overstuffed sofa pillow and confesses that she is afraid to go outside or even to check her mail.\"Anybody could come here and try to throw us out,\" she said. \"When the mail comes, I hardly dare ltok, because I could get a letter saying that I cannot keep my house. What will I do then, live u\n\n[...TRUNCATED...]\n\nied\" about unemployment, compared to only 43 percent of all Westerners.Public opinion surveys indicate that Westerners - promised by Chancellor Helmut Kohl that unification would be quick, cheap and pleasant - feel little sympathy for their Eastern cousins.Only 22 percent of all Westerners - and only 11 percent of all Easterners - said they felt a common German identity this summer.Westerners were trained from their youth in self-reliance and coping with crises; Easterners were taught to be obedient - and, in a sense, helpless, said Klaus Kies, 43, a counselor at a Berlin distress hotline.\"The major causes for problems in the East are the massive societal changes,\" said Dr. Klaus Schneider, 53, one of the staff psychologists.He and his team are working with a former Eastern engineer who now must work as a dtor-to-dtor salesman, and feels that he is begging for a living.Then there is the Eastern man who hanged himself. He had been a Communist Party boss; after the party collapsed he could find work only as a dtorman at a chemical factory, and died of the shame and loneliness, Dr. Schneider said.\"People fear life itself,\" he added. \"They say, `I don't know how to make it through tomorrow. If I did not have the children, I would have jumped out the window long ago. And people DO jump out the window, everyday.\"European bureau chief George Rodrigue researched and wrote this story in September.Caption:CHART(S)/MAP(S): Former West & East Germany (DMN)\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"When the mail comes, I hardly dare ltok, because I could get a letter saying that I cannot keep my house. What will I do then\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1598,
+            "outputTokens": 61,
+            "inputTokensCostNanodollars": "479400",
+            "outputTokensCostNanodollars": "2147500",
+            "totalBackendLatencyMs": "4803"
+          },
+          "id": "epu_q2_medium-9e179c83-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1598,
+        "outputTokens": 61,
+        "inputTokensCostNanodollars": "479400",
+        "outputTokensCostNanodollars": "2147500",
+        "totalBackendLatencyMs": "4803"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #81"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T04:32:32.634544Z",
+  "endTime": "2026-03-31T04:32:44.437086Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-5cf3fdfc",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nFederal Reserve Chairman Alan Greenspan said Tuesday that the nation is not in a recession, but he cautioned that the economy 's downturn could last through the year. The chairman of the nation's central bank, which influences lending by banks nationwide, made clear that high natural gas prices, constraints on credit, weak corporate profits and slowing growth abroad are combining to menace the is.S. economy. The Fed forecasts ``a substantial slowdown, on balance, for the year as a whole,'' Greenspan said in testimony before the Senate Banking Committee, but a recession has ``not happened yet.'' Greenspan hinted that the Fed stands ready to lower interest rates again to counter the forces that are slowing the economy. An interest rate cut helps to spur the economy by reducing the cost of borrowing money. ``We should take whatever actions we can to reduce'' the chances of ``significant erosion in economic activity,'' Greenspan said, which analysts widely interpreted as a signal that the Fed is likely to cut interest rates further. The Fed cut short-term interest rates by a full percentage point in two installments in January, and its policy-making body meets again on March 20. Today's problems should be put into perspective, Greenspan implied, emphasizing that the country's long-term economic prospects remain solid. ``It is just a matter of time before that sort of malaise dissipates and the system comes back,'' he said. In a sign that the economy might already be starting to p\n\n[...TRUNCATED...]\n\nancial analysts expect further rate cuts ``until any uncertainty about confidence is removed and a clear upturn in growth is in place,'' said David Orr, chief economist at First isnion. Senators tried to pin Greenspan down on what kind of tax cut he supports. The Fed chairman avoided definitive answers, but said that no tax cut could be enacted in time to avert a recession. ``If a recession is going to happen. .. it's very unlikely to be affected one way or the other by what tax policy is going to be,'' he said. Last month, Greenspan reversed his earlier position and said tax cuts are appropriate. Previously, the chairman had insisted that reducing the national debt should be the priority, ahead of tax cuts. But last month, Greenspan said the federal budget surplus has grown so much that it is possible both to pay down the debt and to cut taxes. Greenspan reiterated Tuesday that the first priority should be to eliminate debt. He also forecast that the nation's inflation rate would drop to 1.75 percent or 2.25 percent this year from 2.5 percent for last year. He also projected that the unemployment rate might rise a bit, from January's rate of 4.2 percent to about 4.5 percent by the fourth quarter of this year. Greenspan also said that the same technological forces that have helped make the economy more efficient have made it more volatile because businesses, consumers and investors can react faster to changes. Caption: photo: Alan Greenspan (a)\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1,\n  \"focus_excerpt\": \"Senators tried to pin Greenspan down on what kind of tax cut he supports. The Fed chairman avoided definitive answers, but said that no tax cut could be enacted in time to avert a recession.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1552,
+            "outputTokens": 73,
+            "inputTokensCostNanodollars": "1940000",
+            "outputTokensCostNanodollars": "11290000",
+            "totalBackendLatencyMs": "11676"
+          },
+          "id": "epu_q2_medium-5cf3fdfc-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1552,
+        "outputTokens": 73,
+        "inputTokensCostNanodollars": "1940000",
+        "outputTokensCostNanodollars": "11290000",
+        "totalBackendLatencyMs": "11676"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #318"
+}

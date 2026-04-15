@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:04:25.678953Z",
+  "endTime": "2026-03-31T02:04:37.615894Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-56c20ce7",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nLike most Syrians, Samer Zayat has no love for Israel. He was a little uneasy when Syria announced in late May that it was holding indirect talks on a peace settlement with its old nemesis. Yet Mr. Zayat, a 35-year-old television cinematographer, says he views a peace deal with Israel as necessary and inevitable -- not just for political reasons, but because Syria's vulnerable economy needs all the help it can get. ''We are tired, the country is suffocating,'' he said, as he played backgammon with a friend at a cafe here, the sweet smell of apple-flavored tobacco drifting around him. ''We have suffered a long time from the political boycott and the sanctions.'' That sentiment is echoed by many others. Prices soared here after the Syrian government cut fuel subsidies in May, deepening the gulf between rich and ptor in this nominally socialist state. It had little choice. The oil reserves Syria has relied on for so long are rapidly disappearing. The hefty budget surpluses of a decade ago have turned into multibillion-dollar deficits. A country that could once afford to be serenely indifferent to Western sanctions is now being forced to liberalize and open its economy. None of this has changed Syria's conviction that any peace agreement must include the return of the Golan Heights, the area captured by Israel in 1967. But a profoundly uncertain economic future has created additional incentives for peace, which could help lure foreign investment by ending Syria's pariah status in\n\n[...TRUNCATED...]\n\nn without having to shake hands with the Israelis. This is despite the fact that the Bush administration, which accuses Syria of supporting terrorism, has recently added sanctions on the government and its business associates. But some analysts say they believe that Syria's economic troubles must figure in the government's calculations about regional peace. ''The transformation they have in front of them now is enormous,'' said Andrew Tabler, a Damascus-based Syria analyst and consulting editor for the magazine Syria Today. ''They must move from a state funded by oil revenues to one funded by taxation, and that has to play some role in their thinking.'' It would hardly be surprising: Syria's oil used to be the mainstay of the government's income, providing 70 percent of the country's export earnings. Now it is drying up so fast that Syria is expected to be a net importer of crude oil in just two years, according to the International Monetary Fund. Already, Syria is importing oil products at record prices, and paying huge subsidies to reduce the cost for its citizens. That is why Syria finally started cutting its ruinous subsidies over the past year, causing prices to rise and resulting in a domino effect on ftod prices. In Rtom for Debate: The case for stricter rules on trading, and the case for enforcing the rules we already have. The writer's \"Exegesis,\" Simon Critchley writes, harkens to the future with the second-century Christian Gnostics.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.9, \"focus_excerpt\": \"But some analysts say they believe that Syria's economic troubles must figure in the government's calculations about regional peace. ''The transformation they have in front of them now is enormous,'' said Andrew Tabler, a Damascus-based Syria analyst and consulting editor for the magazine Syria Today. ''They must move from a state funded by oil revenues to one funded by taxation, and that has to play some role in their thinking.''\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 834,
+            "outputTokens": 107,
+            "inputTokensCostNanodollars": "250200",
+            "outputTokensCostNanodollars": "5352500",
+            "totalBackendLatencyMs": "11864"
+          },
+          "id": "epu_q2_short-56c20ce7-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 834,
+        "outputTokens": 107,
+        "inputTokensCostNanodollars": "250200",
+        "outputTokensCostNanodollars": "5352500",
+        "totalBackendLatencyMs": "11864"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #306"
+}

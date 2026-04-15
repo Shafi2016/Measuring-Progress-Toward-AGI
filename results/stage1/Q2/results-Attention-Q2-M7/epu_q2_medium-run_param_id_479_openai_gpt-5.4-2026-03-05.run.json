@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:20:09.124331Z",
+  "endTime": "2026-04-03T00:20:10.452596Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-ec80a834",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nAbstract: The Obama administration hailed as 'historic' a House bill intended to reform a student-loan system that critics say is tto costly and complicated. BY DAVID LIGHTMAN McClatchy News Service WASHINGTON -- The House of Representatives is expected this week to back overhauling -- and simplifying -- how college students receive financial aid. The rules for awarding and repaying loans would remain unchanged, but the government would make all loans itself, ending the practice of subsidizing loans made by private lenders. The Obama administration, which has made revamping the student loan system a major domestic priority, has hailed the bill as historic. \"This is a big, big deal,\" Education Secretary Arne Duncan said Tuesday at a news conference. He called the measure \"the largest investment in higher education since the GI Bill\" first passed in 1944 to help World War II veterans. House Education and Labor Committee Chairman George Miller, D-Calif., vowed that the legislation would help students at \"no cost to taxpayers.\" That depends on how one interprets budget data, however. The nonpartisan Congressional Budget Office found that the loan program changes should save the government $86.8 billion over the next 10 years. SPENDING ON AID It also noted in its official July report on the bill, however, that it would include spending all but $7.8 billion of that on aid to students and higher education. In an update last week, the CBO said economic changes could btost spending ov\n\n[...TRUNCATED...]\n\nill it be the right amount to offset the new spending? The obyious answer is we don't know.\" ' isNCERTAIN ' Goldwein warned that the new system's fiscal outltok would be \"particularly uncertain\" because it would depend on economy -related factors such as default rates, need-based aid and other factors. The bill would scrap much of the current student loan system, which critics say is tto costly and tto complicated. The new program would create big savings, the CBO figures. It would save money because of changes in subsidy rates, the CBO said. Some savings could be achieved with lower interest rates; the bill would set a new rate based on the price of 91-day Treasury bills plus 2.5 percentage points. The rate would be adjusted annually. At the same time, though, the measure would expand the cost of the Pell Grant program, which helps lower-income students. Currently, the maximum annual award is $5,350. isnder the bill, that would grow to $6,900 by 2019. The CBO estimated in July that the changes would cost the government at least $39.4 billion over that period. Members of the National Association of Student Financial Aid Administrators are divided on the bill's merits. Most activists and lawmakers agree on at least one point: The application process needs to be streamlined. The bill promises to \"dramatically cut down the number of questions on the form,\" partly by allowing students and families to apply for aid using data from their tax returns.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":1,\"confidence\":0.9,\"focus_excerpt\":\"Goldwein warned that the new system's fiscal outlook would be \\\"particularly uncertain\\\" because it would depend on economy-related factors such as default rates, need-based aid and other factors.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1578,
+            "outputTokens": 55,
+            "inputTokensCostNanodollars": "3945000",
+            "outputTokensCostNanodollars": "825000",
+            "totalBackendLatencyMs": "1165"
+          },
+          "id": "epu_q2_medium-ec80a834-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1578,
+        "outputTokens": 55,
+        "inputTokensCostNanodollars": "3945000",
+        "outputTokensCostNanodollars": "825000",
+        "totalBackendLatencyMs": "1165"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #480"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T22:12:00.412669Z",
+  "endTime": "2026-04-02T22:12:12.383317Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-544946ec",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continua\n\nTARGET ARTICLE START\nCorrection Appended [ DISPLAYING ABSTRACT ] JisNE 16, 1976, IS WOVEN INTO THE SOisL OF BLACK protest in South Africa. On that day, after years of silence, Soweto, the sprawling black township on the outskirts of Johannesburg, erupted in protest. The agony and bltodletting that followed spread to black townships throughout the country, and by the time it was over the following year, more than 570 lives had been lost. So, tto, had the sense of an immutable, white-run South Africa. Ten years later, South Africa is again at war with itself. After an uneasy lull of several years, black opposition to apartheid erupted again in late 1984, sparking 20 months of anti-Government violence that has thus far claimed more than 1,600 lives. On June 16, 1986, against the background of this unrest, South African black leaders plan to mark the anniversary of Soweto with a daylong, mass work stoppage that seems certain to galvanize black support throughout the country in an emotional - and perhaps explosive - day of commemoration. At the forefront of this observance will be two major anti-apartheid organizations, the isnited Democratic Front and National Education Crisis Committee. But the main event - the ''stayaway'' - will test the strength of what may prove to be Soweto's most important legacy: the burgeoning black trade union movement. Editor's Note: The cover article in The Times Magazine today deals with the role of black trade unions in South Africa. The article describes the political choices faced by union leaders, who have called for a one-day work stoppage tomorrow in observance of the anniversary of the 1976 Soweto uprising. On Thursday, after the magazine went to press, a state of emergency was declared in South Africa to combat the protest. Piroshaw Camay, a prominent unionist quoted in the article, is among the hundreds of opposition figures who have been detained under the new emergency decree. Thank you for visiting The New York Times Archive. Parehase this article individually for $3.95 and download a high-resolution PDF with all of the images. Or enjoy 100 FREE Archive articles every four weeks with a Times Digital Subscription. Try it now for just 99\u00a2 for your first four weeks. Already a Home DeliverySubscriber? Get your free access here.Already a Digital Subscriber? Log in here. In Rtom for Debate: The case for stricter rules on trading, and the case for enforcing the rules we already have. The writer's \"Exegesis,\" Simon Critchley writes, harkens to the future with the second-century Christian Gnostics.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuat"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"Ten years later, South Africa is again at war with itself. After an uneasy lull of several years, black opposition to apartheid erupted again in late 1984\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 865,
+            "outputTokens": 65,
+            "inputTokensCostNanodollars": "1730000",
+            "outputTokensCostNanodollars": "8916000",
+            "totalBackendLatencyMs": "11842"
+          },
+          "id": "epu_q2_short-544946ec-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 865,
+        "outputTokens": 65,
+        "inputTokensCostNanodollars": "1730000",
+        "outputTokensCostNanodollars": "8916000",
+        "totalBackendLatencyMs": "11842"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #198"
+}

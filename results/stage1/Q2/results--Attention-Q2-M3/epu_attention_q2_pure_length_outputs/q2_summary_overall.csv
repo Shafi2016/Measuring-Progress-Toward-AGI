@@ -1,0 +1,4 @@
+llm_name,condition,mean,std,count
+🤖 anthropic/claude-sonnet-4-6@default,short,0.6266666666666667,0.48409310307311787,600
+🤖 anthropic/claude-sonnet-4-6@default,medium,0.645,0.4789125829454742,600
+🤖 anthropic/claude-sonnet-4-6@default,long,0.6416666666666667,0.4799108385006601,600

@@ -1,0 +1,4 @@
+llm_name,condition,group_name,group_value,n_rows,accuracy,accuracy_sd,valid_prediction_rate,parse_fail_rate,mean_confidence,excerpt_in_target_rate,fp_rate_among_gold0,fn_rate_among_gold1,mean_total_chars,mean_prompt_chars,mean_prompt_tokens
+anthropic/claude-sonnet-4-6@default,short,target_position,center,500,0.618,0.4863631340843925,0.992,0.008,0.8207,0.524,0.216,0.532,3000.0,4105.804,1026.994
+anthropic/claude-sonnet-4-6@default,medium,target_position,center,500,0.616,0.4868449815620413,0.964,0.036,0.79798,0.518,0.216,0.48,7000.0,8105.81,2026.988
+anthropic/claude-sonnet-4-6@default,long,target_position,center,500,0.638,0.481060118566641,0.992,0.008,0.82266,0.512,0.216,0.492,13000.0,14105.812,3527.0

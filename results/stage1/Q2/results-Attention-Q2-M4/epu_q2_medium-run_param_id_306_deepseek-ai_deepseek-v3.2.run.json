@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:02:23.938398Z",
+  "endTime": "2026-03-31T19:02:26.788903Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-fdfa91bb",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nCompanies Hesitating On China: Existing Operations Will Stay, but ... By RICHARD W. STEVENSONSpecial to The New York Times New York Times (1923-Current file); Jul 3, 1989; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. 25 Companies Hesitating On China Existing Operations Will Stay, but Plans Are Being Delayed By RICHARD W. STEVENSON Special to The New York Times LOS ANGELES, July 2 \u2014 Despite uncertainty about China's political course, most American corporations doing business in China express confi\u00addence in the country's long-term eco\u00adnomic prospects and seem intent on maintaining operations there. But nearly a month after the Chi\u00adnese Government's violent suppres\u00adsion of the pro-democracy demon\u00adstrations in Beijing, it remains un\u00adclear whether companies that do not already have operations in China will be willing to invest there in coming years. Consultants and industry execu\u00adtives said some of these companies might use the Chinese leadership's newfound willingness to make con\u00adcessions to foreign investors as an ex\u00adcuse to jump into the market. But they said questions about China's stability and economic policy are forcing many American companies to delay or scale back their plans for Chinese ventures. Motorola Inc. has put on hold its plans to build two factories in China to make semiconductors and mobile radio equipment, at least until the political situation settles down suffi\u00adciently for the company to make a long-term assessment of the ven\u00adture's pro\n\n[...TRUNCATED...]\n\ner the actions of the Chinese Gov\u00adernment, some companies operating in China or considering doing busi\u00adness there are becoming concerned about public perceptions of their Chi\u00adnese ties. Some executives and con\u00adsultants say they worry that a \"busi\u00adness as usual\" attitude could brand them as insensitive to human rights concerns or make them the target of advocacy groups like companies that do business in South Africa. \"My sense is that no one in the busi\u00adness community is doing a social or ethical assessment of what it means to do business in China,\" said Timo\u00adthy Smith, the executive director ofthe Interfaith Council on Corporate Responsibility, a group that has backed efforts to pressure companies to divest holdings in South Africa. \"I think it's likely to creep up as an issue.\" For now, though, many of the com\u00adpanies with the most experience in China are pushing ahead, with no change in plans. Nike Inc., which has been doing business in China for 10 years, makes sneakers in three plants it owns in southern China with a Taiwan joint venture partner. Liz Dolan, a spokeswoman for Nike, said the unrest in Beijing had not affected the company's outltok for its opera\u00adtions there, which now export 90 per\u00adcent of the sneakers they produce. \"China is part of our long-term plan, definitely,\" she said. \"We think it holds potential not only as a manu\u00adfacturing center but also obyiously as a huge consumer market. We have no intention of just running away.\"\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"questions about China's stability and economic policy are forcing many American companies to delay or scale back their plans for Chinese ventures.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1622,
+            "outputTokens": 51,
+            "inputTokensCostNanodollars": "618016",
+            "outputTokensCostNanodollars": "85680",
+            "totalBackendLatencyMs": "2634"
+          },
+          "id": "epu_q2_medium-fdfa91bb-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1622,
+        "outputTokens": 51,
+        "inputTokensCostNanodollars": "618016",
+        "outputTokensCostNanodollars": "85680",
+        "totalBackendLatencyMs": "2634"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #307"
+}

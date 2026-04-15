@@ -1,0 +1,5 @@
+llm_name,condition,n_rows,section_retrieval_rate,epu_only_acc,joint_acc,json_valid_rate,parse_failure_rate,excerpt_in_target_rate,confidence_mean,mean_target_position_norm
+google/gemini-3.1-pro-preview,easy,500,1.0,0.682,0.682,1.0,0.0,0.998,0.9541399999999999,0.25
+google/gemini-3.1-pro-preview,hard,500,1.0,0.6793587174348698,0.6793587174348698,0.998,0.002,0.994,0.9570541082164329,0.75
+google/gemini-3.1-pro-preview,medium,500,1.0,0.6833667334669339,0.6833667334669339,0.998,0.002,0.996,0.9596793587174348,0.5
+google/gemini-3.1-pro-preview,very_hard,500,1.0,0.678,0.678,1.0,0.0,0.996,0.9574600000000001,1.0

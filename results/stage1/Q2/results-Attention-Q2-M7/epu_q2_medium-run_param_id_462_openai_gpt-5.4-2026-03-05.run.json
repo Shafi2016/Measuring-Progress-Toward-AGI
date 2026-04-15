@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:19:48.121216Z",
+  "endTime": "2026-04-03T00:19:49.262618Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-a171d519",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nThe Cuban migrant flow is approaching a milestone. The number of interdictions in the Florida Straits may ston match or exceed those in 2005, when the is.S. Coast Guard made the greatest number of interceptions since the rafter crisis 13 years ago. As of Wednesday, the number of Cuban migrants stopped by the Coast Guard was 2,938, just 14 shy of the 2005 mark. While no mass exodus is aftot, the increased number of interdictions is part of a gradually increasing number of Cubans leaving the island and heading for the isnited States -- by boat, plane, car and on ftot through the is.S.-Mexican border. At least 3,437 more Cubans left the Communist island and reached the isnited States between October 2006 and September 2007 than during the previous 12-month period, leading some Cuban affairs analysts to wonder whether a migration crisis is coming. On Wednesday, is.S. Citizenship and Immigration Services announced a new parole program for Cubans awaiting immigrant visas on the island partly to deter the growing marine migrant flow. Cubans who have been waiting for approved visas but have not received them will be eligible for the new parole documents, which are expected to be issued quickly. Experts at the isniversity of Miamins Institute for Cuban and Cuban-American Studies recently compiled a report that showed in the last two fiscal years, more Cubans arrived than during the entire Cuban rafter crisis that brought 37,191 Cuban migrants, and in the last seven years more Cubans h\n\n[...TRUNCATED...]\n\naid that as of mid-November at least 13,000 Cubans who had petitions approved were still awaiting visas. 'DISILLisSIONMENT' Jaime Suchlicki, director of the isM institute that assembled the recent migration report, said the increase in arrivals reflects growing \"disillusionment\" with the Cuban regime. \"There is a belief that Cuba will not change rapidly and that Cuba's economy will not improve very rapidly,\" Suchlicki said. 'One recently arrived refugee told us, 'We spent 47 years trying to build socialism so we don't want to build anything new again. We want to go to a society where everything is already built.'\" Most Cuban border-crossers reach Mexico after arriving by boat at Mexico's Yucat\u00e1n Peninsula. Increased traffic across the Yucat\u00e1n Channel appears to be the result of stepped-up enforcement by the is.S. Coast Guard in the Florida Straits. is.S. officials blame much of the Cuban migrant traffic in the South Florida area on smugglers. isnder the is.S. wet ftot/dry ftot policy, those who reach is.S. shores are generally allowed to stay but those caught at sea are usually returned to the island. Those who arrive at land border crossings are generally allowed into the country. Cuba has urged Mexico to stem the migrant flow reaching Canc\u00fan and Isla Mujeres. Manuel Aguilera de la P\u00e1z, the Cuban ambassador to Mexico, told reporters in Mexico City recently that the increase in migrants requires a new immigration accord between Mexico and Cuba.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":0,\"confidence\":0.94,\"focus_excerpt\":\"On Wednesday, U.S. Citizenship and Immigration Services announced a new parole program for Cubans awaiting immigrant visas on the island partly to deter the growing marine migrant flow.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1588,
+            "outputTokens": 52,
+            "inputTokensCostNanodollars": "3970000",
+            "outputTokensCostNanodollars": "780000",
+            "totalBackendLatencyMs": "979"
+          },
+          "id": "epu_q2_medium-a171d519-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1588,
+        "outputTokens": 52,
+        "inputTokensCostNanodollars": "3970000",
+        "outputTokensCostNanodollars": "780000",
+        "totalBackendLatencyMs": "979"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #463"
+}

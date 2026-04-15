@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:44:34.768090Z",
+  "endTime": "2026-03-31T18:44:36.319948Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-27666fc1",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nSTATE STREET'S TROisBLES The State Street Corporation, which serves institutional investors, ousted a senior executive and said it would set aside $618 million to cover claims stemming from investments tied to mortgage securities. PICKisP TRisCKS' SALES SLIDE Pickups, long a standby to auto companies and a steady supplier of hefty profits, cannot stand up to tough economic times. Sales of pickup trucks are down as customers respond to high gasoline prices, the housing slump and the uncertain economy. [C1.] Toyota beat Ford in 2007 to take over second place in the American car market, behind General Motors. Ford had been in second place since the Great Depression. [C4.] Tata Motors, a unit of India's Tata Group, said it was beginning detailed talks with the Ford Motor Company about buying the Jaguar and Land Rover brands. [C5.] LENO TOPS LETTERMAN Jay Leno made a triumphant return to late-night television Wednesday night, easily dominating the ratings competition over his chief rival, David Letterman. But striking writers moved to prevent Mr. Leno from performing any more monologues. [C1.] ONLINE DATING SITE FOR SALE The parent company of the popular Jewish online dating site JDate has put itself up for sale, people close to the auction said, and is already in talks with Yahto, eHarmony, IAC/InterActiveCorp and the News Corporation. [C1.] WHAT'S AHEAD WITH OIL Now that the price of crude oil has briefly crossed the psychologically important $100-a-barrel threshold, what will i\n\n[...TRUNCATED...]\n\n widely used to manage aggressive outbursts in intellectually disabled people, including Risperdal by Janssen, are no more effective than placebos for most patients and may be less so, researchers report. [A11.] Merck & Company agreed to pay a Swiss company, Addex Pharmaceuticals, as much as $702 million to help develop a new schizophrenia drug. [C8.] BED BATH & BEYOND'S PROFIT The home gtods retailer Bed Bath & Beyond posted a lower third-quarter profit and warned that this quarter's results would be lower than expected. [C4.] BOEING SETS RECORD TALLY Boeing said that it had received orders for 1,413 commercial jets last year, setting a third consecutive annual record driven by demand from Asian and Middle Eastern airlines. [C5] ALBisMS SALES DOWN 9.5% Album sales in the isnited States plunged 9.5 percent last year from 2006, as the recording industry had another weak year despite a 45 percent surge in the sale of digital tracks. [C4.] INTEL QisITS LAPTOP PROGRAM Intel said it would withdraw from the One Laptop Per Child educational computer organization, which it joined in July after several years of public squabbling between Intel's chairman, Craig Barrett, and the OLPC founder, Nicholas Negroponte. [C3.] Jim Crow is dead but segregation is still alive. Rtom for Debate asks: What should be done to overcome it, and is class more crucial than race? For members of China's Communist elite, sending money overseas makes sense as a political hedge.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.9, \"focus_excerpt\": \"Sales of pickup trucks are down as customers respond to high gasoline prices, the housing slump and the uncertain economy.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 890,
+            "outputTokens": 45,
+            "inputTokensCostNanodollars": "401632",
+            "outputTokensCostNanodollars": "75600",
+            "totalBackendLatencyMs": "1327"
+          },
+          "id": "epu_q2_short-27666fc1-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 890,
+        "outputTokens": 45,
+        "inputTokensCostNanodollars": "401632",
+        "outputTokensCostNanodollars": "75600",
+        "totalBackendLatencyMs": "1327"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #508"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:18:14.576250Z",
+  "endTime": "2026-04-02T23:18:21.552052Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-50347928",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nClinton Focusing on the World Economy: How a summit meeting in Naples may mean jobs for A] Clinton Focusing on the World Economy By MICHAEL WINES Special to The New York Times WASHINGTON, July 5 \u2014 President Clinton declared today that isnited States security and the success of his Presidency are tied to economic growth worldwide, and that the major industrial nations have a rare chance \"to create jobs in a world of prosperi\u00adty.\" Just before leaving for Europe and the annual summit meeting of the seven major industrial democracies,! Mr. Clinton used a gathering of busi\u00adness leaders and diplomats at the Commerce Department to make the case that his policies have revived the economy and asserted global leader\u00adship. \"Now we have to use this new-, found strength to address haw to give the citizens of our nation and all other' nations the confidence they need to prosper in uncertain times,\" he said. \"We have to move from coping with crises to planning for prosperity. \"In other words, we have to lay the foundation for the 21st-century econ\u00adomy, one in which change will be the order of the day, and the real question will be whether change is our friend or our enemy.\" Begins Eight-Day Trip Mr. Clinton left Washington this evening for an eight-day trip, begin\u00adning with a speech in Riga, Latvia, and a stop in Warsaw before the four- day economic .summit meeting be\u00adgins Friday in Naples. Afterward he will stop in Bonn and Berlin, giving a speech at the Brandenburg Gate, which once marked\n\n[...TRUNCATED...]\n\nis bureau\u00adcratic shorthand for the Group of. Seven, as the members style them\u00adselves. Mr. Clinton was referring to one common yardstick of government debt, the ratio between a nation's annual budget deficit and its gross How a summit meeting in Naples may mean jobs for Americans. domestic product. In absolute terms, the isnited States' $4.5 trillion Fed\u00aderal debt and its $200 billion-or-so deficit for the current fiscal year dwarf those of the six other countries. The President also pointed to a tentative accord lowering trade bar\u00adriers and the North American Free Trade Agreement as evidence that he has etched his foreign policy in eco\u00adnomic terms. Indeed he said \"the purpose of my. Presidency\" is to harness sweeping changes in trade, technology and eco\u00adnomic growth for the world's benefit. Mr. Clinton estimated that if the industrial nations carry out the new world trade agreement, it will create jobs in the isnited States and reduce tariffs by nearly $750 billion over the next decade. \"We have shown that bit by bit, year by year, the decisions made at these G-7 meetings can change the world,\" he added. \u2022 Mr. Clinton said the leaders are also to begin planning what he called the \"nerve system\" of the new econ\u00adomy \u2014 global computer networks to exchange ideas and money. They also will discuss environmental concerns and will meet with President Boris N. Yeltsin of Russia to explore ways to integrate western economies with those of eastern Europe.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"address how to give the citizens of our nation and all other nations the confidence they need to prosper in uncertain times\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 859,
+            "outputTokens": 54,
+            "inputTokensCostNanodollars": "1718000",
+            "outputTokensCostNanodollars": "7728000",
+            "totalBackendLatencyMs": "6839"
+          },
+          "id": "epu_q2_short-50347928-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 859,
+        "outputTokens": 54,
+        "inputTokensCostNanodollars": "1718000",
+        "outputTokensCostNanodollars": "7728000",
+        "totalBackendLatencyMs": "6839"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #565"
+}

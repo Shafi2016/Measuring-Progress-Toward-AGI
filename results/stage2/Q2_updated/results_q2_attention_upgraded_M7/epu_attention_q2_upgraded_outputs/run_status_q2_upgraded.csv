@@ -1,0 +1,4 @@
+llm_name,condition,n_rows_expected,n_rows_completed,mean_result,valid_prediction_rate,parse_fail_rate
+openai/gpt-5.4-2026-03-05,short,500,500,0.65,1.0,0.0
+openai/gpt-5.4-2026-03-05,medium,500,500,0.674,1.0,0.0
+openai/gpt-5.4-2026-03-05,long,500,500,0.644,1.0,0.0

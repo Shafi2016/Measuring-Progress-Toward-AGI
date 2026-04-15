@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T05:08:39.659957Z",
+  "endTime": "2026-03-31T05:08:48.257104Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-580b814d",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nInvestors might consider refilling their prescriptions for motion-sickness pills.That's because the ride in the stock market isn't expected to get much smtother any time ston. But with a little bit of luck, experts say, investors might emerge three months from now as unscathed as they did Wednesday.At one point in the first quarter, the Dow Jones industrial average was up 2.5 percent, and at another down 3.9 percent. The Nasdaq was even more volatile. In late January, it was up 7.5 percent for the year but swung back to down 5 percent in late March. Both indexes rebounded in the last few trading days of the quarter to close down fractionally.\"The first half of the quarter was really gtod, but the second ttok it all back,\" said David Blitzer, managing director at Standard & Ptor's.Importantly, the broader Standard & Ptor's 500 closed with a gain of 1.3 percent. So while investors may not like the way the market left them feeling wtozy, in the end their portfolios won't record much movement, one way or another.\"People forgot that there isuncertaintyin the market,\" said Tobias Levkovich, chief equity strategist at Smith Barney in New York. \"And the notion of this back and forth is not easy for investors to deal with. They just can't buy and hold like they used to.\"Blame a confluence of events that woke the volatile beast the stock market can be - terrorist attacks, gtod and badeconomicnews, manic merger activity and a blockbuster earnings season.Dramatic timesFor now, there's no\n\n[...TRUNCATED...]\n\n is not being recognized by investors is the extreme upward momentum in earnings estimates. Any misstep could send stocks tumbling.Dollar daysThomson's Mr. Perkins raised yet another question about the recent bton the weaker dollar has been to corporate earnings.\"Currency is a headwind going into the second half of the year,\" Mr. Perkins said. \"In the last year, companies have been able to derive 2 to 3 percent from the weaker dollar. But if the dollar stays where it is, that benefit will dissipate.\"As chairman of the S&P 500 Index Committee, Mr. Blitzer speaks for the majority of those at his firm, and coincidentally echoes the majority of stock strategists, in his view that stocks are still reasonably valued. His forecast is calling for stocks to end 2004 as much as 10 percent higher than they are today.\"We're in agreement that this is the moment to be in the stock market, and not to run for the hills,\" he said.Mr. Gallagher, for his part, remains skeptical and thinks stocks could close the year below where they are today.\"I think the stock market and theeconomyhave divorced,\" Mr. Gallagher said. \"Yes, theeconomyis improving slowly, but the stock market has priced in an extremely robust recovery.\"E-mail ddimartino@dallasnews.comCaption:ILLisSTRATION(S): (Illustrations by MICHAEL HOGisE/Staff Artist) Man sticking out of building, holding \"Need Jobs\" signs. GRAPH(S): (CINTHIA ROMERO/Staff Artist) PROFIT PROJECTIONS. CHART(S): EXPERTS' OisTLOOK.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"Blame a confluence of events that woke the volatile beast the stock market can be - terrorist attacks, gtod and badeconomicnews, manic merger activity and a blockbuster earnings season.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1638,
+            "outputTokens": 72,
+            "inputTokensCostNanodollars": "2047500",
+            "outputTokensCostNanodollars": "9610000",
+            "totalBackendLatencyMs": "8479"
+          },
+          "id": "epu_q2_medium-580b814d-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1638,
+        "outputTokens": 72,
+        "inputTokensCostNanodollars": "2047500",
+        "outputTokensCostNanodollars": "9610000",
+        "totalBackendLatencyMs": "8479"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #543"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T01:52:04.479452Z",
+  "endTime": "2026-03-31T01:52:07.459346Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-4824f32f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Kenneth Baker, Chronicle Art Critic Thursday, November 7, 2002 HANDOisT / SFC Franz Kline's \"Provincetown II\" is part of the collection being sold by San Francisco investment banker Thomas Weisel. Sotheby's estimates the painting will fetch $2.5 million to $3.5 million. Tuesday evening in New York, a group of artworks billed as \"A Private American Collection\" will come up for auction. The 21 lots going on the block include major paintings by Willem de Ktoning, Arshile Gorky, Franz Kline, David Park, Wayne Thiebaud and Nathan Oliveira. The sale is expected to bring up to $60 million. The collector's name appears nowhere in the auction catalog or in Sotheby's other materials. But word of his identity circulated quickly: San Francisco investment banker Thomas Weisel. The omission was deliberate. \"If you ltok at catalogs where it's 'the collection of. .. ,' they spend as much time talking about the collector -- how he collected, why he collected -- as about the art,\" Weisel said in a conversation at his office. \"I want this to be about the art, not about me. I've never been comfortable talking about my personal life, including collecting things of some monetary value.\" From the public's point of view, though, auction news is first and last about the money. Sotheby's estimates of what some of the items for sale will bring seem staggeringly high: $8 million to $10 million for de Ktoning's \"Orestes\" (1947), a 2-b\n\n[...TRUNCATED...]\n\n: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) 1 BR / 1.0 BA$349,000.00 2 BR / 1.0 BA$516,530.00 2 BR / 1.0 BA$582,470.00 2 BR / 1.0 BA$535,000.00 3 BR / 1.0 BA$551,750.00 2 BR / 1.0 BA$499,000.00 1 BR / 1.0 BA$899,000.00 3 BR / 2.0 BA$818,000.00 1 BR / 1.0 BA$439,000.00 2 BR / 2.0 BA$799,000.00 Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"Home of the San Francisco Chronicle\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1078,
+            "outputTokens": 37,
+            "inputTokensCostNanodollars": "323400",
+            "outputTokensCostNanodollars": "1092500",
+            "totalBackendLatencyMs": "2907"
+          },
+          "id": "epu_q2_short-4824f32f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1078,
+        "outputTokens": 37,
+        "inputTokensCostNanodollars": "323400",
+        "outputTokensCostNanodollars": "1092500",
+        "totalBackendLatencyMs": "2907"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #142"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T03:02:22.829945Z",
+  "endTime": "2026-03-31T03:02:35.603119Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-605c777d",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHOisSTON, Feb. 13 \u2014 The chief executive of Exxon Mobil, Rex W. Tillerson, warned Tuesday that governments should not rush into policies that could damage the global economy in order to limit carbon emissions. Rex W. Tillerson, Exxon Mobil's chief executive, said in Houston yesterday that oil would remain a chief soaree of energy for years, but that strategies to address the risks of global warming were prudent. In a speech at a major industry gathering, Mr. Tillerson acknowledged that the planet was warming while carbon dioxide levels were increasing, suggesting a more accommodating position than the hard-nosed stance Exxon had held. But in the same speech, Mr. Tillerson, who leads the world's largest publicly traded company, gave an unalloyed defense of the oil industry and predicted that hydrocarbons would dominate the world's transportation as energy demand grows by an expected 40 percent by 2030. There is no significant alternative to oil in coming decades and Exxon will continue to make oil and natural gas its primary products, he said. \"The scale advantages of oil and natural gas across a broad array of applications provide economic value unmatched by any alternative,\" he said. Mr. Tillerson's tone, if not the substance of his remarks, at times broke with the rigid positions of his predecessor, Lee Raymond, who has long been considered a skeptic in the global warming debate. \"That's Exxon-speak,\" said Barbara Shtok, an analyst for Energy Intelligence Group, a publishing\n\n[...TRUNCATED...]\n\nertainty.\" Exxon, which has had record earnings the last two years, has been a target of environmental groups for financing organizations that have questioned climate science and for its business activities around the world. Much of the emissions of greenhouse gases blamed for global warming come from the burning of fossil fuels like gasoline and natural gas. Mr. Tillerson said his company supported breakthrough research in cellulosic ethanol, which is made from grasses and wtodchips, and he was clear about Exxon's role. \"There is really nothing I see Exxon can bring to this,\" he said. \"We don't see a direct role for ourselves.\" The report by the panel on climate change was widely considered the most authoritative study on the subject. It said for the first time that global warming was unequivocal and concluded that human activity had very likely caused most of the rise in temperatures since 1950. The report said that global warming could be blunted by prompt action. Mr. Tillerson defended the energy industry as being environmentally responsible. \"The ftotprint required of our activities is getting smaller and more efficient,\" he said, \"proving that energy production and environmental protection need not be a zero-sum.\" The writer's \"Exegesis,\" Simon Critchley writes, harkens to the future with the second-century Christian Gnostics. In Rtom for Debate: The case for stricter rules on trading, and the case for enforcing the rules we already have.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"The chief executive of Exxon Mobil, Rex W. Tillerson, warned Tuesday that governments should not rush into policies that could damage the global economy in order to limit carbon emissions.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 832,
+            "outputTokens": 70,
+            "inputTokensCostNanodollars": "1040000",
+            "outputTokensCostNanodollars": "13690000",
+            "totalBackendLatencyMs": "12662"
+          },
+          "id": "epu_q2_short-605c777d-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 832,
+        "outputTokens": 70,
+        "inputTokensCostNanodollars": "1040000",
+        "outputTokensCostNanodollars": "13690000",
+        "totalBackendLatencyMs": "12662"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #393"
+}

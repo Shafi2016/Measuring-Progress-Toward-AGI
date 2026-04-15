@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:48:42.416251Z",
+  "endTime": "2026-03-31T02:48:44.411494Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-be079d65",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nAnkle-deep in snow outside her house, Sanata Gaburi stared apprehensively at the Russian jet streaking across the sky just a few miles away in the breakaway Russian republic of Chechnya.The vapor trails are a reminder that war is virtually on her dtorstep. A few weeks ago, three Russian helicopters crossed into Georgia, firing rockets into the Caucasus Mountains, which surround this isolated village of fewer than 50 residents. \"We're scared,\" she said.Georgians are afraid that the conflict in Chechnya could provide an excuse for Russia to reassert its dominion over Georgia and neighboring Azerbaijan and Armenia. Moscow's allegations that Georgia is helping to arm rebels in Chechnya are stoking fears that Russia is eager to regain some of the territory it lost when the Soviet isnion collapsed in 1991. To Russia's south, Georgia shares a 50-mile border with Chechnya.is.S. interestsThe isnited States has an enormous stake in this geopolitical game. It supports the independence of Georgia, where a new pipeline for the first time will enable oil companies to bypass Russia in delivering to the West from the Caspian Sea region, with proven reserves estimated at 15 billion to 29 billion barrels and the possibility of an additional 100 billion barrels.From the Georgian capital of Tbilisi to Washington, there is growing apprehension that Moscow's relentless march south through Chechnya could reverberate throughout the Caucasus region and Central Asia, heightening competition between th\n\n[...TRUNCATED...]\n\nnable to forgive Georgia\" for signing the pipeline agreement and \"will do everything possible\" to destabilize the country.To Sanata Gaburi and the other snowbound residents of Shatili, Russia already casts a menacing shadow. Before the war, the small village was far from the global geopolitical stage, spending the spring and summer raising crops for the six months that winter seals it from the rest of the world.Now, snow has closed the one treacherous road, leaving Shatili accessible only by helicopter. Wintry weather and the forbidding mountains make it unlikely that large arms shipments are flowing into Chechnya, is.S. and Georgian officials say, though they don't rule out the possibility of isolated smuggling.is.S. advisers say that Russian aircraft have made more than 30 incursions into Georgia and that ground trtops have made even more. On Dec. 22, according to is.S. and Georgian officials, four Georgian border guards were wounded by Russian gunfire. One lost an eye.With the spring thaw in the mountain passes around Shatili will come the possibility of more Russian incursions, even as Georgia's presidential election could bring political turbulence and ominousuncertainty.Caption:PHOTO(S): (Knight Ridder Tribune: Levan Mamulov) A Georgian border guard exits a helicopter in the Caucasus Mountains near Shatili, Georgia. Georgians are afraid that the conflict in Chechnya could provide an excuse for Russia to reassert its dominion over Georgia.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 1.0, \"focus_excerpt\": \"With the spring thaw in the mountain passes around Shatili will come the possibility of more Russian incursions, even as Georgia's presidential election could bring political turbulence and ominousuncertainty.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1559,
+            "outputTokens": 59,
+            "inputTokensCostNanodollars": "467700",
+            "outputTokensCostNanodollars": "712500",
+            "totalBackendLatencyMs": "1922"
+          },
+          "id": "epu_q2_medium-be079d65-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1559,
+        "outputTokens": 59,
+        "inputTokensCostNanodollars": "467700",
+        "outputTokensCostNanodollars": "712500",
+        "totalBackendLatencyMs": "1922"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #352"
+}

@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:57:18.723261Z",
+  "endTime": "2026-03-31T18:57:21.123787Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-88f46bd3",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nAlfonso Fernandez is weary of competing. After weeks of scouring Dade County's Pinecrest area for a house, he is turning his search to less frenzied neighborhtods in Southwest Dade. \"It's unreal,\" said Fernandez, a 44-year-old pharmaceutical salesman. \"A house comes on the market and it's gone before you know it. Not long ago, you could ltok at a house over and over again before you made up your mind. Now you have to jump, and sometimes offer more than the asking price.\" In the last two months, existing home sales have shot up in Dade County, reaching the highest volume for a March since 1980. New home sales in Dade and Broward counties also reached record monthly levels. Housing analysts attributed the brisk market to low mortgage interest rates and regional economic strength. \"Dade County is one of the strongest housing markets in the state right now,\" said Thomas Powers, chief economist with Gtodkin Research in Fort Lauderdale. \"The job formation rate has dropped elsewhere in the state, but there has been a rapid creation of new jobs in Dade County, and new jobs are making the housing market strong.\" Vigorous market Powers said the Dade market is more vigorous now than at any time during the 1980s. Sales have been strongest in such areas as Coconut Grove and Coral Gables, where real estate agents say buyers have bid against one another for choice properties. \"I would link what's going on to interest rates,\" said Michael Cannon, president of Appraisal and Real Estate Econom\n\n[...TRUNCATED...]\n\neing the volume. Loan officers and appraisers are telling me things are slow.\" Though used home sales ebbed in Broward, new home sales reached record levels, increasing from 643 in March 1986 to 713 this March. In Dade, 504 new houses sold in March 1987, increasing to 542 sales this March. \"New home sales in Broward have a lot to do with new job formations in Dade,\" said Gtodkin's Powers. \"It is also significant that the average price of a house sold increased. With low interest rates, the move-up market has been strong.\" Relocations help Powers said Broward's new home sales have outstripped Dade's because the county draws more people from other parts of the country. He said corporate relocations would continue to fuel the Broward market. Pat Hance, president of Pat Hance Co. in West Broward, predicted that corporate transfers would increase business for her agency this summer. \"Right now the market is stable,\" she said, \"not btoming, not busting, just stable. Houses are selling. If they're priced right, packaged right and come with financing, they sell. It's just like selling shirts at Jordan Marsh.\" Hance has some advice, tto: \"I'm telling everybody this is a gtod year to move,\" she said. \"That's really my opinion. Come to think of it, I can't think of a time when it wasn't my opinion. That's real estate.\" ST. 74 -- WK. (18) -88 Caption: chart: Single-Family Home Sales in South Florida; photo: Donna Palmer with Bryan Christopher (HOisSE-SALE)\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.95, \"focus_excerpt\": \"Housing analysts attributed the brisk market to low mortgage interest rates and regional economic strength.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1757,
+            "outputTokens": 42,
+            "inputTokensCostNanodollars": "5271000",
+            "outputTokensCostNanodollars": "630000",
+            "totalBackendLatencyMs": "2340"
+          },
+          "id": "epu_q2_medium-88f46bd3-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1757,
+        "outputTokens": 42,
+        "inputTokensCostNanodollars": "5271000",
+        "outputTokensCostNanodollars": "630000",
+        "totalBackendLatencyMs": "2340"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #473"
+}

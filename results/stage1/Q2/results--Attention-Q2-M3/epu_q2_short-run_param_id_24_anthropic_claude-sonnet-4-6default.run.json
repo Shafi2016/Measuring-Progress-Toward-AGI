@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:24:28.428564Z",
+  "endTime": "2026-03-31T18:24:29.549549Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-319d4c8f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nThe Northwest Florida Beaches International Airport in Panama City, planned when the economy was better, is scheduled to open May 23. Its supporters see it as a gateway to the future of Florida's panhandle coast. The first new international airport in the isnited States in more than decade is set to open in May near Panama City, Fla., a community of 37,000 people on the state's panhandle. That is no small feat given the environmental, regulatory and financial hurdles involved in building runways and terminals, as well as community opposition to planes flying overhead. But the airport, Northwest Florida Beaches International, is also noteworthy because it is perhaps more of a real estate project than an effort to address a pressing transportation problem. Backed by a major Florida landowner, it is part of a plan to create \"a new national and international destination,\" as one investor presentation proclaims, in a relatively sleepy region of beaches, barrier islands and wetlands. \"Silicon Valley at one point was out in the middle of nowhere,\" said Britt Greene, president and chief executive of the St. Joe Company, the Florida developer that donated the land for the new airport and is the driving force behind the project. \"We think we can do the same.\" St. Joe, once primarily a timber and paper company, has shifted to development and real estate, and owns hundreds of thousands of acres of land in northwest Florida. The airport property, northwest of Panama City, occupies just a \n\n[...TRUNCATED...]\n\n as barriers to extending the existing runway. The new airport will have a 10,000-ftot runway, longer than the two 7,000-ftot runways at LaGuardia Airport in New York. Mr. Curtis acknowledged that managing storm water was the airport's biggest challenge, but said that once the system for filtering and treating storm water was finished it would exceed regulatory requirements. \"Once the airport is completed and constructed, you'll actually have a net environmental improvement in the area,\" he said, referring to the conservation easement St. Joe agreed to in order to mitigate the effects of building the airport on wetlands. As part of its West Bay sector plan, the St. Joe Company promised to set aside 41,000 acres as a nature preserve, though environmental groups note that so far only 10,000 acres have been legally given this status, leaving the remaining parcel's fate uncertain. \"What we had wanted them to do was create a written document where they legally put the land in a conservation trust though an easement,\" Mr. Longstreth said. \"They also could give it to an entity like the Nature Conservancy, but none of that has been done. It's simply protected by the creation of a county plan that could be changed at any point.\" The writer's \"Exegesis,\" Simon Critchley writes, harkens to the future with the second-century Christian Gnostics. In Rtom for Debate: The case for stricter rules on trading, and the case for enforcing the rules we already have.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.8, \"focus_excerpt\": \"environmental, regulatory and financial hurdles involved in building runways and terminals\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 900,
+            "outputTokens": 39,
+            "inputTokensCostNanodollars": "2700000",
+            "outputTokensCostNanodollars": "585000",
+            "totalBackendLatencyMs": "1085"
+          },
+          "id": "epu_q2_short-319d4c8f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 900,
+        "outputTokens": 39,
+        "inputTokensCostNanodollars": "2700000",
+        "outputTokensCostNanodollars": "585000",
+        "totalBackendLatencyMs": "1085"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #25"
+}

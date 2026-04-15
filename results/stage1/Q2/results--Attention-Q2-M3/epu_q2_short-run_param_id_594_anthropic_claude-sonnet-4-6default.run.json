@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:41:04.447792Z",
+  "endTime": "2026-03-31T18:41:05.702275Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-357e816f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nPLANO - Low-rise corporate campuses pepper this suburb's southeastern corner, monuments to the 1990s tech btom and zoning choices made a decade ago.Observers say the area, once destined to be a warehousing district, has come a long way since the City Council first turned it into a research and technology district spanning 1,100 acres. But with the corridor struggling amid aneconomicdownturn, the city faces a fork in the road.At the behest of several landowners, the council will take up a proposal Monday to open up more than 120 acres on the district's eastern edge to a bevy of new development, including retail.A trivial zoning matter at first blush, the proposal has spurred a policy debate among city leaders about the future of Plano's tech district, a regional job hub that is home to 14,000 workers but is now enduring hard times.Some landowners in the district believe their plots are unsuitable for tech offices. They want the area rezoned to draw more interest from prospective developers.Yet opponents say such a change could have lasting ramifications, lead to haphazard development and discourage tech businesses from expanding, staying in or relocating to the district.\"Those of us who own property in the immediate area are concerned about hodgepodge zoning,\" said Katherine Brewer, president of a mapping company in the district and a former member of the city's Planning and Zoning Commission.The stakes are high for Plano, which has long sought to use the technology district t\n\n[...TRUNCATED...]\n\nenging because the land is sloped and is near both a gun range and a recycling facility.Landowners have said that more flexible zoning, such as light commercial, would help spur development.But some business and home owners say a wholesale change would leave the district open to undesirable uses, such as auto repair shops and used car lots.But they are not completely adverse to change. For instance, they said they might support another development being discussed: a project near the Richardson border that would feature restaurants, retail and office space.\"We're not against beneficial changes to the district,\" said Alan Smith, 57, an author who lives nearby and represents several hundred homeowners in the neighborhtod. \"But we're against zoning that would give a blank check to any developer for anything.\"IF YOis GOThe Plano City Council is expected to vote on a plan to open up part of the research and technology district for broader new development, including retail. The council meeting will begin at 7 p.m. Monday at Plano City Hall, 1520 Ave. K in Plano. The item is expected to be last on the agenda.Caption:PHOTO(S): (JisAN GARCIA/Staff Photographer) Plano's tech district is home to 14,000 workers, but it hasn't grown as city officials hoped. Now there is a move aftot to transform and revitalize the area, including adding retail development. CHART(S): IF YOis GO MAP(S): (TOM SETZER/Staff Artist) PLANO - Plano's research and technology district\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.75, \"focus_excerpt\": \"the proposal has spurred a policy debate among city leaders about the future of Plano's tech district... Some landowners in the district believe their plots are unsuitable for tech offices. They want the area rezoned to draw more interest from prospective developers.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 937,
+            "outputTokens": 78,
+            "inputTokensCostNanodollars": "2811000",
+            "outputTokensCostNanodollars": "1170000",
+            "totalBackendLatencyMs": "1220"
+          },
+          "id": "epu_q2_short-357e816f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 937,
+        "outputTokens": 78,
+        "inputTokensCostNanodollars": "2811000",
+        "outputTokensCostNanodollars": "1170000",
+        "totalBackendLatencyMs": "1220"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #595"
+}

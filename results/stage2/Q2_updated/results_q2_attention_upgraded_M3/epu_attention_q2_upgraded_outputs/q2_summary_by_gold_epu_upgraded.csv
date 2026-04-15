@@ -1,0 +1,7 @@
+llm_name,condition,group_name,group_value,n_rows,accuracy,accuracy_sd,valid_prediction_rate,parse_fail_rate,mean_confidence,excerpt_in_target_rate,fp_rate_among_gold0,fn_rate_among_gold1,mean_total_chars,mean_prompt_chars,mean_prompt_tokens
+anthropic/claude-sonnet-4-6@default,short,gold_epu,1,250,0.46,0.49939722702618783,0.992,0.008,0.8101199999999998,0.44,,0.532,3000.0,4105.808,1026.996
+anthropic/claude-sonnet-4-6@default,short,gold_epu,0,250,0.776,0.41775840907564465,0.992,0.008,0.83128,0.608,0.216,,3000.0,4105.8,1026.992
+anthropic/claude-sonnet-4-6@default,medium,gold_epu,1,250,0.488,0.5008587003846534,0.968,0.032,0.7915599999999999,0.492,,0.48,7000.0,8105.8,2026.976
+anthropic/claude-sonnet-4-6@default,medium,gold_epu,0,250,0.744,0.4372972852221365,0.96,0.04,0.8044,0.544,0.216,,7000.0,8105.82,2027.0
+anthropic/claude-sonnet-4-6@default,long,gold_epu,1,250,0.5,0.5010030100351265,0.992,0.008,0.81552,0.46,,0.492,13000.0,14105.812,3527.0
+anthropic/claude-sonnet-4-6@default,long,gold_epu,0,250,0.776,0.41775840907564465,0.992,0.008,0.8298,0.564,0.216,,13000.0,14105.812,3527.0

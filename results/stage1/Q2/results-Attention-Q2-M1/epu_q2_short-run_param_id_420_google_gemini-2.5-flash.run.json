@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:12:17.710051Z",
+  "endTime": "2026-03-31T02:12:22.131231Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-70c29c8a",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nComsat Enters an isncertain New Era: Intelsat Plan May Force New ... By Elizabeth Tucker Washington Post Staff Writer The Washington Post (1974-Current file); Feb 25, 1985; ProQuest Historical Newspapers: The Washington Post (1877-1997) pg. 69 Comsat Enters an isncertain New Era Intelsat Plan May Force New Competitive Spirit By Elizabeth Tucker Washington Post Staff Writer T he sky was the limit when Congress launched the Communications Satellite Corp. 22 years ago. The Kennedy administration had proposed the quasi-governmental corporation to build a space network of satellites that would revo\u00adlutionize communications around the world\u2014 transmitting international telephone calls in seconds, allowing customers to wish distant relatives happy birthday by telegram, or bringing live television coverage to the re\u00admotest sections of the globe. But today, after 20 years of monopoly over the access of is.S. companies to satellite ser\u00advice, Comsat's very existence may be threat\u00adened. Many federal regulators and industry analysts believe that new, affordable technol\u00adogies and the free enterprise system may have rendered Comsat obsolete. Comsat controls the is.S. end of the inter\u00adnational satellite market through its involve\u00adment with Intelsat, the global communica\u00adtions consortium it helped create in the 1960s. If Comsat loses its monopoly over ac\u00adcess to Intelsat\u2014as Commerce Department officials proposed last week\u2014it will face re\u00adnewed pressure to make a success of its ven\u00adtures in the\n\n[...TRUNCATED...]\n\ncturing satellites and other telecommunications equipment, leaving that business to compa\u00adnies such as Ford Aerospace and RCA. Like\u00adwise, it chose not to push to become a com\u00admon carrier like AT&T, the official said. In\u00adstead, Comsat launched a domestic satellite system for AT&T, giving up its chance at launching its own systems because of FCC concerns that Comsat would wield tto mudh power in the new market. The company also passed up opportunities to acquire Scientific Atlanta and the Farinon Division of Harris Corp., the official said. The two companies have become major manufac\u00adturers of increasingly popular back-yard sat\u00adellite dishes. \"We have missed opportunities in the past, there is no doubt about that,\" Day said. \"But so have IBM and other major corporations.\" Some ventures\u2014such as launching domestic satellite systems for companies other than AT&T\u2014were blocked by the FCC, Day said. Manufacturing satellites on a large scale was not feasible in the 1960s because there was no market for commercial satellites, Day said. Companies such as Ford Aerospace were producing satellites for the military and already had tto much of a head start. But now, Day said, \"We will become a suc\u00adcessful competitive organization and it will be focused. Joseph Charyk [chairman of the board and CEO] and Irving Goldstein [pres\u00adident] are at the center of it.\" \u25a0 Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.9, \"focus_excerpt\": \"If Comsat loses its monopoly over ac\u00adcess to Intelsat\u2014as Commerce Department officials proposed last week\u2014it will face re\u00adnewed pressure to make a success of its ven\u00adtures in the\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 874,
+            "outputTokens": 65,
+            "inputTokensCostNanodollars": "262200",
+            "outputTokensCostNanodollars": "1775000",
+            "totalBackendLatencyMs": "4357"
+          },
+          "id": "epu_q2_short-70c29c8a-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 874,
+        "outputTokens": 65,
+        "inputTokensCostNanodollars": "262200",
+        "outputTokensCostNanodollars": "1775000",
+        "totalBackendLatencyMs": "4357"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #421"
+}

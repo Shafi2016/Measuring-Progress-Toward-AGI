@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:58:08.819307Z",
+  "endTime": "2026-03-31T18:58:10.718954Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-de4005f7",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\n\"My plan is to make the R&D tax credit permanent and to provide record levels of support -- over $76 billion this year alone -- for people who will explore the promise of emerging technologies.' -- President Bush, State of the isnion, Jan. 28, 1992This was the third of President Bush's long-term proposals to \"guarantee the future' of the isnited States.So, how much of a guarantee does $76 billion provide?The number comes from the Bush budget for the coming fiscal year. It is the budget authority for federal spending on research and development.For the coming year, that amount is $76.6 billion. Actual planned outlays are $72.9 billion.That is an increase of 4.6 percent at a time of 3.1 percent inflation. So the Bush administration is adding funding for the technologies that will theoretically rejuvenate the is.S.economyover the long haul.Growing even faster is spending on civilian research. The Bush budget calls for spending $12.1 billion on basic research, up 7.2 percent from $11.3 billion in fiscal 1992. Spending on applied civilian research is expected to be $16 billion, up 5.5 percent from $15.1 billion.Don't forget, though: Defense research and development still outstrips civilian R&D, $41.6 billion to $28.1 billion. This in aneconomythat will rely on its commercial prowess in the future. Communism is dead, the Cold War over, the president reminds us.Maintaining spending on defense research is more important than ever. The is.S. must maintain its readiness for a return to\n\n[...TRUNCATED...]\n\nedge in the fundamental technology that determines the course of international wealth today?Are the collider and other big projects like the orbital space station -- which gets $2.25 billion this year -- taking all the available money?No. Amounts like $20 million or $200 million or even $2 billion aren't the question. The Bush budget demonstrates that.In 1991, Mr. Bush proposed a $1.45 trillion budget. This year, he's proposing a $1.5 trillion budget. The president's proposed budget last year included a deficit estimated at $318 billion. This year, the president plans a deficit of $399 billion.The difference -- in one year -- is $81 billion. That's more than all federal research and development spending.So are President Bush's record levels of support for R&D to be applauded, as his prepared speech expected?The American Electronics Association applauds President Bush, because of the benefits of a capital gains tax, spurring investment by Mom and Pop in the garage shop entrepreneur that really gets things going in the country; the potential for a permanent tax credit on R&D, and other such stimuli.But President Bush is warning of $600 billion deficits to come, if things don't fall right. In the light of seemingly permanent $400 billion or higher deficits, the regenerative effects of that $76 billion being spent on R&D doesn't seem like that much of a guarantee.Staff writer Tom Steinert-Threlkeld reports on technology for The Dallas Morning News.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.85, \"focus_excerpt\": \"My plan is to make the R&D tax credit permanent... President Bush is warning of $600 billion deficits to come, if things don't fall right. In the light of seemingly permanent $400 billion or higher deficits, the regenerative effects of that $76 billion being spent on R&D doesn't seem like that much of a guarantee.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1730,
+            "outputTokens": 102,
+            "inputTokensCostNanodollars": "5190000",
+            "outputTokensCostNanodollars": "1530000",
+            "totalBackendLatencyMs": "1843"
+          },
+          "id": "epu_q2_medium-de4005f7-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1730,
+        "outputTokens": 102,
+        "inputTokensCostNanodollars": "5190000",
+        "outputTokensCostNanodollars": "1530000",
+        "totalBackendLatencyMs": "1843"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #499"
+}

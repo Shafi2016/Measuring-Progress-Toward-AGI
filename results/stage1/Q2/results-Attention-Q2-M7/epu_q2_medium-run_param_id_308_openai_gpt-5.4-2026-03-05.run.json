@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:16:45.662313Z",
+  "endTime": "2026-04-03T00:16:46.771174Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-c51b3705",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nisncertainty Ahead for is.S. Auto Makers: THE INDisSTRY By JOHN HOLisSHA New York Times (1923-Current file); Apr 13, 1995; ProQuest Historical Newspapers: The New York Times (1851-2010) PE- D6 Blocked due to copyright. See full page image or microfilm. Chrysler's 1996 Dodge mini-van at the current New York International Auto Show. The company is the target of a buyout offer from its largest shareholder, Kirk Kerkorian, and its former chairman, Lee Iacocca.' THE INDisSTRY isncertainty Ahead for is.S. Auto Mahers By JOHN HOLisSHA The offer by Kirk Kerkorian to acquire the Chrysler Corporation comes at a time when the domestic] automobile industry is in the best, condition since the onset of the ener\u00adgy crisis in 1974. But prospects for' the future are uncertain, as annual; sales seem unlikely to grow very.' fast and more competitors vie for customers. i Last year the Big Three auto com-| panies \u2014 Chrysler, the Ford Motor) Company and the General Motors1 Corporation \u2014 reported combined, profits of more than $14 billion, a: record high. Though sales prospects have slipped somewhat recently, most forecasters are still expecting a gtod year, with total vehicle sales of more than 15 million cars and light trucks. Today's domestic auto industry is vastly different from the one that was shaken to its foundations in the 1970's by cutbacks in oil from the Middle East. Rising gasoline prices drove customers from American made cars, which averaged 12 miles to a gallon, to Japanese cars, w\n\n[...TRUNCATED...]\n\n the cycle turns down.\" Nevertheless, most analysts main\u00adtain that domestic auto companies have made major progress in im\u00adproving quality and reducing costs. The fact that Toyota went to the trouble of disassembling a Chrysler Neon model to study its design and engineering is an indication of how much progress the Big Three have made, analysts say. Chrysler has been given high marks for designing and producing new models of cars and trucks more quickly than its domestic competi\u00adtors. \"Chrysler has had Babe Ruth- type home runs with its mini-vans, the Neon, the LH cars and its pickup trucks,\" Mr. Schnapp said. The failure of General Motors to introduce models that arouse public excitement are a long-term problem for the company, despite its return to profitability. \"Ford is there and Chrysler is there, but G.M. is not back in a competitive position in the market yet,\" said a retired auto ex\u00adecutive, who requested anonymity. Some analysts say Chrysler is ba\u00adsically a North American manufac\u00adturer and lacks the worldwide net\u00adwork of factories and marketing out\u00adlets that Toyota, Ford, Nissan and General Motors have already estab\u00adlished. Though the weakness of the dollar gives North American produc\u00aders a temporary advantage against auto manufacturers in Japan and Germany, most analysts think a global presence will be needed for long-term survival. ' Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":0,\"confidence\":0.96,\"focus_excerpt\":\"But prospects for the future are uncertain, as annual sales seem unlikely to grow very fast and more competitors vie for customers.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1597,
+            "outputTokens": 43,
+            "inputTokensCostNanodollars": "3992500",
+            "outputTokensCostNanodollars": "645000",
+            "totalBackendLatencyMs": "955"
+          },
+          "id": "epu_q2_medium-c51b3705-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1597,
+        "outputTokens": 43,
+        "inputTokensCostNanodollars": "3992500",
+        "outputTokensCostNanodollars": "645000",
+        "totalBackendLatencyMs": "955"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #309"
+}

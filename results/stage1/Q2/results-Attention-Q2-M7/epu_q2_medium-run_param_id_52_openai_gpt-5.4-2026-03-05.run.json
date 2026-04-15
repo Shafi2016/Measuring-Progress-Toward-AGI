@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:11:43.581060Z",
+  "endTime": "2026-04-03T00:11:44.643125Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-63693d62",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nOGDEN, istah - What is left of Larry Lynn Stewart's life lies on a dusty shelf in the Ogden police station: Scraps of paper and dirty and crumpled business cards he carried in his pockets; a photocopy of his birth certificate showing he was born to a laborer and a housewife in Toledo, Ohio, on Aug. 17, 1939; letters from the Veterans Affairs office; discount coupons for a liquor store in Fargo, N.D.; a few ftod stamps; a key; an unsigned organ-donor card ripped from a Reader's Digest magazine and a penny.There also were four photographs: one of a small airplane, another showing a helicopter, the third picturing a horse and the fourth a recent shot of Mr. Stewart grinning and petting a large, hairy dog. Perhaps most telling was an anonymous poem cut from a magazine:I am no stranger to death; He lives with me every day.He tempts me with my grave, And hides the price I'd pay.On a crisp November morning last year, Mr. Stewart died here in a fight about beer money.No one said a word at his burial; no newspaper announced his death; no tombstone marks his grave. Weber County taxpayers paid $1,595 for the embalming, the casket and the grave site.This man with anuncertainpast is among dozens of istah street people who die each year unnoticed. Almost all - 90 to 95 percent - are men, and the numbers are growing.Eight transients whose bodies went unclaimed were cremated or buried by Weber County in 1994; nine were handled in 1995.Salt Lake County paid for burials and cremations of 29 un\n\n[...TRUNCATED...]\n\n Washington, issued in 1992 and expiring in 1997 - indicates he lived at 5747 Milk Way in Seattle. Ogden police Detective Dave Weloth said the Seattle police had no rap sheet on Mr. Stewart, so apparently he had put his criminal life behind him.A 1993 Washington business license for something called \"The Second Hand Place,\" in Quilcene, Wash., was issued to Larry and Antonia Stewart.Was Mr. Stewart married? Did he have children? No one knows.A 1993 document from the Seattle Medical Center listed as next of kin a Traci Tsailakis. There are no Tsailakises in the Seattle phone btok, so her relationship could not be traced.Whatever the reason, Mr. Stewart hit the road again in 1993. Ogden police charged him with trespassing in the rail yards in September of that year, but other documents show he did not stay long. His 1993-95 itinerary probably ttok him to Butte and Missoula, Mont., Fargo, N.D., Portland, Ore., Reno, Nev., and back to the Seattle area.That route can be retraced from grimy business cards - handed out by shelters, ministers, individuals and firms that may have provided employment - found on Mr. Stewart.Ogden police Lt. Rich Petersen said Mr. Stewart's autopsy revealed that he had suffered a series of minor strokes and seizures. And there were letters from the Office of Veterans Affairs responding to Mr. Stewart's inquiries about VA hospitals.But no one knows what dtor the key in his pocket once opened. And it appears no one ever will\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":0,\"confidence\":0.99,\"focus_excerpt\":\"This man with an uncertain past is among dozens of istah street people who die each year unnoticed.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1644,
+            "outputTokens": 39,
+            "inputTokensCostNanodollars": "4110000",
+            "outputTokensCostNanodollars": "585000",
+            "totalBackendLatencyMs": "901"
+          },
+          "id": "epu_q2_medium-63693d62-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1644,
+        "outputTokens": 39,
+        "inputTokensCostNanodollars": "4110000",
+        "outputTokensCostNanodollars": "585000",
+        "totalBackendLatencyMs": "901"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #53"
+}

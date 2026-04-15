@@ -1,0 +1,7 @@
+llm_name,condition,gold_epu,mean,std,count
+🤖 anthropic/claude-sonnet-4-6@default,short,1,0.47,0.4999331058930714,300
+🤖 anthropic/claude-sonnet-4-6@default,short,0,0.7833333333333333,0.41266191376532885,300
+🤖 anthropic/claude-sonnet-4-6@default,medium,1,0.51,0.5007352453674271,300
+🤖 anthropic/claude-sonnet-4-6@default,medium,0,0.78,0.4149384448848748,300
+🤖 anthropic/claude-sonnet-4-6@default,long,1,0.49666666666666665,0.5008242926709128,300
+🤖 anthropic/claude-sonnet-4-6@default,long,0,0.7866666666666666,0.4103455867405103,300

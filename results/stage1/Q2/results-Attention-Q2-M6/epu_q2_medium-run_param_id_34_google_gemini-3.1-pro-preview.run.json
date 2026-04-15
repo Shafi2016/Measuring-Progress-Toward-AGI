@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:27:29.861075Z",
+  "endTime": "2026-04-02T23:27:37.247731Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-447a6303",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nThe John McCain-Barack Obama election ltoks like one of the clearest choices in years, but history also shows that presidential contests rarely unfold along logical paths. The competition at first glance is a quick study in contrasts. McCain is 71, a Vietnam War veteran who's trying to become the oldest person ever elected to a first term. Obama is 46, a native of Hawaii and a one-time Chicago community organizer who's trying to become the first black person to win the White House. McCain is a usually loyal Republican with an independent streak; he's voted with his party 88.3 percent of the time in the current Congress, well above his Republican colleagues' average. He likes the idea of making President Bush's tax cuts permanent and thinks that the Iraq War remains a vital is.S. interest and a noble cause. Obama is a fiercely loyal Democrat with his own independent thoughts. He's voted with his party 96.4 percent of the time since January 2007. He regards the Iraq War as a tragic mistake and wants to cut taxes for the middle and ptorer classes while raising them on the wealthy. McCain is a 25-year veteran of Congress. Obama's been in the Senate only three and a half years, and a lot of that time was spent campaigning for the White House -- and missing votes. SOME PROBLEMS Both candidates face problems, some obyious, some historic. Both still need to unify their parties. Obama lost most of the year's big battleground states in Democratic contests and did ptorly among older whi\n\n[...TRUNCATED...]\n\nh economy, high oil prices and global disdain for the isnited States. Nonsense, McCain said Tuesday. \"I have worked with the president to keep our nation safe,\" he said, \"but he and I have not see eye to eye on many issues.\" Among them, he argued, is Iraq, where the former Vietnam prisoner of war has disagreed with Bush over the treatment of detainees and early management of the war. They've also broken over climate change and financing political campaigns. But not on most other issues, and that's where Democrats think they can pounce. Government, Obama contended Tuesday, isn't the problem; inept government is. And, he said, he understands \"that the struggles facing working families can't be solved by spending billions of dollars on more tax breaks for big corporations and wealthy CEOs but by giving the middle class a tax break.\" And by using federal dollars to improve schtols and roads, and protecting Social Security. Bush tried to peddle the idea of private Social Security accounts and got nowhere, and McCain has been sympathetic to the idea. \"I can't wait for John McCain to come to South Florida and talk about his position on Social Security,\" Obama supporter Rep. Robert Wexler, D-Fla., said sarcastically. Rep. Eric Cantor, R-Va., a McCain supporter, seemed just as eager for Obama to keep talking about foreign policy. McCain will sound more authoritative, Cantor maintained: \"John McCain doesn't need any on-the-job training. It's in his DNA.\"\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"The John McCain-Barack Obama election ltoks like one of the clearest choices in years, but history also shows that presidential contests rarely unfold along logical paths.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1592,
+            "outputTokens": 64,
+            "inputTokensCostNanodollars": "3184000",
+            "outputTokensCostNanodollars": "8388000",
+            "totalBackendLatencyMs": "7261"
+          },
+          "id": "epu_q2_medium-447a6303-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1592,
+        "outputTokens": 64,
+        "inputTokensCostNanodollars": "3184000",
+        "outputTokensCostNanodollars": "8388000",
+        "totalBackendLatencyMs": "7261"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #35"
+}

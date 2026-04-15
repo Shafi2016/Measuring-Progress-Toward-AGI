@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T03:37:32.786125Z",
+  "endTime": "2026-03-31T03:37:43.737108Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-1c1bf8de",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nTreasury's Enormous Borrowing Needs In Coming Weeks Seen Driving Rates isp: CREDIT MARK1 TOM HERMAN Staff Reporter of THE WALL STREET JOisRNAL Wail Street Journal (1923 - Currentjile); Oct 20, 1986; ProQuest Historical Newspapers: The pg. 40 Treasury's Enormous Borrowing Needs In Coming Weeks Seen Driving Rates isp CREDIT MARKETS By Tom Herman Staff Reporter of Tint: Wale Street J ournal NEW YORK-The Treasury's huge bor\u00adrowing needs in the next few weeks are likely to weigh heavily on the credit mar\u00adkets amid growing impatience among in\u00advestors over the government's continued inability to slash its budget deficits. A big wave of Treasury financing is ex\u00adpected between now and early November. \"All these Treasury auctions are going to remind people all over again that the mas\u00adsive budget deficits still haven't gone away as we thought they would,\" said James R. Caywtod, chief executive officer of Caywtod-Chnstian Capital Management in San Diego. \"My intuition is these huge auctions will cause some congestion in the markets,\" leading to higher interest rates, Mr Caywtod said. The Treasury today will hold its regular weekly auction of $15 billion of short-term bills. The sale, as usual, will be evenly di\u00advided between 13-week and 26-week bills. On Wednesday, the department plans to sell $10.25 billion of two-year notes, fol\u00adlowed by $9.75 billion of 52-week bills Thursday. The department also is likely to sell about $7 billion of new seven-year notes ston, analysts say. Moreover, \n\n[...TRUNCATED...]\n\n during the same week as several other major developments that an\u00adalysts expect to have a major influence on interest rates, the Nov. 4 elections and the Nov. 7 report by the Labor Department on October unemployment The labor figures are considered especially important in set\u00adting the tone for the credit markets. Also, the Federal Reserve System's policy-mak\u00ading arm, known as the Federal Open Mar\u00adket Committee, is scheduled to meet Nov. 5 to review credit strategy. If the Republicans lose control of the Senate, \"There is a risk that investors could react negatively because of a per\u00adception that this could lead to political stalemate\" in Washington, said Mr. Held of Smith Barney. Friday's Activity In the credit markets Friday, bond prices fell and most short-term interest rates rose. Shearson Lehman Brothers Inc.'s index of long-term Treasury bonds fell 6.34 points to close at 1353.38 It ranged between 1352.33 and 1357 40. The Treasury's 7'.4% bonds due 2016 fell to 93 8/32 from 93 19/32 Thursday. That raised the yield to 7.84% from 7 81%. The government's 73\u00bb% notes due 1996 fell to 98 26/32 from 99 3/32, increasing the yield to 7.55% from 7 51% Interest rates rose on short-term Treas\u00adury bills. The rate on the latest 13-week Treasury bills increased to 5.28% bid from 5 22% Thursday, while the latest 26-week bills rose to 5.38% bid from 5.29%. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"If the Republicans lose control of the Senate, \\\"There is a risk that investors could react negatively because of a per\u00adception that this could lead to political stalemate\\\" in Washington\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1004,
+            "outputTokens": 71,
+            "inputTokensCostNanodollars": "1255000",
+            "outputTokensCostNanodollars": "11320000",
+            "totalBackendLatencyMs": "10871"
+          },
+          "id": "epu_q2_short-1c1bf8de-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1004,
+        "outputTokens": 71,
+        "inputTokensCostNanodollars": "1255000",
+        "outputTokensCostNanodollars": "11320000",
+        "totalBackendLatencyMs": "10871"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #576"
+}

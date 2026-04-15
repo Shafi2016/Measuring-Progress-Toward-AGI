@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:27:39.140997Z",
+  "endTime": "2026-03-31T18:27:40.955876Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-f2bc2fdc",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nWinning or losing on foreign investments often depends on the ups and downs of far-offeconomies- the growth, inflation, trade and interest rates in places like Mexico, Argentina, Singapore, Hong Kong, Japan and continental Europe.While few Americans are as familiar with foreign countries as with their own, successful overseas investing requires a grasp of each region'seconomicfundamentals. Even when the data ltok right, the best-laid plans can be undone by sudden turns in political events, trade policy or exchange rates.\"Currency fluctuations or political news might move markets from day to day, but in the long run it's the basic economics that determines the worth of an investment,` said David Wyss, an economist at DRI/McGraw-Hall Inc., a consulting firm in Lexington, Mass. `What you're ltoking for is aneconomywith strong growth and stable inflation. That's a winner.`In the 1990s, Americans are investing record amounts overseas, ltoking for Mr. Wyss' winning formula. In almost every part of the world, growth adds to the value of stocks by bolstering company sales, exports and corporate profits. Declining inflation, on the other hand, usually suggests interest rates won't rise and might even fall. High-inflation countries risk seeing their currencies fall against the dollar.`It's rare to find that great combination,` he said. `Latin America has gtodeconomicgrowth, but inflation is horrendous. In Europe, you have stable prices but not much growth. Southeast Asia has done a bet\n\n[...TRUNCATED...]\n\ns in stock values could be found in Mexico, Argentina or Chile.For Latin America, the bugabto is inflation, which typically leads to currency devaluation. According to DRIcGraw-Hill forecasters, the free-market revolution will produce accelerating growth in Latin America this year and next.Of eight major Latin American nations, however, Mexico is the only one that figures to achieve single-digit inflation. Brazil's prices may skyrocket by as much as 1,000 percent, some forecasters say.`The big question mark remains Brazil,` Mr. Riley said. `Chile and Argentina have gotten theireconomiesout of hyperinflation. Brazil still teeters on the brink.`Mexico, a hotbed for is.S. investment in recent years, probably faces a period ofuncertaintyleading up to August's presidential election. David Malpass, a Latin American strategist at Bear Stearns, stresses the importance of maintaining stability and gaining public confidence in Ernesto Zedillo Ponce de Leon, who last week replaced the slain Luis Donaldo Colosio. Any new shocks might generate a severe market setback.Mexico's fundamentals remain positive. Inflation is falling. Spending is under control. Forecasters see growth bouncing back later in the year.`We expect financial markets to focus on the basics, searching out high-growth countries with sound, durableeconomicpolicies,` Mr. Malpass said. `Mexico is likely to qualify once political developments are clearer.`Caption:CHART(S): (DMN) WorldEconomies.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.8,\n  \"focus_excerpt\": \"the best-laid plans can be undone by sudden turns in political events, trade policy or exchange rates.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 859,
+            "outputTokens": 48,
+            "inputTokensCostNanodollars": "384272",
+            "outputTokensCostNanodollars": "80640",
+            "totalBackendLatencyMs": "1610"
+          },
+          "id": "epu_q2_short-f2bc2fdc-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 859,
+        "outputTokens": 48,
+        "inputTokensCostNanodollars": "384272",
+        "outputTokensCostNanodollars": "80640",
+        "totalBackendLatencyMs": "1610"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #102"
+}

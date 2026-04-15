@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T03:22:20.809091Z",
+  "endTime": "2026-03-31T03:22:33.123345Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-0031c0e2",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\n\"I was the kingpin of the unemployed actors, hanging around the Actors Club in Leicester Square,\" [Michael Caine] said at lunch last week. One day, Caine remembered, he and Terence Stamp, another of the largely unemployed, were walking along Piccadilly. Caine had done a television play which had aired the night before. They saw Roger Mtore, already a television star from his series, \"The Saint,\" coming toward them. Another of Caine's unemployed pals was invited to join a repertory theater in Wales. \"Not exactly the Old Vic, was it?\" Caine said. \"But it was work and he went off in a flash. Three weeks later he was back and we were astonished. I asked him why he quit. He'd said he been fired, for incompetence, and he was chucking it all. He'd written a play and he was going to see what he could do with it. `Ltok Back in Anger.' John Osborne.\" Caine has lately played Sherlock Holmes in \"Without a Clue,\" which opened Friday and is a delicious, affectionate, role-reversing send-up of the Conan Doyle oeuvre. It suggests that Dr. Watson (Ben Kingsley) was the brains of the outfit and merely hired a drunken actor (Caine) to front the operation because no one would take Watson seriously. \"I was the kingpin of the unemployed actors, hanging around the Actors Club in Leicester Square,\" [Michael Caine] said at lunch last week. One day, Caine remembered, he and Terence Stamp, another of the largely unemployed, were walking along Piccadilly. Caine had done a television play which had aired\n\n[...TRUNCATED...]\n\nchael Caine: In his own words, one-time \"kingpin of the unemployed actors.\" / MARIANNA DIAMOS; PHOTO: With Ben Kingsley (Dr. Watson) in the movie \"Without a Clue\" and, right, as a detective in the television miniseries \"Jack the Ripper.\" (Copyright, The Times Mirror Company; Los Angeles Times 1988all Rights reserved) Show less You have requested \"on-the-fly\" machine translation of selected content from our databases. This functionality is provided solely for your convenience and is in no way intended to replace human translation. Show full disclaimer Neither ProQuest nor its licensors make any representations or warranties with respect to the translations. The translations are automatically generated \"AS IS\" and \"AS AVAILABLE\" and are not retained in our systems. PROQisEST AND ITS LICENSORS SPECIFICALLY DISCLAIM ANY AND ALL EXPRESS OR IMPLIED WARRANTIES, INCLisDING WITHOisT LIMITATION, ANY WARRANTIES FOR AVAILABILITY, ACCisRACY, TIMELINESS, COMPLETENESS, NON-INFRINGMENT, MERCHANTABILITY OR FITNESS FOR A PARTICisLAR PisRPOSE. Your use of the translations is subject to all use restrictions contained in your Electronic Products License Agreement and by using the translation functionality you agree to forgo any and all claims against ProQuest or its licensors for your use of the translation functionality and any output derived there from. Hide full disclaimer Translations powered by LEC. Translations powered by LEC. Please select one or more items.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"Caine has lately played Sherlock Holmes in \\\"Without a Clue,\\\" which opened Friday and is a delicious, affectionate, role-reversing send-up of the Conan Doyle oeuvre.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 882,
+            "outputTokens": 72,
+            "inputTokensCostNanodollars": "1102500",
+            "outputTokensCostNanodollars": "13250000",
+            "totalBackendLatencyMs": "12224"
+          },
+          "id": "epu_q2_short-0031c0e2-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 882,
+        "outputTokens": 72,
+        "inputTokensCostNanodollars": "1102500",
+        "outputTokensCostNanodollars": "13250000",
+        "totalBackendLatencyMs": "12224"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #498"
+}

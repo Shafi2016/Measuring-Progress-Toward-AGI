@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:57:27.075235Z",
+  "endTime": "2026-03-31T18:57:32.241463Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-96d86565",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nDepending on the math, there could be as much as $20 million at stake in the intensifying legal fight between Dallas billionaires Ross Perot Jr. and Mark Cuban. But it's not about the money. Perot says it's about the right way to run a business - in this case, the Dallas Mavericks, in which he owns a 5 percent stake. Majority owner Cuban says the team's business condition is nothing to worry about. More to the point, he adds, his main goal is winning basketball games. Such are the convictions in play in a battle between two of the city's highest-profile businessmen. And the more money you have, the more you can afford to stand on principle. Since Cuban bought a majority stake in the Mavericks from Perot in 2000, he has managed the team \"in a careless and reckless manner,\" disregarding sound financial practices, Perot claims in a lawsuit filed this week. As a result, the team is \"insolvent and/or in imminent danger of insolvency,\" the suit claims. Cuban struck back with gusto, describing his dealings with Perot as \"one of the worst business experiences of my life.\" \"Ross cares about no one but Ross,\" he said in an e-mail the day the lawsuit was filed. \"There is no risk of insolvency.\" Approached on Thursday evening at a real estate function where he was to receive an award, Perot declined to comment. \"I've said all I want to say,\" he said. The rtots of the Perot-Cuban dispute go back almost a decade, and they wind their way through everything from decisions involving former co\n\n[...TRUNCATED...]\n\n73 million between 2000 and 2009, according to Perot's lawsuit. The team's debt load surpasses $200 million, an amount that is projected to rise to $281 million by June 2013. Cuban said Perot's numbers are wrong because \"I don't even know what our roster or payroll will be.\" A Perot spokesman said the numbers come from an analysis of Mavs' financial records supplied by Cuban. Across the NBA, there is moreuncertaintyabout team values because of negotiations between owners and players over the league's collective bargaining agreement, which expires after next season. In Dallas for the All-Star Game earlier this year, NBA commissioner David Stern projected leaguewide losses of about $400 million this season. He said the league needs significant changes to help team finances. Estimating the value of Perot's stake is difficult. Right now, accounting for the Mavs' debt and unusualuncertaintyin team values, Perot's small share in the team and arena could be worth $10 million or less. But if the team moderates its debt, turns a profit and fetches a price near the Forbes estimate, Perot's stake could exceed $20 million. Cuban told The News that the idea of writing a check for Perot's share \"makes me sick.\" bcase@dallasnews.com; gjacobson@dallasnews.comCaption:PHOTO(S): (FILE/Staff photo) Ross Perot Jr. (left) and Mark Cuban were friendlier in 2000 when Cuban bought a majority stake in the Dallas Mavericks. The deal valued the team at about $280 million.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"Across the NBA, there is more uncertainty about team values because of negotiations between owners and players over the league's collective bargaining agreement, which expires after next season.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1647,
+            "outputTokens": 59,
+            "inputTokensCostNanodollars": "632016",
+            "outputTokensCostNanodollars": "99120",
+            "totalBackendLatencyMs": "2680"
+          },
+          "id": "epu_q2_medium-96d86565-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1647,
+        "outputTokens": 59,
+        "inputTokensCostNanodollars": "632016",
+        "outputTokensCostNanodollars": "99120",
+        "totalBackendLatencyMs": "2680"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #199"
+}

@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:07:51.123880Z",
+  "endTime": "2026-03-31T19:07:55.287364Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-261ed0af",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nAFTER watching their industry average 10 percent annual passenger growth for an entire decade, some cruise-line executives find it hard to imagine that times will ever get tough. But others say that they already have. Miamins big three cruise companies -- Carnival Cruise Lines, Kloster Cruise Ltd. and Royal Caribbean Cruise Ltd. -- believe the growth will continue unblemished by the economy. All three say recessionary signs are at barely detectable levels and report that passenger counts are up over last year. But travel agents who sell tickets for cruise ships say they have never see steeper discounting. Smaller cruise lines say they can clearly see a downturn. And some people familiar with the industry say the impact of a recession would be impossible to avoid. \"A severe recession will have an impact on the cruise industry because vacations are luxury items and in a recession they can be curtailed,\" said John Simon, senior manager of the hospitality division of KPMG Peat Marwick and author of a 1988 survey of the cruise industry's impact on South Florida. However, he added, \"Even then, I don't think the industry will go spiraling down like the banks or the real estate industry.\" At the moment, discounting is endemic in the cruise industry. Larry Fishkin, president of Cruise Line Inc. travel agency in Miami, said, \"The prices are the lowest I've see in the last 10 years.\" For instance, Fishkin said, a seven-day Caribbean cruise from Port Everglades on the Crown Princess, a n\n\n[...TRUNCATED...]\n\n he sees more discounting in the cruise industry than a year ago, but it has not affected the company's bottom line. Fain said the passenger count through Sept. 30 was up 14 percent even though the company increased its rates significantly in 1990 because of higher costs in labor, materials and fuel. Smaller cruise companies, squeezed by fuel-guzzling ships and marketing organizations that must spread their costs over fewer ships, are feeling more of an impact from the uncertain economy. Ed Mass, president of Miami-based Dolphin Cruise Line, said fourth-quarter passenger btokings are off 10 percent, while fuel costs have doubled. Regency Cruises, which operates three ships, had its best third quarter in history, largely because it kept its ships out of the Caribbean in September, when there are many ships and few passengers in the region. But Jennifer isrquhart, president of marketing, said: \"It's difficult to predict what will happen in the fourth quarter, which is traditionally weak. \"So far, we are seeing people wait longer to btok, or btoking much closer to departure, or btoking and then not sending deposits. \"Some people in the industry are saying we are recession- prtof, but I think that's neither smart nor correct. Those who still take vacations will be value-conscious, and there's no question that cruises offer gtod value. But we will have to work harder to get the message out.\" Memo: CRisISING: FLORIDA'S ECONOMY ; THE CRisISE INDisSTRY\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"Smaller cruise companies, squeezed by fuel-guzzling ships and marketing organizations that must spread their costs over fewer ships, are feeling more of an impact from the uncertain economy.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1605,
+            "outputTokens": 62,
+            "inputTokensCostNanodollars": "608496",
+            "outputTokensCostNanodollars": "104160",
+            "totalBackendLatencyMs": "1674"
+          },
+          "id": "epu_q2_medium-261ed0af-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1605,
+        "outputTokens": 62,
+        "inputTokensCostNanodollars": "608496",
+        "outputTokensCostNanodollars": "104160",
+        "totalBackendLatencyMs": "1674"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #433"
+}

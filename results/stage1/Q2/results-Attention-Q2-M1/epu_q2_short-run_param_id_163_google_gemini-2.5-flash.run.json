@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T01:53:28.452334Z",
+  "endTime": "2026-03-31T01:53:40.495664Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-d46dcfdb",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nActing Gov. Richard J. Codey is again pushing to ensure a prominent role for sports at New Jersey's sports complex, where the entertainment and shopping center known as Xanadu is rapidly taking shape. Developers of an entertainment and retail center at New Jersey's sports complex must come to terms with the New York Giants over parking. Mr. Codey is prodding the developers to build the minor league baseball park that they prominently listed among amusements promised for Xanadu; it has since been set aside, with no architectural plans or lease produced for the resident team, the Bergen Cliff Hawks. \"It wasn't getting off the dime, much to my displeasure,\" Mr. Codey said in an interview. \"And it's something I'm committed to doing.\" The owner of the Cliff Hawks, the state senator who represents the Meadowlands and officials of the New Jersey Sports and Exposition Authority are also expressing impatience, putting pressure on the Xanadu developers while they are trying to strike a deal with the Giants over traffic and parking at the complex. Administration officials plan to meet today with the Xanadu developers, the Mills Corporation of Virginia and Mack-Cali Realty Corporation, to demand a schedule for work on the ballpark. The developers insist that the plan for a ballpark has not been shelved but will be ready for the 2007 season. The flare-up is the latest between Mr. Codey and the Xanadu developers. Since taking office last November, Mr. Codey has been pressing for a revitali\n\n[...TRUNCATED...]\n\nrra Club, which contends in its lawsuit that the state improperly granted permits for the project. State Senator Paul A. Sarlo, a Democrat who represents the Meadowlands district and who sat on the advisory committee that reviewed proposals for the arena site, said: \"The ballpark was important to the overall scheme of things, a strong family entertainment component. It lent a lot of credibility to the Mills Corporation's proposal.\" Mr. Sarlo said he was not accusing Mills of reneging. \"The frustrating part is the timeline,\" he said. It is not clear whether Mills and Mack-Cali are legally required to build a ballpark. Their agreement with the state provides only that the park would be built \"assuming favorable economic and marketing conditions.\" Mr. Sarlo said the developers obligated themselves by including minor league baseball in the original proposal. Mr. Codey, tto, said Mills and Mack-Cali \"don't have much choice.\" George Zoffinger, the sports authority president, said he expected construction on the ballpark to start in the spring. \"It's part of the plan,\" he said. \"It's been approved.\" Joseph Forgione, the sports authority board member who is representing the authority in the talks on the ballpark, said he planned to ask Mills today for \"a drop-dead date on finalizing this.\" \"I was on the selection committee,\" Mr. Forgione said. \"The sports authority approved the plan, including the Bergen Cliff Hawks, and we want it done. End of story.\"\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.8, \"focus_excerpt\": \"It is not clear whether Mills and Mack-Cali are legally required to build a ballpark. Their agreement with the state provides only that the park would be built 'assuming favorable economic and marketing conditions.'\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 850,
+            "outputTokens": 62,
+            "inputTokensCostNanodollars": "255000",
+            "outputTokensCostNanodollars": "4262500",
+            "totalBackendLatencyMs": "11974"
+          },
+          "id": "epu_q2_short-d46dcfdb-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 850,
+        "outputTokens": 62,
+        "inputTokensCostNanodollars": "255000",
+        "outputTokensCostNanodollars": "4262500",
+        "totalBackendLatencyMs": "11974"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #164"
+}

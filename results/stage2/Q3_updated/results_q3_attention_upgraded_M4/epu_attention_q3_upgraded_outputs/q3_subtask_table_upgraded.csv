@@ -1,0 +1,11 @@
+llm_name,condition,bundle,order,subtask,requested,acc,acc_ci_low,acc_ci_high,present_rate
+deepseek-ai/deepseek-v3.2,full_focus_epu_first,full,epu_first,who,1,0.104,0.08019420676989107,0.1338442708756583,0.276
+deepseek-ai/deepseek-v3.2,full_focus_epu_first,full,epu_first,actions,1,0.168,0.13778823297684417,0.20327432908962656,0.276
+deepseek-ai/deepseek-v3.2,full_focus_epu_first,full,epu_first,effects,1,0.124,0.09794609113930344,0.15578741288778383,0.276
+deepseek-ai/deepseek-v3.2,full_focus_epu_first,full,epu_first,mention_foreign,1,0.58,0.5362894568035539,0.6224906487225976,0.822
+deepseek-ai/deepseek-v3.2,full_focus_epu_first,full,epu_first,mainly_foreign,1,0.582,0.5383026562362386,0.6244469519280668,0.804
+deepseek-ai/deepseek-v3.2,full_focus_epu_last,full,epu_last,who,1,0.104,0.08019420676989107,0.1338442708756583,0.176
+deepseek-ai/deepseek-v3.2,full_focus_epu_last,full,epu_last,actions,1,0.108,0.08372280963705037,0.13825467328480662,0.176
+deepseek-ai/deepseek-v3.2,full_focus_epu_last,full,epu_last,effects,1,0.086,0.06447314240360771,0.11383981149855754,0.176
+deepseek-ai/deepseek-v3.2,full_focus_epu_last,full,epu_last,mention_foreign,1,0.62,0.576692489073785,0.6614776692154425,0.898
+deepseek-ai/deepseek-v3.2,full_focus_epu_last,full,epu_last,mainly_foreign,1,0.666,0.6235325314226418,0.7059361875441229,0.894

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T03:01:11.461553Z",
+  "endTime": "2026-03-31T03:01:24.180395Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-b9843ac1",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nThe murder of Lt. Col. William R. Higgins is an outrage-whether or not connected to Israel's capture of Sheik Abdel Karim Obeid. Israel at least ttok action in an attempt to free its own captured soldiers. By contrast, the isnited States was passive, daring nothing on behalf of Higgins. America has been stung into paralysis by the Iran-Contra affair and an institutionalized timidity. Yet there is reason to laud the diplomatic skills demonstrated by George Bush in his continuing public and private communication with Iran and Syria. He has shown, tto, how to use a 47-ship fleet to extort terrorist leaders into calling off a threatened second murder-of hostage Joseph J. Cicippio. But has Bush distinguished terrorism-at rtot a national security matter-from the \"crime\" aspect of the Higgins tragedy? - Launch more aggressive intelligence and covert operations. Some terrorist leaders may need to be targeted for assassination. If that violates current policy or law, change the policy, change the law. - Quietly develop counterterrorism policies less rigid than today's declared rejection of negotiations with terrorists. While that policy sounds noble, it means little. As former White House intelligence ctordinator Kenneth E. de Graffenreid said in a recent television interview, \"The idea of not negotiating with terrorists was that if you didn't they wouldn't grab more hostages. Well, they did, anyway.\" In addition, the official is.S. no-concessions policy could hardly stand up in the f\n\n[...TRUNCATED...]\n\n and Higgins' murder may be false. Dole and others who bashed Israel-instead of the terrorists-were wrong. The larger lesson: In the war against terrorism do not shtot at your allies when there are real enemies out there shtoting at you. (Copyright, The Times Mirror Company; Los Angeles Times 1989all Rights reserved) Show less You have requested \"on-the-fly\" machine translation of selected content from our databases. This functionality is provided solely for your convenience and is in no way intended to replace human translation. Show full disclaimer Neither ProQuest nor its licensors make any representations or warranties with respect to the translations. The translations are automatically generated \"AS IS\" and \"AS AVAILABLE\" and are not retained in our systems. PROQisEST AND ITS LICENSORS SPECIFICALLY DISCLAIM ANY AND ALL EXPRESS OR IMPLIED WARRANTIES, INCLisDING WITHOisT LIMITATION, ANY WARRANTIES FOR AVAILABILITY, ACCisRACY, TIMELINESS, COMPLETENESS, NON-INFRINGMENT, MERCHANTABILITY OR FITNESS FOR A PARTICisLAR PisRPOSE. Your use of the translations is subject to all use restrictions contained in your Electronic Products License Agreement and by using the translation functionality you agree to forgo any and all claims against ProQuest or its licensors for your use of the translation functionality and any output derived there from. Hide full disclaimer Translations powered by LEC. Translations powered by LEC. Please select one or more items.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 0,\n  \"confidence\": 1,\n  \"focus_excerpt\": \"Quietly develop counterterrorism policies less rigid than today's declared rejection of negotiations with terrorists.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 843,
+            "outputTokens": 52,
+            "inputTokensCostNanodollars": "1053750",
+            "outputTokensCostNanodollars": "13790000",
+            "totalBackendLatencyMs": "12632"
+          },
+          "id": "epu_q2_short-b9843ac1-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 843,
+        "outputTokens": 52,
+        "inputTokensCostNanodollars": "1053750",
+        "outputTokensCostNanodollars": "13790000",
+        "totalBackendLatencyMs": "12632"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #387"
+}

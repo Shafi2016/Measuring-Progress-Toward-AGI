@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T21:53:30.983483Z",
+  "endTime": "2026-04-02T21:53:41.093066Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-c921f1c5",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nSmall but isncertain Indications That the Economy Is Slowing: Some Fed ... isCHITELLE, LOisIS New York Times (1923-Current file); Jun 14, 2000; ProQuest Historical Newspapers: The New York Times (1851-2010) By LOisIS isCHITELLE Ask Jeffrey Joerres, the chief executive of Manpower Inc., the huge temporary-help agency, whether he can see a slowdown m the economy and he explains that the de\u00admand for temporary workers remains strong \u2014 except for one group. Manpower supplies nearly 80,000 tempo\u00adrary workers a day for small companies that assemble all sorts of small products and parts \"We are starting to see a little bit of a tail-off m light manufacturing,\" Mr. Joerres said. This spring, similar evidence of slower economic growth is buddmg in more than a Some Fed officials hint they remain concerned about the growth pace. few industries Wall Street calls attention to each new bud as one more reason for the Federal Reserve to stop raising interest rates, removing an albatross that holds down stock prices. But in the view of some Fed officials, the signals are still tto am\u00adbiguous to conclude that the economy is actually beginning to slow Several Fed policy makers have suggest\u00aded in speeches over the last 10 days that they remain concerned about growth, al\u00adthough William J. McDonough, president of the Federal Reserve Bank of New York, said in a question-and-answer period after a speech yesterday that \"a number of variables\" suggest that a slowdown is be\u00adcoming visible, Reuters repor\n\n[...TRUNCATED...]\n\nple are no longer rushing to buy homes as mortgage rates rise. \"Where earlier they favored pur\u00adchasing in anticipation of higher rates,\" said Richard Curtin, director of the surveys, \"now they feel the rates are high enough to justify post\u00adponement of home parehases.\" Nowhere are the signals of slow\u00addown flashing more strongly than in lending Consumer borrowing, while still rising, is doing so at half of January's clip, and corporate de\u00adfaults on public debt are rising sharply \u2014 47 defaults so far this year, totaling $10 7 billion, compared with 89 in all of 1999, totaling $24.2 billion. High-yield junk bonds ac\u00adcount for all of the defaults, and lenders have grown reluctant to fi\u00adnance the activities of thousands of companies with junk-bond ratings. \"When the stock market was going gangbusters, people did not notice the defaults,\" said Diane Vazza, head of global fixed-income research at Standard & Ptor's \"Now stocks are volatile and they are noticing.\" The employment statistics for May were also troubling. While the unemployment rate ticked up only slightly, to 4.1 percent from 3.9 per\u00adcent, the number of jobs shrank in\u00adstead of growing, the first time that had happened in more than four years. The May numbers may turn out to be an aberration, but job growth over the last five months is lower on average than in the final five months of 1999. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"Wall Street calls attention to each new bud as one more reason for the Federal Reserve to stop raising interest rates, removing an albatross that holds down stock prices. But in the view of some Fed officials, the signals are still tto ambiguous to conclude that the economy is actually beginning to slow\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 904,
+            "outputTokens": 90,
+            "inputTokensCostNanodollars": "1808000",
+            "outputTokensCostNanodollars": "13368000",
+            "totalBackendLatencyMs": "9965"
+          },
+          "id": "epu_q2_short-c921f1c5-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 904,
+        "outputTokens": 90,
+        "inputTokensCostNanodollars": "1808000",
+        "outputTokensCostNanodollars": "13368000",
+        "totalBackendLatencyMs": "9965"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #117"
+}

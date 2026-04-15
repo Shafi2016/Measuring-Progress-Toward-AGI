@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:00:24.744513Z",
+  "endTime": "2026-04-03T00:00:31.820674Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-7237f793",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nWhoever buys the Dallas Stars also gets a stake in a National Hockey League that's struggling with teams on financial thin ice.The Ottawa Senators, saddled with $160 million in debt, filed for bankruptcy Thursday and turned to the league for cash. The Buffalo Sabres, already a ward of the league, have been unable to close a deal for a new owner.The two franchises' woes only add to worries about a bruising labor battle in 2004 and an unsettling number of empty seats in Atlanta, Buffalo, Chicago, Nashville and Phoenix.\"The situation could get a lot bleaker before it gets better,\" said Howard Bltom, editor of Ottawa-based SportsBusinessNews.com.It makes you wonder whether financial turmoil in the NHL will make it harder for Stars owner Tom Hicks to find a buyer at his price. Mr. Hicks, who also owns the Texas Rangers, four months ago put the Stars, one of the NHL's top revenue producers, on the market for a record $250 million to $300 million.Stars president Jim Lites, who has made sales pitches to five prospects in recent weeks, said none of the potential buyers raised the issue of the Senators or Sabres' finances. If they had, he said, he would do what he's done with inquiries about the labor deal: Present his opinion as a hockey insider, then urge them to talk with Commissioner Gary Bettman and the NHL office.\"They ltok at our team,\" Mr. Lites said. \"Certainly the next step is to ltok at league economics.\"Mr. Lites and Mr. Hicks contend that the troubled franchises and labor \n\n[...TRUNCATED...]\n\nhip without damaging the league's health.Teams can sell at top dollar duringuncertaintimes. Just ltok at baseball. Amid efforts to shut down two teams and a possible labor meltdown, the Boston Red Sox and their cable television holding sold last year for $660 million, a record for the sport.Labor deal's roleNorm Green, who owned the Stars for six years before selling them to Mr. Hicks for $84 million in 1996, says prospective Stars buyers should pay more attention to the labor issue than Ottawa and Buffalo. The team's future value will be affected, he said, by how well the NHL does in putting controls on players' salaries.In his years as an owner of the Stars and, before that, the Calgary Flames, Mr. Green saw revenues rise with ticket prices, corporate sponsorships, new arenas and relocations. Now, he doesn't see much rtom for additional revenue growth, so the financial future of the NHL and its franchises will depend on the new labor deal that will be negotiated in 2004.\"You're now at a point where the revenue increases are maxed out,\" Mr. Green said. \"The owners must make a firm stand. Once that happens, and we relate salaries to revenue, then the markets that will benefit the most are the big ones - New York, Philadelphia, Dallas.\"Caption:PHOTO(S): (TOM HANSON/Associated Press) The Ottawa Senators filed for bankruptcy Thursday and turned to the NHL for funding. Team owner Rod Bryden said the team will keep playing while ltoking for a buyer.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"Teams can sell at top dollar duringuncertaintimes. Just ltok at baseball. Amid efforts to shut down two teams and a possible labor meltdown\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1612,
+            "outputTokens": 59,
+            "inputTokensCostNanodollars": "3224000",
+            "outputTokensCostNanodollars": "7776000",
+            "totalBackendLatencyMs": "6935"
+          },
+          "id": "epu_q2_medium-7237f793-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1612,
+        "outputTokens": 59,
+        "inputTokensCostNanodollars": "3224000",
+        "outputTokensCostNanodollars": "7776000",
+        "totalBackendLatencyMs": "6935"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #284"
+}

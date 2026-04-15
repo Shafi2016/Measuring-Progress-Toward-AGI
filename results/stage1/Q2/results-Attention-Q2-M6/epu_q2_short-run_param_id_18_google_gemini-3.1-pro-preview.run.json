@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T21:33:29.733036Z",
+  "endTime": "2026-04-02T21:34:05.590821Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-9269d188",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nWASHINGTON - Benefit checks for about 3.3 million veterans will not go out beginning Friday, because budget negotiators could not agree on a plan to end the partial government shutdown.President Clinton was scheduled to meet Friday morning with Senate Majority Leader Bob Dole, R-Kan., and House Speaker Newt Gingrich, R-Ga., to search again for a solution to the budget quandary.But the prospect of the new meeting was not enough to satisfy House Republicans, who have demanded an agreement on an overall budget plan before they will approve a temporary measure that would reopen the government.The furlough of 260,000 federal employees enters a seventh, record-breaking day on Friday.\"This has to end, and we will do all that we can today to ensure that it will end,\" said Senate Minority Leader Tom Daschle, D-S.D.Mr. Dole held out some hope that Friday's talks might encourage the House enough to consider a short-term spending resolution before leaving for Christmas.\"I am not an advocate of shutting down the government and never have been,\" said Mr. Dole, noting that other benefit checks, such as welfare and Medicaid, also may be delayed if the closure continues.But House Republicans were equally resolute in their demand not to end the government closure until there is a deal to balance the budget in seven years.\"When we can get the president and his administration to that point, then we can resolve the impasse,\" said House Majority Leader Dick Armey, R-Irving.Mr. Daschle said Republi\n\n[...TRUNCATED...]\n\nations.Mr. Gore expressed concerns that the politics of the House Republicans could again derail progress.\"The dynamics of the Republican caucus are so intimidating that not only are the Republican leadership, but the rank and file including the moderates, are still inclined to let the extremist wing make the decisions and they are not yet willing to break with them,\" he said.The bipartisan Senate group unveiled its seven-year plan Thursday.It would cut future Medicare spending by $154 billion and Medicaid by $62 billion. The cuts are deeper than proposed by the White House or Senate Democrats but are not as severe as the GOP budget.The bipartisan group would also cut other entitlement spending by $52 billion and would slice $268 billion from discretionary programs.The proposal calls for $130 billion in tax cuts, slightly more than half the $240 billion proposed by Republicans. Measures by Senate Democrats and conservative House Democrats do not include any tax cuts.Democratic senators said they had not worked out all the details of their plan. But they said the tax provisions would probably include a child tax credit and a cut in the capital gains tax.Staff writer Jeff Mosier in Dallas contributed to this report.Caption:PHOTO(S): (Associated Press) House freshman Republicans walk to a news conference Thursday at the Capitol Christmas tree, where they called on President Clinton to give the nation a balanced budget in observance of the holiday.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.98,\n  \"focus_excerpt\": \"search again for a solution to the budget quandary.But the prospect of the new meeting was not enough to satisfy House Republicans, who have demanded an agreement on an overall budget plan\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 833,
+            "outputTokens": 68,
+            "inputTokensCostNanodollars": "1666000",
+            "outputTokensCostNanodollars": "11604000",
+            "totalBackendLatencyMs": "35745"
+          },
+          "id": "epu_q2_short-9269d188-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 833,
+        "outputTokens": 68,
+        "inputTokensCostNanodollars": "1666000",
+        "outputTokensCostNanodollars": "11604000",
+        "totalBackendLatencyMs": "35745"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #19"
+}

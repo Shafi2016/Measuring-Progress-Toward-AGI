@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:15:22.721313Z",
+  "endTime": "2026-04-03T00:15:24.070467Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-f3c5ba07",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nMany Dallas-area car dealers expect to end one of their most tumultuous years ever with sales at least as high as in 1996 and perhaps 3 percent or 4 percent higher.If 1997 local sales of new cars and trucks exceed last year's, they'll once again outpace the national pattern, which is expected to be flat.November areawide results were still being compiled earlier this week, but figures for Dallas County - which accounts for nearly half of local volume - showed sales for the year to date up almost 4 percent. At the end of October, sales for the four-county area were running nearly 2 percent ahead for the year to date.Last year, dealers in Dallas, Tarrant, Collin and Denton counties sold almost 311,000 new cars and trucks worth more than $6.5 billion.\"I think you'd call it a dead heat at this point as to whether we're going to be a little ahead of last year or the same,\" said Drew Campbell, president of the New Car Dealers Association of Metropolitan Dallas. \"But I don't think we're moving backward, and that's gtod.\" While sales numbers are expected to remain healthy, some dealers may not see as much profit in 1997 as they did in 1996, Mr. Campbell said - mostly a result of greater competition.Since the first of the year, AutoBNation isSA and CarMax have opened used-car megastores in the area, Kansas-based megadealer Cecil Van Tuyl has bought several more dealerships here, and other dealers have been acquired by publicly held corporations.Larger dealership groups can generally a\n\n[...TRUNCATED...]\n\nl Seltenheim, vice president of Autodata Corp. Some analysts estimate that at least half of all domestic models have price-cutting incentives on them.Such promotions - provided mostly by the automakers - reduce manufacturers' profits. And some dealers wonder whether the factories will at some point drop some of the discounts.\"I worry about that because of the large inventory I carry,\" said Jerry Reynolds, managing partner of Prestige Ford in Garland. \"I could really get hung out to dry. But I feel pretty confident that's not going to happen.\" Mr. Reynolds said he expects his sales to be up by about 1,000 vehicles this year, or about 20 percent. Much of the increase will come from vehicles with incentives.He said Ford Motor Co. has assured its dealers that it will keep offering incentives as long as sales are sluggish. Ford's Southwest region, which includes Texas and Oklahoma, is its best market, and four of the top dealers in the region are in the Dallas area. Prestige is Ford's biggest Texas dealer.But even with theuncertaintycaused by the incentives - and more recently, the unsettledeconomiesof Asia - most area dealers expect '98 to be at least as gtod as '97, and reasonably profitable.\"I would say it's a buyer's market,\" said Ray Huffines, owner of an array of area showrtoms that bear his name. \"But I don't see anything out there that will dramatically change the car market.Caption:CHART(S): (The Dallas Morning News) DALLAS-AREA AisTO SALES\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":0,\"confidence\":0.93,\"focus_excerpt\":\"But even with the uncertainty caused by the incentives - and more recently, the unsettled economies of Asia - most area dealers expect '98 to be at least as good as '97\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1608,
+            "outputTokens": 55,
+            "inputTokensCostNanodollars": "4020000",
+            "outputTokensCostNanodollars": "825000",
+            "totalBackendLatencyMs": "1178"
+          },
+          "id": "epu_q2_medium-f3c5ba07-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1608,
+        "outputTokens": 55,
+        "inputTokensCostNanodollars": "4020000",
+        "outputTokensCostNanodollars": "825000",
+        "totalBackendLatencyMs": "1178"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #242"
+}

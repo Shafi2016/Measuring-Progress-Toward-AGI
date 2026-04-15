@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:52:21.129888Z",
+  "endTime": "2026-03-31T18:52:22.938561Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-e274d9e9",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nAmid isncertainties About the 2nd Half, Focus Is on Parehasers* and Jobs Data: TRACKING T] PAMELA SEBASTIAN Staff Reporter of THE WALL STREET JOisRNAL Wall Street Journal (1923 - Currentfile); Jul 2, 1990; ProQuest Historical Newspapers: The pg. A2 Amid isncertainties About the 2nd Half, Focus Is on Parehasers'and Jobs Data TEACHING THE ECONOMY l*y I'amei.a Sebastian Nla.'in Rt'ixmrr (t/Tin: W.u.t. '.t Joiminai. NKW YORK-An uncertiiln socoml half Ivgins willi I'yfs on the ,liuu> paretmslng \u2022\u25a0unacprs' index, which is pxpcctrcl to ho a tail weaker, ami the employment report, which may he a bit stronger. The pmvInisiTs' index, to he released tmlay, is exin'cted to weigh in avouml In mamifacturlns: may lorn tint to he a false alarm,'' Mr. Sinai said. The ante makers' June activity Is ex- peeled to help keep the pnrchasiiiR man\u00adagers' Index above the benchmark SO1', and help stem slippage In manufacturing employment. The consensus view expects June factory payrolls to lose 10,000 jobs, compared with a loss of 3-3,000 positions in May. More worrisome to economists is the slowdown in the growth of Jobs in the serv\u00adice sector\u2014flu' main engine of recent eco\u00adnomic growth. Stuart G. Hoffman, chief economist at Closely Watched Reports Statistic* R4mm4 hi th\u00ab WMk IntM Jum 29 tironi pnw TOTAL period) Mmm MMBftv||| Ml Week ended June 18 tin billions)|$807.8|\u2022*$0.1| M2 Week ended June 18 tin billions)|13,211.4|\u2022*$$.$| Ml Week ended June 18 tin billions)|$4,058.9|-M.S| Aetesatoe Mid-June|Ml,$\n\n[...TRUNCATED...]\n\nJune reporting period covers five weeks and includes the bulk of student hir\u00ading, Mr. Hoffman noted that any weaker- than-expected numbers would be even more significant. \"The I June! bias is to\u00adward overstatement, so any weakness would be understated,\" he said. \"I'd worry if. over a three-month period, we found! service) jobs averaging less than 100,000 a month. That would be very weak.\" The unemployment rate is expected to inch ahead to 5.47< from 5.37c in May, ac\u00adcording to the consensus. Samuel Kalian, economist at Fuji Secu\u00adrities Inc., Chicago, said that estimating the number of service sector jobs is diffi\u00adcult. at best, because \"a gtod chunk of the figure is really highly estimated.\" None\u00adtheless. the job count is worth watching, he said. \"We're finally seeing some decelera\u00adtion in employment growth. That should translate, over the next six months or so, to a downward move on prices and wages,\" Mr. Kahan said. The consensus view on average hourly earnings in June calls for a 0.3fv increase, down a bit from May's 0.4CV increase. May construction spending, to be posted today, is expected to drop by about 1.2 per\u00adcentage points, following declines of 0.77c each in March and April. And May factory orders, scheduled for release tomorrow are expected to bounce back from April's 2.37c decline with an increase of 2.17c, according to consensus figures. The rebound is trace\u00adable to the recently reported 3.97c increase in May durable gtods orders.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.95, \"focus_excerpt\": \"An uncertain second half begins with eyes on today's purchasing managers' index, which is expected to be a tail weaker, and the employment report, which may be a bit stronger.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1806,
+            "outputTokens": 59,
+            "inputTokensCostNanodollars": "721056",
+            "outputTokensCostNanodollars": "99120",
+            "totalBackendLatencyMs": "1593"
+          },
+          "id": "epu_q2_medium-e274d9e9-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1806,
+        "outputTokens": 59,
+        "inputTokensCostNanodollars": "721056",
+        "outputTokensCostNanodollars": "99120",
+        "totalBackendLatencyMs": "1593"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #91"
+}

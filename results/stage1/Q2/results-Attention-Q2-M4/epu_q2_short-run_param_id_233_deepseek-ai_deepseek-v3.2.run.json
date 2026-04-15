@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:33:19.996494Z",
+  "endTime": "2026-03-31T18:33:21.634860Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-73785576",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nAfter Election, Russia Faces isncertain Future: Advisers Say Yeltsin ... Michael Dobbs Washington Post Foreign Service The Washington Post (1974-Current file); Jun 16, 1991; ProQuest Historical Newspapers: The Washington Post (1877-1997) Pg- A18 Russians wave pictures of Boris Yeltsin in Moscow's Pushkin Squuro Friday, after the radical leader swept to victory in raco for the Russian presidency. After Election, Russia Faces isncertain Future Advisers Say Yeltsin Must Move Fast to Lead Russia From 'Economic Lunatic Asylum ' By Michael Dobbs Wttisafton Post PerelpiSerrice MOSCOW, June 15\u2014The people of the Russian republic have voted to end the 73- year-long experiment with communism during. which tens of millions of their parents and grandparents perished. The issue now is what kind of social and political order will be built on the ruins of Bolshevism. <; Boris Yeltsin's crushing victory over no iess ' than five Communist-backed rival candidates in the first presidential election j^EWS in Russia's history delighted his ANALYSIS democratic supporters. The may- - - or of Moscow, Gavril Popov, declared that Russia had \"rejoined the family of nations.\" Lev Sukhanov, a top Yeltsin aide, called the event a \"bltodless revolution.\" \"The Russian people have made a historic choice. The elections were more than just a rejection of the Communist Party; They were a rejection of the entire Leninist legacy. Ltok what happened in Leningrad,\" said Russian Jus\u00adtice Minister Nikolai Fyodorov. Re\n\n[...TRUNCATED...]\n\nresiden\u00adtial election is likely to have a major political impact in the traditionallyconservative provinces. Direct elec\u00adtions for provincial governors and mayors have been scheduled for the fall. Sensing which way the political wind is blowing, many local officials are now scrambling aboard the Yeltsin bandwagon. The Communist Party has re\u00adacted to Yeltsin's victory by at\u00adtempting to minimize its signifi\u00adcance. At a news conference in Lon\u00addon, Anatoly Lukyanov, chairman of the Soviet parliament, said Yeltsin would now be obliged to behave like a responsible politician rather than an opposition leader. The Soviet isnion, he insisted, would remain true to its \"socialist choice.\" Gorbachev, who phoned Yeltsin on Friday to congratulate him, seems likely to adopt a more flex\u00adible attitude. Despite all their past quarrels, the two men need each other to offset the continuing power of the hard-liners. At the same time, Yeltsin's success at the polls draws attention to Gorbachev's own lack of popular legitimacy. The fa\u00adther of perestroika and glasnost has never faced real voters in a con\u00adtested election. \"It is now clear that there is now only one real president in the [Sovi\u00adet] isnion, a president chosen by pop\u00adular vote and not by backstage po\u00adlitical maneuvering. The name of that president is Boris Yeltsin,\" said Russian Justice Minister Fyodorov. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.8,\n  \"focus_excerpt\": \"what kind of social and political order will be built on the ruins of Bolshevism\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 917,
+            "outputTokens": 45,
+            "inputTokensCostNanodollars": "416752",
+            "outputTokensCostNanodollars": "75600",
+            "totalBackendLatencyMs": "1436"
+          },
+          "id": "epu_q2_short-73785576-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 917,
+        "outputTokens": 45,
+        "inputTokensCostNanodollars": "416752",
+        "outputTokensCostNanodollars": "75600",
+        "totalBackendLatencyMs": "1436"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #234"
+}

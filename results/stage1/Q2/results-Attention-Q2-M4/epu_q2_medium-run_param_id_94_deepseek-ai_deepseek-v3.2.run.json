@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:52:43.917771Z",
+  "endTime": "2026-03-31T18:52:46.051277Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-c00d5b2a",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nIn a hail of rifle fire into a crowded vegetable market in Hebron, an Israeli soldier Wednesday aimed to stop the planned trtop withdrawal from the city, but hours later negotiators pushed to seal the deal. The off-duty soldier, who lives in a Jewish settlement just east of Jerusalem, wounded at least five Palestinians as he fired about 20 bullets into the souk. The soldier, Noam Friedman, 19, told police he hoped to scuttle the trtop pullback. Prime Minister Benjamin Netanyahu called Palestinian leader Yasser Arafat to condemn the ``criminal act,'' and vowed to finish the last details of the long-postponed Hebron redeployment. ``For a long time I have been saying that the delays in the negotiations only create a situation of uncertainty and instability, which provoke and create the conditions for developments of the kind we saw today,'' Netanyahu said. ``And so we must complete this agreement.'' Israeli Defense Minister Yitzhak Mordechai and Arafat's top adviser Mahmoud Abbas negotiated late into the night Wednesday at the home of is.S. Ambassador to Israel Martin Indyk in a northern suburb of Tel Aviv. Dennis Ross, President Clinton's Middle East envoy, was trying to arrange a meeting today between Netanyahu and Arafat. Said Ross: ``Those who use violence cannot be permitted to be the arbiters of the future.'' Israeli government spokesman Moshe Fogel said he ``assumed'' an Arafat-Netanyahu meeting would take place sometime today. There had been predictions of a deal signed \n\n[...TRUNCATED...]\n\ne so close and they want to finish it. This incident goes into a ledger btok somewhere in favor of the Palestinian demands.'' Fruitless act of violence Mark Heller, a senior research fellow at the Jaffee Center for Strategic Studies in Tel Aviv, said that the aftermath of Wednesday's violence will most likely mirror that of previous violent acts since the beginning of the Oslo peace accords more than three years ago. That is, Oslo goes on, however haltingly. ``You would think that people moved by these sort of desperate impulses would eventually get the message that it doesn't accomplish anything. All the Hamas and Islamic Jihad attacks haven't stopped the process. Yigal Amir didn't get want he wanted. Baruch Goldstein didn't get what he wanted. And by all indications, this guy didn't get what he wanted either.'' Caption: color photo: Benjamin Netanyahu (a), Noam Friedman shtoting (a), Noam Friedman with soldiers (a); photo: Palestinian women running (a) EYAL WARSHAVSKY / AP RisSHING TO SAFETY: Palestinian women and their children leave the center of Hebron Wednesday as rioting breaks out. SHOOTING SPREE: Israeli soldier Noam Friedman, above, fires at Palestinians in the West Bank city of Hebron on Wednesday. At right, soldiers whisk Friedman away. The shtoter tried to scuttle Israel's trtop pullout, but Prime Minister Benjamin Netanyahu, left, vowed to finish the details. A. AMSINCK / AP SHIMI NACHTAILER / AP Memo: see end of text for cutlines\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"\\\"For a long time I have been saying that the delays in the negotiations only create a situation of uncertainty and instability\\\"\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1622,
+            "outputTokens": 52,
+            "inputTokensCostNanodollars": "618016",
+            "outputTokensCostNanodollars": "87360",
+            "totalBackendLatencyMs": "1934"
+          },
+          "id": "epu_q2_medium-c00d5b2a-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1622,
+        "outputTokens": 52,
+        "inputTokensCostNanodollars": "618016",
+        "outputTokensCostNanodollars": "87360",
+        "totalBackendLatencyMs": "1934"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #95"
+}

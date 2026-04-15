@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:09:47.678208Z",
+  "endTime": "2026-03-31T19:09:49.913826Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-66bf83d5",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nFrom floral handbags to pleated miniskirts, compelling fashion inspired shoppers to buy items not already crowding closets and drove retail sales well above expectations in February.\"Girly\" is the fashion-forward theme, and women apparently are buying it.According to Thomson First Call, a whopping 78 percent of major retail chains beat expectations, representing the highest number of stores to produce better-than-expected results since the firm started compiling monthly same-store sales estimates. Sales at stores open at least a year rose 6.7 percent from a year earlier, according to the International Council of Shopping Centers.Gains were across the board from Wal-Mart Stores Inc. and Target Inc. to J.C. Penney Co., Nordstrom Inc., Saks Inc. and Foley's parent, May Department Stores Co. All produced gains in excess of Wall Street expectations.For the first time ever, Penney department stores had a $1 billion February as sales climbed 12.1 percent. Catalog and Internet sales rose 8 percent, also beating expectations.Redbtok Research said in a written report Thursday that overall sales rose 7 percent in February, led by apparel specialty stores. Seventeen of the 23 double-digit same-store gainers were apparel specialty stores such as Jos. A. Bank, Chico's FAS, Aeropostale, Children's Place, bebe Stores Inc. and Neiman Marcus, Redbtok noted.February sales faced easy comparisons to last year whenuncertaintyfrom the pending invasion of Iraq and a weak job market produced a slow s\n\n[...TRUNCATED...]\n\nmy.Deborah Weinswig, retail analyst at Citigroup's Smith Barney, said that \"fashion newness has reinvigorated shoppers.\"Neiman Marcus and Nordstrom both use the word \"girly\" in their promotional literature to describe ice-cream pastel shoes and candy-coated handbags. Brightly colored spring suits and chandelier earrings are in the mix.May Department Stores said in its February report that even \"dresses experienced a significant upturn\" during the month.Clothes were part of the increase at Wal-Mart, tto.The Arkansas-based discounter said its 6.2 percent gain came from above-average increases in men's, women's and girls' apparel, health and beauty merchandise and ftod. Average parehases and traffic were both positive for the month.For March, Wal-Mart is forecasting a 4 to 6 percent increase.Penney said its gains were across the board and it had gtod responses to Valentine's Day and Presidents' Day promotions.Penney said in a recorded message that it expects to see continued improvement in theeconomythroughout the first half of due to larger tax refunds and lower tax withholding, although some of that may be offset by higher energy prices.The Plano-based retailer expects sales to rise in the low single digits in March.E-mail mhalkias@dallasnews.comCaption:PHOTO(S): (TIM BOYLE/Getty Images) Wal-Mart Stores Inc. reported that February sales rose 6.2 percent, btosted by a strong demand for clothes. CHART(S): (JOAN HANAN/Staff Artist) FEBRisARY SALES.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"February sales faced easy comparisons to last year when uncertainty from the pending invasion of Iraq and a weak job market produced a slow\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1630,
+            "outputTokens": 52,
+            "inputTokensCostNanodollars": "622496",
+            "outputTokensCostNanodollars": "87360",
+            "totalBackendLatencyMs": "2019"
+          },
+          "id": "epu_q2_medium-66bf83d5-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1630,
+        "outputTokens": 52,
+        "inputTokensCostNanodollars": "622496",
+        "outputTokensCostNanodollars": "87360",
+        "totalBackendLatencyMs": "2019"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #483"
+}

@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T03:56:24.290937Z",
+  "endTime": "2026-03-31T03:56:36.879109Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-d447ed8b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nAt Belmont, Once Again The Future Is isncertain By ADAM L. PENENBERG I N its heyday the Belmont Stakes had no trouble living up to its reputation as the crown jewel of horse racing. As the final \u2014 hence, at times most suspenseful \u2014 Triple Crown race, a mention of its name conjured up majestic images, Secretariat pound\u00ading the track 31 lengths ahead of his nearest rival in 1973, Seattle Slew not even glancing back in 1977 and, the next year, in the tightest finish ever, Affirmed nosing out Alydar. But as the track gears up for the 128th running of the Belmont Stakes on Saturday, the people whose lives are inexorably linked with the fortunes and grandeur of horse racing, many of whom grew up around race tracks, are watching the end of their world as they know it. Although those who make horse racing at Belmont Park possible, from the race announcer to the stable hands, the jockeys' agents to the horse inspectors, bet regularly on the horses, one thing that they would not dare bet on is their future. \"Belmont used to have an air of excitement, but now it's of malaise,\" said Patricia Guy, whose family has been renting and storing binoculars at Belmont for three generations. \"People are staying home, tuning in on cable to see the races and placing bets through O.T.B., which has really hurt track attendance. I can't even earn a living at this anymore. Luckily, I'm married.\" With the winner of the Kentucky Derby, Grindstone, having broken a leg and being retired to early stud, and t\n\n[...TRUNCATED...]\n\nrodynamic, stretchy stuff, it's easy to clean, tto.\" Durkin relies on Olah and Santa\u00adgata to do their jobs so that he can do his, describing the race as it happens over the public-address system. Af\u00adter receiving the line for the first race of the day, Durkin spends a few minutes writing down silk colors and patterns next to each horse's name with a marking pen. \"Don't ltok at the numbers,\" Dur\u00adkin said. \"The horse could be a mile and a half away or obscured by the other horses. You have to match the horse with the jockey silk colors.\" He ran over the names of the horses \u2014 Seattle Charmer, Strolling in the Park, Gentleness, Irma, re\u00adpeated them over and over in differ\u00adent orders until the pronunciation was smtoth and effortless and he had committed them to memory. \"My job is to describe the races,\" Durkin said. \"If I'm bored I can't let that show. If some guy bets $50 at 20 to 1, and his horse wins, he's going to be excited.\" In this particular race, Irma, rid\u00adden by Cordova, came from behind to win. \"There's an esthetic to horse rac\u00ading that I appreciate,\" Durkin said after beginning to prepare for the next race. \"My job is fabulous. On stakes day, when I say a horse is making a move and 40,000 people are screaming, there's nothing like it.\" Indeed, if horse racing's fortunes do not turn around, there might be nothing like it in the future. H Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 0.8,\n  \"focus_excerpt\": \"People are staying home, tuning in on cable to see the races and placing bets through O.T.B., which has really hurt track attendance.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1653,
+            "outputTokens": 65,
+            "inputTokensCostNanodollars": "2066250",
+            "outputTokensCostNanodollars": "12740000",
+            "totalBackendLatencyMs": "12487"
+          },
+          "id": "epu_q2_medium-d447ed8b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1653,
+        "outputTokens": 65,
+        "inputTokensCostNanodollars": "2066250",
+        "outputTokensCostNanodollars": "12740000",
+        "totalBackendLatencyMs": "12487"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #88"
+}

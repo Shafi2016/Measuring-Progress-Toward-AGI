@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:30:00.453040Z",
+  "endTime": "2026-03-31T18:30:04.688156Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-e9a07021",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy ma\n\nTARGET ARTICLE START\nSix months ago, a modest lunch at a downtown restaurant cost more than a barrel of oil on world markets. Not anymore. The Organization of Petroleum Exporting Countries' surprising resolve to curb production has balltoned oil prices to around $25 a barrel.While that means more expensive gasoline and energy in the isnited States, higher oil prices are cause to cheer if you're a Texas independent producer, or an OPEC member. The price surge provides a brief opportunity for oil producers to make some money.OPEC ministers have agreed to extend their production curbs at least through March in an effort to keep prices high and sop up excess oil supplies. By March, some forecasters predict the strategy will have dissipated the world's oil glut.OPEC's strategy has a significant downside, however. Prices are higher, but the oil industry isn't necessarily stronger. Although improved, worldwide demand for oil is still tenuous. Moreover, higher energy prices provide kindling for inflation worries in the isnited States and overseas.The key to price stability is demand that will come about only if the world's majoreconomiesoutside the isnited States rebound. Europe and Asia, major oil consumers, show signs of recovering, but their rebounds clearly aren't enough to justify or sustain current oil prices without OPEC's production limits.OPEC has surprised everyone with its ability to control oil prices as effectively as it has in the past half-year. But in the long run, the strategy is losing and ineffective. Prolonged production cuts slice revenue, erode the market share, and increase the pressure on OPEC to lift or circumvent production curbs. In the long term, OPEC's strategy will not work.Most producers would celebrate $18 to $20 a barrel if it were based on the greater consumption of oil worldwide. But $25 a barrel oil based on speculation and artificial controls ltoks like a bubble approaching its popping point. There's simply tto much air anduncertaintyin these higher oil prices for anyone from investor to producer to feel comfortable.For the near future, oil prices are likely to be as fickle as a roll of the dice. And that's still a dangerous position for everyone.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy mar"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.7, \"focus_excerpt\": \"higher energy prices provide kindling for inflation worries in the United States and overseas\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 874,
+            "outputTokens": 41,
+            "inputTokensCostNanodollars": "2622000",
+            "outputTokensCostNanodollars": "615000",
+            "totalBackendLatencyMs": "4152"
+          },
+          "id": "epu_q2_short-e9a07021-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 874,
+        "outputTokens": 41,
+        "inputTokensCostNanodollars": "2622000",
+        "outputTokensCostNanodollars": "615000",
+        "totalBackendLatencyMs": "4152"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #211"
+}

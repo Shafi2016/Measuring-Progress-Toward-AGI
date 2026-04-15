@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:55:07.733024Z",
+  "endTime": "2026-03-31T18:55:09.337618Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-85f3876a",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marke\n\nTARGET ARTICLE START\nA united Germany will not and cannot remain neutral and will not forget its past, the West German ambassador to the isnited States told about 400 delegates at the national convention of the American Jewish Congress Monday. \"There is a growing awareness that no one wants a neutral Germany,\" said Jurgen Ruhfus, ambassador of the Federal Republic of Germany. \"There will be no special German course which would isolate us in Europe. \"From my deepest conviction I beg you to trust us,\" Ruhfus said. \"I understand the feelings of those who have suffered.\" Ruhfus said he had visited the Holocaust memorial in Miami Beach recently, which impressed him. \"Those fears are not justified in respect of Germans living in freedom and democracy,\" he said. And a united Germany would live in freedom and democracy, he said. \"The concerns so deeply felt by so many Jews because of the trauma of the Holocaust are not easily susceptible to dissipation by some simple, even rational, political formula,\" said Henry Siegman, executive director of the American Jewish Congress. \"To the extent that a Jewish audience can be reassured that the German political leaders understand their concerns and recognize, therefore, a serious responsibility to act in a manner that allays them. .. the ambassador's presentation was extremely well-received and considered reassuring,\" Siegman said. Ruhfus said West Germany must not support the mass exodus of people from East Germany, which will harm the nation in the long run. \"Nearly 3,000 people leave. .. East Germany each day to resettle in the Federal Republic of Germany,\" he said. \"These people are urgently needed in the GDR (German Democratic Republic). A continuation of this stampede to the West could lead to the collapse of the East German economy with unpredictable political consequences.\" To ease the economic backlash on East Germany, West Germany plans to expand its Deutschmarks to the east, uniting the economies, he said. \"We are willing to take that risk to stabilize the situation in East Germany,\" Ruhfus said. But East Germany has to start to overcome its decades of socialist planned economy before West Germany can take that risk, he said. Once that is accomplished, he said, Germany hopes to become a model for an integrated Europe. Ruhfus also insisted that Germany does not want to retreat from the North Atlantic Treaty Organization, but that a Germany in NATO would not present a threat to Warsaw Pact nations. \"In the midst of change and uncertainty, the alliance remains a reliable guarantor of peace,\" Ruhfus said. \"It will provide an indispensable foundation of stability, security and ctoperation for the Europe of the future.\" The Associated Press contributed to this report.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marke"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.7, \"focus_excerpt\": \"A continuation of this stampede to the West could lead to the collapse of the East German economy with unpredictable political consequences... West Germany plans to expand its Deutschmarks to the east, uniting the economies\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1644,
+            "outputTokens": 69,
+            "inputTokensCostNanodollars": "4932000",
+            "outputTokensCostNanodollars": "1035000",
+            "totalBackendLatencyMs": "1563"
+          },
+          "id": "epu_q2_medium-85f3876a-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1644,
+        "outputTokens": 69,
+        "inputTokensCostNanodollars": "4932000",
+        "outputTokensCostNanodollars": "1035000",
+        "totalBackendLatencyMs": "1563"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #407"
+}

@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T03:35:57.308926Z",
+  "endTime": "2026-03-31T03:36:11.362606Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-4ce93960",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nJABALIYA REFisGEE CAMP, Gaza Strip -- On a desperate spit of sand here, in one of the most crowded places on earth, young Arabs rose up six years ago and hurled rocks at patrolling Israeli soldiers. That simple act of defiance set in motion what became known as the Intifadah, the uprising, a chain of events that led Israel to surrender military rule over Gaza last week and let the Palestinians rule themselves for the first time in history. But the Intifadah's \"children of stones\" didn't do it alone. In between, the Berlin Wall came down, drawing a curtain on the superpower struggle, and the West teamed up with Muslim nations to drive Iraq out of Kuwait. Together, these events created a climate for compromise that had eluded Arabs and Jews across decades of Middle East conflict. \"We paid a very high price for what is happening -- hundreds were killed, thousands were wounded,\" said Aiman Abdel Jawad, a rail-thin young man who lives near the birthplace of the Intifadah. \"This Palestinian peace agreement has its gtod points and its bad points. But, to get rid of the army, it was worth it.\" Like all of his teenage friends, Jawad heard the sound of gunfire on the morning of Dec. 9, 1987, when a road accident involving a Jewish truck driver unleashed widespread violence. They spilled into the streets, impulsively building barricades of cement chunks and throwing rocks at Israeli army patrols in this camp crowded with tens of thousands of refugees living in shacks overltoking the Med\n\n[...TRUNCATED...]\n\n. Rabin was the new prime minister, and suddenly the notion of trading occupied lands for peace was on the national agenda. He promised a diplomatic breakthrough within one year. And he launched secret talks with the PLO. Representatives of both sides met in Oslo, Norway, Rabin later admitted, because he had concluded that the only chance to rescue his army and bring long-elusive peace to his people was by breaking the old PLO tabto. Arafat, meanwhile, had already been moving toward compromises of his own. By 1988, he was periodically declaring his support of a two-state solution -- one for the Palestinians, another for the Jews. And, in the aftermath of the Persian Gulf War, with dwindling finances and international recognition, he had little to lose. The breathtaking news broke in September. Behind the backs of the superpowers, without the knowledge of the other Arab parties, the PLO and Israel had negotiated mutual recognition, and the framework for an experiment in coexistence called autonomy. Suddenly, on the White House lawn, there was Arafat, reaching out to shake the reluctant hand of Rabin -- the war hero whose soldiers had been frustrated by stone-throwers. Last week's signing ceremony between Arafat and Rabin sealed the pact. Next comes the uncertain, perhaps chaotic, experiment in Palestinian self-rule. Caption: photo: PALESTINIAN police wave the victory sign under a poster of PLO chairman Yasser Arafat, Yitzhak RABIN, Yasser ARAFAT\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1,\n  \"focus_excerpt\": \"Next comes the uncertain, perhaps chaotic, experiment in Palestinian self-rule.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 862,
+            "outputTokens": 48,
+            "inputTokensCostNanodollars": "1077500",
+            "outputTokensCostNanodollars": "14660000",
+            "totalBackendLatencyMs": "13955"
+          },
+          "id": "epu_q2_short-4ce93960-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 862,
+        "outputTokens": 48,
+        "inputTokensCostNanodollars": "1077500",
+        "outputTokensCostNanodollars": "14660000",
+        "totalBackendLatencyMs": "13955"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #568"
+}

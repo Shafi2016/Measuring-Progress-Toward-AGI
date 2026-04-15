@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:41:01.757497Z",
+  "endTime": "2026-03-31T18:41:03.452355Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-d2a81772",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nThe Idea Merchant: Pat Choate sells economic policies. His hot new ... New York Times (1923-Current file); May 3, 1987; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. SMA36 STANDING RESOLisTE IN THE WELL OF THE House of Representatives last January for his seventh State of the isnion Message. President Reagan warned that America was in danger of losing the race for the global market He was planning, he said, a set of \"com\u00adprehensive proposals to enhance our competitive\u00adness.\" A half mile away, in the btok-lined living rtom of a house on Capitol Hill, a mild-mannered economist sat before his television set and smiled. After a relentless five-year campaign, Pat Choate, the director of the of\u00adfice of policy analysis for TRW Inc., the $6 billion high- technology conglomerate, had sold an idea called \"competitiveness\" to America. It is a big idea \u2014 big enough to encompass programs ranging from increased scientific research to trade protectionism, broad enough to attract Democrats and Republicans, high-technology executives and union leaders. It is Pat Choate's product. N THE PAST YEAR ALONE,THE 46-YEAR- old economist has helped draft speeches on com\u00adpetitiveness for the Democratic Leadership Council and drawn up legislation on competitive\u00adness for the House Wednesday Group, an organi\u00adzation of Republican Congressmen. At least 10 bills be\u00adfore the Congress derive from his 1986 btok on com- Randall Rothenberg, an editor of The New York Times Magazine, is the auth\n\n[...TRUNCATED...]\n\n increased funding, but so do the repre\u00adsentatives of many high-tech\u00adnology companies. In fact, there are some mem\u00adbers of the policy community who believe that competitive\u00adness will' ston self-destruct They cite Washington's last Big Idea, industrial policy, which was frittered away in a round of bickering between free\u00adtraders and protectionists, defi\u00adcit-busters and penny pinchers. \"It shows the natural de\u00adpreciation'of Washington buzz\u00adwords,\" says Robert Reich, a professor at Harvard's Ken\u00adnedy Schtol of Government and a major promoter of industrial policy. \"Anything that catches on in Washington becomes a coat rack for everybody's cur\u00adrent garment, pro and con. In\u00addustrial policy and competitive\u00adness have gone from relative obscurity to meaninglessness without any intervening period of coherence.\" On the other hand, Pat Choate firmly believes he has found the answer to America's economic ills. \"I think competi\u00adtiveness is one of those rare, strange and wonderful themes where the politics meshes with what the country needs,\" he says. But he has not lost sight of the problems that still lie ahead. \"There will be maybe 11,000 bills introduced in this Con\u00adgress,\" he says. \"Maybe 600 or 650 will be passed, and out of those, 400 to 500 are standard reauthorization bills. So what you're really talking about is a salmon run of policy and ideas. You've got to have persistence. When you're working ideas, you've got to be prepared to hang in there.\" \u25a1\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.85, \"focus_excerpt\": \"At least 10 bills before the Congress derive from his 1986 book on competitiveness... programs ranging from increased scientific research to trade protectionism\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 987,
+            "outputTokens": 58,
+            "inputTokensCostNanodollars": "2961000",
+            "outputTokensCostNanodollars": "870000",
+            "totalBackendLatencyMs": "1666"
+          },
+          "id": "epu_q2_short-d2a81772-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 987,
+        "outputTokens": 58,
+        "inputTokensCostNanodollars": "2961000",
+        "outputTokensCostNanodollars": "870000",
+        "totalBackendLatencyMs": "1666"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #593"
+}

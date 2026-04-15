@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:02:14.830372Z",
+  "endTime": "2026-03-31T19:02:16.517031Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-a442fe85",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nisncertainty Over Parade Has Merchants Worried: Substantial Loss of Tourist Trade Is Feared By RICHARD PEREZ-PENA New York Times (1923-Current file); Feb 21, 1993; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. 31 isncertainty Over Parade Has Merchants Worried Substantial Loss of Tourist Trade Is Feared tions. A group of liberal Irish-Arheri- cans won a city permit to conduct this year's parade and promised to in\u00adclude the Irish Lesbian and Gay Or\u00adganization, I.L.G.O., but returned the permit after more conservative, groups warned of a boycott. Mayor David N. Dinkins wants the parade permit to go to a group that would include homosexuals. But rib ' new sponsor willing to do that ha's come forward. The Ancient Order of Hibernians, the group that has sponsored the pa\u00adrade since the mid-19th century, has filed two lawsuits, one to wrest the permit from City Hall and the other to establish its right to exclude th^ gay and lesbian group. The Hibernians and organizations *, \u25a0 like the Emerald Societies and the'1 Irish county associations have called for a boycott if the gay groifp\" marches. John Cardinal O'Connor' has warned that other groups affiliat-'' ed with the chareh may boycott the parade if the gay group marches. ; In 1991, after the Hibernians re\u00adfused to let the gay group march, the group's members marched with the Mayor, though they were not permit\u00adted to carry their own banner. Last year, the gay and lesbian group and; its supporters held a separate \n\n[...TRUNCATED...]\n\nrom outside the metropolitan area, Ms. Pucci of the Mayor's office said, and they do a disproportionately large share of the spending, from renting hotel rtoms and cars to hail\u00ading cabs and buying green hats., Parade organizers believe that it is. this lucrative out-of-town business ' \u2022 that is most likely to be lost because iti has not been possible this year for many tourists to make their plans well in advance, as many must. Robert E. Rogers, who ctordinates marching bands for the Hibernians' Parade Committee, said that in a gtod year the parade draws 35 out-of\u00adtown bands, each with 50 to 100 mem\u00adbers, but as many as half might stay away this year.. Even the Hibernians acknowledge. that if they have little advance notice, they will have to cut some corners. John TJunleavy, vice chairman of the Parade Committee, said the group might shorten the 40-page jour\u00adnal that usually accompanies the pa\u00adrade and curtail the expensive party thrown each year for the grand mar\u00adshal and other dignitaries. Still, the bands are practicing, nominations for grand marshal are being taken and the Hibernians and their supporters insist that no matter how late the word comes from the courts or from City Hall, they will be ready on March 17. \"Even if it were a week before\u00adhand, we could put on a gtod parade,\" Mr. Dunleavy said. \"It's automatic, it's so well oiled.\" Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.15, \"focus_excerpt\": \"isncertainty Over Parade Has Merchants Worried Substantial Loss of Tourist Trade Is Feared\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1670,
+            "outputTokens": 43,
+            "inputTokensCostNanodollars": "644896",
+            "outputTokensCostNanodollars": "72240",
+            "totalBackendLatencyMs": "1466"
+          },
+          "id": "epu_q2_medium-a442fe85-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1670,
+        "outputTokens": 43,
+        "inputTokensCostNanodollars": "644896",
+        "outputTokensCostNanodollars": "72240",
+        "totalBackendLatencyMs": "1466"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #302"
+}

@@ -1,0 +1,13 @@
+llm_name,condition,field,prompt_order_index,completion_rate,correctness_mean,correctness_ci_low,correctness_ci_high
+google/gemini-2.5-flash,multi_focus_epu_first,epu,1,0.9916666666666667,0.6616666666666666,0.6228861998055073,0.6983901835333961
+google/gemini-2.5-flash,multi_focus_epu_first,who,2,0.9916666666666667,0.245,0.21228002521890663,0.2809644422980807
+google/gemini-2.5-flash,multi_focus_epu_first,actions,3,0.9916666666666667,0.29,0.2551191238284465,0.3275527905973079
+google/gemini-2.5-flash,multi_focus_epu_first,effects,4,0.9916666666666667,0.24166666666666667,0.20912573889505948,0.2774944732953526
+google/gemini-2.5-flash,multi_focus_epu_first,mention_foreign,5,0.9916666666666667,0.5483333333333333,0.5083312903024353,0.5877204119329069
+google/gemini-2.5-flash,multi_focus_epu_first,mainly_foreign,6,0.9916666666666667,0.7416666666666667,0.7051828984726697,0.7750756127040418
+google/gemini-2.5-flash,multi_focus_epu_last,epu,6,1.0,0.655,0.616085613046072,0.6919422596396808
+google/gemini-2.5-flash,multi_focus_epu_last,who,1,1.0,0.59,0.5501945105891836,0.6286603832283503
+google/gemini-2.5-flash,multi_focus_epu_last,actions,2,1.0,0.5433333333333333,0.5033266215211811,0.5827886977242982
+google/gemini-2.5-flash,multi_focus_epu_last,effects,3,1.0,0.49,0.4501914070080844,0.5299358270121897
+google/gemini-2.5-flash,multi_focus_epu_last,mention_foreign,4,1.0,0.565,0.5250426143378268,0.6041303645303919
+google/gemini-2.5-flash,multi_focus_epu_last,mainly_foreign,5,1.0,0.7566666666666667,0.7207701950777639,0.7892974650685365

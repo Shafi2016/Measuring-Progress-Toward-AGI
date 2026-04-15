@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:00:57.509272Z",
+  "endTime": "2026-03-31T19:01:00.007111Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-a5e2ac68",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nFEZ, Morocco - Blowing dust dimmed the sun over this ancient city, where Mohamed Tayeb fled after giving up trying to raise grain, beans and livestock in his drought-plagued fields.Mr. Tayeb is part of a dangerously growing flight to Morocco's cities, creating urban tinderboxes of rising unemployment and Muslim radicalism that could undermine King Hassan II.issing a mix of religion, limited democracy and some iron-fisted tactics, King Hassan has successfully ruled for 34 years with the support of educated urbanites and Muslim peasants who respect his religious credentials.But the lack of rainfall is expected to cut the current grain harvest by more than 80 percent and shake theeconomynationwide.\"It's certainly the drought of the century this year,\" Prime Minister Abdellatif Filali said in Rabat, the capital. \"It has a negative effect on everything else.\"Theeconomiccrisis could pose a threat to the government, which is among the most Western-oriented of Arab regimes. The isnited States and Europe view King Hassan's support of the Middle East peace negotiations as a soaree of moderation and stability in anuncertainregion.But a growing population of educated youth is demanding more jobs, and the middle class wants more political say as the king's bedrock constituencies face harder times.A graying father of nine, Mr. Tayeb, 41, pounds out copperware to feed his family.\"There was nothing for my sheep to eat. We had nothing to sell,\" he said when asked why he left his farm. \"Many o\n\n[...TRUNCATED...]\n\ns and teachers say. Radicals disrupt classes and have had bltody clashes with their opponents - secularists and moderate Muslims who support a more flexible interpretation of Islamic law.At Mohamamed V isniversity in Rabat, a young woman wearing a black robe and white head scarf was asked if it was as a protest or out of tradition. \"For both,\" she said tersely. She would give only her first name, Fatira, reflecting the wariness on both sides of religious divide.A female student in a business suit, who gave her name as Samira, said she worried about militants trying to bring down Morocco's system. She welcomed reports that police infiltrate militant student groups. \"It's the only way to weaken those groups,\" she said.A powerful rallying issue for the king is Morocco's claim on Western Sahara, where guerrillas have fought for independence since Morocco seized the territory from Spain in 1975. The isnited Nations is now trying to organize a referendum on the mineral-rich land's status.If Morocco lost the vote and was forced to give up the territory, the king could be destabilized because he has spent billions of dollars there and built up political capital with his people by constantly playing up to them that Western Sahara is Moroccan.King Hassan has strong support on the issue from his political opponents, some of whom even question the need for a referendum.\"Why should you ask someone from an American state if they are American?\" Mr. Baha asked\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.75,\n  \"focus_excerpt\": \"The economic crisis could pose a threat to the government, which is among the most Western-oriented of Arab regimes.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1585,
+            "outputTokens": 49,
+            "inputTokensCostNanodollars": "597296",
+            "outputTokensCostNanodollars": "82320",
+            "totalBackendLatencyMs": "2285"
+          },
+          "id": "epu_q2_medium-a5e2ac68-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1585,
+        "outputTokens": 49,
+        "inputTokensCostNanodollars": "597296",
+        "outputTokensCostNanodollars": "82320",
+        "totalBackendLatencyMs": "2285"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #270"
+}

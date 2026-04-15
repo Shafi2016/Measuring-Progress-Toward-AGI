@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:04:56.394301Z",
+  "endTime": "2026-03-31T02:04:59.223969Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-28c03023",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nTSisRisI, Japan - Japan's next financial debacle lies right here where the seventh tee should beckon: a half-finished road slashed into a cow pasture overrun by sunflowers.Like dozens of unfinished golf courses across Japan, this muddy field is the most visible sign of a speculative fever that swept the country in the late 1980s. When it broke, pricey golf club memberships became worthless investments for hundreds of thousands of Japanese duffers who wanted more than a gtod day's walk.Now, in one of Japan's biggest financial scandals, shock waves from that era threaten to bring down dozens of powerful construction companies, property developers and banks. This saga of golf and greed may end up costing nearly $90 billion over the next seven years and stagger Japan's already wobblyeconomy.\"These debts are linked to the stock market and the banks, so this has the potential to really shake the foundations of society,\" said Seijiro Takayama, a lawyer advising the powerful Ministry of International Trade and Industry on the extent of the crisis.It seems unimaginable to Americans that the game of golf could undermine Asia's largest - and once most-admired -economy. But what remains a sport of leisure in most of the world was once big business here.Golf fever was tied to the euphoria and arrogance of the late 1980s. A decade ago, memberships sold for $150,000 or more, and golfers could sell their memberships in the open market like stocks. Even now, newspaper ads each week list membe\n\n[...TRUNCATED...]\n\n soliciting memberships for golf clubs not yet built. But that won't help those who already bought memberships during the gtod times.\"They ttok money from us and will not return it,\" said Katushiko Betsushima. \"This is the same as a crime. But there is still no explanation as to why they lost so much money.\"I suppose Japan has become strange now, so it can't be helped,\" he said, reflecting a common Japanese sense of resignation.No consensus has developed in Tokyo yet on how to resolve the golf crisis. Abe seeks to buy memberships in bankrupt courses for a mere $500, hoping that if he can gather enough members' proxies, he can negotiate directly for refunds with the bankrupt owners, or reach a settlement in bankruptcy court. (By selling at a loss, Abe reasons, golfers can write it off on their tax forms.) Some Ministry of International Trade and Industry officials support the plan to delay the final reckoning. But M r. Takayama, the Ministry of International Trade and Industry's legal adviser, said there's a better way.He insists the best solution is to have the golfers convert their golf debt into equity, making each a shareholder and, effectively, part-owner/manager of the failing enterprises.\"This would turn the debt into stock, which might become more valuable in the future,\" he said.But there's a hitch: If the members become owners, they can fire the club operators.\"So that's why this plan hasn't gained much favor - yet,\" Mr. Takayama said.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.9, \"focus_excerpt\": \"No consensus has developed in Tokyo yet on how to resolve the golf crisis.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 869,
+            "outputTokens": 37,
+            "inputTokensCostNanodollars": "260700",
+            "outputTokensCostNanodollars": "1120000",
+            "totalBackendLatencyMs": "2776"
+          },
+          "id": "epu_q2_short-28c03023-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 869,
+        "outputTokens": 37,
+        "inputTokensCostNanodollars": "260700",
+        "outputTokensCostNanodollars": "1120000",
+        "totalBackendLatencyMs": "2776"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #313"
+}

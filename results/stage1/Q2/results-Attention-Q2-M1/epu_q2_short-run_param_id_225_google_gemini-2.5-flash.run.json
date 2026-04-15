@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T01:58:12.210774Z",
+  "endTime": "2026-03-31T01:58:15.257090Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-d21a29e5",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nAs is.S. airlines begin reporting their quarterly results this week, investors may learn whether they should ltok forward to the rest of the year with cheerful anticipation or creeping dread.The same can be said for companies in most sectors of theeconomy. But what makes the airline industry different from many others is how much its health depends on the price of oil.A penny difference in the price of a gallon of jet fuel increases or decreases American Airlines Inc.'s annual expenses by about $28 million, for example. In a late June update to investors, parent AMR Corp. estimated that its 2011 fuel price will be $3.02 a gallon, up 71 cents from 2010 - or about $2 billion.With fuel costs sharply higher, airlines have depended on steady demand from travelers to keep their profit potential from taking a dive. Analysts will be ltoking for signs about whether that strength so far in 2011 will continue in the second half.\"We expect 2Q11 airline earnings season to be defined by concern over fuel prices, talk of willingness to cut capacity (but no material capacity cut announcements), and better commentary on July/August demand trends compared to what was a largely disappointing June,\" analyst Hunter Keay wrote Friday in a report.\"However, we think the slightest indication of continuing demand softness will be met with aggressive selling,\" he added.Senior aerospace analyst Ray Neidl of the Maxim Group worried that slowingeconomicgrowth and other problems would sidetrack airline pro\n\n[...TRUNCATED...]\n\nt closed its parehase of AirTran Holdings Inc.The largest is.S. passenger airline company, isnited Continental Holdings Inc., is projected to earn about $1.51 a share, or close to $600 million, before special charges and one-time items. The parent of isnited Airlines Inc. and Continental Airlines Inc. advised investors last week that such items will cause a $39 million hit to earnings.The No. 2 carrier, Delta Air Lines Inc., is expected to earn 48 cents a share, or just over $400 million.Even with the industry overall expected to report solid profits, share prices for Southwest, AMR, Delta and isS Airways Group Inc. all hit 52-week lows Friday, and AMR briefly dipped below $5 Friday for the first time in nearly two years.Analysts say concern over theeconomy, fuel prices, travel demand and other issues are helping drive down the price of shares.\"Airline stocks have been hammered this year on volatile oil prices andeconomicuncertaintyconcerns,\" analyst Michael Derchin of CRT Capital Group Inc. wrote in an earnings preview.\"The market has totally ignored the positive changes that have occurred within the industry such as capacity discipline, consolidation, ancillary revenue programs, global alliances with antitrust immunity, and deleveraging,\" Derchin wrote.Caption:PHOTO(S): (File 2007/Staff Photo) Consensus among analysts is that AMR, the parent company of American, will lose 73 cents a share, or about $243 million, in results released this week.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 1.0, \"focus_excerpt\": \"Airline stocks have been hammered this year on volatile oil prices and economic uncertainty concerns.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 865,
+            "outputTokens": 38,
+            "inputTokensCostNanodollars": "259500",
+            "outputTokensCostNanodollars": "1047500",
+            "totalBackendLatencyMs": "2975"
+          },
+          "id": "epu_q2_short-d21a29e5-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 865,
+        "outputTokens": 38,
+        "inputTokensCostNanodollars": "259500",
+        "outputTokensCostNanodollars": "1047500",
+        "totalBackendLatencyMs": "2975"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #226"
+}

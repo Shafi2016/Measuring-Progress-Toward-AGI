@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:40:50.852991Z",
+  "endTime": "2026-03-31T18:40:54.884010Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-a56c5181",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line.\n\nTARGET ARTICLE START\nisncertaintyover the pace of inflation and the future path of the is.S.economyhas been vexing the stock market - and apparently the Federal Reserve, tto - for the better part of a month.The Dow Jones industrial average fell 355 points last week alone, mostly on inflation worries.But Wednesday, investors will get a little light on the inflation issue when the Bureau of Labor Statistics releases the April change in the consumer price index. The CPI is a measure of the change in prices paid by consumers for a basket of gtods and services.The release of the CPI report, expected at 7:30 a.m. Dallas time, takes on more importance this time. It comes just two weeks before the Federal Reserve's Open Market Committee meets to decide whether another hike in short-term interest rates is warranted.\"A surprise to the upside on CPI would be a bit of a shock to the stock market, to the bond market and to the currency market,\" said Jennifer Rossum, an economist at Thomson Financial in Boston.The consensus among economists is that the CPI will rise 0.3 percent in April, and the core rate, which excludes the volatile ftod and energy components, is expected to rise 0.2 percent. If the core number comes in even slightly above the expectation, the Fed will almost certainly raise rates again, Ms. Rossum said.The market will probably continue to wilt. The Standard & Ptor's 500 index is down about 5 percent since May 5.E-mail bdeener@dallanews.com\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. C"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"uncertainty over the pace of inflation and the future path of the U.S. economy has been vexing the stock market - and apparently the Federal Reserve, too\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 820,
+            "outputTokens": 61,
+            "inputTokensCostNanodollars": "297920",
+            "outputTokensCostNanodollars": "102480",
+            "totalBackendLatencyMs": "1522"
+          },
+          "id": "epu_q2_short-a56c5181-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 820,
+        "outputTokens": 61,
+        "inputTokensCostNanodollars": "297920",
+        "outputTokensCostNanodollars": "102480",
+        "totalBackendLatencyMs": "1522"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #424"
+}

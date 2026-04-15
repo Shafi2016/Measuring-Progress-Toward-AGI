@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:40:36.770448Z",
+  "endTime": "2026-03-31T02:40:40.124941Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-88eb3eff",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nLocal Payoff On a Stadium Is isncertain: Economic Scene Local Payoff on Any Sports Stadium ] By PETER PASSELL New York Times (1923-Current file); Apr 30, 1998; ProQuest Historical Newspapers: The New York Times (1851-2010) pg.Dl Local Payoff On a Stadium Is isncertain By PETER PASSELL According to a two-year-old study by KPMG Peat Marwick, a new baseball sta\u00addium for the Yankees on the West Side of Manhattan would create about $100 million in annual income for New Yorkers. Check that: according to the Giuliani administration, the 45,000-seal stadium would generate a ctol billion. Maybe the computers Jat KPMG slipped a decimal point. Or maybe the Yankees have become considerably more popular with free-spending tourists since the firm finished its assessmentWen viewed as optimistic. Whatever the explanation \u2014 the city has yet to flesh out the billion-dollar figure\u2014) it won't make believers of everyone. \"AS pn economist, I wouldn't believe any study I saw,\" said Carol O'Cleireacain, New York City's former budget director.! Such skepticism stems in part from tjie desire of local governments and businesses to find positive results in the studies 'thpy commission on the economic effect of Re\u00adgional development and stadium projects. But, in part, it is driven by the limits of da ta and the wide variations in conclusion based on which assumptions are made. \"It's always a problem measuring t le new money you bring in from the outsit.e, as well as estimating its ultimate impact on inco\n\n[...TRUNCATED...]\n\neter Kahn, economists at Johns Hopkins isniversity, estimate that the $41 mil\u00adlion in additional spending by out-of- towners created just 460 permanent jobs in the Baltimore metropolitan area. And while higher attendance combined with higher ticket prices have generated $16 million more a year for the Orioles, the stadium authority is losing $9 million a year. A careful weighing of costs and bene\u00adfits, the researchers conclude, sug\u00adgests that the incomes of Maryland residents would be $11 million more a year if Camden Yards had not been built. \u2022 The best economic argument for. subsidizing professional sports is one not captured in economic impact as\u00adsessments. While sports generate relatively little revenue \u2014 the aver\u00adage is about $65 million a year for a baseball franchise \u2014 vast numbers derive pleasure from watching games on television, rtoting for their heroes, speculating on pennant races and the like. Thus the \"consumptionvalue\" of a local team may far ex\u00adceed its market value, and public money used to keep the team in town may be money well spent. Mr. Zimbalist concedes the point. But he wishes- politicians would ad\u00address the issue directly rather than hiding behind largely bogus claims about economic development. \"If keeping a team is worth, say, $10 a year in taxes on every resi\u00addent,\" he said, \"why not sell it that way to the voters?\" Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"Local Payoff On a Stadium Is isncertain: Economic Scene Local Payoff on Any Sports Stadium ] By PETER PASSELL New York Times (1923-Current file); Apr 30, 1998; ProQuest Historical Newspapers: The New York Times (1851-2010) pg.Dl Local Payoff On a Stadium Is isncertain By PETER PASSELL According to a two-year-old study by KPMG Peat Marwick, a new baseball sta\u00addium for the Yankees on the West Side of Manhattan would create about $100 million in annual income for New Yorkers.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1601,
+            "outputTokens": 161,
+            "inputTokensCostNanodollars": "480300",
+            "outputTokensCostNanodollars": "1372500",
+            "totalBackendLatencyMs": "3299"
+          },
+          "id": "epu_q2_medium-88eb3eff-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1601,
+        "outputTokens": 161,
+        "inputTokensCostNanodollars": "480300",
+        "outputTokensCostNanodollars": "1372500",
+        "totalBackendLatencyMs": "3299"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #239"
+}

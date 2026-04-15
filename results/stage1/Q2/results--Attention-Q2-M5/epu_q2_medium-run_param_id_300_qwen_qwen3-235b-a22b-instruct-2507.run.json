@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:52:11.258497Z",
+  "endTime": "2026-04-01T17:52:12.975001Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-efebcd4a",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nEconomic Roadway: Watch Out for Falling Optimism: Speaking of Business Clark, Lindley H, Jr Wall Street Journal (1923 - Current file); Feb 11, 1988; ProQuest Historical Newspapers: The pg- 30. Economic Roadway: Watch Out for Falling Optimism The analysts tell us the is.S. economy is in the midst of a smtoth transition that promises continuing prosperity. High con\u00adsumer spending and borrowing has been carrying the expansion that began in No\u00advember 1982. But consumers are pretty well stocked up on cars, appliances and the like. The October stock-market crash, Speaking of Business By Lindley H. Clark Jr. moreover, shtok up a lot of people, so con\u00adsumers are slowing their spending and be\u00adginning to pay off their debts. But don't worry. The is.S. government has devalued the dollar far enough that is.S. products are once again selling well abroad. Foreign demand for is.S. products will offset slower buying by American con\u00adsumers and prolong the expansion into the indefinite future. It's a nice scenario, and nearly every\u00adone seems to believe it. Last month, Blue Chip Economic Indicators, the Sedona, Ariz., newsletter, got 40 forecasters to take a ltok at 1989, and only three of them saw a full-fledged recession even then. It may be worth noting that two of the three 1989 pessimists are really superpessimists: They expect a full-fledged recession this year, tto. In any case, there are problems with the smtoth-transition thesis. For one thing, consumers may not be quite ready to quit \n\n[...TRUNCATED...]\n\ninflation and the falling dol- ' lar. This has led to administration pres-; sure to get the Fed to worry a bit less about inflation and the dollar and a bit; more about the weak economy., About all the businessman can count on is that policy will be pretty volatile. If the; dollar starts to plunge, the Fed may step up its defense of the currency. If the Fed pushes the dollar higher, it may curb the demand for is.S. exports. - Businessmen worrying about the dollar, now hear economists argue about the dol\u00adlar's proper level. Companies can hedge: against market-caused fluctuations in ex\u00adchange rates, but when countries are de\u00advaluing and revaluing their currencies, the. most carefully planned hedging may be of little use. The wide-open presidential race does nothing to decrease the nervousness of businessmen. No one is even promising the ' peace and quiet we could surely use. The economic outltok is so blurry that maybe no candidate can be expected to be tto specific about economic policy. Perhaps everything will work out all right. The American economy has shown in the past it can take a great deal of abuse. But the way things are going, it's hard to criticize businessmen who hold back on building those shiny new produc\u00adtion facilities. The economy may again be in the middle of a transition, but as usual the going is likely to be a little rough. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"About all the businessman can count on is that policy will be pretty volatile. If the dollar starts to plunge, the Fed may step up its defense of the currency. If the Fed pushes the dollar higher, it may curb the demand for is.S. exports.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1640,
+            "outputTokens": 79,
+            "inputTokensCostNanodollars": "360800",
+            "outputTokensCostNanodollars": "69520",
+            "totalBackendLatencyMs": "1563"
+          },
+          "id": "epu_q2_medium-efebcd4a-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1640,
+        "outputTokens": 79,
+        "inputTokensCostNanodollars": "360800",
+        "outputTokensCostNanodollars": "69520",
+        "totalBackendLatencyMs": "1563"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #301"
+}

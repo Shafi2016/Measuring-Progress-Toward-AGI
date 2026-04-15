@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:00:32.387250Z",
+  "endTime": "2026-03-31T19:00:35.250122Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-dff39935",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nThe Nicaraguan government is taking some capitalist cues on how to unsnarl thousands of property disputes inherited from the socialist Sandinistas. It's planning to pay off claimants with shares in state- owned companies, long-term bonds and other assets -- ranging from restaurants to rusting Soviet bloc tractors. At stake are claims for a multitude of houses, farms, factories and stores. Also at stake may be the overall fate of the economy. Foreign investors have treated Nicaragua as a pariah because of what they view as a lack of respect for property rights. The government is expected to announce what one minister calls a \"very imaginative\" indemnity program this week. With state coffers nearly empty, authorities are considering financing thousands of indemnity claims by selling off minority interests in such entities as the state's telephone company (Telcor), electric utility (INE) and water works (INAA). \"It's a double hit,\" said Foreign Ctoperation Minister Erwin Kruger. \"First, we're going to settle the properties in conflict, and second, we're going to deepen and accelerate the privatization process.\" Rumors of the plan are racing around the capital, piquing interest among private bankers and rousing skepticism among confiscated property owners. Proponents of the plan say the Sandinista Front's once-dogged opposition to privatization efforts have steadily eroded. \"To talk about selling Telcor to the private sector a few months ago would have been unthinkable,\" Central \n\n[...TRUNCATED...]\n\n00 property claims now pending before the government, \"I imagine that perhaps about 2,500. .. will have to be compensated,\" said presidential chief of staff Antonio Lacayo. The remainder will either have property returned or told that their claims are unjustified. For owners who lost assets to the Sandinistas, a big question remains: How much will they get in compensation? Lacayo said the 92-seat National Assembly will determine whether owners get all or only a percentage of the appraised value of confiscated property. The government reportedly figures that between $200 million and $500 million will take care of all outstanding claims. The indemnity program is expected to trigger a slew of complaints from individuals who feel they aren't getting fairly compensated. Sandinista labor sectors are also expected to fight the plan. But government ministers and Sandinista political leaders wager that efforts within the National Assembly to completely roll back Sandinista land giveaways and reforms will abate. Some 160,000 Nicaraguan families received land during the Sandinista years but were given no formal title, according to the Interamerican Development Bank. Their situation remains uncertain. \"The advantage of this solution is that it offers satisfaction to the claimants,\" said Sandinista leader Jaime Wheelock, and \"it definitely takes away pressure\" to rescind broader land reforms that helped many ptorer families. Caption: photo: Violeta CHAMORRO\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"The indemnity program is expected to trigger a slew of complaints from individuals who feel they aren't getting fairly compensated. Sandinista labor sectors are also expected to fight the plan. But government ministers and Sandinista political leaders wager that efforts within the National Assembly to completely roll back Sandinista land giveaways and reforms will abate.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1562,
+            "outputTokens": 96,
+            "inputTokensCostNanodollars": "584416",
+            "outputTokensCostNanodollars": "161280",
+            "totalBackendLatencyMs": "2646"
+          },
+          "id": "epu_q2_medium-dff39935-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1562,
+        "outputTokens": 96,
+        "inputTokensCostNanodollars": "584416",
+        "outputTokensCostNanodollars": "161280",
+        "totalBackendLatencyMs": "2646"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #261"
+}

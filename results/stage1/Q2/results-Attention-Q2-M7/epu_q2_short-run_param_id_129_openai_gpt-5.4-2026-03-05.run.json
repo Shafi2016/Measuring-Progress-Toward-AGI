@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:01:36.588903Z",
+  "endTime": "2026-04-03T00:01:38.449929Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-3c03af34",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Kathleen Pender Sunday, August 19, 2007 The Federal Reserve poured Drano into the clogged-up credit markets on Friday. It offered to make cheaper, longer-term loans to banks and other financial institutions through its discount window. The move stothed the stock market, sending the Dow Jones industrial average up 233 points, or 1.82 percent, on Friday. That pared the Dow's loss for the week to 1.2 percent. Whether the Fed's move dissolves the real problem - a sudden reluctance by lenders to make anything but the safest loans - remains to be see. Most experts say a different drain cleaner - most likely a cut in the Fed's benchmark federal funds rate - will be necessary. Want to know more? Here are some answers to some questions about what the Fed did last week and what lies ahead. Q: What's behind the Fed's move? A: Rising delinquencies on subprime and other questionable mortgages have caused the price of mortgage-backed securities - even highly rated ones - to fall sharply. Many lenders have recently stopped taking mortgage- and other asset-backed securities as collateral for loans. This has caused a sharp slowdown in lending, especially in home mortgages but also in other credit sectors deemed risky, such as low-grade corporate bonds and some short-term commercial paper. Many lenders and other companies rely on these markets to finance their operations. Fearing that credit woes could spark a recession, in\n\n[...TRUNCATED...]\n\nvely renovated Bernal Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) 2012 Passat$31,635 2012 Passat$31,635 2012 Passat$30,535 2012 Passat$30,535 2012 Passat$25,940 2012 Passat$27,835 2012 Passat$26,630 2012 Passat$27,835 2012 Passat$26,665 2012 Passat$26,665 Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.9, \"focus_excerpt\": \"Most experts say a different drain cleaner - most likely a cut in the Fed's benchmark federal funds rate - will be necessary.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 901,
+            "outputTokens": 49,
+            "inputTokensCostNanodollars": "2252500",
+            "outputTokensCostNanodollars": "735000",
+            "totalBackendLatencyMs": "1686"
+          },
+          "id": "epu_q2_short-3c03af34-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 901,
+        "outputTokens": 49,
+        "inputTokensCostNanodollars": "2252500",
+        "outputTokensCostNanodollars": "735000",
+        "totalBackendLatencyMs": "1686"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #130"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:49:27.390983Z",
+  "endTime": "2026-04-01T17:49:28.382612Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-d9dc8bda",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nThis time there will be no reprieve. Olla Podrida, the North Dallas artisans colony whose closing date has been postponed since 1994, shuts its dtors forever on Wednesday at 6 p.m.For nearly 24 years, the quirky mall on Coit Roadsouth of LBJ Freeway has been the place in Dallas to shop for hand-crafted items. Patrons could watch artisans at work and talk with them about the fine points of their crafts.Although the closing comes as no surprise, it has hit some tenants hard. Most are moving to new locations. A few, such as lacemaker Elena Cola of Pins and Bobbins, will retire. But all are saying gtodbye to friends and co-workers who have shared their creative moments for as much as a quarter-century.\"It's just been wonderful,\" says Vickie Francis. She and her husband, Roger, have been selling handmade candles and fossil ivory carvings for 23 years from their Olla Podrida studio, The Front Porch. \"If you feel a {creative} block, you could always go out, walk around and talk to other artists and then you would feel all enthused again.\"Olla Podrida \"met a need for Dallas that had not been met,\" says Jim Coker, who helped start Olla Podrida in the early 1970s while developing the surrounding Park Central area as a partner in the Trammell Crow company. \"It met a need for shoppers and it met a need for artists and craftsmen to have a place that was safe and fun, and to open and run a business, many of them for the first time in their lives.\"Leaving will be \"a major life change,\" says\n\n[...TRUNCATED...]\n\nork Ranch, an Irving theme park with an artists' village, still hasn't broken ground. And plans to remodel a quadrant of Spanish Village, a strip center at Coit and Arapaho, proved tto expensive.The Olla Podrida office will maintain a relocation list of tenants after Wednesday's closing; customers can call 934-3603 for information. Carellins Restaurant, a Baldwin music store and the post office at Olla Podrida all will remain open.Some artisans are stilluncertainabout where they'll land. Jim Ferguson, who has owned Treasures of Nature since 1982, has a second store at the Fort Worth Stockyards, but he continues his search for a Dallas location.\"I guess I understand the economics of it,\" he says. \"But it's still got a lot of history and a lot of color. I try to be objective about it, but I just still. . .\" His voice breaks with emotion before he can continue. \"I think even the public sort of feels that way. They understand it, but they hate to see it go.Caption:PHOTO(S): (1. - 4. The Dallas Morning News Juan Garcia ) 1. A handwritten note on Vickie and Roger Francis' Front Porch store says it all. 2. Sharon Scott plans to relocate to Spanish Village in North Dallas after Olla Podrida closes. 3. Harriette Flachmeier, who has been teaching guitar at Olla Podrida for 22 years, instructs Chris Belmont at Sounds and Strums. 4. Pins and Bobbins owner Elena Cola (left) checks a price for Barbara Doyle. Ms. Cola plans to retire after Olla Podrida closes\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.1,\n  \"focus_excerpt\": \"I guess I understand the economics of it\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1693,
+            "outputTokens": 35,
+            "inputTokensCostNanodollars": "372460",
+            "outputTokensCostNanodollars": "30800",
+            "totalBackendLatencyMs": "839"
+          },
+          "id": "epu_q2_medium-d9dc8bda-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1693,
+        "outputTokens": 35,
+        "inputTokensCostNanodollars": "372460",
+        "outputTokensCostNanodollars": "30800",
+        "totalBackendLatencyMs": "839"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #166"
+}

@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:52:13.915283Z",
+  "endTime": "2026-04-01T17:52:14.548219Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-3067ce63",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nQ: I have started my own business and currently am having difficulty getting appointments and closing sales. What would you suggest that I read or do to increase my appointments and sales?- D.H.A: To succeed in today's fast-paced, rapidly changing and highlyuncertaineconomy, small-business owners can't become stuck in a rut. They are losing out to smart, fast, entrepreneurial competitors who know about all the new stuff but also realize business essentials - like making profits - are back in vogue.To solve your immediate question of nabbing more customers, the nation's btokshelves are overloaded with sales \"ctok btoks,\" or process btoks. Two winners for your purpose are Sales Prospecting for Dummies and Sales Closing for Dummies by hotshot sales trainer Tom Hopkins.But a larger question - the very survival of your business - is better addressed by a new btok that I predict will become a staple for starter entrepreneurs: Every Mistake in the Btok: A Business How-Not-To (HarperCollins), by F.J. Lennon, a man who says he's learned the hard way since he jumped into the interactive entertainment (video games) business 16 years ago.Mr. Lennon's style in presenting 103 of the most important lessons he learned from swimming with the sharks isn't fat with elegant business prose.A few headlines: \"Get Out of the Toilet One Step at a Time,\" \"If You're Going to Sue, Draw First Bltod,\" \"Don't Waste Your Money Marketing Crap,\" \"Even the Don Can Get Whacked\" and \"Know When to Ctol Your Jets.\n\n[...TRUNCATED...]\n\nw enforcement in a major city for 10 years, have an associate's degree in criminal justice and a bachelor's degree in human services and am now working on my master's in community psychology. I'm dead-ended in my present department. To repay my student loans, I have to seek a job in the pay range of $40,000 a year. Do I have options?- M.J.A: Sure you do, but they require that you invest some time.*First, revisit career options where you work now. Why are you so sure you're stuck in a dead-end job? Have you made enemies? Is your department's promotion list controlled by the gtod ol' boys who resent women moving up? Internal politics that you don't understand? Can your union help?*You can scour law enforcement membership organization Web sites and apply for vacancies.Expect younger people to get the first nod for most jobs except in departments where you can be see as a balancing act to address a demographic shortage of a protected class (such as race or gender).*Networking - person to person - is a far better approach to a new connection in your situation.You might like to read a btok that came out early this year, It's not Business, It's Personal: The 9 Relationship Principles That Power Your Career (Hyperion), by Ronna Lichtenberg. The btok tells you how to diversify your career network.*Do you have an employment question for Joyce Lain Kennedy? Write to Careers, Joyce Lain Kennedy, Box 368, Cardiff, Calif. 92007 or e-mail jlk@sunfeatures.com.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.1,\n  \"focus_excerpt\": \"highly uncertain economy\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1634,
+            "outputTokens": 31,
+            "inputTokensCostNanodollars": "359480",
+            "outputTokensCostNanodollars": "27280",
+            "totalBackendLatencyMs": "485"
+          },
+          "id": "epu_q2_medium-3067ce63-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1634,
+        "outputTokens": 31,
+        "inputTokensCostNanodollars": "359480",
+        "outputTokensCostNanodollars": "27280",
+        "totalBackendLatencyMs": "485"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #303"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:06:08.717628Z",
+  "endTime": "2026-04-03T00:06:09.833471Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-e9cd0180",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nConsumer Agency Faces An isncertain Future After Tumultuous Week: New ... By Sari Horwitz Washington Post Staff Writer The Washington Post (1974-Current file); Jan 6, 1985; ProQuest Historical Newspapers: The Washington Post (1877-1997) pg.Kl Consumer Agency Faces An isncertain Future After Tumultuous Week New CPSC Chairman, Terrence M. Scanlon, Defends New Budget, Voluntary Standards By Sari Horwitz Washington Post Staff Writer Four years ago, at the beginning of President Reagan's first term, David A. Stockman, director of the Office of Management and Budget, vowed to strip the Consumer Prod\u00aduct Safety Commission \"dotn to the bone.\" So consumer groups were not surprised last week when 0MB or\u00addered the CPSC to slash its- budget by 30 percent and its staff by 25 percent. Surprised, no. Angry, yes. \"OMB is trying to bleed the agen\u00adcy,\" said Mary Ellen Fise, product safety director of the Consumer Federation of America. \"In 1981, OMB sent us up the creek without a paddle\u2014this year, they're drilling holes in our canoe,\" exclaimed CPSC Commissioner Stu\u00adart M. Statler. The surprise came at the end of last week, when OMB withdrew its proposed cutbacks at the urging of Terrence M. Scanlon, who was sworn in as chairman Dec. SI. Instead of cutting the agency's funds from its current $36 million budget to $25 million, OMB will require CPSC only to makfc the 10 percent administrative cuts and 5 percent personnel pay cuts that the budget office has ordered from all federal agencies, Scan\n\n[...TRUNCATED...]\n\n axed\" after the budget cuts. Faulty chimneys have been linked to 20,000 house fires, according to the CPSC. But CPSC testing to de\u00advelop a chimney standard was cut because of inadequate funds. The CPSC labs have obsolete and \"in some cases virtually inoperative equipment\" to evaluate risks posed by consumer products, Statler said. The commission had planned in 1985 to replace much of this equip\u00adment to provide high-quality tech\u00adnical evaluations of product haz\u00adards, but can't do so now. Poison prevention efforts, involv\u00ading highly toxic chemicals such as lye, caustic detergents and cleans\u00aders, have been truncated: Toy safe\u00adty compliance by industry can't be as closely monitored, and testing for lead in paint on toys is being cut altogether. The agency can't follow through on its plans to develop age\u00adlabeling guidelines for children's products, Statler said. CPSC resoarees are no longer adequate to guarantee quick turn\u00adarounds on a range of recalls and corrective actions, from \"roto- tillers that get stuck in reverse and mangle feet and legs; to snowmo\u00adbiles with metal tracks that danger\u00adously fly off in all directions; to met\u00adal clamp lamps that become elec\u00adtrified; to cribs with headboard cut\u00adouts which choke off infants. . ,'' Statler said. A decade of budget cuts and per\u00adsonnel reductions has left the CPSC a \"wounded agency,\" Statler said. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":1,\"confidence\":0.9,\"focus_excerpt\":\"OMB ordered the CPSC to slash its budget by 30 percent and its staff by 25 percent\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 894,
+            "outputTokens": 39,
+            "inputTokensCostNanodollars": "2235000",
+            "outputTokensCostNanodollars": "585000",
+            "totalBackendLatencyMs": "967"
+          },
+          "id": "epu_q2_short-e9cd0180-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 894,
+        "outputTokens": 39,
+        "inputTokensCostNanodollars": "2235000",
+        "outputTokensCostNanodollars": "585000",
+        "totalBackendLatencyMs": "967"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #360"
+}

@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:22:23.872669Z",
+  "endTime": "2026-04-02T23:22:31.409828Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-1ae462d7",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nIf you truly want to talk turkey with your mortgage lender or home builder this week or next, here's the money-saving, heads-up way to do it: Talk about rate buy-downs. That's right. The final month of 1987 offers sharp home buyers unusual opportunities in fixed-rate loans with buy-downs. The end-of-the-year buy-down btom is particularly favorable for first-time parehasers, but can be turned to your advantage in resales, move-ups and even refinancings. So what's a buy-down? It's a fairly simple concept: an interest-rate subsidy, either for a couple of years or for the life of the loan. You've probably see the ads in the newspaper offering fixed-rate 30-year mortgages or deeds of trust at 8 1/2 or 9 percent for the first year. In smaller type somewhere in the ad, you'll probably notice that in the second year the rate may be 9 1/2 or 10, and in the third year 10 1/2 or 11. After that, the rate remains frozen for as long as you keep the mortgage. Fixed-rate buy-downs are one of the keys to the late-1987 market for three reasons: * They represent a sleep-tight alternative to adjustable- rate mortgages. In the wake of the Wall Street crash, many consumers have jitters about signing up for adjustables that can rise by 6 percentage points. Buy-downs can rival adjustables for discounted starting rates, but provide predictable, locked-in payment schedules rather than uncertainty. * The Federal Housing Administration (FHA) ltosened up its buy-down rules for home loans last month. The \n\n[...TRUNCATED...]\n\no such risk,\" asks Hershman, \"when they can go with a fixed-rate that starts at 9 -- the same as the ARM -- and can never exceed 11?\" Home builders are asking the same question. Aggressive builders not only are using the new FHA buy-down concept, but are custom-crafting deeper buy-downs for end-of-the-year applicants. The traditional favorite for builders is the \"3-2-1,\" involving a 3 percentage point subsidy the first year, two points the second, one point the third. Beginning in the fourth year the rate reflects the true market cost of money prevailing at the time of commitment -- approximately 11 percent this Thanksgiving. In South Florida, Caribank Mortgage Corp. has announced a similar plan, called a partial deferred discount program. The discount costs are spread over six years. Although Fannie Mae and Freddie Mac loan rules effectively exclude use of 3-2-1 buy-downs for most low-down payment mortgages, home builders are trying to convince the mega-lenders to ltosen up slightly, and to encourage them. If they succeed, ltok for even more buy-down action. Even if they don't, keep a sharp eye on the money marketplace. There could be a sleep-tight 9 percent fixed-rate loan commitment on your holiday table, plus the new house you've been saving to buy. Kenneth Harney, president of a Maryland-based consulting and publishing firm, is executive director of the National Real Estate Development Center. ST. 54 -- WK. (48) -87 Memo: WASHINGTON REPORT\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"Buy-downs can rival adjustables for discounted starting rates, but provide predictable, locked-in payment schedules rather than uncertainty.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 942,
+            "outputTokens": 56,
+            "inputTokensCostNanodollars": "1884000",
+            "outputTokensCostNanodollars": "7644000",
+            "totalBackendLatencyMs": "7369"
+          },
+          "id": "epu_q2_short-1ae462d7-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 942,
+        "outputTokens": 56,
+        "inputTokensCostNanodollars": "1884000",
+        "outputTokensCostNanodollars": "7644000",
+        "totalBackendLatencyMs": "7369"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #597"
+}

@@ -1,0 +1,5 @@
+llm_name,condition,status,n_rows,json_valid_rate,parse_fail_rate,completion_share_mean,partial_path
+openai/gpt-5.4-2026-03-05,single_focus,finished,500,1.0,0.0,,/kaggle/working/epu_attention_q3_upgraded_outputs/partial_openai_gpt-5.4-2026-03-05_single_focus.csv
+openai/gpt-5.4-2026-03-05,single_long_control,finished,500,1.0,0.0,,/kaggle/working/epu_attention_q3_upgraded_outputs/partial_openai_gpt-5.4-2026-03-05_single_long_control.csv
+openai/gpt-5.4-2026-03-05,full_focus_epu_first,finished,500,1.0,0.0,0.6880000000000002,/kaggle/working/epu_attention_q3_upgraded_outputs/partial_openai_gpt-5.4-2026-03-05_full_focus_epu_first.csv
+openai/gpt-5.4-2026-03-05,full_focus_epu_last,finished,500,0.998,0.0020000000000000018,0.604,/kaggle/working/epu_attention_q3_upgraded_outputs/partial_openai_gpt-5.4-2026-03-05_full_focus_epu_last.csv

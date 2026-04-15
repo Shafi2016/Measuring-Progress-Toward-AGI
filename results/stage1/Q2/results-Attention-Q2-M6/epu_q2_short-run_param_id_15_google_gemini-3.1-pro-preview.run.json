@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T21:33:00.691093Z",
+  "endTime": "2026-04-02T21:33:06.855354Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-5cc6d3c9",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nIn a gesture heralding the end of the Cold War, Russian President Boris Yeltsin promised in January that his nation's nuclear missiles would no longer be aimed at the isnited States. Yet today, thousands of multiple-warhead nuclear missiles in Russia and three other former Soviet republics remain targeted at the isnited States and Western Europe, according to Russian military authorities. Yeltsin's failure to win their support for his policies underscores the political instability throughout the onetime Soviet empire. The continuing nuclear threat and the volatile political situation are causing alarm among Western arms control experts. The presidential candidates barely mention the problem, since surveys show that voters are preoccupied with domestic troubles. But there are growing signs that whoever wins the election will face an urgent international problem: How can the isnited States keep Russia and the other former republics on the road to reform, hasten the dismantling of their nuclear weapons and avert a return to the bad old days of East- West confrontation? \"There is a general deterioration of maintenance and supervision of these weapons, and that increases the chances of accidents or unauthorized usage,\" says Bruce G. Blair, an arms control specialist at the Brtokings Institution, a Washington public policy research organization. \"There are conservative, nationalistic and hard-line forces seeking to regain power, so the potential to use the nuclear threat against th\n\n[...TRUNCATED...]\n\nd -- 4,000 to 5,000 per side -- within seven years of the treaty's ratification. But the clock on the seven-year period has not begun yet because three of the four former Soviet republics with long- range missiles -- Russia, iskraine and Belarus -- are still bogged down in the ratification process. Only Kazakhstan has ratified the treaty. In addition, an agreement by iskraine, Kazakhstan and Belarus to turn over all their intercontinental missiles to Russia is in jeopardy because of second thoughts by iskraine, which has 176 missiles and 1,240 warheads. Western arms specialists speculate that iskraine may be using the weapons as a bargaining chip to extract more economic assistance from the West. Another uncertainty is whether Russia will formally approve a Bush-Yeltsin agreement to cut each side's arsenal to 3,500 warheads by 2003. is.S. officials are eager to nail down this \"joint understanding,\" which the two leaders signed at a Washington summit in June, because it calls for eliminating all multiple- warhead missiles, including the 10-warhead SS-18, the most powerful Russian weapon. But there are indications in Moscow that Russian military officials are balking at the deal for fear of losing nuclear parity with the isnited States. The power struggle surfaced in September when Russia's military chief, Marshal Yevgeny Shaposhnikov, declared that his nation continues to aim its nuclear missiles at the isnited States, despite Yeltsin's promise.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"Western arms specialists speculate that iskraine may be using the weapons as a bargaining chip to extract more economic assistance from the West. Another uncertainty is whether Russia will formally approve a Bush-Yeltsin agreement to cut each side's arsenal\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 825,
+            "outputTokens": 80,
+            "inputTokensCostNanodollars": "1650000",
+            "outputTokensCostNanodollars": "6072000",
+            "totalBackendLatencyMs": "6060"
+          },
+          "id": "epu_q2_short-5cc6d3c9-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 825,
+        "outputTokens": 80,
+        "inputTokensCostNanodollars": "1650000",
+        "outputTokensCostNanodollars": "6072000",
+        "totalBackendLatencyMs": "6060"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #16"
+}

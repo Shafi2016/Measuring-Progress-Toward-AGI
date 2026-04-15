@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T03:13:41.691451Z",
+  "endTime": "2026-03-31T03:14:05.294557Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-e3d6b167",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nProgressive fire service leaders recognize that success in the 21st century will require an unconventional shift in mission and management for fire departments. Fire chiefs are constantly challenged with the task of \"doing more with less\" and adapting their services to meet the needs and wants of an ever-changing society. Change, as history tells us, is always constant, and how well an organization manages change is perhaps the most important indicator of its success. Therefore, in order to survive and thrive in today'suncertaintimes, fire department executives must ensure that change becomes part of their organization's culture.What should the future ltok like for the Dallas Fire-Rescue Department? What changes are necessary to transition DFR to the next level?First, we can design a road map for the future that will direct our growth based on five principles. We should strive to be Different. Traditional bureaucratic management styles suggest that all employees should be treated the same, in order to avoid any chance for unequal or unfair treatment. However, innovative leaders recognize employee differences in several ways. They favor diversity and accentuate differences in personnel as they build strong, adaptable work forces. Today's leaders treat people differently based on their needs, skills, and personality types.Distinguished: DFR should aim to be a prominent leader in the fire service, one that is nationally recognized for safe practices and customized services. Addi\n\n[...TRUNCATED...]\n\noverhaul. Executive administrators are also charged with succession planning. Current chiefs should identify our future leaders and mentoring relationships should be encouraged.It is clear that changes are necessary to secure our survival. Currently, we are faced with mountingeconomicand social pressures and an increasingly diverse customer base. Our success depends on our response to our shifting environment.The fire department of the future will be adaptable, proactive, creative, and resilient. It will be supported by an educated and diverse work force. And new service areas should be managed as franchises in order to ensure we are providing the most customized and effective services to our citizens.Lt. Lauren A. Brown has been a member of the Dallas Fire-Rescue Department since 1998. A graduate of Wtodrow Wilson High Schtol in 1994, and received her Bachelor Degree from Trinity isniversity in 1998, she has worked at stations in Oak Cliff, downtown and in the northwest part of the city, as a firefighter/paramedic and driver-engineer before her current role as a Lieutenant at Station 43. She and her husband, also a Dallas firefighter, live in Graford. To respond to this column, send an e-mail to FireChief800@ dallascityhall.com.Caption:PHOTO(S): (Staff photo) Lt. Lauren Brown with Dallas Fire and Rescue won an essay contest Chief Eddie Burns started as a way to get new ideas from within the department. This is a condensed version of the essay.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 0.7,\n  \"focus_excerpt\": \"Currently, we are faced with mounting economic and social pressures and an increasingly diverse customer base.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 817,
+            "outputTokens": 53,
+            "inputTokensCostNanodollars": "1021250",
+            "outputTokensCostNanodollars": "25120000",
+            "totalBackendLatencyMs": "23482"
+          },
+          "id": "epu_q2_short-e3d6b167-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 817,
+        "outputTokens": 53,
+        "inputTokensCostNanodollars": "1021250",
+        "outputTokensCostNanodollars": "25120000",
+        "totalBackendLatencyMs": "23482"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #452"
+}

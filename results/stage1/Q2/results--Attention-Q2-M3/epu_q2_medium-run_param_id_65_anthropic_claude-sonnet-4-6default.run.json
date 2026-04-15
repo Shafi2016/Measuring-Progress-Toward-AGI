@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:43:35.918121Z",
+  "endTime": "2026-03-31T18:43:37.606857Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-b5c5eca1",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nMaver Carey, president of The Kuskokwim Corporation, sees federal contracts as the future of her business. The Alaska Native corporations have had Senator Ted Stevens to thank nearly every step of the way. In 1971, a few years after he was first elected to the Senate, Mr. Stevens helped write the Alaska Native Claims Settlement Act. Also known as the \"Billion Dollar Deal,\" the act established more than 200 corporations to manage almost 45 million acres and gave $962 million to Alaska Natives in return for their ceding of all aboriginal land rights. When the Alaska Native corporations struggled in their early years as they tried to turn people who had survived on fishing and hunting into business managers and to teach thousands of villagers to call themselves shareholders, Senator Stevens was there, tto. He helped corporations with financial difficulties by persuading Congress to approve a provision in the 1986 Tax Reform Act allowing the corporations to sell their accumulated tax losses to profitable companies seeking tax write-offs. That same year, Senator Stevens introduced legislation that allowed Alaska Native corporations to participate in a Small Business Administration 8(a) contracting program, a provision that has proven lucrative to many of them. And just a month ago, in the wake of questions that some of the corporations were misusing the contracting program, he successfully pushed Congress to remove a provision from the 2009 Defense Authorization Act that would hav\n\n[...TRUNCATED...]\n\nd APM L.L.C., a subsidiary of the Cape Fox Corporation of Ketchikan, violated terms of the contracting program by entering into agreements that resulted in millions of dollars in 8(a) revenues being paid to companies owned by non-native managers. The administration suspended them from the program and moved to end their eligibility. Both companies are appealing the move, according to officials representing Goldbelt and APM. Steve Colt, the interim director at the Institute of Social and Economic Research at isniversity of Alaska, who has studied Alaska Native corporations, said that many of the corporations struggled to stay afloat in their first two decades of operations and that Mr. Stevens and the rest of the Alaska delegation worked hard to keep them in business. \"If you ltok at the historical record, there were lots of incidents of Stevens being very helpful to Alaska Native corporations,\" Mr. Colt said. \"But I suspect that the number of assists has decreased over time.\" He predicted that whoever holds the isnited States Senate seat for Alaska in the future will fight for legislation that protects Alaska Native corporations because they now have a major impact on the state's economy. Also in T Magazine \u00bb Jim Crow is dead but segregation is still alive. Rtom for Debate asks: What should be done to overcome it, and is class more crucial than race? For members of China's Communist elite, sending money overseas makes sense as a political hedge.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.82, \"focus_excerpt\": \"he successfully pushed Congress to remove a provision from the 2009 Defense Authorization Act that would hav... questions that some of the corporations were misusing the contracting program\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1622,
+            "outputTokens": 60,
+            "inputTokensCostNanodollars": "4866000",
+            "outputTokensCostNanodollars": "900000",
+            "totalBackendLatencyMs": "1639"
+          },
+          "id": "epu_q2_medium-b5c5eca1-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1622,
+        "outputTokens": 60,
+        "inputTokensCostNanodollars": "4866000",
+        "outputTokensCostNanodollars": "900000",
+        "totalBackendLatencyMs": "1639"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #66"
+}

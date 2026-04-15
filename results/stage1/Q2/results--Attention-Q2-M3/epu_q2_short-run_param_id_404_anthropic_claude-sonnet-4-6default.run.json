@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:35:45.446001Z",
+  "endTime": "2026-03-31T18:35:46.602269Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-3fb9773c",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle David Einstein, Chronicle Staff Writer Wednesday, June 3, 1998 View Text Chart Forbes names new publisher, Bay Area base. Komag cut to pare 10% of workers. Mark Veverka: In the BankBoston deal, money was everything for Sandy. More people thinking about saving. HMO bankrolled by physicians failed. 3Com seeks new exec. PCs will bring personal touch to future elections. Tellabs and Ciena team up in $7.1 billion deal. Symbol Ltokup Forbes Inc. named a new publisher for its flagship business magazine yesterday -- a 43-year-old technology btoster who will preside from a West Coast headquarters in Silicon Valley. Rich Karlgaard, the editor and driving force behind Forbes' tech-oriented bi- monthly ASAP, will become publisher of Forbes on July 1. He'll replace Jeffrey Cunningham, who is leaving to form a multimedia company in which Forbes is expected to be a minority partner. Forbes is the latest East Coast media power to relocate its nerve center to Silicon Valley, bowing to the growing influence of technology in the is.S. economy. Newspaper chain Knight Ridder, publisher of the San Jose Mercury News, is moving its headquarters from Miami to San Jose. Although it will keep its corporate offices in New York, Forbes plans to establish a West Coast base this September in Burlingame, where ASAP is located. The company will consolidate ASAP's staff, an expanded Forbes editorial bureau and advertising and sales personn\n\n[...TRUNCATED...]\n\nated Bernal Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) 2009 Corolla$23,454 2010 Corolla$14,988 2010 Corolla$14,988 2010 Corolla$16,588 2010 Corolla$15,888 2012 Corolla$20,065 2010 Corolla$15,588 2010 Corolla$14,988 2011 Corolla$15,988 2012 Corolla$20,225 Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.95, \"focus_excerpt\": \"Forbes is the latest East Coast media power to relocate its nerve center to Silicon Valley, bowing to the growing influence of technology in the U.S. economy.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1071,
+            "outputTokens": 59,
+            "inputTokensCostNanodollars": "3213000",
+            "outputTokensCostNanodollars": "885000",
+            "totalBackendLatencyMs": "1124"
+          },
+          "id": "epu_q2_short-3fb9773c-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1071,
+        "outputTokens": 59,
+        "inputTokensCostNanodollars": "3213000",
+        "outputTokensCostNanodollars": "885000",
+        "totalBackendLatencyMs": "1124"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #405"
+}

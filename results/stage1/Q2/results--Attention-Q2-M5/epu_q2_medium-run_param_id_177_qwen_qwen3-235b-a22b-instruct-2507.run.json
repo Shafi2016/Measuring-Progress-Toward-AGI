@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:49:37.998714Z",
+  "endTime": "2026-04-01T17:49:39.061543Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-6d9a115d",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nYou can't blame a small-business borrower for being confused these days.More bankers say they've increased small-business lending, yet some entrepreneurs say they still can't get a loan.The Small Business Administration's monthly loan volume for the Dallas-Fort Worth area has doubled since the federaleconomicstimulus package ttok effect in mid-March, but many banks still report strict standardsWhat's going on?\"Right now, there are no broad banking generalizations,\" said Jerry White, director of the Caruth Institute for Entrepreneurship at Southern Methodist isniversity. \"It's all true. It's characteristic of a marketplace that is very unsettled and has not sorted through all of this.\"While some big banks have cut small-business lending after large losses from exotic finance agreements, it's not true across the board.It's the same story for small banks, some of which consider small-business loans riskier in thiseconomy.Anne D'Alessandro is seeking $150,000 to start Trinity Event Managers in Melissa to organize consumer expos and trade shows in North Dallas.\"We approached three local banks, and they said they're not funding start-ups, so we're ltoking at other options,\" said D'Alessandro, who has eight years of sales and marketing and event planning experience. \"We'll ltok at SBA programs.\"The SBA is lending - thanks largely to the stimulus plan, which included SBA changes such as reduced fees and a higher federal guarantee.Although the SBA's guaranteed loans in the D-FW area h\n\n[...TRUNCATED...]\n\nsaid. Prosper made an SBA loan to an existing customer for working capital in mid-May - its first since last fall, he said.Lenders say they haven't see enough quality deals due to lower revenue and assets, ptor cash flow and less owner capital, but that might be changing. Several local lenders said they've see higher quality loan applications since May.Some banks have been able to lend more because of a small revival of the secondary market - where small-business loans are bundled and sold as securities to investors.Community South Bank stopped making small business loans in December because it couldn't sell them, said Dallas loan officer Jana Rouble. It's still not making conventional small-business loans, but it restarted SBA-guaranteed loans in April based on the stimulus plan to buy securitized loans, she said.Community South sold about $30 million in securitized small-business loans since February and has $6 million in loans to sell this month, said Scott Thomas, president of the SBA lending division.SBA lendingSince the federaleconomicstimulus plan for small businesses ttok effect March 16, the number and value of Small Business Administration loans fro the Dallas-Fort Worth area have doubled.Month Loans Loan valuesJan. '09 60 $21 millionFeb. 55 $21 millionMarch 101 $34.9 millionApril 89 $29.5 millionMay 117 $46.9 millionSOisRCE: Small Business AdministrationTROY OXFORD/Staff ArtistCaption:CHART(S): (TROY OXFORD/Staff Artist) SBA lending.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"the federaleconomicstimulus package ttok effect in mid-March, but many banks still report strict standards\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1618,
+            "outputTokens": 49,
+            "inputTokensCostNanodollars": "355960",
+            "outputTokensCostNanodollars": "43120",
+            "totalBackendLatencyMs": "916"
+          },
+          "id": "epu_q2_medium-6d9a115d-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1618,
+        "outputTokens": 49,
+        "inputTokensCostNanodollars": "355960",
+        "outputTokensCostNanodollars": "43120",
+        "totalBackendLatencyMs": "916"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #178"
+}

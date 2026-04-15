@@ -1,0 +1,7 @@
+llm_name,condition,gold_epu,mean,std,count
+🤖 google/gemini-3.1-pro-preview,short,1,0.39666666666666667,0.4900230923050424,300
+🤖 google/gemini-3.1-pro-preview,short,0,0.8766666666666667,0.32936884340443323,300
+🤖 google/gemini-3.1-pro-preview,medium,1,0.42,0.49438316690504697,300
+🤖 google/gemini-3.1-pro-preview,medium,0,0.87,0.3368653453081294,300
+🤖 google/gemini-3.1-pro-preview,long,1,0.43,0.495902946594867,300
+🤖 google/gemini-3.1-pro-preview,long,0,0.8733333333333333,0.3331549132304482,300

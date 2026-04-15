@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:35:58.657994Z",
+  "endTime": "2026-04-01T17:35:59.980072Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-7db2c19d",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\ny The Associated Press Wall Street stabilized yesterday, closing little changed, although another jump in oil prices sent many investors to the safety of the bond market. Scattered bargain hunting after the previous session's slide kept selling to a minimum. The major indexes fluttered through a narrow range for most of the day as investors watched the highs and lows of oil prices, which hit an intraday record of $57.60 before retreating 6 cents, to settle at $56.40 a barrel, on the New York Mercantile Exchange. Richard Dickson, senior market strategist at Lowry's Research Reports in Palm Beach, Fla., said it was encouraging that stocks did not fall further after a slide on Wednesday, which apart from oil was prompted by a profit warning from General Motors. But Mr. Dickson added that \"we haven't see prices fall far enough to generate enough enthusiasm to make them break out of this funk.\" The Dow Jones industrial average fell 6.72 points, or 0.06 percent, to 10,626.35. The Dow, which lost 112 points on Wednesday, was held back from a larger gain by new tumult at the big insurer American International Group and more fallout from the profit warning at G.M. The broader indexes managed narrow gains. The Standard & Ptor's 500-stock index was up 2.14 points, or 0.18 percent, at 1,190.21, and the Nasdaq composite index gained 0.67 points, or 0.03 percent, to 2,016.42. OPEC this week pledged to increase its output, but said yesterday that the growing economies of the isnited States,\n\n[...TRUNCATED...]\n\nt better reflect the number of publicly traded shares of each company. For instance, the weighting of Microsoft will decrease because a large number of its shares are not available for trading. Exxon Mobil, already the largest stock in the index, will have its weighting increased because all its shares are publicly traded. The change means funds based on the index will have to buy and sell stocks to make their holdings match the new weightings. Exxon Mobil rose $1.20, to $61.49, while shares in Microsoft slipped 9 cents, to $24.54. G.M. fell 66 cents, to $28.35, in a second day of selling after it substantially lowered its earnings forecasts, while A.I.G. lost $2.10, to $60.80, after The Wall Street Journal reported that the company might need to restate how it reported revenue on certain insurance policies. Viacom climbed 33 cents, to $37.33, after it said it was considering splitting itself into two companies to increase shareholder value. Toys \"R\" iss rose $1.23, to $26, after it said it would be acquired for $26.75 a share, or $6.6 billion plus assumed debt, by an investment group including Kohlberg Kravis Roberts & Company. Advancing issues outnumbered decliners by nearly 4 to 3 on the New York Stock Exchange, where volume was heavy. In the bond market, the 10-year Treasury note gained 11/32, to a price of 9610/32. The note's yield, which moves in the opposite direction from the price, dipped to 4.46 percent from 4.51 percent on Wednesday.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"another jump in oil prices sent many investors to the safety of the bond market\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 960,
+            "outputTokens": 43,
+            "inputTokensCostNanodollars": "211200",
+            "outputTokensCostNanodollars": "37840",
+            "totalBackendLatencyMs": "1119"
+          },
+          "id": "epu_q2_short-7db2c19d-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 960,
+        "outputTokens": 43,
+        "inputTokensCostNanodollars": "211200",
+        "outputTokensCostNanodollars": "37840",
+        "totalBackendLatencyMs": "1119"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #28"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:38:42.957312Z",
+  "endTime": "2026-04-01T17:38:44.097872Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-83636a44",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle John Cot\u00e9, Chronicle Staff Writer Wednesday, February 17, 2010 Mike Kepka / The Chronicle Developer John McInerney shows the decrepit inside of long-vacant First St. John's isnited Methodist Chareh. Robert Pritchard shtok his head as he surveyed the fresh graffiti below the windows he had boarded up on San Francisco's Sacred Heart Chareh. Nearby, a set of broken stereo speakers lay next to a stained mattress and a pair of tattered gold high heels. \"Somebody dumped those off last week,\" Pritchard said, nodding toward the speakers. \"I'm constantly throwing stuff out.\" Pritchard, a hospice nurse with experience restoring buildings, has dedicated himself to preserving the empty chareh - one of at least five aging charehes across San Francisco facing demolition, indefinite closure or sale - with the striking campanile at the corner of Fillmore and Fell streets from taggers, squatters and an uncertain future. Shrinking congregations, a ptor economy, expensive city-required seismic upgrades and a state law that then-Assembly Speaker Willie Brown authored exempting houses of worship from local landmark efforts have all played a role. The result has often been bitter legal fights among preservationists, chareh leaders, neighbors, developers and city officials over what to do with the buildings. In the interim, many sit vacant. Some descend into dens for the homeless, drug users or prostitutes, while neighbors grow \n\n[...TRUNCATED...]\n\nenovated Bernal Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) Company Confidential EXPERIENCE DESIGNER Company CAMPisS SisPPORT ENGINEER Company SYSTEMS ENGINEER Company Teamsoft PROGRAMMER IV CON/LEAD Company DIRECTOR OF ADMISSIONS FOR ALADDIN & TECHNOLOGY Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"Shrinking congregations, a ptor economy, expensive city-required seismic upgrades and a state law that then-Assembly Speaker Willie Brown authored exempting houses of worship from local landmark efforts have all played a role.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 897,
+            "outputTokens": 70,
+            "inputTokensCostNanodollars": "197340",
+            "outputTokensCostNanodollars": "61600",
+            "totalBackendLatencyMs": "986"
+          },
+          "id": "epu_q2_short-83636a44-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 897,
+        "outputTokens": 70,
+        "inputTokensCostNanodollars": "197340",
+        "outputTokensCostNanodollars": "61600",
+        "totalBackendLatencyMs": "986"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #187"
+}

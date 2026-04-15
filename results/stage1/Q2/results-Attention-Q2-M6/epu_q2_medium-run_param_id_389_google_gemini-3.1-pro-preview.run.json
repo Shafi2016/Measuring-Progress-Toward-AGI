@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:14:08.290502Z",
+  "endTime": "2026-04-03T00:14:16.491175Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-675368b6",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nA new database was unveiled Thursday, showing that the four major companies providing local phone service in the isnited States have racked up $1.84 billion in fines, judgments and settlements announced for ptor service and anti-competitive and anti-consumer behavior in the past six years. The database was compiled by Voices for Choices, a coalition of trade associations and companies providing local phone service and Internet access. Members include AT&T, Worldcom, Liberty Mutual and the Competitive Telecommunications Association. During the same six-year period, the four Bell companies brought in more than $851 billion in revenue. So the fines amounted to only two-tenths of 1 percent of their total revenue, according to the Voices for Choices co-Chairman Steve Ricchetti. The database is www.voicesfor choices.com. TERREMARK STOCK SLIPS Terremark Worldwide's (TMW) stock slipped 6 cents, or 16.67 percent, to 30 cents on higher-than-normal volume of 517,600 shares. Average daily volume is about 140,000 shares. Terremark shares fell below 50 cents after Jan. 23. The Miami-based company put out a press release Thursday, noting that it had completed an S-3 filing with the Securities and Exchange Commission, registering 17,394,822 shares of common stock of the company, which underlie convertible debentures sold during 2001. Manny Medina, Terremark's chief executive and chairman, said he had no intention of converting his debentures into shares at current prices. Analysts said somet\n\n[...TRUNCATED...]\n\neanwhile, department stores and apparel chains continue to struggle, though overall the sales declines weren't as deep as Wall Street expected. Notable exceptions were May Department Stores and Gap, whose sales declines were deeper than expected. SEC LOOKS AT ELAN Elan Corp. (ELN), Ireland's biggest pharmaceuticals company, announced Thursday that the is.S. Securities and Exchange Commission has begun a probe into its accounting practices following a highly critical Wall Street Journal report. In the past month, shares in Elan, Ireland's third-largest company, have tumbled on exchanges in New York, London and Dublin, starting when the Dublin-headquartered firm announced that trials of a new Alzheimer's treatment had to be suspended after four people in the tests suffered unexpected side effects. Much more damaging was a report two weeks ago in The Wall Street Journal that accused Elan of Enron-style accounting practices. SPIRIT ADDS DENVER FLIGHTS Spirit Airlines plans to start offering flights from Fort Lauderdale to Denver and expand service in other is.S. cities, increasing the low-fare carrier's flights by 10 percent to 88 a day. Spirit will begin three daily round-trip flights from Denver and increase service in other cities, including Chicago, Los Angeles and New York, on May 9, the Fort Lauderdale-based company said. With the addition of Denver, Spirit said it will serve 13 is.S. cities and San Juan, Puerto Rico. Memo: BisSINESS IN BRIEF\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"Elan Corp. (ELN), Ireland's biggest pharmaceuticals company, announced Thursday that the is.S. Securities and Exchange Commission has begun a probe into its accounting practices\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1595,
+            "outputTokens": 66,
+            "inputTokensCostNanodollars": "3190000",
+            "outputTokensCostNanodollars": "8472000",
+            "totalBackendLatencyMs": "8089"
+          },
+          "id": "epu_q2_medium-675368b6-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1595,
+        "outputTokens": 66,
+        "inputTokensCostNanodollars": "3190000",
+        "outputTokensCostNanodollars": "8472000",
+        "totalBackendLatencyMs": "8089"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #390"
+}

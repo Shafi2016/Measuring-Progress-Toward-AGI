@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:24:54.134415Z",
+  "endTime": "2026-03-31T18:24:55.346369Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-b570a7a5",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nEconomic Scene: Reasons to Fear A Recession Silk, Leonard New York Times (1923-Current file); Aug 25, 1989; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. D2 Economic Scene Reasons to Pear A Recession T HE pickup in retail sales and employment has led the Federal Reserve to stop easing mone\u00adtary policy for the present. But anxieties about the risk of the economic slowdown's turning into a recession will keep pressures on the Fed from the White House, Congress and private busi\u00adness to push interest rates down further. What is feared by the Administration and pri\u00advate business and banking alike \u2014 yesterday's surge in the stock market, notwithstanding, by 56.53 points, to a record 2,734.64 on the widely watched Dow Jones industrial average \u2014 is the im\u00adpact a recession could have on the nation's huge debt structure. Total private and public debt out\u00adstanding grew from $4.2 trillion at the end of 1979 to $10.9 trillion at the end of 1988, an increase of 157 percent in less than a decade, with inflation ac\u00adcounting for only one-third of the rise. The growth in Federal debt outstanding, to $2.1 trillion from $663 billion, has gotten most of the public attention. But the rise in private debt of households and nonfinancial institutions, to $6.7 trillion from $2.9 trillion, may be even more dan\u00adgerous to stability. If the economy were to slide into recession, with earnings and employment fall\u00ading, the ability of many individuals and businesses to service their debts\n\n[...TRUNCATED...]\n\nnd deficits to monetary poli\u00adcy, conducted by the Federal Reserve. \u2022 \u2022 \u2022 Can the Fed alone keep the economy on track? Some economists have their doubts. Barry Bos- worth, long a colleague of Mr. Pechman's at the Brtokings Institution, argues that institutional changes, like variable-rate mortgages, now make the Fed less able to respond quickly to economic disturbances. He argues that the loss of fiscal policy as a stabilization ttol has been costly, and regaining that ttol should be a high priority. However, James Tobin of Yale, winner of a Nobel Memorial Prize in Economic Science, con\u00adtends that the Fed alone can do the job. He says that despite a persistently overexpansionary fiscal policy since 1982, the Fed has kept its ftot on the brake, using that brake in variable degree to mod\u00aderate the pace of the long expansion and avoid a hard landing. A new study by Martin S. Feldstein and Douglas W. Elmendorf for the National Bu\u00adreau of Economic Research finds that the sharp change in monetary policy in 1982 was the driving force behind the rapid 1983-84 recovery, without reference to changes in budget and fiscal policy. On balance, the belief among many economists that monetary policy alone can prevent steep re\u00adcession or inflation has been strengthened by the Fed's performance in the last six years, although the buildup in debt poses a new test. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.82, \"focus_excerpt\": \"anxieties about the risk of the economic slowdown's turning into a recession will keep pressures on the Fed from the White House, Congress and private business to push interest rates down further\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 966,
+            "outputTokens": 63,
+            "inputTokensCostNanodollars": "2898000",
+            "outputTokensCostNanodollars": "945000",
+            "totalBackendLatencyMs": "1151"
+          },
+          "id": "epu_q2_short-b570a7a5-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 966,
+        "outputTokens": 63,
+        "inputTokensCostNanodollars": "2898000",
+        "outputTokensCostNanodollars": "945000",
+        "totalBackendLatencyMs": "1151"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #44"
+}

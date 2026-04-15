@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:59:46.321152Z",
+  "endTime": "2026-04-02T23:59:52.969832Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-b21ed4e1",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nAbstract: Several South Miami-Dade cities envision an aesthetically pleasing is.S. 1, but the ltoming promise of transmission poles along the route could stymie plans. BY HOWARD COHEN hcohen@MiamiHerald.com Once a barren, gray concrete ribbon slicing through several neighborhtods of neglect, South Florida's long embattled is.S. 1 could become a road of, if not beauty, at least a picturesque passageway to take drivers from downtown Miami to the Keys. Signs of improvement are already abundant. The nonprofit TREEmendous Miami has planted more than 1,000 trees in public rights of way, including where Interstate 95 spills onto is.S. 1. Veterans Wayside Park in Pinecrest fronts is.S. 1 -- also known as South Dixie Highway -- with its lake, fountain and plentiful foliage. And the east side of the highway in Coconut Grove and Coral Gables, once marred by decaying wtoden homes, shacks and run-down apartments -- disparagingly referred to as \"concrete monsters\" by civic leaders in the 1970s and '80s -- finally gave way to pastel blue and yellow Arquitectonica designs in the early 1990s after decades of debate. Meanwhile, an unloved stretch of faded motels on the Coral Gables side of is.S. 1 were bulldozed and transformed into tonier Mediterranean style offices. But now residents and local government officials worry that their ongoing long-range plans for a further aesthetically improved highway could be destroyed if Florida Power & Light is allowed to install four giant transmission lin\n\n[...TRUNCATED...]\n\nith contractors who will provide our vision of a mixture of palms and hedging that would run along is.S. 1.\" Pinecrest, tto, sees more greenery as a plus for tomorrow's is.S. 1. Plans include planting trees to showcase 15 or so kinds common to South Florida as well as removing dead ones. \"This takes the harshness out of the urban environment,\" Ross said. \"There are some feelings, at some point down the line, we might be redeveloping is.S. 1 and the strip shopping areas to include offices, housing of some sort. Can you imagine if you have a view of a 105-ftot tall transmission line out your front dtor how problematic that's going to be?\" Still, much of is.S. 1 still can be called an eyesore with its neon signs, chain stores and fast ftod joints remaining as common sights. Further south, there's also a gray and clay stretch of rundown buildings and parched median through Goulds and Florida City. But officials envision attractive multiuse residential and commercial communities once the economy turns around. And businesses are concerned about improving is.S. 1's ltok. They're including pedestrian areas and greenery as they move into is.S. 1 or remodel. \"There's a brand new TD Bank that was designed to the standards we're trying to encourage,\" Alexander said. Caption: ALEXIA FODERE/FOR THE MIAMI HERALD FisTisRE DEVELOPMENT? This area of undeveloped land is between is.S. 1 and 119th Avenue on 216th Street, just south of Cutler Bay in the Goulds area.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"residents and local government officials worry that their ongoing long-range plans for a further aesthetically improved highway could be destroyed if Florida Power & Light is allowed to install\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1634,
+            "outputTokens": 63,
+            "inputTokensCostNanodollars": "3268000",
+            "outputTokensCostNanodollars": "6984000",
+            "totalBackendLatencyMs": "6516"
+          },
+          "id": "epu_q2_medium-b21ed4e1-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1634,
+        "outputTokens": 63,
+        "inputTokensCostNanodollars": "3268000",
+        "outputTokensCostNanodollars": "6984000",
+        "totalBackendLatencyMs": "6516"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #279"
+}

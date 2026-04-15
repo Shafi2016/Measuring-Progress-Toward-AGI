@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:20:32.952372Z",
+  "endTime": "2026-04-03T00:20:34.053744Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-25585e91",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nMENTION recession on the tree-lined streets of sleepy Florida towns and people give you funny ltoks. Recession, they'll tell you, is just a $100 word that rich people use to explain why they're not getting any richer. For these regular folks, who do all their living and dying in the same town, the difference between gtod times and bad is just a few bucks -- hardly enough to deserve a fancy economic label. Sure, things may be tougher than usual on Main Street Florida, but there's a confidence here that flourishes only in an environment where people live within their means and, consequently, have little to lose. They didn't taste the credit-driven high life of the 1980s, so they won't fall as far as those whose fortunes are now collapsing under heavy debt. And they feel no sorrow for the high-rollers crashing to earth. They've always run their businesses on common sense, and despite all the discouraging words, they have faith that they will survive. \"There's a general move to frugality, and we'll probably see more of it,\" says Bill Smith, who owns a small shoe repair shop in Pensacola. Frankly, these folks resent being tarred with the same brush that the blue suits in Miami, Washington and New York use to describe the problems there. Because back roads logic dictates that if people hear something often enough -- like they're in a recession -- they'll believe it stoner or later. It may not be some esoteric indicator tracked by the Commerce Department, but negative talk, say regu\n\n[...TRUNCATED...]\n\nhe scars of recessions past, are leaner than they once were. They learned how to recognize the signs of slowdown, and what steps to take to soften the blow. Silvano Gonzalez, a Little Havana merchant, says that since the first talk of recession circulated about a year ago, businesses have been prepared for it. \"They've been talking about recession for a long time now, and everybody's ready,\" Gonzalez says. \"I feel a softening of the local economy, but I think it will take time to work its way through. By then, maybe things will pick up again.\" Georgia Piacibello, a Key West dive shop owner, says businesses -- especially those that have been through recessions before -- are more careful this time around. \"People have learned how to take care of themselves,\" she says. \"I think that's going to save a lot of businesses.\" For most, what economists like to call recession is really just old fashioned common sense belt-tightening. Those who have let themselves get flabby on debt will hurt the most. Those who haven't will survive, some of them just barely. They always have. And Mrs. Clair, for free, has this bit of fortune- telling for Florida's future: \"In a recession, people are more aggravated, and there's a loss of hope,\" she says. \"So far, people here still have hope.\" Caption: color photo: Tom Castaing at his barber shop, Mrs. Clair - a palm reader, Mike Allen at Ocala horse farm (BisSINESS) Memo: FLORIDA'S ECONOMY : ROisGH ROADS: Last in a series\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":0,\"confidence\":0.98,\"focus_excerpt\":\"For most, what economists like to call recession is really just old fashioned common sense belt-tightening.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1607,
+            "outputTokens": 39,
+            "inputTokensCostNanodollars": "4017500",
+            "outputTokensCostNanodollars": "585000",
+            "totalBackendLatencyMs": "950"
+          },
+          "id": "epu_q2_medium-25585e91-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1607,
+        "outputTokens": 39,
+        "inputTokensCostNanodollars": "4017500",
+        "outputTokensCostNanodollars": "585000",
+        "totalBackendLatencyMs": "950"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #501"
+}

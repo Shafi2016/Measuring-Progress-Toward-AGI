@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T03:04:32.156247Z",
+  "endTime": "2026-03-31T03:04:37.302127Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-af45d16c",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nThe Texas civil justice system may or may not be broken, but the number of politicians willing to repair it just keeps growing.If they all succeed, some of their repairs might have to be repaired, some practicing lawyers say.Since January, the Legislature in Austin has been debating an 11-bill business-backed agenda that would rewrite many laws controlling civil damage lawsuits in state courts. If passed, the measures - currently under negotiation and discussion in both houses - would cut the number of suits and reduce the money that losing defendants might have to pay.Now some congressional leaders in Washington have another idea:They want to fix Texas courts, tto, along with those in every other state, as part of a sweeping overhaul of federal civil litigation laws. Their program, an outgrowth of the Republican \"Contract With America,\" has been grabbing headlines this week as it moved through the House of Representatives.The only problem, legal authorities say, is that in the rush to overhaul civil courts at all levels, some of the proposed remedies are in danger of colliding with each other and with somelong-standing legal philosophy.For example, one of the three so-called tort reform bills being pushed in Washington could render a lot of work going on in Austin meaningless because the federal measure would override state law on many of the same issues.As offered, that bill would impose some changes that Texas legislators have specifically rejected, such as immunity for ma\n\n[...TRUNCATED...]\n\nility also would be overridden in defective-product cases, lawyers say. The doctrine controls who pays what in lawsuits with more than one losing defendant. Just last week, after weeks of closed-dtor wrangling by interest groups and legislators, the Texas Senate passed a compromise that would be tougher than the proposed federal bill in some aspects and easier in others.It isuncertainwhether the is.S. House bills will become law. They are expected to get a chilly reception in the is.S. Senate and are opposed by the Clinton administration. But if they do, some Texas lawyers see a quagmire ahead for both sides in state court lawsuits.\"Over the next nine months, we could have three bodies of law replacing each other - old Texas law, new Texas law and federal law,\" said Mike Slack, an Austin litigator and legislative expert for the Texas Trial Lawyers Association.\"It's going to be a minefield for both sides and for clients. But that's what happens with cafeteria-style tort reform,\" he said.\"You throw it all on the tray and go through the line as fast as you can. It will keep appeals judges busy for years.\"But both sides in the Texas debate say that the Legislature doesn't have much choice.\"No one wants to sit around to see what the is.S. Senate or White House might do,\" said Mr. Slack.Besides, said Bill Miller, Austin media consultant for one lawsuit reform group: \"Congress is just awakening from a long slumber. We'll be done long before they are.\"\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.95, \"focus_excerpt\": \"It is uncertain whether the is.S. House bills will become law. They are expected to get a chilly reception in the is.S. Senate and are opposed by the Clinton administration. But if they do, some Texas lawyers see a quagmire ahead for both sides in state court lawsuits.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1545,
+            "outputTokens": 83,
+            "inputTokensCostNanodollars": "463500",
+            "outputTokensCostNanodollars": "1987500",
+            "totalBackendLatencyMs": "5082"
+          },
+          "id": "epu_q2_medium-af45d16c-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1545,
+        "outputTokens": 83,
+        "inputTokensCostNanodollars": "463500",
+        "outputTokensCostNanodollars": "1987500",
+        "totalBackendLatencyMs": "5082"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #590"
+}

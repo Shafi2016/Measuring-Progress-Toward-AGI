@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:11:40.843993Z",
+  "endTime": "2026-04-02T23:11:48.029939Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-8e7cb696",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nMicrosoft Web site site solicits consumers' opinions on trialWASHINGTON - Microsoft Corp. has discreetly added a message to the Internet site visited by millions of people who use its Windows software, urging them to write to Congress about the government's antitrust case.The move suggests Microsoft is intensifying its public relations campaign as trial testimony nears an end and pressure grows to resume settlement negotiations with the government. It comes days after Microsoft's billionaire chairman, Bill Gates, testified before a sympathetic Senate panel and met privately with key lawmakers.The affected Microsoft Web site draws millions of visitors each month to update their copies of Windows, the operating system software that runs most of the world's personal computers.When Microsoft's lawyer showed the site to the trial judge during a courtrtom demonstration last week, the message was not there.This week, however, Microsoft added the note urging visitors to its Windows ispdate site to \"click here\" for details about how its legal fight with the Justice Department and 19 states might affect them and how to write about the lawsuit to their elected officials.\"I suspect. .. they didn't want the judge to see this,\" said Justice Department lawyer David Boies.Microsoft said Thursday it added the message to Windows ispdate in what it described as a routine change. It said it wasn't trying to prevent is.S. District Judge Thomas Penfield Jackson from seeing it on the page during la\n\n[...TRUNCATED...]\n\nng their Teamster union leaders and colleagues to oppose the contract.BRIEFLYSummers sails through confirmation hearingWASHINGTON - Lawrence Summers, nominated to replace Robert Rubin as Treasury secretary, emerged from his confirmation hearing with few scratches as senators of both parties praised his abilities and predicted he'll easily win approval. \"I think it will be overwhelming,\" Senate Finance Committee Chairman William Roth said Thursday of the committee's vote on Summers, scheduled for Tuesday.Frontier Corp. spurns Qwest bidROCHESTER, N.Y. - Frontier Corp., the No. 5 is.S. long-distance phone provider, rejected an unsolicited $13.13 billion takeover proposal from Qwest Communications International Inc., saying it won't break an existing agreement with Global Crossing Ltd. Frontier's board said it will continue to monitor the situation. Qwest said it won't raise the offer it made Sunday and that it's \"confident\" the bid will eventually be determined to be \"superior.\"- Compiled by Lin Lofley from Associated Press and Bltomberg News ReportsCaption:GRAPH(S): (DMN) is.S. Trade Deficit Steady. PHOTO(S): (Agence France-Presse) With London's Tower Bridge behind, and the Royal Philharmonic Concert Orchestra in front, BMW-owned Rover unveiled the Rover 75 on Thursday. The musicians played a piece composed by Dave Stewart, of Eurythmics fame, to commemorate the new product. Rover 75 is the result of a four-year, $1.12 billion investment program.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"Lawrence Summers, nominated to replace Robert Rubin as Treasury secretary, emerged from his confirmation hearing with few scratches as senators of both parties praised his abilities and predicted he'll easily win approval.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 840,
+            "outputTokens": 68,
+            "inputTokensCostNanodollars": "1680000",
+            "outputTokensCostNanodollars": "7824000",
+            "totalBackendLatencyMs": "7048"
+          },
+          "id": "epu_q2_short-8e7cb696-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 840,
+        "outputTokens": 68,
+        "inputTokensCostNanodollars": "1680000",
+        "outputTokensCostNanodollars": "7824000",
+        "totalBackendLatencyMs": "7048"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #515"
+}

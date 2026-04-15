@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:22:31.038304Z",
+  "endTime": "2026-03-31T02:22:34.617379Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-c5b8805e",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nAbstract: The chief of the struggling Jackson Health System announced plans to plans to close the North and South branches and lay off thousands of workers. BY JOHN DORSCHNER AND MATTHEW HAGGMAN jdorschner@MiamiHerald.com With cash set to run out in May, Jackson Health System announced Friday plans to lay off 4,487 employees -- more than a third of the work force -- and close the system's two satellite hospitals. \"We have to act,\" Chief Executive Eneida Roldan told a board rtom packed with grim-faced employees. \"This is the first step to becoming a sustainable, stronger system.\" The cuts will save Miami-Dade's public health system $165.4 million by eliminating a broad range of services, including the closing of Jackson North and Jackson South hospitals. Even with the cuts, Roldan said there will remain a deficit of $64 million for fiscal 2009. The closings are likely to mean longer waits for everyone in emergency rtoms throughout the county and some people leaving without getting treatment, said David R. Small, Jackson's chief operating officer. Roldan asked members of the governing body, the Public Health Trust, to act within 10 business days so that facilities could be closed and employees gone by early May. The hospital closings will also need approval of the County Commission, said Eugene Shy Jr. of the county attorney's office. That's likely to extend the restructuring timetable. Commissioners, still digesting the plan's details Friday, had mixed reactions. \"I applaud he\n\n[...TRUNCATED...]\n\nls, but \"the hospital at the end of the day has to provide public health services to the residents of Miami-Dade County. I don't see how shutting down operations accomplishes that.\" Erik Fresen, also a Republican from Miami, added: \"isnfortunately, decisions such as these have to be made when you have an unsustainable funding and structural model, coupled with a terrible economic crisis.\" Closing facilities must get state approval, and union workers must be given a 21-day notice before being laid off. The Public Health Trust will gather again on Tuesday to reexamine the recovery plan. \"We're at a crossroads,\" Chairman John Copeland III said. \"It is time for tough decisions.\" Miami Herald staff writer Robert Samuels contributed to this report. INSIDE o The isM medical schtol, which Jackson owes $52 million, is feeling the squeeze from the crisis, 20A o Shutting down branches on opposite ends of the county would put a strain on the health system, observers say, 21A Caption: MARSHA HALPER/MIAMI HERALD STAFF Expansion at Jackson South is 40 percent finished. MARSHA HALPER/MIAMI HERALD STAFF SOisTHERN REACH: Jackson Health System parehased Deering Hospital, which became Jackson South, in 2001. JACKSON HEALTH SYSTEM NORTHERN REACH: Florida International isniversity's new medical schtol has been using Jackson North for training, in flux with the impending closing. MARCIE COHN BAND/MIAMI HERALD FILE THE CEO: 'We have to act,' Eneida Roldan said Friday.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.9, \"focus_excerpt\": \"The hospital closings will also need approval of the County Commission, said Eugene Shy Jr. of the county attorney's office. That's likely to extend the restructuring timetable. Commissioners, still digesting the plan's details Friday, had mixed reactions.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 895,
+            "outputTokens": 73,
+            "inputTokensCostNanodollars": "268500",
+            "outputTokensCostNanodollars": "1460000",
+            "totalBackendLatencyMs": "3504"
+          },
+          "id": "epu_q2_short-c5b8805e-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 895,
+        "outputTokens": 73,
+        "inputTokensCostNanodollars": "268500",
+        "outputTokensCostNanodollars": "1460000",
+        "totalBackendLatencyMs": "3504"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #561"
+}

@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:04:41.531975Z",
+  "endTime": "2026-04-03T00:04:42.628548Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-ee9352b1",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nIn isncertain Times, the Kitchen Takes Stock: Amid isncertainty, Kitchen Takes Stock By ROBIN POGREBIN New York Times (1923-Current file); Sep 13, 1995; ProQuest Historical Newspapers: The New York Times (1851-2010) pg.Cll In isncertain Times, the Kitchen Takes Stock By ROBIN POGREBiN Just as near-death experiences prompt people to take stock and make resolutions, so the Kitchen, the experimental performing-arts cen\u00adter on West 19th Street in Chelsea, has been forced to do some soul\u00adsearching of its own. The last few years have been pre\u00adcarious for this experimental institu\u00adtion, where Philip Glass, Laurie An\u00adderson and Eric Bogosian, among many other avant-garde luminaries, had their beginnings. It is by now a familiar story for smaller arts spaces: government financing has shrunk, as have corporate contribu\u00adtions, while audiences are dwindling. Even a slight rise in ticket prices hasn't helped much. In the face of a mortgage of more than $1 million on its space, the Kitchen has been frighteningly close to going under. So now, as it embarks on its 24th season, the Kitchen has initiated a series of decidedly mainstream measures^ The first was to form a joint chairmanship, to be shared by Mr. Glass, the composer and long\u00adtime Kitchen supporter, and Robert Soros, son of the philanthropist George Soros, who has been involved with the Kitchen as a board member and financial supporter for the last several years. The hope is that Mr. Glass's name and personality, combined with Mr. \n\n[...TRUNCATED...]\n\nnd. that it has been backing away from the fringe and betraying its mandate to promote art that may be unpopular. A 1994 article in The Vil\u00adlage Voice accused the Kitchen of \"making art seem less important than making money.\" By featuring the likes of well- known improvisational dancer Steve Paxton this season, some might sus\u00adpect the Kitchen of playing it safe at a time of financial uncertainty. But the programming otherwise seems venturesome. This season opens on Sept. 22 with previews of the Ridge Theater's \"Mathew in the Schtol of Life,\" a combination of live perform\u00adances, video and slide projections, directed by Bob McGrath, with a score by John Moran. Last year, the Kitchen was the New York site of the Electronic Cafe International, a network that links artists in different countries by satel\u00adlite. And the Kitchen recently started eveninglong media events, called Hy\u00adbrid Nights, as well as Tone, a series of experimental music presentations accompanied by visual projections. Moreover, the Kitchen continues to rely on rotating curators, young art\u00adists in various disciplines, who bring in new work and keep the center's content current. Mr. Glass said that with its old guard aging \u2014 people like Robert Wilson, Bill T. Jones and him\u00adself \u2014 the Kitchen must be vigilant about bringing in new bltod, without abandoning its origins. \"Most of us are in our 50's,\" the composer said. \"No one wants to be the end of any\u00adthing. You want to see it go on.\"\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.9, \"focus_excerpt\": \"government financing has shrunk, as have corporate contributions, while audiences are dwindling\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 871,
+            "outputTokens": 40,
+            "inputTokensCostNanodollars": "2177500",
+            "outputTokensCostNanodollars": "600000",
+            "totalBackendLatencyMs": "946"
+          },
+          "id": "epu_q2_short-ee9352b1-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 871,
+        "outputTokens": 40,
+        "inputTokensCostNanodollars": "2177500",
+        "outputTokensCostNanodollars": "600000",
+        "totalBackendLatencyMs": "946"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #283"
+}

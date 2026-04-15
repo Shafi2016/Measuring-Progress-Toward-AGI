@@ -1,0 +1,5 @@
+llm_name,condition,n_rows,section_retrieval_rate,epu_only_acc,joint_acc,json_valid_rate,parse_failure_rate,excerpt_in_target_rate,confidence_mean,mean_target_position_norm
+deepseek-ai/deepseek-v3.2,easy,500,1.0,0.67,0.67,1.0,0.0,0.978,0.89242,0.25
+deepseek-ai/deepseek-v3.2,hard,500,1.0,0.652,0.652,1.0,0.0,0.982,0.8976000000000001,0.75
+deepseek-ai/deepseek-v3.2,medium,500,1.0,0.664,0.664,1.0,0.0,0.976,0.89476,0.5
+deepseek-ai/deepseek-v3.2,very_hard,500,1.0,0.652,0.652,1.0,0.0,0.988,0.89736,1.0

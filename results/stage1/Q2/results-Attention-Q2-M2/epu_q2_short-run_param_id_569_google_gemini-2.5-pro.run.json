@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T03:36:21.863248Z",
+  "endTime": "2026-03-31T03:36:36.157954Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-e182341b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nWhen Elizabeth and Michael Robinson got married in June, they asked for an ark - dozens of animals, that is, to give to the world's ptor. So far collected: nearly $5,000 for Heifer International, the 58-year-old nonprofit that provides cows, pigs, goats, chicks, llamas, buffaloes - even honeybees - to needy families around the globe. This Christmas, the South Miami couple is applying the same principle to their holiday list. ``It's not like my husband and I are going without,'' she said. ``With our combined households we have a lot of stuff. So we just don't need any more.'' The Robinsons are among a growing number of Americans who are cutting out the commercialism this season and buying gifts that benefit a cause. Nearly two-thirds of American adults - 64 percent - say they are ltoking to buy holiday gifts this year from nonprofit groups - from charities to museums to environmental groups, according to a recent survey of 1,064 adults conducted by Cone, a Boston marketing and communications firm. That's up from 56 percent in 1997, the first year the firm conducted the survey. The Sept. 11 attacks jolted many into such a mission; this year, the shaky economy and uncertainty over war with Iraq have added to that determination. ``Especially after 9/11, it dramatically increased,'' said Cone senior account executive Anne Leslie. ``People are shopping for meaningful gifts that are helping out charities.'' To meet the demand, nearly every major nonprofit group has added more gifts \n\n[...TRUNCATED...]\n\ng - which features photos of families with their new farm animal - jumped 10 percent last year. With the country's mtod still somber - especially in the face of war - the charity expects to raise at least that much this year, Volkmer said. SOME WHIMSY ``While Heifer's catalog is whimsical and fun - and the goats are cute - it is a serious endeavor of helping the ptor through agricultural grass-rtots,'' Volkmer said. One of the reasons for this new philanthropic urge, experts say, is a growing backlash over the corporate greed scandals. Enron. Worldcom. Global Crossing. Tyco. ``Here they were multimillionaires - and they are still grasping for more,'' said Millard Fuller, the founder of Georgia-based Habitat for Humanity, whose btok, Building Materials for Life, (Smyth & Helwys, $10), benefits Habitat for Humanity. ``At some point it became more than a little sickening and people began thinking, `Do I want to be a little Grinch? Am I grasping for more and more?' There is more to life than piling up possessions.'' Caption: color photo: Elizabeth Robinson (a) photo: Michele Ready and Annie Peterson (a) NisRI VALLBONA/HERALD STAFF AIDING THE POOR: Acupuncturist Elizabeth Robinson and her husband Michael favor gifts that help others. CHRIS VIOLA/FOR THE HERALD HELPING THIRD WORLD: At the SERVV International store within Riviera Presbyterian Chareh in South Miami, Michele Ready, left, and Annie Peterson, 11, offer a frog kite from Indonesia for sale.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 0,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"The Sept. 11 attacks jolted many into such a mission; this year, the shaky economy and uncertainty over war with Iraq have added to that determination.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 902,
+            "outputTokens": 68,
+            "inputTokensCostNanodollars": "1127500",
+            "outputTokensCostNanodollars": "14770000",
+            "totalBackendLatencyMs": "14190"
+          },
+          "id": "epu_q2_short-e182341b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 902,
+        "outputTokens": 68,
+        "inputTokensCostNanodollars": "1127500",
+        "outputTokensCostNanodollars": "14770000",
+        "totalBackendLatencyMs": "14190"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #570"
+}

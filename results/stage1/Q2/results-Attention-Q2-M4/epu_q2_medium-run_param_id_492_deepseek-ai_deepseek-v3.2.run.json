@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:10:07.806270Z",
+  "endTime": "2026-03-31T19:10:10.430503Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-16125206",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nThe Frisco schtol district is playing among the big boys with its latest expansion plan.Schtol officials want voters to let them borrow $478 million for new buildings, land and upgrades in the state's fastest-growing schtol district. Early voting ends March 18. The regular election will be March 22.If the measure passes, taxpayers would begin ftoting the bill next year, officials say. And the Frisco district, with an enrollment that has soared six-fold in the last 10 years to more than 11,000, would have the state's fourth-largest voter-approved growth plan- trailing Dallas, Houston and San Antonio.\"It's daunting, but not overwhelming,\" said Rick Reedy, Frisco ISD superintendent. The price tag is high, he said, but the Collin County district has no choice. \"We have to prepare for our growth.\"With enrollment expected to more than triple in the next five years, voters are considering a proposal that includes:* Construction of 22 new schtols, including 18 elementary campuses, three middle schtols, a fourth high schtol and plans for a fifth. Estimated cost, including furniture and equipment: $376.7 million.* Parehase of land. Estimated cost: $40.7 million.* Other projects and programs such as renovations, technology and security upgrades, administrative offices and buses. Estimated cost: $60.6 million.As the families keep coming, so do the bond issues here in the path of Collin County's northward push. Frisco ISD voters overwhelmingly approved schtol bond proposals in 1998 and 20\n\n[...TRUNCATED...]\n\n0 million of those bonds is earmarked for two elementary schtols - scheduled to open in the next two years - and a third high schtol, targeted for opening in 2005 or 2006.Across the state, voters have been increasingly rejecting schtol bond issues in recent months, according to figures compiled by the Texas Bond Review Board. Fourteen of 29 packages have been turned down so far this year.\"I think it's theeconomy,\" said Judy Gtod, an analyst for the bond board. \"People don't want to pay more taxes - at least right now.\"Jude Rogowski, chairman of a Frisco committee that proposed the bond package, said he believes property owners are prepared to pay whatever it takes.\"We have 12,000 kindergartners coming down the pike, and we have to make accommodations for them,\" he said.Frisco resident Ms. Francois, who has two sons in the schtol district, said she would vote yes despite any tax increase.\"You would think in these tough times I would be concerned,\" she said. \"But I'm not.\"Frisco can handle it.\"Caption:PHOTO(S): (ARIANE KADOCH SWISA/Staff Photogher) Work continues on Griffin Middle Schtol, scheduled to be completed in October. The $478 million bond plan Frisco schtol district voters are voting on this month calls for 22 new schtols to help handle surging enrollment, expected to more than triple in the next five years. CHART(S): (1-4 Staff graphic) 1. STisDENT ENROLLMENTS. 2. RECORD SCHOOL BONDS. 3. HOW THE MONEY WOisLD BE SPENT. 4. FRISCO SCHOOLS.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"Across the state, voters have been increasingly rejecting schtol bond issues in recent months, according to figures compiled by the Texas Bond Review Board. Fourteen of 29 packages have been turned down so far this year. \\\"I think it's theeconomy,\\\" said Judy Gtod, an analyst for the bond board. \\\"People don't want to pay more taxes - at least right now.\\\"\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1669,
+            "outputTokens": 109,
+            "inputTokensCostNanodollars": "644336",
+            "outputTokensCostNanodollars": "183120",
+            "totalBackendLatencyMs": "2434"
+          },
+          "id": "epu_q2_medium-16125206-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1669,
+        "outputTokens": 109,
+        "inputTokensCostNanodollars": "644336",
+        "outputTokensCostNanodollars": "183120",
+        "totalBackendLatencyMs": "2434"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #493"
+}

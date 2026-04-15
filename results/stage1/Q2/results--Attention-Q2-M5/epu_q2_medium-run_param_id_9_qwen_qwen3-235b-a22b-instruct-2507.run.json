@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:46:30.036254Z",
+  "endTime": "2026-04-01T17:46:30.924892Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-8d9ca135",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nEdison plan gets mixed rating: Effect of rate increase on city's economy in dispute Amdt, Michael Chicago Tribune (1963-Current file); May 4, 1987; ProQuest Historical Newspapers: Chicago Tribune (1849-1990) pg.Cl Blocked due to copyright. See rull page image or microfilm. Edison's rate plan calls for a nuclear units subsidiary including the Braidwtod No. 1 plant. Edison plan gets mixed rating Effect of rate increase on city's economy in dispute Edison Continued from page 1 tomers, responsible for paying most of the $7,1 billion it cost to build the nuclear units. \"This would definitely give a strong btost, a very strong btost to the Chicago economy,\" says Edward C. Bodmer, an assistant vice president at First National Bank of Chicago who, as a finan\u00adcial analyst, has opposed Edison in other eases. \"No matter how you cut it,\" he says, \"over the long run this is better for ratepayers. In testimony filed on behalf of Gov. James Thompson, Illinois Atty. Gen. Neil Hartigan and Ctok County State's Atty. Rich\u00adard Daley, all of whom endorse the plan, Bodmer says the, rate freeze would promote certainty over energy costsi ' ' He figures the rate stability would be the equivalent of pump\u00ading $765 million into the Chicago economy over five years. And this greater certainty would allow industry to plan better, giving it an edge over competitors in other markets, Bodmer says. Maurice Brubaker, vice president of Drazen-Brubaker & Associates Inc., a St. Louis consulting firm, agrees. Thoug\n\n[...TRUNCATED...]\n\nc Power Co., which serves Milwaukee, recently lowered its rates 2 percent, and Iowa-Illinois Gas & Electric Co., which serves the Quad Cities, filed for a rate reduction. Learner expects other utilities to follow suit, to reflect changes in the federal income tax law and re\u00adduced rates of return because of lower interest costs. \"While other Midwest utilities arc lowering their rates, Edison, which already has the highest rates in the Midwest, is proposlhg an increase,\" he says. \"We already have a pattern of losing business because of higher rates. v \"This [the Edison plan] can't be gtod for business.\" As for the stability the plan af\u00adfords, Learner concurs. \"All agree there is a benefit from rate stabili\u00adty and reducing uncertainty that come from litigation [in opposing Edison rate increases in court as CisB and BPI have done], \"But the question is at what j cost, and Edison's price is simply 1 tto high.\" But Brubaker, in his testimony for Illinois Industrial Energy Con\u00adsumers, says Learner's view is pic- in-the-sky. \"While the increase under the settlement is higher than IIEC would prefer\u2014we would actually prefer no increase or even a de- crease\u2014the appropriate compar\u00adison is not with what we would like, but with what might be realis\u00adtic alternatives,\" he says. After evaluating those alterna\u00adtives, he says, Edison's plan \"is more beneficial.\" Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"the rate stability would be the equivalent of pumping $765 million into the Chicago economy over five years\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1654,
+            "outputTokens": 48,
+            "inputTokensCostNanodollars": "363880",
+            "outputTokensCostNanodollars": "42240",
+            "totalBackendLatencyMs": "736"
+          },
+          "id": "epu_q2_medium-8d9ca135-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1654,
+        "outputTokens": 48,
+        "inputTokensCostNanodollars": "363880",
+        "outputTokensCostNanodollars": "42240",
+        "totalBackendLatencyMs": "736"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #10"
+}

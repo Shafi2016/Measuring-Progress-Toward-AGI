@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:31:33.960520Z",
+  "endTime": "2026-03-31T18:31:35.848516Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-a503873b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Reuters Monday, February 27, 1995 Symbol Ltokup (02-27) 04:00 PDT Philadelphia -- Job transfers have become increasingly unattractive and difficult for employees, while growing more important to their companies, a new survey says. The survey, by the isniversity of Tennessee and Right Management Consultants Inc., found that relocations no longer mean a guaranteed promotion and often cause a decline in living standards, especially among the rapidly growing legions of two-career families. On the other hand, companies are increasingly relying on transfers to meet strategic goals such as improving productivity or cutting the size of the corporation. ``The flattening of company structures has forced some workers to accept transfers merely to stay employed, and greatly reduced promotional opportunities for others,'' said the study. ``Couples who have been through one or more relocations in which they not only made no economic gains but actually lost ground are feeling frustrated, cautious and skeptical about moving again,'' it said. Paul Wesman, a spokesman for Philadelphia-based Right Management, said ``some companies are acutely aware of this as a problem, and are beginning to deal with it. Others are beginning to feel the pain.'' The study surveyed more than 3,200 employees or their spouses at 101 companies in the isnited States, Canada and Europe. Among its findings were that 23 percent of those surveyed repo\n\n[...TRUNCATED...]\n\ng for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) 3 BR / 3.0 BA$729,000.00 4 BR / 2.1 BA$1,395,000.00 3 BR / 1.0 BA$459,900.00 2 BR / 1.0 BA$420,000.00 5 BR / 4.1 BA$1,999,000.00 2 BR / 2.0 BA$2,150,000.00 4 BR / 3.1 BA$1,445,000.00 3 BR / 2.0 BA$3,998,000.00 5 BR / 7.0 BA$3,595,000.00 4 BR / 3.0 BA$1,950,000.00 Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.95, \"focus_excerpt\": \"Job transfers have become increasingly unattractive and difficult for employees, while growing more important to their companies, a new survey says.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1100,
+            "outputTokens": 52,
+            "inputTokensCostNanodollars": "3300000",
+            "outputTokensCostNanodollars": "780000",
+            "totalBackendLatencyMs": "1851"
+          },
+          "id": "epu_q2_short-a503873b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1100,
+        "outputTokens": 52,
+        "inputTokensCostNanodollars": "3300000",
+        "outputTokensCostNanodollars": "780000",
+        "totalBackendLatencyMs": "1851"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #254"
+}

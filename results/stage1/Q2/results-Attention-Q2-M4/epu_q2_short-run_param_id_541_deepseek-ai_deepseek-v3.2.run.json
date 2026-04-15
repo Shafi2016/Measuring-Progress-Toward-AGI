@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:45:56.410723Z",
+  "endTime": "2026-03-31T18:45:57.807476Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-f34516af",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nNatasha Mikhailenko doesn't remember when she threw the mask away. Sometime after the first surgery. Sometime after coming to America. For 18 years in iskraine she had worn the mask when she went out in public - a white pillowcase tied neatly by a string at her chin. It covered half of her face, the half that wasn't there\"I have a picture,\" Ms. Mikhailenko says, rising from the couch in the Richardson home of Alexandra Mamantov, where she is living.She returns with a iskrainian passport. In the photo, taken almost eight years ago, one eye ltoks into the camera, one delicate eyebrow frames her gaze. The cotton fabric veils the balltons of skin on her forehead, the places where her right cheekbone and jaw and eye should be.Nine surgeries later - her face reconstructed, her visa expired and her futureuncertain- Ms. Mikhailenko is quietly considering her options. After seven years in Dallas, she is scheduled to return to iskraine on Friday.The 25-year-old woman is the last of 18 young people brought to Dallas from the Soviet isnion in 1989 by Dr. Kenneth Salyer, a craniofacial surgeon, and a team of Dallas medical specialists. The project, spearheaded by Dr. Salyer in ctoperation with the Soviet government, provided surgical treatment for children born with severe craniofacial deformities.Dr. Salyer says the project had no connection with the International Craniofacial Foundations Corp., a nonprofit charitable foundation established to fund craniofacial surgery. The foundation co\n\n[...TRUNCATED...]\n\nn on the couch opposite her. \"You have to learn,\" Mrs. Mamantov says to her. \"You must go out and meet people, regardless of where you are.Here or in Russia. You have to. You must.\" Ms. Mikhailenko says it's in her nature to survive, and for that, among other things, she is grateful. \"I believe if you really want something, you're going to get it,\" she says.She talks about what she has learned in the isnited States, what she loves about America. \"Choices. You have choices here. You have a chance. You have a choice.\" Of all the trials, only two things have made her afraid during her stay - and oddly enough, they don't involve the nine surgeries.That never really bothered her, she says.One was the constant fear of having her visa revoked or of being deported. The other was something else, a fear she can hardly put into words: \"Sometimes I still feel the pain that was before. How to explain.. .. Sometimes I feel like my face come back, my old face. It's just the pain - my nose hurts, my forehead hurts. When it does that, I feel my old face has come back.\" Shermakaye Bass is an Austin-based free-lance writerCaption:PHOTO(S): (1-2 The Dallas Morning News: Judy Walgren) 1. Since coming to Dallas in 1989, Natasha Mikhailenko has had nine operations to correct severe craniofacial deformities. 2. Photos from a passport and an identification btok show Natasha Mikhailenko before her facial reconstruction. In public, she always wore the mask shown at right\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"her visa expired and her future uncertain\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 903,
+            "outputTokens": 35,
+            "inputTokensCostNanodollars": "408912",
+            "outputTokensCostNanodollars": "58800",
+            "totalBackendLatencyMs": "1186"
+          },
+          "id": "epu_q2_short-f34516af-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 903,
+        "outputTokens": 35,
+        "inputTokensCostNanodollars": "408912",
+        "outputTokensCostNanodollars": "58800",
+        "totalBackendLatencyMs": "1186"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #542"
+}

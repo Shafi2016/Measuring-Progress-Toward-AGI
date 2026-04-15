@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:05:40.308117Z",
+  "endTime": "2026-04-03T00:05:41.389732Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-b70c1bb8",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nAmerican Business Invades Hong Kong Despite isncertainty Moses, Jonathan The Washington Post (1974-Current file); Mar 19, 1989; ProQuest Historical Newspapers: The Washington Post (1877-1997) pg, H2. American Business Invades Hong Kong Despite isncertainty By Jonathan Moses Speci.ll lo The WnHliliiRtnii Post i: HONG KONG\u2014As the British prepare to return Hong : \u25a0 Kong to the Chinese, American businesses and profession\u00ad' als are increasing their stake in the crown colony. : is.S. firms, already very visible here, have found Hong i Kong a relatively cheap and efficient place from which to i run regional Asian operations. { In addition, its role as an entry point for trade with Chi- {na has meant increased business as Western economic : links with the People's Republic have grown. ; Two years ago Americans, now 16,000 strong, sur\u00ad; passed the British in numbers. Last year they were second ; only to Filipinos among foreign nationals here.! The isnited States also ranks second to China among. foreign investors, with $5.5 billion in direct investment in! 1987. That was up $1.5 billion from 1986, according to an ' official of the is.S. consulate. Japanese investors also have rapidly increased their in\u00advestments in Hong Kong, and have committed $4.5 billion. \"The amount of business in Japan is so great that it's hard to concentrate on anything outside Japan, even Ko\u00adrea,\" said Mark C. Michelson, a vice president of a British- owned consulting and business information concern. Michelso\n\n[...TRUNCATED...]\n\n British common law, minimum government regulations and easy visa re\u00adquirements make it easy to set up an office here, American msiness people said. Hong Kong's downside is uncertainty about the future. At midnight on July 1,1997, China will resume sovereign\u00adty over the territory, which Britain gained in the 19th cen\u00adtury due to its military dominance over the last Chinese mperial dynasty. Concern over whether the Chinese government will run dong Kong as the British have\u2014with minimal interfer\u00adence in the business sector-\u2014has not yet1 outweighed the colony's advantages to Americans. Among the best alternatives in the region, business peo- >!e said, Bangkok has an undeveloped infrastructure and Singapore has a government that's tto restrictive. Hong Kong's foremost attraction, of course, is its prox- mity to China. The largest share of American business in long Kong is done by wholesale traders, or firms that spe\u00adcialize in the importing and exporting of products. Most of hat trade involves products made in China, said Bob Tay- or, a is.S. consul. tBecause of a labor shortage in Hong Kong and skyrock\u00adeting real estate costs, many manufacturers, led by Hong Kong Chinese firms, are building factories in south China. Hong Kong is the natural avenue by which these products reach the world, said a Hong Kong-based buyer for Sears, Roebuck & Co. Business people said the growth of the China trade may lead to a further btom as Hong Kong becomes, like Man\u00ad\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":1,\"confidence\":0.84,\"focus_excerpt\":\"Concern over whether the Chinese government will run Hong Kong as the British have\u2014with minimal interference in the business sector\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 867,
+            "outputTokens": 40,
+            "inputTokensCostNanodollars": "2167500",
+            "outputTokensCostNanodollars": "600000",
+            "totalBackendLatencyMs": "921"
+          },
+          "id": "epu_q2_short-b70c1bb8-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 867,
+        "outputTokens": 40,
+        "inputTokensCostNanodollars": "2167500",
+        "outputTokensCostNanodollars": "600000",
+        "totalBackendLatencyMs": "921"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #335"
+}

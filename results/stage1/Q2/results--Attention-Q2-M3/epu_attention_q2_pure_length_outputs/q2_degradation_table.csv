@@ -1,0 +1,2 @@
+llm_name,long,medium,short,medium_minus_short,long_minus_short,long_minus_medium
+🤖 anthropic/claude-sonnet-4-6@default,0.6416666666666667,0.645,0.6266666666666667,0.018333333333333313,0.015000000000000013,-0.0033333333333332993

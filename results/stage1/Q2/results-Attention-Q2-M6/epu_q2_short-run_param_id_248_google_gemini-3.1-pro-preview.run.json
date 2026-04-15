@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T22:21:05.778510Z",
+  "endTime": "2026-04-02T22:21:10.809484Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-4a8b682c",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Libra\n\nTARGET ARTICLE START\nJeff E. Elliott Texas Trane, DallasAge: 38Position: Service technicianYears in current position: Six with companyEducation: Associate's degree in technology, Oklahoma State Tech, Okmulgee, Okla.How did you get your ftot in the dtor? \"Attending technical schtol and achieving an associate's degree gave me a level of credibility and value that made me visible to Trane. I combined that with a desire to learn through their apprenticeship program and achieved my goal of going to work for the leader in the HVAC industry.\"What is your toughest professional challenge? \"The rapidly changing technology associated with HVAC equipment. Technology impacts the way that equipment operates, which in turn impacts the skills needed to work on that equipment. Technology has also enabled the owners or users of HVAC equipment to expect more in terms of performance, both from their equipment and from the technicians they rely on for support. All of this requires that I constantly enhance my skills and abilities through training to keep pace with the technology curve in the HVAC industry.\"What are the characteristics of an indispensable employee? \"Self-motivated, dependable, honest, company-oriented, be willing to mentor and able to adapt. It is more than the stereotype portrayed of mechanics. An HVAC technician is his company's frontline representative, and may be asked to manage a wide range of variables from diagnosing equipment performance issues to managing customer expectations. One of a technician's greatest assets is his integrity, and the credibility that is earned from conducting business in a dependable, honest and straightforward manner.\"What are the hiring trends in your industry? What positions? \"HVAC technicians are in high demand throughout the industry. Currently, the demand is flat due to theeconomicuncertainty. Ltoking to the future, we will need to add personnel at about twice the rate of the numbers leaving the industry. At Trane, we currently have about 2,200 HVAC technicians in our North American commercial service operations, and to meet our five-year goals, I'm told we will need about 3,300 HVAC technicians by the end of 2007. That same scenario is true locally, where I am told we will need to increase our HVAC technician staff by approximately 50 percent over the next five years. The future is very bright for HVAC technicians.\"Sarah GodinezCaption:PHOTO(S): Jeff E. Elliott\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Librar"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"Currently, the demand is flat due to theeconomicuncertainty.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 814,
+            "outputTokens": 43,
+            "inputTokensCostNanodollars": "1628000",
+            "outputTokensCostNanodollars": "5820000",
+            "totalBackendLatencyMs": "4900"
+          },
+          "id": "epu_q2_short-4a8b682c-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 814,
+        "outputTokens": 43,
+        "inputTokensCostNanodollars": "1628000",
+        "outputTokensCostNanodollars": "5820000",
+        "totalBackendLatencyMs": "4900"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #249"
+}

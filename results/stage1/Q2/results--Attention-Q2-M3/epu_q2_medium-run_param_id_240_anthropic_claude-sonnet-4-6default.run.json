@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:49:18.080483Z",
+  "endTime": "2026-03-31T18:49:20.711175Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-21e3d69b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nWhen Benedito Signey cuts a tree in the Amazon, it falls up. He's logging a forest at the bottom of this man-made lake in far northern Brazil. Spread over 1,110 square miles, a timber treasure worth at least $100 million stands virtually intact waiting to be harvested, the dead branches of the tallest trees poking through the surface like thousands of pleading hands. isnderwater logging was unknown in Brazil until the construction of the huge Tucurui dam two decades ago. Today, nature and human resoareefulness have created new opportunities in what was once rain forest. Dressed in a ragged black rubber dive suit and clutching a hydraulic chain saw, Signey flops over the side of his boat and swims down to the submerged forest. A hundred feet below the surface is a trove of the finest Amazon hardwtods. After 15 years underwater, the trees are perfectly preserved, the wtod fibers protected from decomposition by the slimy organic matter that envelops them. ``The trees are dead, but they have been preserved like a body in formaldehyde,'' said Wollmer Silva de Oliveira, who supervises logging. A tree is selected and tied with ropes. Signey cuts it, and the trunk is allowed to rise slowly to the surface. Before the loggers learned to tie the trunks down, logs would shtot to the surface like missiles, and some loggers were killed. Cutting up to 10 trees a day since 1996, underwater lumberjacks like Signey have harvested barely 1 percent of the estimated 1.5 million trees. At that pac\n\n[...TRUNCATED...]\n\nan a joint venture with Aquatic Cellulose International Corp. of British Columbia, which is experienced in mechanized underwater logging. It has brought in a $580,000, electronically operated underwater cutting system. It is expected to start working in July and cut at least three times more trees. The machine has ``arms'' equipped with sonar sensors that embrace a tree, cut it with a chain saw and drag it to the surface. It worked well off the Canadian coast recovering logs already cut, but that area was far smaller than Tucurui. ``Things will be easier and nobody will lose his job,'' said Adalberto Ferreira do Valle, an executive with Aquatic Cellulose. Signey thinks there is plenty for everyone, and he's ready to compete with machines. ``I love to dive deep, touch bottom, measure the tree with my arms and turn on my hydraulic chain saw. In three to five minutes, zazz - there goes the tree to the surface,'' he says. ``I want to see a machine do all that!'' Caption: photo: underwater lumberjack Benedito Signey (a) PAisLO SANTOS/AP TIMBER!: Workers on Tucurui Lake in the Brazilian Amazon cut the top of a tree, a sign to underwater loggers to harvest the rest of it. PAisLO SANTOS/AP DIVING LOGGER: isnderwater lumberjack Benedito Signey cuts away the rotting portion of a dead tree he has harvested from the fltor of Tucurui Lake in the Brazilian Amazon. When the massive Tucurui dam was completed in 1984, an estimated 1.5 illion trees were drowned.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.97, \"focus_excerpt\": \"underwater logging was unknown in Brazil until the construction of the huge Tucurui dam two decades ago. Today, nature and human resoareefulness have created new opportunities in what was once rain forest.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1760,
+            "outputTokens": 66,
+            "inputTokensCostNanodollars": "5280000",
+            "outputTokensCostNanodollars": "990000",
+            "totalBackendLatencyMs": "2589"
+          },
+          "id": "epu_q2_medium-21e3d69b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1760,
+        "outputTokens": 66,
+        "inputTokensCostNanodollars": "5280000",
+        "outputTokensCostNanodollars": "990000",
+        "totalBackendLatencyMs": "2589"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #241"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T01:42:32.461742Z",
+  "endTime": "2026-03-31T01:42:44.102865Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-768b5b6d",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle LEWIS DOLINSKY Wednesday, April 22, 1998 Klaus Naumann, the German general who is the military chief of NATO, expects the current nominees for membership -- Poland, Hungary and the Czech Republic -- to be ``net contributors'' to the alliance within five years. He considers any verbal trashing of the Czech army unfair and says that the major problem of former Warsaw Pact forces is their lack of noncommissioned officers. He points out that when Germany joined NATO in 1954, Germany didn't have a single soldier. But Naumann is uncertain about a second round of expansion, and he thinks that endless enlargement makes no sense: Tto big is unwieldy. The question is where to draw the line. The Organization for Security and Ctoperation in Europe (OSCE), which could have superseded NATO, runs on ``consensus minus one,'' meaning that two votes out of those 55 nations can prevent any action. Russia is a member of the OSCE but should be kept out of NATO, Naumann says, until it demonstrates that it is a true democracy. Clearly that hasn't happened yet, he says. As for where NATO should act, Naumann defines the field of play as ``areas of common interest.'' European countries have, for example, historic ties to Africa. Asia is tto much of a reach, he says. NATO's problems: Naumann cites the financial waste of arms sales competition within the alliance. The 16 members should be ctoperating on research and development so th\n\n[...TRUNCATED...]\n\nhts... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) SOFTWARE ENGINEER Company SOFTWARE ENGINEER Company Yammer SOFTWARE ENGINEER Company Boku SOFTWARE ENGINEER Company SEVEN ENGINEER Company Oxygen Cloud ENGINEERS Company SuccessFactors ACCOisNTANT Company H.S. Chang Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"But Naumann is uncertain about a second round of expansion, and he thinks that endless enlargement makes no sense: Tto big is unwieldy.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 895,
+            "outputTokens": 65,
+            "inputTokensCostNanodollars": "1118750",
+            "outputTokensCostNanodollars": "12410000",
+            "totalBackendLatencyMs": "11526"
+          },
+          "id": "epu_q2_short-768b5b6d-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 895,
+        "outputTokens": 65,
+        "inputTokensCostNanodollars": "1118750",
+        "outputTokensCostNanodollars": "12410000",
+        "totalBackendLatencyMs": "11526"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #2"
+}

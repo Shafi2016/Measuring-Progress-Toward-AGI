@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:37:07.803095Z",
+  "endTime": "2026-03-31T02:37:10.414479Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-54170b65",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nBond Prices Continue to March ispward In Anticipation of Lower Discount Rate: CREDIT MARK1 By EDWARD P. FOLDESSY And TOM HERMAN Staff Reporters of THE WALL STREET JOisRNAL Wall Street Journal (1923 - Current file); Dec 18, 1985; ProQuest Historical Newspapers: The pg. 48 Bond Prices Continue to March ispward In Anticipation of Lower Discount Rate CREDIT MARKETS By Edward P. Foldessy And Tom Herman Staff Reporters of The Wall Sthect Jouhnai. NEW YORK\u2014The bond market's explo\u00adsive rally continued yesterday amid in\u00adcreased speculation that the Federal Re\u00adserve System may ston cut its discount rate. Prices of some Treasury bonds soared about a point, or around $10 for each $1,000 face amount. Since Dec. 6, prices have jumped almost 6 points, with yields drop\u00adping to their lowest levels in more than six years. Speculation about a discount-rate cut in\u00adtensified yesterday after the Fed injected reserves into the banking system in a move that surprised many analysts. Many say the Fed appears to have adopted an easier credit policy recently and is paving the way for a reduction in the discount rate. The discount rate, the fee the Fed charges on loans to banks and savings in\u00adstitutions, has been 7%% since late May. Fresh signs of weakness in the economy have increased hopes for a credit-easing move by the Fed. The Commerce Depart\u00adment reported yesterday that housing starts plunged 12.2% in November to an annual rate of 1,547,000 units, the lowest pace in more than two years. In several \n\n[...TRUNCATED...]\n\nhere in the credit markets, sev\u00aderal new municipal bond issues were of\u00adfered to investors yesterday. These in\u00adcluded a $100 million offering of bonds by the Los Angeles Community Redevelop\u00adment Agency. By some estimates, only $22 million of the issue remained unsold among underwriters late yesterday. isn\u00adderwriters led by PaineWebber Inc. priced the bonds after auction to yield from 6% in 1986 to 8.85% in 2010. The issue is rated sin- gle-A by S&P. An offering of $58 million of general im\u00adprovement bonds by Memphis, Tenn., was almost completely sold as of late yester\u00adday. A group led by Salomon Brothers priced the bonds after auction to yield from 6% in 1988 to 8.4% m 2005. The issue is rated double-A by both Mtody's and S&P. Also selling briskly was an offering of about $56 million of expressway refunding revenue bonds by Florida. The issue had an unsold balance of about $7.8 million yes\u00adterday afternton, according to underwrit\u00aders led by Prudential-Bache Securities Inc. The bonds were priced after auction to yield from 5.25%. in 1986 to 7.90% m 1996. The issue is rated single-A-1 by Mtody's and single-A by S&P. An underwriting group led by Paine\u00adWebber tentatively priced a $180 million offering of revenue bonds by Detroit for Cobo Hall, a convention center. isnder the proposed terms, the bonds yield from 6.5%, in 1988 to about 9.07% in 2010. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"The bond market's explo\u00adsive rally continued yesterday amid in\u00adcreased speculation that the Federal Re\u00adserve System may ston cut its discount rate. Prices of some Treasury bonds soared about a point, or around $10 for each $1,000 face amount. Since Dec. 6, prices have jumped almost 6 points, with yields drop\u00adping to their lowest levels in more than six years. Speculation about a discount-rate cut in\u00adtensified yesterday after the Fed injected reserves into the banking system in a move that surprised many analysts. Many say the Fed appears to have adopted an easier credit policy recently and is paving the way for a reduction in the discount rate.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1701,
+            "outputTokens": 173,
+            "inputTokensCostNanodollars": "510300",
+            "outputTokensCostNanodollars": "957500",
+            "totalBackendLatencyMs": "2539"
+          },
+          "id": "epu_q2_medium-54170b65-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1701,
+        "outputTokens": 173,
+        "inputTokensCostNanodollars": "510300",
+        "outputTokensCostNanodollars": "957500",
+        "totalBackendLatencyMs": "2539"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #181"
+}

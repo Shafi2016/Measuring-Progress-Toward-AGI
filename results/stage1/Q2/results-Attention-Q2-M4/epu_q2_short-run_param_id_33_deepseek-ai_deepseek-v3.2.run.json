@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:24:37.201845Z",
+  "endTime": "2026-03-31T18:24:38.623523Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-de0bb150",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nBorg won, but victory ttok its toll O'Connor, Matt Chicago Tribune (1963-Current file); Sep 20, 1987; ProQuest Historical Newspapers: Chicago Tribune (1849-1990) pg. FI _ Borg won, but victory ttok its toll By Matt O'Connor Victory over corporate raiders has come at a steep price for Borg-Warner Corp. ,1 This mainstay of Chicago corporate and civic me has turned inward as a private company laden with debt. The conservatively managed company s debt soared nearly 10-fold in a buyout last April led by a Merrill Lynch & Co. subsidiary. ; Borg-Warner, which rarely allowed its debt to ex, cced one-fourth of its shareholders' equity, sudden\u00adly had $21 of debt for every $1 of equity. \u2022 \"That's startling,\" said Clarence E. Red John\u00adson, Borg-Warner's former president and chief ex\u00adecutive officer, who quit in June. .\"It's a tremen\u00addous debt burden.\", \" Life will never be the same again at Borg-Warner. Saddled with $4.2 billion in debt, the company has been left more vulnerable to economic down\u00adturns or interest rate increases. Management, which once concentrated on products and operating results, has had to shift its focus to btosting cash (low and reducing the hugp debt., The short-term focus threatens long-term re\u00ad search and development projects, raising the danger that this diversified company could be hurt com\u00adpetitively., ... With cash so limited, Borg-Warner s proud his\u00ad tory as one of Chicago's strongest corporate contri\u00adbutors to charities, schtols and cultural groups ap\u00adpears\n\n[...TRUNCATED...]\n\netween management and employees collapsed. In outlying operations like its Muncie, lnd\" auto parts plant, workers and community leaders fret over possible cuts yet to come. ......... \"That is the kind of corporate raiding that is, m my judgment, destructive rather than constructive, said Donald D. Lennox, the retired head of Navis\u00adtar International Corp. who often held up Borg- Warner as a model of an old-line manufacturer s successful diversification into service businesses. \"Here is a company that the management had built to be a healthy, well-performing organization, and in order to defend themselves, it had to be disassembled,\" Lennox said. The worst is yet to come. Forced to pay off about $750 million in debt this year and another $2 billion by the end of next year, Borg-Warner. will have to sell off major parts ol its diversified business, perhaps even its prized chemi\u00adcals subsidiary. The financing proposal submitted by Merrill Lynch Capital Partners Inc. to bankers last spring assumed The chemicals business would be sold m 1988, one patticipant said. - \"It's going to be a much, much smaller compa\u00adny,\" Johnson said in his first interview since leaving his Borg-Warner, posts. : Already the company has sold its industrial prod\u00aducts business for about $240 million and^ an\u00adnounced plans to raise an estimated $635 million Continued bn page 2 Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.85, \"focus_excerpt\": \"Victory over corporate raiders has come at a steep price for Borg-Warner Corp.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 902,
+            "outputTokens": 42,
+            "inputTokensCostNanodollars": "408352",
+            "outputTokensCostNanodollars": "70560",
+            "totalBackendLatencyMs": "1217"
+          },
+          "id": "epu_q2_short-de0bb150-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 902,
+        "outputTokens": 42,
+        "inputTokensCostNanodollars": "408352",
+        "outputTokensCostNanodollars": "70560",
+        "totalBackendLatencyMs": "1217"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #34"
+}

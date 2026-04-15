@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:45:12.213408Z",
+  "endTime": "2026-04-01T17:45:13.113650Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-bf502773",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nThe Federal Reserve Board, acknowledging the recession is over, moved Tuesday to prepare consumers, businesses and investors for higher interest rates.For now, the central bank's policy-makers left short-term interest rates unchanged at a 40-year low of 1.75 percent.But the Fed shifted its stance on future cuts to \"neutral.\" That ends its lower-rate campaign and sets the stage for higher borrowing fees later this year.\"The Federal Reserve has certainly acknowledged that theeconomyhas turned up sharply,\" said Lynn Reaser, chief economist at Banc of America Capital Management.Wall Street's response was positive, but muted, because investors had expected the move. The major indices all advanced, with the Dow Jones Industrial Average gaining 57.50 to finish at 10,635.25.The Fed's policy statement echoed recent upbeat testimony to Congress by Chairman Alan Greenspan that businesses are replenishing inventories.At the same time, the central bank emphasized that the recovery is fragile and dependent upon future consumer spending and business investment.\"Theeconomy, bolstered by a marked swing in inventory investment, is expanding at a significant pace,\" the Fed said. \"Nonetheless, the degree of the strengthening in final demand over coming quarters, an essential element in sustainedeconomicexpansion, is stilluncertain.\"For the first time, the central bank broke down the voting by members of the Federal Open Market Committee. Robert McTeer Jr., president of the Federal Reserve Bank o\n\n[...TRUNCATED...]\n\ney will only do it when they see there is a need.\"The government reported that theeconomygrew at an annual rate of 1.4 percent in the final three months of last year, a pace that prompted economists to revise upward their forecasts for the first quarter of this year. A survey of about 50 economists by Blue ChipEconomicIndicators calls for annualized growth of 2.6 percent for the January-March period.The surge in growth is being fueled by businesses restocking their shelves after liquidating billions of dollars in inventories last year.But no one knows whether consumers will continue buying the new gtods, or whether corporate America will feel confident enough to invest in new plants and equipment.\"Will we get this initial bounce from inventories and then stall out?\" said David Wyss, chief economist at Standard & Ptor's Inc.Mr. Wyss is of the view that the recovery is probably solid. Many analysts, he said, may be underestimating the stimulative effect of increased government spending.And Mr. Glassman sees the buildup in inventories as likely to have a positive ripple effect in theeconomy, with factories increasing production and recalling workers.\"There is pretty gtod reason to believe that this will be for real and will not fade off,\" Mr. Glassman said.E-mail rdodge@dallasnews.comCaption:PHOTO(S): (STEPHEN J. CARRERA/Associated Press) Wall Street's response to the Fed's decision was positive, but muted, because investors had expected the move.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"the degree of the strengthening in final demand over coming quarters, an essential element in sustained economic expansion, is still uncertain\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 828,
+            "outputTokens": 51,
+            "inputTokensCostNanodollars": "182160",
+            "outputTokensCostNanodollars": "44880",
+            "totalBackendLatencyMs": "701"
+          },
+          "id": "epu_q2_short-bf502773-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 828,
+        "outputTokens": 51,
+        "inputTokensCostNanodollars": "182160",
+        "outputTokensCostNanodollars": "44880",
+        "totalBackendLatencyMs": "701"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #531"
+}

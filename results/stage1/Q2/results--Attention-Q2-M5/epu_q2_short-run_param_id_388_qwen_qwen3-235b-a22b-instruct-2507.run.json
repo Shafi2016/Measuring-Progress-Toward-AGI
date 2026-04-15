@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:42:35.183391Z",
+  "endTime": "2026-04-01T17:42:36.573593Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-839378bb",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nGathering Dust, Hartford's Past Faces an isncertain Future: Hartford's Past Is Gathering Dust By BILL RYAN New York Times (1923-Current file); Nov 8, 1992; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. 596 Gathering- Dust, Hartford's Past Paces an isncertain Puture By BILL RYAN T HE city of Hartford has experienced some stag\u00adgering blows lately, including the loss of its legendary department store, G. Fox, and major layoffs in the insurance industry, the city's mainstay. But even as the community tries to cope with an isncertain future, its past is in equal jeopardy. The Hartford Collection, a compendium of thou\u00adsands of items related to the history of the city \u2014 btoks, deeds, letters, official documents, maps, pictures \u2014 is slowly but surely deteriorating at the Hartford Public Library. The library is not air-conditioned and has no humid\u00adity control, leaving paper vulnerable to heat and mois\u00adture. \"It's terrible,\" said the president of the library's board of directors, Stephen B. Goddard. \"There's no reclaiming the collection. Once it's gone, it's gone.\" Hoping for a Decent Home The curator of the collection, Beverly A. Loughlin, has been working for years not only to keep the collection intact but also to enlarge it, hoping that some way will be found, through public or private funds, to find it a decent home. \"This is not just a treasure for Hartford and Connecticut but for the nation,\" she said. Ms. Loughlin has a point. Hartford is one of the oldest \n\n[...TRUNCATED...]\n\n go out and \"try to raise the con\u00adsciousness of people who have money they might be willing to part with to save the city's heritage.\" That said, she admits that she does\u00adn't have any money to hire fund rais\u00aders and her staff is stretched so tight that she cannot spare anyone to go out and try to find money. Mr. Goddard, the head of the li\u00adbrary board and a lawyer, agreed that the library cannot depend on the city for major financial help for the Hartford Collection. Hartford, once a prosperous manufacturing and insur\u00adance city, has become ptorer in re\u00adcent years and is now rated as one of the ptorest in the country. Next year, the city's library will observe another anniversary. Al\u00adthough its origin was before the Revo\u00adlutionary War, when some citizens banded together to buy a collection of btoks, the library did not officially become the Hartford Public Library until 1893, when the city provided money for it and its dtors were opened to the city's residents. Mr. Goddard said he believed that a celebration of that 100th anniversa\u00adry must include a major fund-raising effort for the Hartford Collection. \"The clock is ticking on it now,\" he added. That it is. On a recent day, Ms. Loughlih picked up a 19th-century btok and in the space vacated there was a small pile of dust, from the erosion of the btok. \"That's what it's turning to,\" she said. B Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"Hartford, once a prosperous manufacturing and insurance city, has become poorer in recent years and is now rated as one of the poorest in the country.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 931,
+            "outputTokens": 58,
+            "inputTokensCostNanodollars": "204820",
+            "outputTokensCostNanodollars": "51040",
+            "totalBackendLatencyMs": "1251"
+          },
+          "id": "epu_q2_short-839378bb-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 931,
+        "outputTokens": 58,
+        "inputTokensCostNanodollars": "204820",
+        "outputTokensCostNanodollars": "51040",
+        "totalBackendLatencyMs": "1251"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #389"
+}

@@ -1,0 +1,7 @@
+llm_name,condition,group_name,group_value,n_rows,accuracy,accuracy_sd,valid_prediction_rate,parse_fail_rate,mean_confidence,excerpt_in_target_rate,fp_rate_among_gold0,fn_rate_among_gold1,mean_total_chars,mean_prompt_chars,mean_prompt_tokens
+google/gemini-3.1-pro-preview,short,gold_epu,1,250,0.404,0.49168181176047615,1.0,0.0,0.9360799999999999,0.86,,0.596,3000.0,4105.808,1026.996
+google/gemini-3.1-pro-preview,short,gold_epu,0,250,0.868,0.3391697872427809,1.0,0.0,0.9594000000000001,0.884,0.132,,3000.0,4105.8,1026.992
+google/gemini-3.1-pro-preview,medium,gold_epu,1,250,0.432,0.4963481094787534,1.0,0.0,0.93972,0.88,,0.568,7000.0,8105.8,2026.976
+google/gemini-3.1-pro-preview,medium,gold_epu,0,250,0.856,0.3517940251689592,1.0,0.0,0.9630799999999999,0.892,0.144,,7000.0,8105.82,2027.0
+google/gemini-3.1-pro-preview,long,gold_epu,1,250,0.44,0.4973827080156002,1.0,0.0,0.95064,0.856,,0.56,13000.0,14105.812,3527.0
+google/gemini-3.1-pro-preview,long,gold_epu,0,250,0.868,0.3391697872427809,1.0,0.0,0.9728,0.884,0.132,,13000.0,14105.812,3527.0

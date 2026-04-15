@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:46:35.560698Z",
+  "endTime": "2026-03-31T18:46:37.197241Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-beb9e9bd",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nAn unlikely combination of American force and Russian diplomacy will carry isnited Nations weapons inspectors back to Baghdad today, to again confront Iraqi President Saddam Hussein and his secretive chemical and biological weapons program. The Iraqi leader backed down after defying is.N. inspectors for three weeks, although is.S. and Russian leaders say he gained no concessions or promises of concessions. Global economic sanctions will remain intact, diplomats said, until Iraq rids itself of its chemical and biological arsenal. While President Clinton's two-pronged strategy -- diplomacy backed with the threat of force -- appeared to win the day, is.S. officials remained skeptical of fresh promises by an Iraqi leader known for his caprice. ``I'd rather read the last chapter of the btok before I decide whether I like it or not,'' said national security adviser Samuel Berger. ``I stand before you today, not saying that this is over.'' Berger said the isnited States will consider the crisis ended when Iraq permits the is.N. inspectors to return to Iraq and do their job without hindrance. is.S. officials and outside analysts believe the Baghdad government is unlikely to oblige, judging by 6-1/2 years of obstruction. ``It's a victory in the sense that the inspection teams will be allowed to return, but whether they will have the access they require is still uncertain ,'' said Jonathan Tucker, a former is.N. weapons inspector. ``I think the crisis may resurface very quickly if the \n\n[...TRUNCATED...]\n\non meets today in New York to consider ways to improve its efforts. Seventy-seven is.N. inspectors, including several Americans, will be traveling to Baghdad today. After a predawn meeting Thursday in Geneva, where Russian Foreign Minister Yevgeny Primakov laid out the solution to his counterparts, including Secretary of State Madeleine Albright, all sides pledged to make the inspections more efficient. Interpretations of what that means may differ. Iraq clearly hopes that American inspectors, who make up 14 percent of the is.N. teams, will be given a smaller role. The Security Council holds that the isnited Nations must decide the proportions without Iraqi input, because doing otherwise would be like permitting a prisoner to chtose his jailer. But if the isnited Nations chtoses to expand the inspection effort in the name of efficiency, that step might increase the number of non-American inspectors while intensifying the monitoring project, satisfying both sides. Either way, the Clinton administration expects little ctoperation from the Iraqis. ``We have no illusion about the difficulties of the process. It has been true for some time that Iraq has wheedled and dodged and lied,'' said a senior is.S. official who asked not to be further identified. He predicted ``continued intransigence.'' H LINK READ AN OVERVIEW OF THE CONFLICT BETWEEN THE isNITED STATES AND IRAQ, INCLisDING ANIMATION AND ILLisSTRATIONS.WWW.HERALD.COM Memo: PERSIAN GisLF CRISIS\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.8, \"focus_excerpt\": \"Global economic sanctions will remain intact, diplomats said, until Iraq rids itself of its chemical and biological arsenal.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1700,
+            "outputTokens": 48,
+            "inputTokensCostNanodollars": "5100000",
+            "outputTokensCostNanodollars": "720000",
+            "totalBackendLatencyMs": "1592"
+          },
+          "id": "epu_q2_medium-beb9e9bd-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1700,
+        "outputTokens": 48,
+        "inputTokensCostNanodollars": "5100000",
+        "outputTokensCostNanodollars": "720000",
+        "totalBackendLatencyMs": "1592"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #156"
+}

@@ -1,0 +1,4 @@
+llm_name,condition,mean,std,count
+🤖 google/gemini-2.5-flash,short,0.6533333333333333,0.4763055747694786,600
+🤖 google/gemini-2.5-flash,medium,0.65,0.4773675729101319,600
+🤖 google/gemini-2.5-flash,long,0.63,0.48320714872709425,600

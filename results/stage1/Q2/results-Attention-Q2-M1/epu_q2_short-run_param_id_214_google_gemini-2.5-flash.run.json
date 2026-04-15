@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T01:57:19.279149Z",
+  "endTime": "2026-03-31T01:57:23.722284Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-07b5c9f1",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nA landslide all but wiped out Wilfredo Rodriguez's small shoemaking business last year, entitling him to a loan from President Hugo Ch\u00e1vez's government - money he says he never would have found elsewhere. It came with strings attached - his workers get limited co-ownership and he must make mandatory donations to community projects. But no matter. The factory is thriving. Its 14 workers produce 1,200 pairs of shoes per month and has begun selling sandals to Cuba. Ctoperatives and co-managed ``social production'' companies such as Rodriguez's shoe factory are the backbone of the new ``21st century socialism'' that Ch\u00e1vez is trying to create. Venezuela's iconoclastic leader is fond of saying he's inventing a new sort of economy that won't just forever alter Venezuelan society but will also serve as an egalitarian model for the entire world. Such claims may sound exaggerated for a country buoyed by oil wealth where capitalist businesses continue to drive the economy. But in little more than seven years, Ch\u00e1vez's powerful personality and ample petrodollars have transformed Venezuela's economy into a unique mishmash of public and private enterprise. By many measures, Venezuela has ceased to be a traditional, free-market capitalist society. Billions of dollars are now diverted annually to state-directed social spending; ctoperatives jointly owned and operated by workers are favored for government loans and contracts; and new state-owned companies challenge private sector heavyweight\n\n[...TRUNCATED...]\n\nide. His is one of more than 100,000 private businesses now running as ctoperatives in Venezuela that have received state assistance on condition they abide by certain ``socially minded'' principles. Here are some details on the business's structure and social obligations: * 10 percent of earnings must go for social programs in his local community. * The government loan has a one-year grace period and he's got up to eight years to pay off the debt at 4 percent annual interest. * Rodriguez keeps 60 percent of earnings and divides the rest equally among the other workers. * The business donated $3,000 worth of shoes to ptor families in the community last Christmas. * Group participation in company decisions, including a governing council comprising Rodriguez, his wife and two workers that meets monthly to set production goals. * Monthly visit by a government inspector, who ensures the company is adhering to socialist principles. Caption: Photo:Shoes sit on a table at a factory in Guatire, just outside Caracas. The factory's 14 workers produce 1,200 pairs of shoes a month (a) Wilfredo Rodriguez's small shoemaking business benefited from a loan from President Hugo Ch\u00e1vez's government (a) WORK STATION: Shoes sit on a table at a factory in Guatire, just outside Caracas. The factory's 14 workers produce 1,200 pairs of shoes a month. SHOEMAKER: Wilfredo Rodriguez's small shoemaking business benefited from a loan from President Hugo Ch\u00e1vez's government.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 1, \"focus_excerpt\": \"Ctoperatives and co-managed ``social production'' companies such as Rodriguez's shoe factory are the backbone of the new ``21st century socialism'' that Ch\u00e1vez is trying to create. Venezuela's iconoclastic leader is fond of saying he's inventing a new sort of economy that won't just forever alter Venezuelan society but will also serve as an egalitarian model for the entire world.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 855,
+            "outputTokens": 101,
+            "inputTokensCostNanodollars": "256500",
+            "outputTokensCostNanodollars": "1690000",
+            "totalBackendLatencyMs": "4371"
+          },
+          "id": "epu_q2_short-07b5c9f1-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 855,
+        "outputTokens": 101,
+        "inputTokensCostNanodollars": "256500",
+        "outputTokensCostNanodollars": "1690000",
+        "totalBackendLatencyMs": "4371"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #215"
+}

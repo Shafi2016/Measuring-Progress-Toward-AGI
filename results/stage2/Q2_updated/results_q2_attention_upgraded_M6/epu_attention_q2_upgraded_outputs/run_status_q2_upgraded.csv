@@ -1,0 +1,4 @@
+llm_name,condition,n_rows_expected,n_rows_completed,mean_result,valid_prediction_rate,parse_fail_rate
+google/gemini-3.1-pro-preview,short,500,500,0.636,1.0,0.0
+google/gemini-3.1-pro-preview,medium,500,500,0.644,1.0,0.0
+google/gemini-3.1-pro-preview,long,500,500,0.654,1.0,0.0

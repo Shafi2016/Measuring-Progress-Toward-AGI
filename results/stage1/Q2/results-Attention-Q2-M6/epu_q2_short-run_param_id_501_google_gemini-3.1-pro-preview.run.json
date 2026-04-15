@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:09:12.334870Z",
+  "endTime": "2026-04-02T23:09:28.486716Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-6e1b2e52",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nMichael Crosby is no stranger to doing battle with corporate America.Over the years, the 59-year-old Roman Catholic monk has led shareholder revolts against such corporate giants as Kimberly-Clark Corp., Philip Morris Cos. and General Electric Co. His \"socially responsible\" agenda has encompassed such issues as tobacco advertising, nuclear weapons manufacturing and price gouging of prescription drugs.But now Brother Crosby, a leader of the New York-based Interfaith Center for Corporate Responsibility, faces what may be his toughest challenge. Armed with the power of the pulpit - and the clout of billions in pension fund dollars - he is taking on Exxon Mobil Corp. over the controversial issue of global warming.Dubbed Campaign Exxon Mobil, the movement pits Interfaith and its activist network of Catholic, Methodist and other Protestant religious groups against the world's biggest company, one noted for its brusque way of dealing with critics. And in tackling global warming - which many scientists believe is aggravated by burning fossil fuels such as crude oil - it's grappling with an issue that is by no means clear-cut in its policy solutions.Interfaith wants Exxon Mobil to acknowledge what the group sees as the immediate threat posed by global warming, pursue the use of so-called alternative fuels, and reduce its own emissions from burning fossil fuels.Exxon Mobil is unconvinced of Interfaith's arguments. Frank Sprow, Exxon Mobil's vice president for environment and safety, sa\n\n[...TRUNCATED...]\n\nictory of sorts in the battle against Exxon Mobil.Last spring, he dug up documents that showed the oil company's role in formulating a new state law that called for voluntary - rather than mandatory - compliance with efforts to cut back pollution from aging industrial plants.Among the documents is a June 1997 memo, co-signed by Exxon isSA president A.L. Condray and another oil industry executive, which says that Gov. George W. Bush asked the pair to work with state officials to develop \"the concepts of a voluntary program.\"Voluntary controlsDr. Sprow said that the effort to make the new law voluntary rather than mandatory was \"led by the governor's office, not Exxon.\" And, he adds, \"we do take some pride in our willingness to find a solution that would improve air quality in the state.\"Bush spokeswoman Linda Edwards defended the new law, saying it's far tougher than anything that existed before.Whatever the specifics of the issues, Brother Crosby says Exxon Mobil's past public relations problems - particularly those of the old Exxon Corp. - have made his job a bit easier.\"We're dealing with a company that doesn't have a sterling reputation in the eyes of the public,\" he said. \"It means we don't have to start from go.\"Caption:PHOTO(S): (The Dallas Morning News: Matt McClain) Peter Altman (left), ctordinator of Campaign Exxon Mobil and Brother Michael Crosby detail plans to compel the giant energy company to change its position on global warming.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"Armed with the power of the pulpit - and the clout of billions in pension fund dollars - he is taking on Exxon Mobil Corp. over the controversial issue of global warming.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 835,
+            "outputTokens": 65,
+            "inputTokensCostNanodollars": "1670000",
+            "outputTokensCostNanodollars": "19716000",
+            "totalBackendLatencyMs": "16009"
+          },
+          "id": "epu_q2_short-6e1b2e52-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 835,
+        "outputTokens": 65,
+        "inputTokensCostNanodollars": "1670000",
+        "outputTokensCostNanodollars": "19716000",
+        "totalBackendLatencyMs": "16009"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #502"
+}

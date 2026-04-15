@@ -1,0 +1,4 @@
+llm_name,condition,mean,std,count
+🤖 deepseek-ai/deepseek-v3.2,short,0.6416666666666667,0.4799108385006597,600
+🤖 deepseek-ai/deepseek-v3.2,medium,0.645,0.4789125829454742,600
+🤖 deepseek-ai/deepseek-v3.2,long,0.6433333333333333,0.4794148724456642,600

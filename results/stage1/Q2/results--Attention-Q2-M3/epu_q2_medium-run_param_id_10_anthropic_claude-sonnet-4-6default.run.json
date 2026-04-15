@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:41:30.572765Z",
+  "endTime": "2026-03-31T18:41:33.637880Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-00d95f27",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nExcuse Bob Edge if he doesn't sound panicky about the state of the Dallas office market.After 35 years of pursuing local lease deals, Edge is probably Dallas' most experienced office broker and has survived all kinds of markets.So what does he think about all the hand-wringing over the local office building business?\"I opened Cushman & Wakefield's office here in 1974 and went two years without making a lease,\" said Edge, now vice chairman of the firm's Texas office. \"Everyone was just sitting on their hands.\"Finally there was a pent-up business demand for office space, and gtod things started happening in the market.\"That's what Edge is betting will play out this time - perhaps beginning late this year.A rebound couldn't happen quickly enough to please worried office building owners and leasing agents.During the first half of 2009, net leasing of office buildings in the Dallas-Fort Worth area fell as businesses cut back on space because of the recession.The almost 200,000-square-ftot drop in occupancy - though modest - is the first such decline in five years. And analysts warn there's probably more to come.\"I would expect office absorption to continue to decline, given the current environment,\" said D'Ann Petersen, a business economist with the Federal Reserve Bank of Dallas.But there are early signs that theeconomyis starting to level out, she said.\"Our office market remains much healthier than many other areas of the country and should be poised to improve when theeconomydo\n\n[...TRUNCATED...]\n\nly representing,\" said Phil Puckett, executive vice president in the Dallas office of CB Richard Ellis. \"This repricing is due to the lack of activity [in tenant demand] in these two submarkets, along with large blocks of space being placed back on the market.\"As the recession winds down, businesses may make quicker moves.\"In today's market, tenants are absolutely taking their time to first understand their business plan in a veryuncertainenvironment,\" said Bret Bunnett, president of Capstar Commercial Real Estate Services.Capstar recently signed one of the largest office leases made this year in North Texas - a 200,000-square-ftot Telecom Corridor lease with AT&T.\"Now that the recession seems to be drawing to a close, businesses are going to be more comfortable making longer-term decisions,\" Bunnett said. \"It's impossible to time the bottom of the real estate market.\"Caption:PHOTO(S): (1-3. Photos by DAVID WOO/Staff Photographer) 1. Saint Ann Court is one of two office towers being built in the isptown area. It is about 70 percent leased. 2. Granite Properties is hunting for tenants for 17 Seventeen McKinney, the other office tower going up in isptown. 3. Blue Cross Blue Shield has fully leased the biggest office complex under construction in North Texas. KDC is the developer of the Telecom Corridor property in Richardson, where the insurer will move its headquarters starting in November or December. CHART(S): Measuring the D-FW office market.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.85, \"focus_excerpt\": \"tenants are absolutely taking their time to first understand their business plan in a very uncertain environment\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1700,
+            "outputTokens": 43,
+            "inputTokensCostNanodollars": "5100000",
+            "outputTokensCostNanodollars": "645000",
+            "totalBackendLatencyMs": "2829"
+          },
+          "id": "epu_q2_medium-00d95f27-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1700,
+        "outputTokens": 43,
+        "inputTokensCostNanodollars": "5100000",
+        "outputTokensCostNanodollars": "645000",
+        "totalBackendLatencyMs": "2829"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #11"
+}

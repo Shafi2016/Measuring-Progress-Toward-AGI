@@ -1,0 +1,5 @@
+llm_name,condition,n_rows,section_retrieval_rate,epu_only_acc,joint_acc,json_valid_rate,parse_failure_rate,excerpt_in_target_rate,confidence_mean,mean_target_position_norm
+openai/gpt-5.4-2026-03-05,easy,500,1.0,0.67,0.67,1.0,0.0,0.98,0.8973,0.25
+openai/gpt-5.4-2026-03-05,hard,500,1.0,0.67,0.67,1.0,0.0,0.986,0.90252,0.75
+openai/gpt-5.4-2026-03-05,medium,500,1.0,0.668,0.668,1.0,0.0,0.986,0.90116,0.5
+openai/gpt-5.4-2026-03-05,very_hard,500,1.0,0.662,0.662,1.0,0.0,0.99,0.9084000000000001,1.0

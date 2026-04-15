@@ -1,0 +1,11 @@
+clean_label,attacked_label,count,llm_name,gold_epu
+0,0,91,anthropic/claude-sonnet-4-6@default,1
+0,1,7,anthropic/claude-sonnet-4-6@default,1
+1,-9,1,anthropic/claude-sonnet-4-6@default,1
+1,0,18,anthropic/claude-sonnet-4-6@default,1
+1,1,133,anthropic/claude-sonnet-4-6@default,1
+0,0,163,anthropic/claude-sonnet-4-6@default,0
+0,1,3,anthropic/claude-sonnet-4-6@default,0
+1,-9,1,anthropic/claude-sonnet-4-6@default,0
+1,0,18,anthropic/claude-sonnet-4-6@default,0
+1,1,65,anthropic/claude-sonnet-4-6@default,0

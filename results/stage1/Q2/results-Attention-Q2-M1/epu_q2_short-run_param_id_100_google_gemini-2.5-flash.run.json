@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T01:48:47.891025Z",
+  "endTime": "2026-03-31T01:48:51.518811Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-f0a7a55b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nMacao Aim Is Diversity In Industry: Political Doubt Stalls Progress By SisSAN CHIRA Special to The New York Times New York Times (1923-Current file); Jan 20, 1986; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. D6 INTERNATIONAL REPORT Macao Aim Is Diversity In Industry Political Doubt Stalls Progress By SisSAN CHIRA Special to The New York Times MACAO \u2014 The Hotel Oriental, complete with casino, is the first sight greeting visitors when they step off the boat in Macao. Tourists seldom venture farther than the casinos or the nearby pawnshops that provide a quick infusion of cash for those down on their luck. Gambling has been the business of this tiny peninsula for so long that the industry overshadows all others. In the past two decades, for example, textiles and toy manufacturing have bltomed, and Government officials are busy with plans for further devel\u00adopment. But the casinos provide a substantial portion of this Portuguese territory's yearly revenue, and their promise still lures tourists by the boatload. Macao officials would like to lessen the territory's dependence on gam\u00adbling by encouraging the further spread of other industries, and they have prepared glossy guides for potential investors, touting Macao's low costs. But the future of Macao's economy, like that of neighboring Hong Kong, is intertwined with its political future. An isncertain Future After the Portuguese revolution in 1974, Portugal declared its intent to turn Macao back to China, w\n\n[...TRUNCATED...]\n\n commonplace in the toy industry, which has grown from less than 1 per\u00adcent of Macao's exports in 1980 to 8 percent in 1984, and in the electronics industry, which in 1984 accounted for 5 percent of exports. As Hong Kong land and wages grew more expensive, said Stanley Au, a local businessman, Macao's lower costs persuaded Horig Kong compa\u00adnies to invest here. Although Govern\u00adment statistics were not available, Mr. Au estimated that three-quarters of the manufacturing plants in Macao are owned by Hong Kong interests. But Hong Kong has a growing rival in China, which once again is proving an important magnet for Macao. The headquarters of China in Macao, both economically ahd politically, is the Nam Kuong group. The group oper\u00adates a trading house and a company involved in construction, which has been undergoing a btom here. The Nam Tung bank is also Chinese- owned, and Chinese-backed compa\u00adnies have opened up some textile and electronics factories. For all the activity in manufactur\u00ading and construction, gambling re\u00admains Macao's main home-grown in\u00addustry, and probably the most lucra\u00adtive. In addition to casinos, Macao of\u00adfers dog racing, horse racing and jai alai. Over all, gambling accounts for about 35 percent of Macao's gross do\u00admestic product, according to Govern\u00adment estimates, although there is lit\u00adtle way to trace all the money earned. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.9, \"focus_excerpt\": \"But the future of Macao's economy, like that of neighboring Hong Kong, is intertwined with its political future. An isncertain Future After the Portuguese revolution in 1974, Portugal declared its intent to turn Macao back to China\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 893,
+            "outputTokens": 72,
+            "inputTokensCostNanodollars": "267900",
+            "outputTokensCostNanodollars": "1450000",
+            "totalBackendLatencyMs": "3558"
+          },
+          "id": "epu_q2_short-f0a7a55b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 893,
+        "outputTokens": 72,
+        "inputTokensCostNanodollars": "267900",
+        "outputTokensCostNanodollars": "1450000",
+        "totalBackendLatencyMs": "3558"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #101"
+}

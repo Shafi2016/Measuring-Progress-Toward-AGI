@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:49:30.211179Z",
+  "endTime": "2026-04-01T17:49:31.007078Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-196a5171",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nInvestors traded cautiously Monday, managing to give the market a third straight day of gains despite a weekend bomb attack in Indonesia that sptoked overseas markets. Analysts said many investors were waiting to see whether the market could continue its upward surge before jumping back into stocks. A lack of significant economic news and the close of bond markets for the Columbus Day holiday also contributed to the lackluster activity. ``People are trying to decide whether to take profits,'' said Brian G. Belski, fundamental market strategist at isS Bancorp Piper Jaffray. ``The near-term trend is going to be pretty volatile while we get a sense of whether the market can sustain its upside ability.'' The Dow Jones industrial average rose 27.11 to close at 7,877.40, after gaining 4.3 percent last week to snap a six-week losing streak. Blue-chips had not see three straight days of gains in five weeks. The broader market also finished higher. The Nasdaq composite index rose 10.06 to 1,220.53, having surged 6.2 percent last week. The Standard & Ptor's 500 index gained 6.12 to 841.44, following a weekly advance of 4.3 percent. Last week's rally btosted the Dow 564 points in two days and followed six weeks of market declines that pushed the Dow to a five-year low and the Nasdaq to a six-year low. But analysts were uncertain if the upward trend would continue, given investors' growing concerns about the economy and a war with Iraq. Terrorism concerns also weighed on investors, after\n\n[...TRUNCATED...]\n\ns,'' said Ronald J. Hill, investment strategist at Brown Brothers Harriman & Co. ``When everybody's back and trading tomorrow will be a bigger test of whether Thursday and Friday's rally will hold.'' Gainers included Merck, which rose $2.30 to $49.60, after a federal court ruled that Andrx and three other generic makers infringed on AstraZeneca's patents for the heartburn drug Prilosec. AstraZeneca climbed $4.05 to $36.60, while Davie-based Andrx fell $7.99 to $12. Auto stocks ttok a hit on a brokerage downgrade of several industry companies from Merrill Lynch. General Motors declined $1.56 to $33.26, while Ford dropped 39 cents to $7.93. Boeing fell 94 cents to $31.06 on news that the world's largest aircraft maker would cut jet production through at least 2004, a year longer than expected, according to The Wall Street Journal. TXis Corp. dropped $5.81 to $12.94 after the energy company cut its quarterly dividend by 80 percent and said it was seeking an additional $1 billion in credit to help pay off debt. Advancing issues outnumbered decliners 13 to 12 on the New York Stock Exchange. Volume was light at 1.17 billion shares, compared with 1.81 billion traded Friday. The Russell 2000 index rose 1.60 to 346.53. In Europe, Germany's DAX index was down 2.8 percent, France's CAC-40 fell 0.6 percent, and Britain's FTSE 100 dropped 0.6 percent. Japan's financial markets were closed Monday for Health-Sports Day, a national holiday. Memo: MARKET REVIEW\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.1,\n  \"focus_excerpt\": \"But analysts were uncertain if the upward trend would continue, given investors' growing concerns about the economy and a war with Iraq.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1726,
+            "outputTokens": 51,
+            "inputTokensCostNanodollars": "379720",
+            "outputTokensCostNanodollars": "44880",
+            "totalBackendLatencyMs": "648"
+          },
+          "id": "epu_q2_medium-196a5171-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1726,
+        "outputTokens": 51,
+        "inputTokensCostNanodollars": "379720",
+        "outputTokensCostNanodollars": "44880",
+        "totalBackendLatencyMs": "648"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #169"
+}

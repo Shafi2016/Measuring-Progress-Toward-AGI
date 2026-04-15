@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:27:27.807681Z",
+  "endTime": "2026-03-31T18:27:29.772765Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-510a20d8",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nAn industry report suggesting theeconomyis improving failed to cheer Wall Street on Thursday as the Nasdaq composite index fell to its lowest level in more than two years.Analysts said the market was concerned the upbeat news was temporary and would deter the Federal Reserve Board from cutting interest rates again. They also noted that buyers are sitting out of a market in which stronger company profits and stock prices are elusive.The Nasdaq composite index closed down 23.98 at 2,244.96, its lowest close since hitting 2,208.05 on Jan. 4, 1999.Blue chips were less vulnerable. The Dow Jones industrial average ended the session virtually unchanged, rising 0.23 to 10,526.81 despite sliding as much as 153 points in heavy trading.The broader Standard & Ptor's 500 index slipped 2.45 to 1,252.82.All three indexes are below where they started in 2001, despite healthy run-ups in some stocks last month. The Nasdaq has been particularly devastated: It is now nearly 56 percent off its all-time closing high of 5,048.62, reached last March.\"I believe investor fear is beginning to develop,\" said Bill Barker, an investment strategy consultant at Dain Rauscher. \"We're beginning to see people say: 'I want out of this market because it's going to go a lot lower.'\"Pessimism again ruled the street Thursday, pushing down a brief advance early in the afternton on bargain hunting.Among the biggest losers: Brocade Communications, which tumbled $2.75, or 6 percent, to $41.94, after some investment fir\n\n[...TRUNCATED...]\n\n1 to $26.44, a 5 percent gain.But overall, the market remained weak - a reflection, analysts said, of worries that theeconomyis slowing tto much and it may take more than a few months before it turns around.The Fed has lowered interest rates twice this year and many market experts were counting on a third cut next month. Thursday'seconomicreport raised concerns that might not happen since such cuts are usually predicated on the assumption growth is slowing, not increasing as the news suggested.The New York-based Conference Board said its Index of LeadingEconomicIndicators rose a greater-than-expected 0.8 percent to 109.4 last month, reversing three consecutive monthly declines.\"The index results suggest that the Fed might be advised to put any easing on hold,\" said Hugh Johnson, chief investment officer at First Albany Corp., who also said investors don't share the index's optimistic forecast. \"The market is just worrying deeply that the Fed will not give us what we need.\"The index, which attempts to measure the direction theeconomyis headed, is based on the performance of indicators ranging from weekly manufacturing hours and interest rates to initial claims for unemployment insurance.Trading was heavy and volatile. Declining issues outnumbered advancers nearly 2-to-1 Thursday on the New York Stock Exchange. Consolidated volume came to nearly 1.6 billion, ahead of the 1.43 billion reported Wednesday.The Russell 2,000 index fell 6.25 to 477.26.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.85, \"focus_excerpt\": \"The Fed has lowered interest rates twice this year and many market experts were counting on a third cut next month. Thursday's economic report raised concerns that might not happen since such cuts are usually predicated on the assumption growth is slowing\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 971,
+            "outputTokens": 72,
+            "inputTokensCostNanodollars": "2913000",
+            "outputTokensCostNanodollars": "1080000",
+            "totalBackendLatencyMs": "1905"
+          },
+          "id": "epu_q2_short-510a20d8-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 971,
+        "outputTokens": 72,
+        "inputTokensCostNanodollars": "2913000",
+        "outputTokensCostNanodollars": "1080000",
+        "totalBackendLatencyMs": "1905"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #144"
+}

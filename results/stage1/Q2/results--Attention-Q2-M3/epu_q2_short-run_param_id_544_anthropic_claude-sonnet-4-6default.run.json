@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:39:32.268675Z",
+  "endTime": "2026-03-31T18:39:33.319469Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-6f5a1f10",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nDueling political conventions have vied for attention in America's media capital. The scene ltoks this way:RIGHTWARD HO! - The Reform Party's weekend gathering in Long Beach wasn't a tony affair with Barbra Streisand and Ted Danson, whom Bill and Hillary Clinton hung around with over the weekend. Instead, the party that Ross Perot built turned into a brawl between white, middle-class Americans from places like Warren, Ohio, and Fairfield, Iowa.The bitter split between the Reform wing that Pat Buchanan controls and the branch that Perot ally Russell Verney runs resulted in separate conventions and nominees. Their civil war is about both power and beliefs. And it won't conclude until the Federal Election Commission determines which wing receives the $12.5 million in federal funds that Mr. Perot's 1996 candidacy earned for the party.Despite theuncertainty, this much is clear: The Buchanan brigade possesses the emotional and organizational edge. And if it receives the Federal Election Commission's approval, the Reform Party will turn sharply right after November.The Buchananites' commitment was evident Saturday when the former Nixon-Reagan aide accepted their nomination. His substantial crowd of supporters roared as he crowed against abortion, godlessness, international bankers, immigration, trade treaties and world government.Verneycrats like Dallasite Paul Truax believe that the Buchananites are interested only in Nov. 8, the day after the presidential election. They then will \n\n[...TRUNCATED...]\n\ninated Natural Law Party leader John Hagelin for president. Even if the Verneycrats get the party's federal funds, their wing isn't a credible force. It is time to put a fork in them; they are done.ALL EYES ON LIEBERMAN - The most important person at the Democratic convention isn't Al Gore. It is Joe Lieberman.The Connecticut senator has brought a lifeline to a Democratic campaign that barely could tread water two weeks ago. Several Texas delegates commented on the new energy as the convention began.The respected senator helps Democrats fight Clinton fatigue. \"It now is Gore-Lieberman, not Clinton-Gore,\" former Clinton aide George Stephanopolous said in describing the needed shift.Many Americans will see Mr. Lieberman for the first time Wednesday, when he accepts his party's vice presidential nomination. They will discover a man who shares George W. Bush's preference for bipartisanship. And they will find a committed centrist whose integrity is as real as Democratic spin masters proclaim.Mr. Lieberman also will emerge as a figure who can help separate Mr. Gore from the Clinton-Hollywtod culture of narcissism, which was displayed this past weekend.Of course, the cotton-mouthed senator never will match Mr. Clinton's oratory, which was in full force Monday. But pay attention to him. He has just given the Democrats game.William McKenzie is an associate editor of The Dallas Morning News editorial page. His e-mail address is wmckenzie@dallasnews.com.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.7, \"focus_excerpt\": \"The bitter split between the Reform wing that Pat Buchanan controls and the branch that Perot ally Russell Verney runs resulted in separate conventions and nominees.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 918,
+            "outputTokens": 58,
+            "inputTokensCostNanodollars": "2754000",
+            "outputTokensCostNanodollars": "870000",
+            "totalBackendLatencyMs": "1008"
+          },
+          "id": "epu_q2_short-6f5a1f10-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 918,
+        "outputTokens": 58,
+        "inputTokensCostNanodollars": "2754000",
+        "outputTokensCostNanodollars": "870000",
+        "totalBackendLatencyMs": "1008"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #545"
+}

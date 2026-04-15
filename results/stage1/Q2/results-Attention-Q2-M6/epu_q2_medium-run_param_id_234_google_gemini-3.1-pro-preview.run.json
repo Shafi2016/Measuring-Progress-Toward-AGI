@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:54:35.997793Z",
+  "endTime": "2026-04-02T23:54:42.267655Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-a437bfab",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nTruck sales soared 32.2 percent in early August in response to buyer incentives, but passenger car sales, reflecting the uncertain economy, slid 1 percent, according to figures from the automakers for domestically built vehicles. Combined car and truck sales at the 10 manufacturers rose 11.4 percent. MARKETS Three New York futures exchanges announced plans to build a $150 million joint trading facility in Manhattan with economic incentives from New York City. The Commodity Exchange, the New York Cotton Cocoa Exchange would share a space that more than doubles their facility in the World Trade Center. The New York Mercantile Exchange, the largest futures exchange in the city, backed out of the project. COMPANIES A.T. Massey Coal plans to buy acres of low-sulfur coal reserves in five West Virginia counties from Bethlehem Steel in September. Terms were not disclosed. isnited Mine Workers officials said they were dismayed by the sale, Bethlehem generally has had gtod relations with the union, which has battled bitterly with non-union Massey of Richmond. Time Warner will consolidate the two divisions of its cable television operations, eliminating about 100 jobs, mostly of white-collar managers. Du Pont plans to consolidate its automotive products and polymers sectors as part of its strategy to focus on its core businesses. Oki Electric Industry of Japan and is.S.-based Catalyst Semiconductor are jointly developing chips that remember data even after the computer is turned off. Se\n\n[...TRUNCATED...]\n\nprofits and the country's stock market. BP America said 1,577 people, or nearly half the staff, at its Cleveland headquarters have volunteered to take a job buyout offer. Hanson PLC said it decided against bidding for Olympia & York's unfinished Canary Wharf project in London. Other investors, including CBS Chairman Laurence Tisch, are expected to make an offer. i said it is part of a consortium that has signed a $150 million agreement with General Motors to design and build truck paint facilities in Moraine, Ohio. Morrison and its 50 percent partner, Durr Industries, will build the plant at an existing facility. Chiysler's largest single shareholder, Kirk Kerkorian, decided against seeking a seat on the automaker's board of directors after meeting with Chrysler Chairman Lee Iacocca and his hand-picked successor, Robert Eaton. Kerkorian is \"comfortable\" with Iacocca's plans to continue on the board after his retirement at the end of this year, Chrysler said. Xerox will market brand-name supplies for Apple Computer printers, including a line of laser, dot-matrix and ink-jet components. Boeing's commercial airplane group signed an agreement in the former Soviet isnion that calls for the establishment of a technical research center in Moscow early next year. Philip Morris confirmed that it plans to advertise a new cigarette in Genre, a magazine for gay men. The cigarette industry has been criticized in the past for targeting blacks and blue-collar\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.99,\n  \"focus_excerpt\": \"passenger car sales, reflecting the uncertain economy, slid 1 percent\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1536,
+            "outputTokens": 45,
+            "inputTokensCostNanodollars": "3072000",
+            "outputTokensCostNanodollars": "6816000",
+            "totalBackendLatencyMs": "6127"
+          },
+          "id": "epu_q2_medium-a437bfab-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1536,
+        "outputTokens": 45,
+        "inputTokensCostNanodollars": "3072000",
+        "outputTokensCostNanodollars": "6816000",
+        "totalBackendLatencyMs": "6127"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #235"
+}

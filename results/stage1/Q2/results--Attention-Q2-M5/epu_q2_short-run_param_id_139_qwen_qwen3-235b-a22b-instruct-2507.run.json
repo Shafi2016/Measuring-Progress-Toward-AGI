@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:37:58.657934Z",
+  "endTime": "2026-04-01T17:37:59.920185Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-20438345",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nStuart Leckie is trying to sell rugby to the Chinese. Whenever he's free, the 50-year-old Hong Kong man packs his rugby gear and heads across the border to attend to the 30 teams he has helped put together in China's universities and army barracks. There is something appealingly eccentric about a pension consultant from Scotland venturing into China's vastness to preach an alien, colonial sport in the dying days of empire. But his bridge-building is one of a thousand points of light in a future darkened by uncertainty. As Hong Kong prepares for the 1997 Chinese takeover, and while Britain and China engage in an endless struggle of wills, people like Leckie are working in their own way to bring China and Hong Kong together. \"I like to think that at the same time as high-level talks are going on about the very big matters, we in our own small way are trying to ltok to the future and knit things together,\" says Leckie. He isn't alone. Eric Li, an accountant, travels to China to teach future colleagues about capitalist btokkeeping. Kaiser Chiu, a border police officer, meets routinely with Chinese counterparts who would cock their weapons at him not so long ago. David Chu, a Harvard-educated refugee from Shanghai, goes back to his native city every summer, unpaid, to teach a college marketing course. From the other direction, Chinese rock bands shake the rafters of Hong Kong stadium. Engineers pipe drinking water from China to Hong Kong. Chinese social workers come to share their\n\n[...TRUNCATED...]\n\nest trading partners. Hong Kong pours money into China, and out come toys, CD players, air conditioners, even the dim sum consumed at Hong Kong lunch tables. Chu says it's up to Hong Kong people to defend their rights, \"with one hand holding the Basic Law and the other a clenched fist.\" But legislator Lau says: \"My worry is that the Hong Kong people are tto frightened, tto intimated and tto fatalistic, and they will just say there's no point in fighting.\" The optimists, who believe China values Hong Kong's economy tto highly to meddle with it, got a btost recently from the tale of the Xiying teapot. The secret of the Xiying teapot, Beijing official Li Ruihuan told a Hong Kong delegation, is in the residue that encrusts its insides. Clean it, and the tea it brews will lose its special flavor. Lins analogy was clear: Tamper with Hong Kong, and it becomes valueless. China scholar Burton Levin, the former is.S. consul in Hong Kong, thinks Hong Kong will benefit from China's sense of national pride. \"The Chinese are determined to show the Brits and the rest of the world that this place is going to run every bit as gtod, if not better, under Chinese sovereignty,\" he says. Caption: photo: Chinese tourists photograph each other in front of a huge digital clock in Beijing's Tiananmen Square (HONG KONG), Young Andrew Ng wields his bat coach Lai Jayasingle applauds (a), A Hong Kong man walks past a government poster asking people to register as voters (a)\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"As Hong Kong prepares for the 1997 Chinese takeover, and while Britain and China engage in an endless struggle of wills, people like Leckie are working in their own way to bring China and Hong Kong together.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 879,
+            "outputTokens": 74,
+            "inputTokensCostNanodollars": "193380",
+            "outputTokensCostNanodollars": "65120",
+            "totalBackendLatencyMs": "1105"
+          },
+          "id": "epu_q2_short-20438345-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 879,
+        "outputTokens": 74,
+        "inputTokensCostNanodollars": "193380",
+        "outputTokensCostNanodollars": "65120",
+        "totalBackendLatencyMs": "1105"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #140"
+}

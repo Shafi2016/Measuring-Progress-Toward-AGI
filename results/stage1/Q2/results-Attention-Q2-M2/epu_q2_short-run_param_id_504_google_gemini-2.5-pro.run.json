@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T03:23:37.071477Z",
+  "endTime": "2026-03-31T03:23:46.348925Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-44368c88",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nBy The Associated Press Stocks resumed their upward path late yesterday, climbing from earlier dosses to close higher for the first time in three days. Analysts attribut\u00aded the upturn to technical factors rather than positive reports on dura\u00adble gtods orders and consumer confi- ' Hence.. 7 Stocks were also pressured for! most of the session by warnings from Intel about the state of the technol\u00adogy business. I\" The fluctuations in share prices \u25a0once again came in very light trad- i ing as many traders and their clients were on late-summer vacations. \"A lot of this is technical. With this light of volume, it is easy to 'have these intraday trend levels change. It takes less buying or sell\u00ading to change the direction of the market,\" said Chris Johnson, man\u00adager of quantitative analysis at ^Schaeffer's Investment Research in -Cincinnati. \u25a0; After losing as much as 84.56 .points earlier, the Dow Jones indus\u00adtrial average closed up 22.81 points, Lor 0.2 percent, at 9,340.45. The gain, allowed the Dow to recoup some of ' its two-day loss of 106.04. ; The broader market also turned ; higher in the late afternton. The Nas\u00addaq composite index rose 6.34 points, 'or 0.4 percent, to 1,770.65. The Stand\u00adard & Ptor's 500-stock index ad\u00advanced 3.02 points, or 0.3 percent, to -996.73. Analysts said the market had al\u00adready priced in expectations of gtod economic news. They attributed the market's volatility to thin trading and the weariness of investors who remained uncertain about the second \n\n[...TRUNCATED...]\n\nom earlier losses that were based on cautious comments by its chief executive, Craig R. Barrett. He said it was tto ston to predict a recovery in the chip industry. On Friday, however, Intel raised its rev\u00adenue estimate for the third quarter. Xerox rose 85 cents, to $10.39 after SG Cowen upgraded it to strong buy from market perform. Target rose 39 cents to $39.10 after it said its sales last week were well above its plans. Bristol-Myers Squibb fell 30 cents, to $25.51 after Sanford C. Bernstein downgraded it to market perform from outperform. Vivendi isniversal fell 8 cents, to $16.93 as it faced a shrinking field of bidders for its entertainment assets with Liberty Media withdrawing from the process late Monday. Liberty Media rose 29 cents, to $11.65. Treasury bonds squeezed out mod\u00adest gains yesterday as the stock mar\u00adket failed to find its ftoting despite a streak of gtod economic data. The 10-year Treasury note rose iy32, to a price of 98%2- The note's yield, which moves in the opposite direction from the price, fell to 4.47 percent from 4.53 percent on Mon- YESTERDAY STOCK CLOSE CH/ AOLTime 15.83 +0.09 AT&T rs ATTWrls AgereB Avaya Cisco day. The price of the 30-year Treasury bond rose 1%2* to 101l%2- The bond's yield fell to 5.27 percent from 5.31 percent on Monday. Here are the results of yesterday's Treasury auction of four-week notes: Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 0,\n  \"confidence\": 1,\n  \"focus_excerpt\": \"They attributed the market's volatility to thin trading and the weariness of investors who remained uncertain about the second\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1011,
+            "outputTokens": 56,
+            "inputTokensCostNanodollars": "1263750",
+            "outputTokensCostNanodollars": "9270000",
+            "totalBackendLatencyMs": "9170"
+          },
+          "id": "epu_q2_short-44368c88-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1011,
+        "outputTokens": 56,
+        "inputTokensCostNanodollars": "1263750",
+        "outputTokensCostNanodollars": "9270000",
+        "totalBackendLatencyMs": "9170"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #505"
+}

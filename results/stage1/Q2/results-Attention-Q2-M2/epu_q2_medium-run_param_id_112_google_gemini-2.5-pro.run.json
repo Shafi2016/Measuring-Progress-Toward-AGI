@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T04:00:14.334412Z",
+  "endTime": "2026-03-31T04:00:22.331750Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-fdb88d04",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nFinancial troubles in the airline industry could translate into changes to Miami International Airport's expansion program, Miami-Dade County Manager Steve Shiver said Tuesday. ``There are significant impacts that this may have on Miami International Airport and its future expansion,'' he said. As a result, Miami-Dade County is reviewing its plans and may want to modify its capital improvement program or extend it over a longer period of time, Shiver said. Aviation Director Angela Gittens said the airport updates its passenger and profitability projections annually and has begun the process early. ``Though our traffic has recovered faster than we had forecast, we are concerned with the basic business model of the carriers. So even with more traffic, they may not have the financial capacity.'' The airport's $4.8 billion capital improvement program includes a new North Terminal for American Airlines and its oneworld partners and a new South Terminal for isnited Airlines and its Star Alliance partners, as well as Delta Air Lines and its SkyTeam Alliance. Construction is progressing and will take several years to complete. But the historically cyclical airline industry is losing billions of dollars this year, as it struggles with the post-Sept. 11 travel slump, a slow economic recovery and fierce competition in pricing. isS Airways filed for bankruptcy Sunday and American Airlines on Tuesday announced capacity, fleet and staff cutbacks. The issue, Gittens said, is how many of the\n\n[...TRUNCATED...]\n\nt'' airport teams began thinking about their airport improvement plans in order to ``shore up their financial future.'' He said that ``clearly'' this was a possibility for Miami International. American Airlines spokeswoman Martha Pantin said the airline has always said it would share its gates with its alliance partners. isnited Airlines spokesman Chris Brathwaite said the airline has made no changes to its plans in Miami but would take a ltok at whatever the county proposes and react at that time. ``Our whole approach to the CIP business plan was we knew we had to be constantly scanning the environment and be prepared to adjust,'' Gittens said. ``And there is no time like the present.'' That's similar to an argument made by Broward County Commissioner John Rodstrom, who heads a task force assigned to re-examine expansion plans for Fort Lauderdale-Hollywtod International Airport. ``Our air traffic is stagnant,'' Rodstrom said. ``We have an opportunity to not have government-by-crisis, instead of building first and asking questions later.'' The county is considering adding a new runway to the airport. On Tuesday, Broward commissioners agreed to spend $89,400 to hire a ``clean airport'' consultant to ltok at the environmental impact of a proposed new runway and to recommend ways for the airport to be more environmentally friendly. Herald Staff Writers Jane Bussey and Erika Bolstad contributed to this report. Caption: color photo: Steve Shiver (a)\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"Financial troubles in the airline industry could translate into changes to Miami International Airport's expansion program, Miami-Dade County Manager Steve Shiver said Tuesday.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1520,
+            "outputTokens": 65,
+            "inputTokensCostNanodollars": "1900000",
+            "outputTokensCostNanodollars": "7940000",
+            "totalBackendLatencyMs": "7889"
+          },
+          "id": "epu_q2_medium-fdb88d04-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1520,
+        "outputTokens": 65,
+        "inputTokensCostNanodollars": "1900000",
+        "outputTokensCostNanodollars": "7940000",
+        "totalBackendLatencyMs": "7889"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #113"
+}

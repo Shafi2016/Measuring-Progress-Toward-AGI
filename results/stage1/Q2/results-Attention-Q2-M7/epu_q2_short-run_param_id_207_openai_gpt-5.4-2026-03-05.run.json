@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:03:14.725714Z",
+  "endTime": "2026-04-03T00:03:15.668529Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-68dd50b7",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nBisENOS AIRES, July 10- President Carlos Menem, who de\u00adscribes himself as a disciple of Juan Domingo Peron, has proposed the most thorough reform of Argen\u00adtine society in 40 years: the dis\u00admantling of the system that Peron himself installed. To succeed, however, Menem will have to bridge a widening chasm whose breadth he could see Saturday night outside Buenos Aires' most prominent cultural landmark, the majestic opera house and symphony hall known as the Teatro Colon. Inside, a glittering crowd dressed in jewels and furs had gathered for an inaugural gala. Among them were scores of \"all- of-a-sudden Peronists\"\u2014entertain\u00aders, wealthy businessmen and oth\u00aders who just weeks ago were doing everything they could to keep Me\u00adnem out of office. Their numbers included several prominent conser\u00advative politicians whom Menem has now taken into his Cabinet. Outside waited another crowd, this one shabby and restless. Hun\u00addreds had come from the'working- class neighborhtods and shanty\u00adtowns that ring the capital, hoping to glimpse their champion, the man who had promised to lift the ptor from misery just as Peron had done. Menem finally emerged with his entourage, which included Maria Julia Alsogaray, a wealthy conser\u00advative leader whom Menem has chosen to sell off the abysmally in\u00adefficient telephone monopoly. A woman in the crowd saw her, and hissed: \"I hate that woman.\" It is a measure of Menem's cha\u00adrisma and political skill that he can appeal to both groups. But the gap between them i\n\n[...TRUNCATED...]\n\nm business, and even the railroads, have some bearing on national security. Roig announced that subsidies to Argentine businesses will be sus\u00adpended, mainly in an attempt to get the companies to repatriate some of the billions of dollars they hold over\u00adseas. But officially ending these sub\u00adsidies once and for all in many cases will require action by the congress. The plan calls for foreign invest\u00adment capital to receive the same treatment as domestic capital, but again there are no details. Foreign business executives have long com\u00adplained that a framework of national\u00adistic laws, a quicksand of paperwork and a seemingly breeze-tossed eco\u00adnomic policy make doing business in Argentina often not worth the trou\u00adble. And the plan has little to say on at least one major economic issue here: persuading Argentines to pay taxes. Evading taxes here is part tradition, part sport. A thorough revision of tax policy is contemplated, but will take many months. Snap reaction to the plan was gen\u00aderally favorable. Carlos de la Vega, president of the Argentine Chamber of Commerce, said that \"it is abso\u00adlutely necessary that the various sectors abandon their own claims and join the fight.\" But Humberto Volando, head of one of the Argentine farmers associ\u00adations, said it is tto ston to evaluate the program\u2014in Roig's speech, he said, \"there weren't enough figures.\" Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":1,\"confidence\":0.93,\"focus_excerpt\":\"A thorough revision of tax policy is contemplated, but will take many months.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 861,
+            "outputTokens": 34,
+            "inputTokensCostNanodollars": "2152500",
+            "outputTokensCostNanodollars": "510000",
+            "totalBackendLatencyMs": "813"
+          },
+          "id": "epu_q2_short-68dd50b7-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 861,
+        "outputTokens": 34,
+        "inputTokensCostNanodollars": "2152500",
+        "outputTokensCostNanodollars": "510000",
+        "totalBackendLatencyMs": "813"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #208"
+}

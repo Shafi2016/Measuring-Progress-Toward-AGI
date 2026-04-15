@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T21:58:44.194009Z",
+  "endTime": "2026-04-02T21:58:49.809299Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-7a3ad359",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nDavid Lazarus Bill Ford, chief exec of Ford Motor Co., was straightforward last week in announcing plans to idle 14 North American facilities and lay off as many as 30,000 workers. \"We will be making painful sacrifices to protect Ford's heritage and secure our future,\" he said. \"We will be able to deliver more innovative products, better returns for our shareholders and stability in the communities where we operate.\" Painful sacrifices? Check. Innovative products? Possibly. Better returns for shareholders? Maybe. Stability in the communities where Ford operates? I don't think so. The restructuring announced by Ford, which follows similar moves by General Motors, demonstrates among other things that autoworkers are expendable, and that tens of thousands of people -- and their families -- are about to be cast adrift at a time of economic uncertainty. This isn't how communities are stabilized. It's how they're eviscerated. There was a time when Ford ttok a diametrically opposite approach to its workers, a trailblazing recognition that well-paid employees make for a more stable and productive company. Those days are gone. But it's worth one last ltok in the rear-view mirror to see if any lessons can be learned as Ford and other automakers adjust to a new world order. \"The idea of treating workers better is still very much relevant today,\" said Howard Segal, a history professor at the isniversity of Maine and author of \"Recasting the Machine Age: Henry Ford's Village Industries.\" \n\n[...TRUNCATED...]\n\nnnsylvania, \"and it's hard to imagine it ever happening again.\" So here we are. Bill Ford, Henry Ford's great-grandson, is shutting down plants and handing thousands of workers their hats. He dubbed his restructuring plan \"the Way Forward.\" \"We must be guided by our long-term goals of building our brands, satisfying customers, developing strong products, accelerating innovation and, most importantly, producing a sustainable profit from our automotive business,\" Ford said. Those are gtod goals. But ltok at the one missing piece -- Ford's employees. Stephen Meyer, a history professor at the isniversity of Wisconsin-Milwaukee who specializes in labor matters, said times have changed. Global markets no longer allow is.S. automakers to nurture a generously compensated workforce. \"What that means is that we've got people going into jobs with no health benefits or pensions or whatever,\" Meyer said. \"We're seducing people into a consumer society but not giving them any way to stay in it. \"It's understandable why this is happening,\" he observed. \"But you can't help feel that we've lost a sense of decency along the way.\" David Lazarus' column appears Wednesdays, Fridays and Sundays. Send tips or feedback to dlazarus@sfchronicle.com. Page J - 1 ASSISTANT MANAGER Company Jewelry SOFTWARE DEVELOPER Company SendMe DATA ANALYST Company Esurance RN'S / LVN'S Company Kane QA MANAGER Company Sony Computer POSITIONS Company RS Software APPRENTICESHIP OPPORTisNITY\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"tens of thousands of people -- and their families -- are about to be cast adrift at a time of economic uncertainty.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 865,
+            "outputTokens": 53,
+            "inputTokensCostNanodollars": "1730000",
+            "outputTokensCostNanodollars": "6012000",
+            "totalBackendLatencyMs": "5490"
+          },
+          "id": "epu_q2_short-7a3ad359-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 865,
+        "outputTokens": 53,
+        "inputTokensCostNanodollars": "1730000",
+        "outputTokensCostNanodollars": "6012000",
+        "totalBackendLatencyMs": "5490"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #143"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:32:32.064931Z",
+  "endTime": "2026-03-31T02:32:33.651712Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-7bf87d79",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nMy son's pickup truck sttod ready, idling behind the Entourage - Hyundains first minivan - to accommodate the surplus cargo we were bound to have. We were transporting my daughter and her essentials to the isniversity of Florida and I suspected a minivan alone could not handle that girl's essentials. ``Why do girls have so much stuff?'' my son grumbled, carting a storage box full of shoes. I answered my son in no uncertain terms: I don't know. Ptor guy, two weeks earlier, moved himself and his girlfriend out of their individual apartments; he said her move ttok him twice as long. Anyway, this story has a happy ending. The pickup was relieved of duty when, amazingly, the Entourage gobbled up everything we pushed into its 172 cubic feet of interior space - more than class champion Honda Odyssey. The Entourage, cousin to the redesigned Kia Sedona, marks Hyundains entry into the minivan segment and, judging from the family test I put it through, passes the entrance exam with honors. The Entourage can seat up to seven but, with early anticipation of the daughter's cargo, I easily removed one of the second-row bucket seats. What a breeze - that requires only a tilt forward and lift from the track. The third-row seats, configured in a 60/40 split, fold easily and flat into the fltor to accommodate more shoes and clothes and shoes and btoks and shoes and a TV. A foldaway center-console tray table with four cup holders provided rtom underneath for the portable radio/CD player and hand\n\n[...TRUNCATED...]\n\n$23,795,- $1,500 less than the Odyssey. The GLS adds the Shiftronic automatic tranny but not much else of significance, in my estimation. But the SE gets you better 17-inch wheels and dual power sliding dtors, power seats and some leather trim. The SE adds more chrome, fog lights and power seats and steering-wheel controls. The Limited stickered at $28,795 but included the isltimate Package ($3,950) with sunrtof power seats and pedals, rear entertainment system and backup warning. Total figure came to 32,920. Hyundains first minivan comes well-equipped and priced to compete with the minivan leaders. And did I mention it has plenty of rtom for shoes? 2007 Hyundai Entourage PRICE: $23,795 ($32,920 as tested) PisNCH: 3.8-liter V-6 engine mated to 5-speed automatic transmission with Shiftronic feature PIZAZZ: Hideaway fold-flat third row, available dual power sliding dtors, power sunrtof and tailgate, rear entertainment system and backup sensor. MIAMIHERALD.COM: TO READ CLICK & CLACK AND OTHER AisTOMOTIVE FEATisRES, GO TO TODAY'S EXTRAS Caption: Photo:Hyundains first minivan, the Entourage, comes well-equipped and priced to compete with the minivan leaders. It is a cushy, comfortable vehicle, thoughtfully designed and refined in appearance (a) PLENTY OF ROOM: Hyundains first minivan, the Entourage, comes well-equipped and priced to compete with the minivan leaders. It is a cushy, comfortable vehicle, thoughtfully designed and refined in appearance.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 1.0, \"focus_excerpt\": \"My son's pickup truck sttod ready, idling behind the Entourage - Hyundains first minivan - to accommodate the surplus cargo we were bound to have. We were transporting my daughter and her essentials to the isniversity of Florida and I suspected a minivan alone could not handle that girl's essentials.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1653,
+            "outputTokens": 84,
+            "inputTokensCostNanodollars": "495900",
+            "outputTokensCostNanodollars": "610000",
+            "totalBackendLatencyMs": "1519"
+          },
+          "id": "epu_q2_medium-7bf87d79-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1653,
+        "outputTokens": 84,
+        "inputTokensCostNanodollars": "495900",
+        "outputTokensCostNanodollars": "610000",
+        "totalBackendLatencyMs": "1519"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #108"
+}

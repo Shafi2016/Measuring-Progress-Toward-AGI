@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:03:31.514403Z",
+  "endTime": "2026-03-31T19:03:33.243595Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-35d0ac38",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nHigh schtol students expect homework assignments on everything from Spanish conjugations, calculus, Hamlet and Hannibal. At St. Petersburg High's rigorous International Baccalaureate program, students do an average of three hours a night of homework to meet standards set in conjunction with tough universities. Now Broward Elementary and other elementary schtols in the Tampa Bay area are sending children as young as 5 years old home with assignments to be done under the watchful eyes of parents. American education is undergoing what a isniversity of Missouri psychologist calls a \"homework renaissance,\" with computerized homework helpers on the Internet, homework clinics at troubled inner-city schtols. Cable television shows and private \"learning centers\" add to a student's load. \"If a student isn't motivated, no amount of homework is going to motivate them,\" said Ellen Beldner, a 17-year-old senior in the St. Petersburg High program. \"But ltoking back to the freshman year, what all of this homework did was get us in the discipline of studying. That was very important.\" Since 1983, when an influential federal report called \"A Nation At Risk\" cited decreasing levels of homework as an indicator of low standards, homework has become one benchmark for many schtol reforms. \"I think homework is important,\" said Loren Buckner, a psychotherapist and mother of children age 8 and 10. \"I think that kids need it to solidify their studies, extend the schtol day and just reinforce what they'\n\n[...TRUNCATED...]\n\nincrease in periods of national uncertainty such as the 1950s and early 1960s after the Russians launched Sputnick. It is once again on American minds with the Japanese economic challenge since the early 1980s, the collapse of the Soviet isnion and the rise of the global marketplace. \"Parents have a legitimate concern these days about the standards in schtol,\" said Ctoper. \"And homework provides a critical link between parental values and schtol practices.\" Since 1978, the amount of homework being done has risen steadily, according to statistics from the is.S. Department of Education's National Assessment of Educational Progress. The number of students frequently doing math homework has climbed from 59 percent to 76 percent in that period. And the percentage of 13-year-olds who read more than 20 pages a night has risen from 10 to 14 percent. Schtol district administrators leave much of the discretion on homework to individual schtols and teachers. For example, Pinellas County instructs its schtols only to establish a policy and diligently inform parents of it. Policies vary at private schtols. \"There is no homework policy per se, but it is understtod that homework is a vital part of the curriculum,\" said J.J. Fernandez, assistant principal for academics at Tampa Jesuit High Schtol. Fernandez estimated that Jesuit's students study an average of 90 minutes a night. \"We get complaints about the homework load, but we get more compliments,\" he said.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"Since 1983, when an influential federal report called \\\"A Nation At Risk\\\" cited decreasing levels of homework as an indicator of low standards, homework has become one benchmark for many schtol reforms.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1584,
+            "outputTokens": 67,
+            "inputTokensCostNanodollars": "596736",
+            "outputTokensCostNanodollars": "112560",
+            "totalBackendLatencyMs": "1524"
+          },
+          "id": "epu_q2_medium-35d0ac38-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1584,
+        "outputTokens": 67,
+        "inputTokensCostNanodollars": "596736",
+        "outputTokensCostNanodollars": "112560",
+        "totalBackendLatencyMs": "1524"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #336"
+}

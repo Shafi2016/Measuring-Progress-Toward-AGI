@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:35:35.185169Z",
+  "endTime": "2026-04-01T17:35:36.470322Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-16379151",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nNew World Order? The Global Age? Decade of isncertainty? None of the labels stuck. But now the nameless '90s can be baptized at last, at the point of a gun: It's the Time of the Warlords. Not the snarly rock group or the computer game or some helmeted comic-btok warriors, but the real-life characters -- self-styled generals and self-anointed presidents -- who strut and struggle over territories in turmoil, from Africa's savannah to Afghanistan's snowy Hindu Kush to the jungles of Southeast Asia. They're a motley collection: a is.S. prison escapee and an ex-Marine; an ice cream magnate; opium traffickers; a diamond market manipulator. More and more, these regional strongmen in smartly pressed fatigues have been commanding the headlines and confounding the peacemakers. The latest incarnation may ston appear in the bush of eastern Zaire, where a newborn rebel army under Laurent Kabila reportedly has captured the gold mines of Kamituga, the kind of resoaree that can make a warrior a warlord. The warlord's habitat is a vacuum -- the collapse of central authority. And his ideology seldom ventures beyond the mercenary. Dictionaries define the term as ``a military commander exercising civil power by force, usually in a limited area.'' But history provides a little more insight. The term gained currency in the 1920s in China, describing regional military chiefs who sliced up that huge but weak land into lucrative fiefdoms. ``The whole war-lord system is based on the interception of na\n\n[...TRUNCATED...]\n\nauthorities, he was operating through 10 front companies in Rangton, the capital. While younger ``generals'' vie for opium supremacy back home in Shan, Khun Sa is branching out. He was recently given a government contract to run inter-city buses. The warlord's career can be a dead end, Reno said. ``isltimately, these guys can't get very far in business,'' he said. ``isntil you become the president of a republic, you have no creditworthiness. When you're president, you have a seat in the is.N., international bank credit, bilateral aid, these kinds of things.'' A glance at Lebanon's new Cabinet tells you warlords know that. A few years after a lethal array of militia chiefs, each with his own slice of territory, rampaged across that tiny land, one now runs the Health Ministry (Suleiman Franjieh) and another Refugee Affairs (Walid Jumblatt). And Elie Hobeika, identified as author of one of the civil war's great atrocities, the massacre of Palestinians in Beirut, now oversees the multimillion-dollar reconstruction of Lebanon's electrical and water systems. Warlords worried about getting ahead might take some advice from the father of them all, in Leadership Secrets of Attila the Hun. ``Chieftains should always aim high,'' the old pillager counsels in the recent fanciful btok. ``Focus on opportunities, rather than on problems.'' Caption: photo: Fighters (AFGHAN), Khun Sa (a), Hussein Mohamed AIDID, Rashid DOSTisM, Charles Taylor (n) Memo: WORLD NEWS\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"The warlord's habitat is a vacuum -- the collapse of central authority.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 898,
+            "outputTokens": 42,
+            "inputTokensCostNanodollars": "197560",
+            "outputTokensCostNanodollars": "36960",
+            "totalBackendLatencyMs": "1135"
+          },
+          "id": "epu_q2_short-16379151-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 898,
+        "outputTokens": 42,
+        "inputTokensCostNanodollars": "197560",
+        "outputTokensCostNanodollars": "36960",
+        "totalBackendLatencyMs": "1135"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #8"
+}

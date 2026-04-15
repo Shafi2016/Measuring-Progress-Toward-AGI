@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T01:54:25.017811Z",
+  "endTime": "2026-03-31T01:54:28.761524Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-4e9a827d",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nYou can't blame a small-business borrower for being confused these days.More bankers say they've increased small-business lending, yet some entrepreneurs say they still can't get a loan.The Small Business Administration's monthly loan volume for the Dallas-Fort Worth area has doubled since the federaleconomicstimulus package ttok effect in mid-March, but many banks still report strict standardsWhat's going on?\"Right now, there are no broad banking generalizations,\" said Jerry White, director of the Caruth Institute for Entrepreneurship at Southern Methodist isniversity. \"It's all true. It's characteristic of a marketplace that is very unsettled and has not sorted through all of this.\"While some big banks have cut small-business lending after large losses from exotic finance agreements, it's not true across the board.It's the same story for small banks, some of which consider small-business loans riskier in thiseconomy.Anne D'Alessandro is seeking $150,000 to start Trinity Event Managers in Melissa to organize consumer expos and trade shows in North Dallas.\"We approached three local banks, and they said they're not funding start-ups, so we're ltoking at other options,\" said D'Alessandro, who has eight years of sales and marketing and event planning experience. \"We'll ltok at SBA programs.\"The SBA is lending - thanks largely to the stimulus plan, which included SBA changes such as reduced fees and a higher federal guarantee.Although the SBA's guaranteed loans in the D-FW area h\n\n[...TRUNCATED...]\n\nsaid. Prosper made an SBA loan to an existing customer for working capital in mid-May - its first since last fall, he said.Lenders say they haven't see enough quality deals due to lower revenue and assets, ptor cash flow and less owner capital, but that might be changing. Several local lenders said they've see higher quality loan applications since May.Some banks have been able to lend more because of a small revival of the secondary market - where small-business loans are bundled and sold as securities to investors.Community South Bank stopped making small business loans in December because it couldn't sell them, said Dallas loan officer Jana Rouble. It's still not making conventional small-business loans, but it restarted SBA-guaranteed loans in April based on the stimulus plan to buy securitized loans, she said.Community South sold about $30 million in securitized small-business loans since February and has $6 million in loans to sell this month, said Scott Thomas, president of the SBA lending division.SBA lendingSince the federaleconomicstimulus plan for small businesses ttok effect March 16, the number and value of Small Business Administration loans fro the Dallas-Fort Worth area have doubled.Month Loans Loan valuesJan. '09 60 $21 millionFeb. 55 $21 millionMarch 101 $34.9 millionApril 89 $29.5 millionMay 117 $46.9 millionSOisRCE: Small Business AdministrationTROY OXFORD/Staff ArtistCaption:CHART(S): (TROY OXFORD/Staff Artist) SBA lending.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 1, \"focus_excerpt\": \"The Small Business Administration's monthly loan volume for the Dallas-Fort Worth area has doubled since the federaleconomicstimulus package ttok effect in mid-March, but many banks still report strict standards\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 898,
+            "outputTokens": 62,
+            "inputTokensCostNanodollars": "269400",
+            "outputTokensCostNanodollars": "1850000",
+            "totalBackendLatencyMs": "3689"
+          },
+          "id": "epu_q2_short-4e9a827d-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 898,
+        "outputTokens": 62,
+        "inputTokensCostNanodollars": "269400",
+        "outputTokensCostNanodollars": "1850000",
+        "totalBackendLatencyMs": "3689"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #178"
+}

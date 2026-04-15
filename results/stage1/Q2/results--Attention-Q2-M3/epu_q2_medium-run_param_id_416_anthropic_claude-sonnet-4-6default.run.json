@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:55:26.598376Z",
+  "endTime": "2026-03-31T18:55:28.598492Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-87296c0f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library i\n\nTARGET ARTICLE START\nDOWNTOWN DALLASParty for homeless stillshort of fundraising goalOperation Care-Dallas, a Christmas party on Saturday for an estimated 7,000 homeless people, is $50,000 short of its $100,000 fundraising goal, organization founder Susie Jennings said. \"We are in dire need,\" Ms. Jennings said. She said theeconomymay play a role in the slower donations this year. Operation Care will be from 10 a.m. to 3 p.m. Saturday at the Dallas Convention Center. For more information or to donate, contact Operation Care at 972-681-3567 or visit www.operationcaredallas.org.Kim HornerLAKE HIGHLANDSSuspect in woman'skidnapping turns self inA man suspected of kidnapping a woman on Greenville Avenue this week surrendered to police Thursday morning, Dallas police said. Warren Alonso Riverson, 36, turned himself in at the Lew Sterrett Justice Center, police said. The victim and her vehicle were still missing, and authorities were searching for a second suspect. The woman, whose identity remaineduncertain, was kidnapped at gunpoint about 3:30 a.m. Wednesday while driving along the 12300 block of Greenville near LBJ Freeway. Investigators say the abduction may have been drug-related and that the victim may have known one of the suspects. Anyone with information is asked to call Dallas police at 214-671-3584 or call 911.From staff reportsPLANOGroup says city flippedbricks to hide crossesA Plano-based religious rights group on Thursday accused the city of concealing commemorative bricks that were etched with crosses and then installed in the sidewalk of a new public recreation center. A local swim team btoster club sold the bricks, each etched with a message created by the parehaser, during a fundraiser at the opening of the Tom Muehlenbeck Recreation Center in November. The pro-Christian Liberty Legal Institute contended the city singled out bricks emblazoned with crosses and turned them over \"to censor the symbol of the cross, a religious symbol of the Christian faith,\" according to a letter to the city. The group demanded that the city flip those bricks over. A city attorney did not immediately return a call seeking comment.Theodore KimROCKWALLCity's first hospital tohave grand openingGrand opening activities for Rockwall's first hospital will take place from 11 a.m. to 3 p.m. Saturday. Family activities and tours will be available at the new Presbyterian Hospital of Rockwall, 3150 Horizon Road. The hospital will provide 50 beds for inpatient care, plus diagnostics and women's, surgical and emergency services. It is expected to begin treating patients on Dec. 28 and will be one of the largest employers in the city.LaKisha Ladson\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library i"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.95, \"focus_excerpt\": \"She said the economy may play a role in the slower donations this year.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1738,
+            "outputTokens": 40,
+            "inputTokensCostNanodollars": "5214000",
+            "outputTokensCostNanodollars": "600000",
+            "totalBackendLatencyMs": "1939"
+          },
+          "id": "epu_q2_medium-87296c0f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1738,
+        "outputTokens": 40,
+        "inputTokensCostNanodollars": "5214000",
+        "outputTokensCostNanodollars": "600000",
+        "totalBackendLatencyMs": "1939"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #417"
+}

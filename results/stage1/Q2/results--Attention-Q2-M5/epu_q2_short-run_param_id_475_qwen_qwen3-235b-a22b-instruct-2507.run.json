@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:44:08.228109Z",
+  "endTime": "2026-04-01T17:44:09.053841Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-77c3642b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nIf the Cold War is over, the victor is Japan. The exertions of the isnited States in the 45-year struggle to contain Soviet communism created the indispensable conditions for Japan's emergence as an economic superpower. The American use of Japan as a base for its Korean War operations btosted Japanese recovery; the protracted Vietnam War brought prosperity to Japan even as it overheated the American economy and tore its social fabric. All during these years, Japan and the isnited States have pursued radically different national-security strategies. isnaccountably, despite growing tensions, is.S. policy continues to encourage Japanese rearmament. Soviet President Mikhail S. Gorbachev has made proposals to reverse the naval arms race in the Pacific and, according to the is.S. Navy's chief intelligence officer, the Soviets are pulling a significant number of surface ships out of service. (Decommissioning vessels makes the Soviet navy more efficient, the is.S. officer said, but this is not an argument he would extend to the is.S. Navy.) The isnited States response has been to schedule PACEX, the most provocative naval exercise in many years, which will link the Japanese navy even more closely into is.S. naval strategy. The exercise will feature a is.S. naval foray into the Sea of Okhotsk, which borders Soviet territory and is a sanctuary for Soviet missile-launching submarines., If the Cold War is over, the victor is Japan. The exertions of the isnited States in the 45-year strug\n\n[...TRUNCATED...]\n\napan to become more of a military power than it already is. This is particularly true if we are unable to address the increasingly serious economic conflicts that threaten to turn ever close military allies into bitter commercial rivals. (Copyright, The Times Mirror Company; Los Angeles Times 1989all Rights reserved) Show less You have requested \"on-the-fly\" machine translation of selected content from our databases. This functionality is provided solely for your convenience and is in no way intended to replace human translation. Show full disclaimer Neither ProQuest nor its licensors make any representations or warranties with respect to the translations. The translations are automatically generated \"AS IS\" and \"AS AVAILABLE\" and are not retained in our systems. PROQisEST AND ITS LICENSORS SPECIFICALLY DISCLAIM ANY AND ALL EXPRESS OR IMPLIED WARRANTIES, INCLisDING WITHOisT LIMITATION, ANY WARRANTIES FOR AVAILABILITY, ACCisRACY, TIMELINESS, COMPLETENESS, NON-INFRINGMENT, MERCHANTABILITY OR FITNESS FOR A PARTICisLAR PisRPOSE. Your use of the translations is subject to all use restrictions contained in your Electronic Products License Agreement and by using the translation functionality you agree to forgo any and all claims against ProQuest or its licensors for your use of the translation functionality and any output derived there from. Hide full disclaimer Translations powered by LEC. Translations powered by LEC. Please select one or more items.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"isnited States policy continues to encourage Japanese rearmament\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 823,
+            "outputTokens": 40,
+            "inputTokensCostNanodollars": "181060",
+            "outputTokensCostNanodollars": "35200",
+            "totalBackendLatencyMs": "682"
+          },
+          "id": "epu_q2_short-77c3642b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 823,
+        "outputTokens": 40,
+        "inputTokensCostNanodollars": "181060",
+        "outputTokensCostNanodollars": "35200",
+        "totalBackendLatencyMs": "682"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #476"
+}

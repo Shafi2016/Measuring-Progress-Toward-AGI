@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T04:21:49.982069Z",
+  "endTime": "2026-03-31T04:22:01.264363Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-8a695f2d",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nMAP: Las Vegas; CREDIT: Los Angeles Times; A LONG TRADITION: Moroccan acrobats, from left, Bachir Mejdoubi, Miloud Alfartaj and Hichan Elemrani warm up before a performance at a Las Vegas casino. The first Muslims to settle in the city, according to mosque lore, were acrobats from Morocco who came to perform on the Strip in the early 1960s.; PHOTOGRAPHER: [Genaro Molina] Los Angeles Times; 'ALL IT TAKES IS MONEY': Mansour Yazdabadi, a Muslim from Iran, deals cards at a Las Vegas casino. Many Muslims who take work in the casinos and hotels prefer jobs in the kitchen or in housekeeping--positions less likely to bring their religious beliefs into conflict with work duties. Not all can manage it.; PHOTOGRAPHER: GENARO MOLINA Los Angeles Times; FELLOWSHIP: Aziz [Eddebbarh], left, greets Imam Hosam Khedr after Friday afternton prayers at a private Islamic children's academy in Las Vegas.; PHOTOGRAPHER: GENARO MOLINA Los Angeles Times; A GREATER STRisGGLE: Men are lead in prayer at the Jama Masjid mosque. \"The person who is living in this environment, he will get more reward as compared to a person who...has no temptations,\" says Imam [Zafar A. Anjum].; PHOTOGRAPHER: GENARO MOLINA Los Angeles Times; SEEKING PisRITY: Aftab ismar washes his feet before entering Jama Masjid, the city's largest mosque, for Friday afternton prayers. Muslims can make their required daily prayers anywhere, but extra rewards are believed to be bestowed on those who pray communally in a mosque.; PHOTOGRAPHER\n\n[...TRUNCATED...]\n\n takes over the plane and he runs it into a building.\" The more plausible scenario, Fareed trusted, was obyious, but he spelled it out nonetheless: \"Mohamed Atta did not care if the pilot was a Muslim or a non- Muslim. He did this for political ideology, not religion, and his political ideology was stronger than his self-instinct for survival. He was going to kill anybody or anything that got in his way, including a Muslim pilot.\" One thing he still wondered about, Fareed said now, brushing grass off a pant leg. To maneuver jetliners at full speed into a skyscraper required piloting skills that could not have been learned simply flying simulators and single-engine prop jobs. The hijackers must have taken some advanced training from somebody, somewhere. Before he could go on, his musings were interrupted. \"Ah-ttiiff. Ahhhhh-ttttiiiiiiifffff.\" The singsong voices came from tennis courts below the grassy rise where Fareed sat. A rug had been thrown down on the green court surface, and 10 or so of the men were arranging themselves in rows to face north by northeast, toward Mecca. \"Atif, come down. \"Prayers, Atif. It's time for prayers.\" * This Series Today: Living in Las Vegas. The challenges--and anticipated rewards--in trying to stay on the straight path. MONDAY: The faith. What Las Vegas Muslims believe and how they sometimes disagree among themselves. TisESDAY: After Sept. 11. How the events of that day and subsequent wars in Afghanistan and Ir\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"Mohamed Atta did not care if the pilot was a Muslim or a non- Muslim. He did this for political ideology, not religion, and his political ideology was stronger than his self-instinct for survival.\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1632,
+            "outputTokens": 79,
+            "inputTokensCostNanodollars": "2040000",
+            "outputTokensCostNanodollars": "12720000",
+            "totalBackendLatencyMs": "11172"
+          },
+          "id": "epu_q2_medium-8a695f2d-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1632,
+        "outputTokens": 79,
+        "inputTokensCostNanodollars": "2040000",
+        "outputTokensCostNanodollars": "12720000",
+        "totalBackendLatencyMs": "11172"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #250"
+}

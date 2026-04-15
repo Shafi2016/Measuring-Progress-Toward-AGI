@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:05:17.176038Z",
+  "endTime": "2026-04-03T00:05:18.472934Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-e56ca0aa",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nWith flapping flags and fiery speeches, Puerto Ricans wrapped up dueling campaigns Thursday and prepared to vote on whether they want to become the 51st state, remain a is.S. commonwealth or chart their own course as an independent nation. Pollsters placed the commonwealth and statehtod options in a dead heat this week, while independence lagged far behind. Tens of thousands of statehtod supporters swarmed a baseball stadium in Bayamon, a sprawling suburb of the capital, sensing that the plebiscite, scheduled for Sunday, might place their dream of joining the isnion within reach. \"We are second-class is.S. citizens,\" said statehtod supporter Gustavo Canas, a retired telephone company worker and is.S. army veteran. Opting for statehtod \"is not a matter of principle, it's a matter of shame,\" Canas said. \"We are the last colony in the world.\" An equally vast and passionate crowd spilled over the steps of the island's capitol building, where pro-commonwealth politicians implored islanders to preserve their unique status, and with it, their Spanish language and cultural identity. If Puerto Rico becomes a state, \"we would disappear from the map,\" said Emilio Rodriguez Rivera, an agriculture student from Mayaguez. Predicting that the is.S. Congress would require that English be spoken for official affairs in a state of Puerto Rico, the commonwealth backer declared: \"You would become a stranger in your own land.\" So ended a hotly contested campaign fueled by worries on both sides tha\n\n[...TRUNCATED...]\n\n already receive some sort of federal aid. But statehtod would also nullify Section 936, taking jobs with it. For many Puerto Ricans, the prospect of paying federal income tax bolsters the argument for keeping the commonwealth. Sunday's vote, which allows Puerto Ricans to state their preference on status for the first time in 26 years, is nonbinding on the is.S. Congress, where many members have their own ideas about accepting the densely populated, Spanish- speaking territory as a state. \"This is a hard one for (is.S. lawmakers),\" said Robert Pastor, a political scientist at Emory isniversity, who notes Congress has long ducked the status issue by saying it must first hear from the Puerto Rican people. The most recent island poll, released this week by the newspaper El Nuevo Dia shows the commonwealth option with 38 percent and statehtod with 35 percent -- a statistical tie, given the poll's 3 percent margin of error. Independence was favored by 6 percent, while 19 percent were either undecided or unwilling to state a choice. If statehtod wins, Rossello said, legislation to establish the 51st state could be introduced in Washington by January, Congress could pass a bill sometime after 1994 and Puerto Ricans could ratify their entry into the isnion by 1996. Caption: photo: supporters of the Popular Democratic Party gather at Capitol in San Juan (PisERTO RICO), Puerto Rico Gov. Pedro ROSSELLO mobbed by a crowd at a pro-statehtod rally in Bayamon\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":1,\"confidence\":0.91,\"focus_excerpt\":\"Sunday's vote, which allows Puerto Ricans to state their preference on status for the first time in 26 years, is nonbinding on the U.S. Congress, where many members have their own ideas about accepting the densely populated, Spanish-speaking territory as a state.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 852,
+            "outputTokens": 73,
+            "inputTokensCostNanodollars": "2130000",
+            "outputTokensCostNanodollars": "1095000",
+            "totalBackendLatencyMs": "1139"
+          },
+          "id": "epu_q2_short-e56ca0aa-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 852,
+        "outputTokens": 73,
+        "inputTokensCostNanodollars": "2130000",
+        "outputTokensCostNanodollars": "1095000",
+        "totalBackendLatencyMs": "1139"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #314"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:04:28.638585Z",
+  "endTime": "2026-04-03T00:04:29.966812Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-3cdb0174",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle Sunday, June 17, 2001 Dwight Gibson will join McKinsey & Co. as a consultant. Chronicle photo by Penni Gladstone Stanford isniversity's MBA graduates face an uncertain economy as they enter the workforce. The Chronicle will follow these students during the next year, checking in with them periodically to find out how the changing economy is affecting them. All of them will be awarded a master of business administration degree from Stanford this month. Age: 28 Education: Stanford isniversity B.A. 1994 in Spanish literature; M.A. 1994 in modern thought and literature Professional experience: extensive consulting experience in nonprofit and public sector Plans after graduation: consulting in San Francisco for the Bridgespan Group, a nonprofit subsidiary of Bain & Co. -- Patricio Simpson Age: 31 Education: isniversidad Catolica Argentina, Buenos Aires; dual degrees 1991 in business administration and accounting Professional experience: management and Internet experience at accounting firm, founded Internet startup specializing in Internet consulting, business development for technology company Plans after graduation: working for Adobe Systems part time now, still ltoking for a permanent job with a high-tech company; considering doing another startup -- Isobel Gotto Age: 30 Education: Jesus College, Cambridge isniversity, B.A. 1993 in social and political sciences; M.A. 1996 in social and political sciences Pro\n\n[...TRUNCATED...]\n\nensively renovated Bernal Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) 2012 Passat$29,765 2012 Passat$26,630 2012 Passat$26,630 2012 Routan$35,310 2012 Routan$35,310 2012 Routan$35,310 2012 Jetta$17,785 2012 GLI$25,600 2012 Beetle$24,400 2012 Beetle$20,565 Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":0,\"confidence\":0.97,\"focus_excerpt\":\"Stanford university's MBA graduates face an uncertain economy as they enter the workforce.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 889,
+            "outputTokens": 35,
+            "inputTokensCostNanodollars": "2222500",
+            "outputTokensCostNanodollars": "525000",
+            "totalBackendLatencyMs": "1170"
+          },
+          "id": "epu_q2_short-3cdb0174-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 889,
+        "outputTokens": 35,
+        "inputTokensCostNanodollars": "2222500",
+        "outputTokensCostNanodollars": "525000",
+        "totalBackendLatencyMs": "1170"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #272"
+}

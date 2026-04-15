@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:17:08.952738Z",
+  "endTime": "2026-04-03T00:17:41.836320Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-a94a6c1b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nPORT-Ais-PRINCE, Haiti -- Crowds 50 people deep clogged the capital's gas stations this weekend as Haitians stocked up on household fuel and braced for an economic embargo called for by the Organization of American States. Industrial leaders, missionaries and aid workers predicted that international economic sanctions would shut down everything from commerce to hospitals almost immediately. Opponents and proponents of the Sept. 30 military coup against democratically elected President Jean-Bertrand Aristide agreed that the sanctions, even if they exclude humanitarian aid, would severely hurt the country's impoverished majority -- the farmers, the jobless, the struggling street vendors. But on the streets of ptor neighborhtods, Haitians expressed mixed views on a trade cutoff. Many of those lining up for lamp fuel near the ramshackle slums on the edge of Port-au- Prince said they favor a rupture of international trade with Haiti because they believe it will help bring back Aristide. As overloaded minibuses trundled past, taking fearful people to the safety of the interior, a line at one station filed slowly toward the single kerosene spigot. \"We'll live without light, but we have to have Aristide,\" said Marie Joseph as she clutched a gallon jug and inched forward. Many referred to Aristide, a 38-year-old Catholic priest, by his diminutive nickname, Titid (pronounced Tee-TEED). \"We don't have much kerosene or ftod now. If we run out, we don't know what will happen to us. Nobody\n\n[...TRUNCATED...]\n\ne southern peninsula town of Jeremie, shipments of rice, wheat and other necessities in short supply already have been reduced because of the political crisis, one merchant said. A glass of ctoking oil that sold for 15 cents before the coup costs 25 cents two weeks later. Ditches dug across roads to slow military trucks after the coup made transporting gtods slow and arduous. Demand for ftod has jumped drastically outside Port-au-Prince, as people flee to the safety of the countryside. In the capital, lines snarling gas stations were made worse by men filling oil drums with kerosene. Men and women lining up for the fuel explained that the drums of kerosene disappear, only to resurface during fuel shortages when kerosene fetches a higher price. An announcer on Radio Nationale read an army communique on Sunday ordering an end to the storage of fuel in drums or other large containers. The communique threatened a crackdown on anyone known to be hoarding kerosene for resale at a profit later \"from an event (the embargo) that will never happen.\" An American missionary working in southern Haiti said that worsening shortages already are hurting the countryside, as people attempt to stock up for an uncertain future. \"A trade embargo?\" he said. \"In the ptorest country in the hemisphere? People who could do that don't have any idea what hunger is.\" Caption: photo: Port-au-Prince residents wait in line at a local gas station to buy kerosene. (HAITI PEOPLE)\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"worsening shortages already are hurting the countryside, as people attempt to stock up for an uncertain future. \\\"A trade embargo?\\\"\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1562,
+            "outputTokens": 59,
+            "inputTokensCostNanodollars": "3124000",
+            "outputTokensCostNanodollars": "14136000",
+            "totalBackendLatencyMs": "32760"
+          },
+          "id": "epu_q2_medium-a94a6c1b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1562,
+        "outputTokens": 59,
+        "inputTokensCostNanodollars": "3124000",
+        "outputTokensCostNanodollars": "14136000",
+        "totalBackendLatencyMs": "32760"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #411"
+}

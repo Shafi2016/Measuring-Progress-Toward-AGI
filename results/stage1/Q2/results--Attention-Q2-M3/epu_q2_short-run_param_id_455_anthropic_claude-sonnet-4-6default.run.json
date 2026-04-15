@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:37:11.183904Z",
+  "endTime": "2026-03-31T18:37:13.004511Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-8dade523",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nThe New York Times/Sam Krulwich The Hoffmann-La Roche cogeneration plant, left, in Nutley. Frank Petrasek, above, a shift engineer, in the facility's control rtom. Below, machinery at the plant. By LINDA VILLAMOR MEW JERSEY is considering strategies to provide cogenerators and small power producers greater stability in prices and predictability of payments when they contract to sell electricity to utility companies. At the same time, citing a possible glut of cogeneration, the staff of the state's Board of Public istilities (B.P.is.) is urging a reduction in the price incentives instituted six years ago to promote alternative power soarees. It also recommends changes in the rates that utilities pay for nonutility-produced electricity. The recommendations are contained in the B.P.is. staff's first full review of cogeneration and small-power pro\u00adduction in the state. The board's president, Barbara A. Cur\u00adran, said that the three-member agency would consider pub\u00adlic comments on the report before approving changes in the state's price and contract policies for cogenerated power. The report comes at a time when a number of cogenera\u00adtion projects are being started in New Jersey and scores of contracts are being negotiated for the parehase of nonutility-produced electricity. Cogeneration is the simultaneous production of thei mal energy \u2014 steam or hot water \u2014 and electricity from a single fuel, commonly natural gas. In factories and large buildings, the technique uses waste heat or \n\n[...TRUNCATED...]\n\nment plant, Mr. Rosenblatt said. Last year's most persistent prob\u00adlem, a Long Branch beach that was closed for much of the summer, was inadvertently solved. After months of investigation, the Monmouth County Health Depart\u00adment finally traced the contamina\u00adtion to droppings from birds nesting on a fishing and amusement pier. The pier was severely damaged by fire on June 8. The monitoring program was im\u00adproved after the 1985 season, when sewage plants in Asbury Park and the Wildwtods, both of which provide only primary treatment, released large quantities of raw sewage and forced the closing of several beaches. Eight sewage plants along the coast still provide only primary treat\u00adment, but most will be replaced next summer. Secondary treatment re\u00admoves more of the organic matter in the waste water. Two regional facilities will replace six local sewage plants in Cape May County, and one in Deal will be htoked into a secondary treatment plant in Ocean Township. The state also has provided grants and loans for the construction of a secondary treatment facility in As\u00adbury Park to replace the primary treatment plant there. Many of the beach closings now ap\u00adpear to be caused by storm runoff and other nonpoint soarees, rather than sewage overflows, Mr. Evenson said. Nonpoint pollution is much more difficult to control than what comes Continued on Page 9 Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.7, \"focus_excerpt\": \"New Jersey is considering strategies to provide cogenerators and small power producers greater stability in prices and predictability of payments when they contract to sell electricity to utility companies. At the same time, citing a possible glut of cogeneration, the staff of the state's Board of Public Utilities (B.P.U.) is urging a reduction in the price incentives instituted six years ago to promote alternative power sources.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 926,
+            "outputTokens": 112,
+            "inputTokensCostNanodollars": "2778000",
+            "outputTokensCostNanodollars": "1680000",
+            "totalBackendLatencyMs": "1717"
+          },
+          "id": "epu_q2_short-8dade523-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 926,
+        "outputTokens": 112,
+        "inputTokensCostNanodollars": "2778000",
+        "outputTokensCostNanodollars": "1680000",
+        "totalBackendLatencyMs": "1717"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #456"
+}

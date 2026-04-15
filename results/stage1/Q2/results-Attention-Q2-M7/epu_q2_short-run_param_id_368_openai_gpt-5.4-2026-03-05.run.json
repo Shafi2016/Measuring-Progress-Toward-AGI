@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:06:19.223042Z",
+  "endTime": "2026-04-03T00:06:20.358907Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-d5188b6d",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nThe odds of a work stoppage interrupting or prematurely ending baseball's season remain better than even.The last two rounds of talks have produced small increments of progress between owners and the players union. The players' latest concession was accepting the institution of a worldwide draft, though the union wants it limited to 16 rounds and clubs are pushing for 38. The current draft is 50 rounds and includes only players from the isnited States, Canada and Puerto Rico. isndrafted players of qualifying age are considered free agents.\"Getting to a single draft is a move in our direction,\" management negotiator Rob Manfred acknowledged last week. \"We have a ways to go.\"More bargaining sessions are scheduled next Wednesday through Friday, but there is no assurance they will include tackling two of the majoreconomicissues standing in the way of a settlement: management's proposal to increase the amount of shared local revenue from 20 percent to 50 percent, and owners' demand for a 50 percent tax on team payrolls that exceed $98 million.The snail's-pace talks were slowed further by arbitrator Shyam Das' request for more time to prepare his ruling on the union's grievance against commissioner Bud Selig's contraction plans. Das heard 20 days of testimony between Dec. 4 and April 10, and had promised a ruling by last Monday. But Das sought and was granted an extension through Aug. 1. The tentative 2003 playing schedule, which was to reach the union for review by July 1, won't b\n\n[...TRUNCATED...]\n\n part of his master plan. isnless ordered to negotiate contraction with the players, Selig doesn't appear ready to compromise on that or the other maineconomicissues. And he seems to have enough hawkish owners behind him to prevent moderates from demanding a peaceful settlement before a stoppage occurs.Houston Astros owner Drayton McLane Jr. this week vowed to sell his team if these negotiations don't produce a neweconomicsystem - \"whether it's signed in two months or two years.\" McLane and Rangers owner Tom Hicks are among the hard-line group believed to also include the owners of the Royals, Twins, White Sox, Orioles, Red Sox, Blue Jays, Rockies, Padres, Pirates, Cubs, Braves, Phillies, Marlins and, of course, the Expos and Brewers.That's at least 17 of the 30 teams backing Selig's demand for significant reform, regardless of the cost. Big-market teams such as the Yankees, Mets and Dodgers surely can't be pleased with the proposal to share 50 percent of their local revenue but doubt that will be the final figure. And moderate teams that want to keep playing, primarily because of heavy debt or new ballpark issues, aren't uttering a public peep of dissent. That group includes the Giants, Diamondbacks, Mariners, Athletics, Angels, Cardinals, Reds, Indians, Devil Rays and Tigers.\"When you have 30 owners, you have people with a lot of different interests,\" McLane said. \"But the commissioner has the power to make a deal.\"Caption:PHOTO(S): Bud Selig\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.91, \"focus_excerpt\": \"The odds of a work stoppage interrupting or prematurely ending baseball's season remain better than even.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 840,
+            "outputTokens": 44,
+            "inputTokensCostNanodollars": "2100000",
+            "outputTokensCostNanodollars": "660000",
+            "totalBackendLatencyMs": "979"
+          },
+          "id": "epu_q2_short-d5188b6d-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 840,
+        "outputTokens": 44,
+        "inputTokensCostNanodollars": "2100000",
+        "outputTokensCostNanodollars": "660000",
+        "totalBackendLatencyMs": "979"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #369"
+}

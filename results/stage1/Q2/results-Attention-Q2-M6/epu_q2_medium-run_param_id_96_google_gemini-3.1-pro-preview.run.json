@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:36:53.460608Z",
+  "endTime": "2026-04-02T23:37:00.847444Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-b66f81e1",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nOne of South Florida's most cherished and enduring traditions is gone. The Orange Bowl Parade turned the final corner Monday, 62 years of lights and music, swagger and laughter extinguished by financial anemia, general malaise and changing times. The Orange Bowl Committee voted 120-1 - and with great regret - to abolish the New Year's Eve revelry that once glorified South Florida, but now seemed tired and threadbare. Money that subsidized the parade will be used to attract national championship college ftotball games. ``It was with a very heavy heart that we came to this decision,'' Al Cueto, committee president, said. ``But you start seeing certain evidence that the people in your community are not supporting the parade. We can no longer afford to have a low class parade.'' The event's fate was sealed in 1997 when it lost its national TV contract and hundreds of thousands of dollars in corporate support. Ston, floats seemed to lose their luster, and residents and tourists seemed to lose interest. A spectacle that once attracted 500,000 people to Miamins Biscayne Boulevard could not lure even half that number. Cueto said the last parade, swamped by bad weather, lost more than $200,000. Except for three years during World War II, the parade rolled through downtown Miami every New Year's Eve since 1936. Now, something might be found to take its place, Cueto said, but the Orange Bowl parade as we know it is over. ``I think it's a shame that we're in this position,'' Miami Mayor \n\n[...TRUNCATED...]\n\ncome up with a communitywide event that will be interactive and reflective of our community's diversity.'' The issue of diversity also was raised by Cueto, who said the parade's marching bands were comprised mostly of students from the Midwest and ``don't have the face of the community.'' Committee leaders said they could not afford to bring bands from Latin America and the Caribbean to the parade. But Mike Gonzalez, a member of the Orange Bowl Staging Committee that ctordinates the marching bands, said recent efforts were made to diversify the lineup. He cited the inclusion last year of predominantly black bands from Bethune-Ctokman College and Hallandale High Schtol. He expressed anger over Monday's development. ``There's no reason for them to do it,'' he said. ``If they put the effort into it, I'm sure they could find corporate sponsors. ``After seven decades, just to summarily dismiss it, I think, is unconscionable. The parade is the only thing left of the Orange Bowl Festival that really belongs to the people.'' Caption: photo: Al Cueto (a), King Oragne float in 1995 (a) C.W. GRIFFIN/HERALD FILE 1995 LACKING LisSTER: The King Orange float brought up the rear of the parade, which traveled along Miamins Biscayne Boulevard, at 1995's event. The parade lost its national TV contract in 1997. CHisCK FADELY/HERALD STAFF CHANGING TIMES: `It was with a very heavy heart that we came to this decision,' Al Cueto, Orange Bowl Committee president, says.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"The Orange Bowl Committee voted 120-1 - and with great regret - to abolish the New Year's Eve revelry that once glorified South Florida\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1630,
+            "outputTokens": 63,
+            "inputTokensCostNanodollars": "3260000",
+            "outputTokensCostNanodollars": "6720000",
+            "totalBackendLatencyMs": "7235"
+          },
+          "id": "epu_q2_medium-b66f81e1-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1630,
+        "outputTokens": 63,
+        "inputTokensCostNanodollars": "3260000",
+        "outputTokensCostNanodollars": "6720000",
+        "totalBackendLatencyMs": "7235"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #97"
+}

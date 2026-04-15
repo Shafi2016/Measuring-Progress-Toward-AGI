@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:12:22.133839Z",
+  "endTime": "2026-03-31T02:12:25.989127Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-ac006682",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nWary is.S. businesses will cut investment spending by 2.5% Chicago Tribune (1963-Current file); Sep 12, 1986; ProQuest Historical Newspapers: Chicago Tribune (1849-1990) pg. B3 WASHINGTON [APJ\u2014is.S. businesses, beset by a sluggish economy and tax-law uncertainty, have reduced the amount they plan to spend on investment this year by 2.5 percent, the biggest cut since the last recession, the gov\u00adernment reDorted Thursday. The Commerce Department said a survey completed in August found that businesses, after ad\u00adjusting for inflation, plan to spend $376.47 billion this yenr on capital improvement projects; down from '$386.32 billion actually spent in 1985. It would be the first decline in business investment since 1983 and the biggest drop since a 7.9 percent plunge in 1982; Business spending on expansion and mod\u00adernization rose 8.7 percent in 1985 after surging 15.8 percent in 1984. Economists blamed the weak economy, cutbacks in oil and gas drilling and uncertainty over tax law changes for the steep decline in capital investment plans. Many analysts said they believed tlic investment decline will be even worse than the survey plans indi\u00adcate, throwing further doubt on the Reagan administration's fore\u00adcast for revived economic growth in the second half of the year. The new estimate of spending plans represented a downward re\u00advision from the survey taken in April and May. At that time, busi\u00adnesses were planning a 1.3 percent cut in investment this year. \"The downward revision fro\n\n[...TRUNCATED...]\n\nd at an annual, rate of 4 per\u00adcent in the last six months of this year, up from the anemic 2.2 per\u00adcent growth rate turned in from January through June. But Michael Evans, head of Evans Economics, a Washington consulting firm, said he believed investment spending will decline 5 percent this year, double the 2.5 percent survey prediction. \"This has been a bad year forbusiness spending. We got an extra wallop from the tax changes and the problems in the oil coun\u00adtry, which came on top of an al\u00adready weak economy,\" lie said. Economists said the overhaul of the tax law, which shifts $120 bil\u00adlion in taxes from individuals to businesses, forced companies to scale back investment plans. Many provisions that favored business investment have either been elimi\u00adnated or scaled back in the over\u00adhaul, which is awaiting final con\u00adgressional approval. Before adjusting for inflation, the survey said, industry will spend $379.6 billion on new plant and : equipment this year* a drop of 1.9 percent from 1985. After removing the effects of in\u00adflation, the Commerce Depart-' ment said, manufacturers are plan\u00adning to cut back capital spending, by 7 percent this year. Factories' making' durable gtods, or items expected to last three or. more. years, forecast a 6 percent reduc\u00adtion and businesses making non- - durable gtods expect to reduce ; spehding by 7.9 percent. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 1.0, \"focus_excerpt\": \"U.S. businesses, beset by a sluggish economy and tax-law uncertainty, have reduced the amount they plan to spend on investment this year\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 936,
+            "outputTokens": 51,
+            "inputTokensCostNanodollars": "280800",
+            "outputTokensCostNanodollars": "1717500",
+            "totalBackendLatencyMs": "3788"
+          },
+          "id": "epu_q2_short-ac006682-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 936,
+        "outputTokens": 51,
+        "inputTokensCostNanodollars": "280800",
+        "outputTokensCostNanodollars": "1717500",
+        "totalBackendLatencyMs": "3788"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #422"
+}

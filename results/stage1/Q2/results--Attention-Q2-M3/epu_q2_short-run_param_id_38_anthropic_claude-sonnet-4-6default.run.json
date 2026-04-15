@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:24:47.552539Z",
+  "endTime": "2026-03-31T18:24:48.836357Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-e68cd6c6",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nIt's been a year of changes for Richardson.New faces now lead the schtol district, Chamber of Commerce and symphony.Debate broke out over the Campbell Road underpass project, schtol mergers and the survival of a century-old cottonwtod tree.Voters made it easier to buy alcoholic drinks at restaurants, and severaleconomicdevelopment projects offered the promise of new jobs and better days to come.Before 2004 fades into memory, here's a recap of some of the year's events.BisSINESS*While the high-tech bust continues to reverberate in the Telecom Corridor, Richardson officials found reason to smile late this year. In November, Texas Instruments broke ground on its $3 billion chip plant and the $85 million Natural Science and Engineering Research Building at the isniversity of Texas at Dallas. On its heels came word that the nation's No. 1 mortgage lender would be moving into three mostly vacant office buildings in the Galatyn Park isrban Center. Countrywide Financial Corp.'s new financial service center will employ 2,500 people in its first phase of development, with the promise of doubling that number as the firm's home loan operations expand.*The Richardson Chamber of Commerce had a change in leadership this year. Bill Sproull was tapped to replace retiring president and chief executive Ron Robinson. Mr. Sproull had been vice president foreconomicdevelopment with the Greater Dallas Chamber of Commerce. Mr. Robinson, who had led the chamber since the mid-1980s, was credited with \n\n[...TRUNCATED...]\n\nmore than a century, said it was a hazard. 9. (GARY PAYNE/Special Contributor) SCHOOLS: Jim Nelson, former state education commissioner, was selected as the new superintendent of Richardson schtols. His first 100 days included some trying moments, but he has made a mostly positive impression on the city and staff. 10. (ARIANE KADOCH SWISA/Staff Photographer) SCHOOLS: Richardson's elementary schtol Teacher of the Year, Gloria Voutos, also won the honor at the state level. \"What I like best is that it reflected on the students, teachers and the district,\" she said. \"This is a team effort.\" 11. (SMILEY N. POOL/Staff Photographer) TRANSPORTATION: City officials rezoned 61 acres around the Spring Valley light-rail station to made it a destination - with stores, offices and apartments. 12. (VERNON BRYANT/Staff Photographer) COMMisNITY: Rhonda Steward rejoices at First Baptist Chareh of Hamilton Park, which celebrated its 50th anniversary in October. The chareh began as a gathering of five people in a home on Oberlin Drive. 13. (ARIANE KADOCH SWISA/Staff Photographer) COMMisNITY: Library ctordinators (from left) Jane Merz, Mimi Tanner and Betty Bettacchi were thrilled with Richardson's citywide btok club. More than 1,000 people attended discussion groups for Pay It Forward by Catherine Ryan Hyde. 14. (Hoyt family) COMMisNITY: Bike shop owner Rhonda Hoyt, shown with husband Mike, is back to work after being hit by a car while on a bike ride in October.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.85, \"focus_excerpt\": \"While the high-tech bust continues to reverberate in the Telecom Corridor, Richardson officials found reason to smile late this year.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 998,
+            "outputTokens": 54,
+            "inputTokensCostNanodollars": "2994000",
+            "outputTokensCostNanodollars": "810000",
+            "totalBackendLatencyMs": "1228"
+          },
+          "id": "epu_q2_short-e68cd6c6-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 998,
+        "outputTokens": 54,
+        "inputTokensCostNanodollars": "2994000",
+        "outputTokensCostNanodollars": "810000",
+        "totalBackendLatencyMs": "1228"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #39"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:45:57.908950Z",
+  "endTime": "2026-04-01T17:45:58.617955Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-fd95554f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nMost Interest Rates End Little Changed As Traders Wait for Economic Reports: CREDIT MAR TOM HERMAN Staff Reporter of THE WALL STREET JOisRNAL Wall Street Journal (1923 - Current file); Mar 3, 1987; ProQuest Historical Newspapers: The pg. 54 ^ Most Interest Rates End Little Changed /Is Traders Wait for Economic Reports CREDIT MARKETS By Tom Herman Staff Repo rr c r af Till*: W A11 Sthkkt Jouknai. NEW YORK \u2014 Most interest rates wound up little changed in light activity yesterday, partly reflecting uncertainty about what several government reports this week will indicate about the econ\u00adomy's health. The Commerce Department today is scheduled to release its index of leading economic indicators for January. The La\u00adbor Department's employment statistics for February will be issued Friday morn\u00ading. Although many forecasters expect both reports to indicate the economy re\u00admains listless, individual estimates vary widely. In the bond market, prices of some 30- year Treasury bonds rose early in the day but later retreated to wind up at about the same levels as on Friday. Corporate and municipal bond prices edged higher. \"There wasn't much activity,\" said Robert A. Brusca, a senior vice president at Nikko Securities Co. International. Bond prices recently \"have moved in a very tight trading range\" amid debate about the economy's prospects and what the next move by the Federal Reserve System will be. he said. The Commerce Department report today is widely expected to show that the leading\n\n[...TRUNCATED...]\n\niced a proposed S10L250.000 offering of refunding revenue bonds by the Virginia Public Building Authority. isnder the proposed terms, yields would range from 3.4% on bonds due 1987 to 6.37c on those due 2004, according to a spokes\u00adwoman for PaineWebber. In the corporate sector, a $200 million issue of Hospital Corp. of America deben\u00adtures was offered through underwriters led by Salomon Brothers Inc. The 8**%. deben\u00adtures, due in 30 years, were priced at 97.36 to yield 8.757c. The issue is rated single-A-2 by Mtody's and single-A by S&P. Here are details of the Treasury's auc\u00adtion yesterday of new short-term bills: Rates are determined by the difference between the parehase price and face value. Thus, higher bidding nar\u00adrows the investor's return while lower bidding widens it. The percentage rates are calculated on a 360-day year, while the coupon equivalent yield is based on a 365-day year. 13-Week 26-Week Applications S29,373,135,G00 529,892,495,000 Accepted bids 56,609,005,000 56,633,355,000 Accepted at low price 27% 54% Accepted noncompet'ly Sl.084,950,000 5786,910,000 Average price (Rate) 98.617 (5.47%) 97.214 (5.51%) High price (Rate) 98.625 (5.44%) 97.219 (5.50%) Low price (Rate) 98.615(5.48%) 97.214(5.51%) Coupon equivalent 5.64% 5.76% Both issues are dated March 5. The 13-week bills ma\u00adture June 4, and the 26-week bills mature Sept. 3. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.2,\n  \"focus_excerpt\": \"partly reflecting uncertainty about what several government reports this week will indicate about the economy's health\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1055,
+            "outputTokens": 45,
+            "inputTokensCostNanodollars": "232100",
+            "outputTokensCostNanodollars": "39600",
+            "totalBackendLatencyMs": "569"
+          },
+          "id": "epu_q2_short-fd95554f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1055,
+        "outputTokens": 45,
+        "inputTokensCostNanodollars": "232100",
+        "outputTokensCostNanodollars": "39600",
+        "totalBackendLatencyMs": "569"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #577"
+}

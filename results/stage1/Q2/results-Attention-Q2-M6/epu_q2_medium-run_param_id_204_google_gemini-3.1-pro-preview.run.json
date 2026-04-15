@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:50:39.689528Z",
+  "endTime": "2026-04-02T23:50:54.608147Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-9f4f4fe8",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nExcerpts From the Senate Testimony by Greenspan New York Times (1923-Current file); Feb 27, 1997; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. D6 Excerpts From the Senate Testimony by Greenspan Following are excerpts from testimony by Alan Greenspan, the chairman of the Federal Reserve, given before the Senate Banking Committee yes\u00adterday: Ltoking ahead, the members of the F.O.M.C. [Federal Open Market Committee] expect infla\u00adtion to remain low and the economy to grow appreciably further. However, as I shall be dis\u00adcussing, the unusually gtod inflation performance of recent years seems to owe in large part to some temporary factors, of uncertain longevity. Thus, the F.O.M.C. continues to see the distribution of inflation risks skewed to the upside and must remain especially alert to the possible emergence of imbalances in financial and product markets that ultimately could endanger the maintenance of the ^low-inflation environment. Sustainable eco\u00adnomic expansion for 1997 and beyond depends on it. .*. The willingness of workers in recent years to trade off smaller increases in wages for greater job Security seems to be reasonably well docu\u00admented. The unanswered question is why this Insecurity persisted even as the labor market, by all objective measures, tightened considerably Certainly, other factors have contributed to the softness in compensation growth in the past few years. The sharp deceleration in health care costs, of course, is cited frequently\n\n[...TRUNCATED...]\n\nets have declined to near-record lows. Is it possible that there is something fundamen\u00adtally new about this current period that would warrant such complacency? Yes, it is possible. Markets may have become more efficient, compe\u00adtition is more global, and information technology has doubtless enhanced the stability of business operations. But, regrettably, history is strewn with visions of such \"new eras\" that, in the end, have proven to be a mirage. In short, history counsels caution. Such caution seems especially warranted with regard to the sharp rise in equity prices during the past two years. These gains have obyiously raised questions of sustainability.... Why should the central bank be concerned about the possibility that financial markets may be overestimating returns or mispricing risk? It is not that we have a firm view that equity prices are necessarily excessive right now or risk spreads patently tto low. Our goal is to contribute as best we can to the highest possible growth of income and wealth over time, and we would be pleased if the favorable economic environment projected in markets actually comes to pass. Rather, the F.O.M.C. has to be sensitive to indications of even slowly building imbalances, whatever their soaree, that, by fostering the emergence of infla\u00adtion pressures, would ultimately threaten healthy economic expansion. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.90,\n  \"focus_excerpt\": \"the unusually good inflation performance of recent years seems to owe in large part to some temporary factors, of uncertain longevity. Thus, the F.O.M.C. continues to see the distribution of inflation risks skewed to the upside and must remain especially alert\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1550,
+            "outputTokens": 83,
+            "inputTokensCostNanodollars": "3100000",
+            "outputTokensCostNanodollars": "19032000",
+            "totalBackendLatencyMs": "14770"
+          },
+          "id": "epu_q2_medium-9f4f4fe8-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1550,
+        "outputTokens": 83,
+        "inputTokensCostNanodollars": "3100000",
+        "outputTokensCostNanodollars": "19032000",
+        "totalBackendLatencyMs": "14770"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #205"
+}

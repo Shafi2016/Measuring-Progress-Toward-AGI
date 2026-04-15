@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:41:37.241085Z",
+  "endTime": "2026-03-31T18:41:38.709094Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-c3b7b20b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nEconomic Growth Put At 5.5 Pct.: ispbeat Farm Estimate Btosts GNP Figure Berry, John M The Washington Post (1974-Current file); Apr 27, 1989; ProQuest Historical Newspapers: The Washington Post (1877-1997) Pi- El Economic Growth Put At 5.5 Pct. ispbeat Farm Estimate Btosts GNP Figure Bv John M. Berrv Washington Post Stall Writer - The is.S. economy expanded at an unusualiy strong 5.5 percent annual rate in the first quarter of the year, but nearly half the gain Was due to an expected rebound in farm produc\u00adtion this vear after the 1988 drought, the Commerce Department reported yesterday. Growth in the nonfarm portion of the economy slowed somewhat\u2014to a 3 percent rate, after adjustment for inflation, from a 3.5 percent rate in the fourth quarter. Recent month\u00adly statistics have indicated that growth has slowed even further, an\u00adalysts said. The first-quarter report on the gross national product showed the economy churning out gtods and services at a seasonally adjusted an\u00adnual rate of $5.1 trillion. Only 19 years ago, the gross national product was only $1 trillion. However, inflation-adjusted con\u00adsumer and federal government spending grew much less rapidly than in the previous three months, See ECONOMY, E16, Col. 1 while outlays for housing construc\u00adtion declined. The strongest sector was busi\u00adness investment, which rose at n hefty 11.4 percent rate in the first quarter. At the same time, a drop in the trade deficit added to demand for is.S.-made gtods and accounted for nearly\n\n[...TRUNCATED...]\n\nthe impact the previous rate increases will have on economic ac\u00adtivity. Maria F. Ramirez, economist at Drexel Burnham Lambert Inc., not\u00aded that financial markets showed lit\u00adtle reaction to the GNP report, which she said \"did not indicate a need for easier or tighter monetary policy by the Fed.\" The large adjustment related to farm output was required because of the way in which the Commerce De\u00adpartment's Bureau of Economic Anal\u00adysis, which keeps track of GNP, han\u00addles seasonal adjustment for that sector. The BEA assumed in the first quarter of last year\u2014as it did again in preparing the figures released yesterday\u2014that 1988 would be a normal weather year for farmers. Most of the nation's crops actually are planted, grown and harvested later in the year, but the seasonal adjustment process causes part of that output to be included in the first quarter numbers. When the drought began last spring, its full impact was uncertain, as was the way it should be distribut\u00aded statistically over the rest of the year. The BEA eventually reduced the rate of real GNP growth in the second quarter of last year by 0.9 percentage points, followed by a 0.5 point reduction in the third and 1.1 point cut in the fourth. By returning to a normal weather assumption this year, the cumulative percentage points lopped off growth rates last year were added back all at once, Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.9, \"focus_excerpt\": \"the impact the previous rate increases will have on economic activity.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 897,
+            "outputTokens": 35,
+            "inputTokensCostNanodollars": "405552",
+            "outputTokensCostNanodollars": "58800",
+            "totalBackendLatencyMs": "1253"
+          },
+          "id": "epu_q2_short-c3b7b20b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 897,
+        "outputTokens": 35,
+        "inputTokensCostNanodollars": "405552",
+        "outputTokensCostNanodollars": "58800",
+        "totalBackendLatencyMs": "1253"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #442"
+}

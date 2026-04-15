@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:46:06.957718Z",
+  "endTime": "2026-03-31T18:46:08.792868Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-559febdf",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nAs Its Editor Goes to The New Yorker, Granta Heads Into an isncertain ... By SARAH LYALLSpecial to The New York Times New York Times (1923-Current file); Dec 21, 1994; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. C13 As Its Editor Goes to The New Yorker, Granta Heads Into an isncertain Xime By SARAH LYALL Special to The New York Times LONDON, Dec. 20 \u2014 It was more than 15 years ago that Bill Buford grabbed the ailing literary journal Granta by the scruff of its neck and shtok it back to health, transforming it from a magazine for Cambridge undergraduates to a fat quarterly of fiction and nonfiction that has be\u00adcome a must-read in literary circles, here and in the isnited States. If Mr. Buford, now 40, has some\u00adtimes seemed to run Granta as a vanity press \u2014 his vanity, his press \u2014 he has also muscled it onto the literary scene, through' a combina\u00adtion of first-rate contacts, relentless energy and an exuberant belief that if he likes something, he can print it. The magazine's circulation, a sorry 800 or worse when Mr. Buford ttok over, now hovers at just below with about two-thirds of that in the isnited States. The company also publishes 20 or so btoks a year in a joint venture with Penguin Btoks, and this year it expects to register a small profit. Now that Mr. Buford, a native of California who came to England to pursue a graduate degree in English and never left, is abandoning his creation for the new post of fiction and literary editor at The New York\n\n[...TRUNCATED...]\n\nn't alone in that criticism, but Mr. Buford is usu\u00adally forgiven. \"He has extremely gtod taste and a very gtod nose,\" Ms. Calder said. \"He knows what's gtod when he sees it.\" Veteran Buford-watchers are ask\u00ading what Mr. Buford, with his often laissez-faire business style (his of\u00adfice at Granta here is piled high with unopened envelopes) and his well-i known tendency to leave things to the last minute, then explode in a frenzy of activity, will handle The New Yorker's grueling weekly dead\u00adlines. They also wonder how he will take to the corporate culture at S. 1. Newhouse's Advance Publications, which owns The New Yorker, and to having a boss, particularly an exact\u00ading one like Tina Brown, the maga\u00adzine's editor. Mr. Buford said in an interview on Monday that he agonized over these questions for the gtod part of a month before accepting the job at The New Yorker. \"I think it's proba\u00adbly true that I've reached a plateau at Granta,\" he said. He confessed to feeling a bit rest\u00adless in recent years, and said that Granta might well benefit from someone with a fresh eye. \"The cir\u00adculation is stable, the readership is pretty stable, the magazine's integ\u00adrity and quality and level of achieve\u00adment are all pretty stable,\" he said. \"It occurred to me that if I stayed, the only think I could contribute at this point would be to do more of the same tiling.\". Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.95,\n  \"focus_excerpt\": \"Now that Mr. Buford, a native of California who came to England to pursue a graduate degree in English and never left, is abandoning his creation for the new post of fiction and literary editor at The New Yorker\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 944,
+            "outputTokens": 72,
+            "inputTokensCostNanodollars": "431872",
+            "outputTokensCostNanodollars": "120960",
+            "totalBackendLatencyMs": "1614"
+          },
+          "id": "epu_q2_short-559febdf-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 944,
+        "outputTokens": 72,
+        "inputTokensCostNanodollars": "431872",
+        "outputTokensCostNanodollars": "120960",
+        "totalBackendLatencyMs": "1614"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #546"
+}

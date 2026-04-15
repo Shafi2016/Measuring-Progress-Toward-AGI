@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:12:07.708875Z",
+  "endTime": "2026-03-31T02:12:18.074367Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-6cee2fa8",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHaving twice failed in recent years to win approval of police bond measures, Los Angeles city leaders face the added challenge this year of overcoming the public discord over Mayor James K. Hahn's decision not to back Police Chief Bernard Parks for another term. Proposition Q campaign manager Steve Afriat discounts that theory, noting that despite their differences over the chief's tenure, Parks and Hahn both signed the ballot argument in favor of the bonds and have agreed to campaign for the measure. The city might be able to overcome all of those issues if it could raise $1 million for a campaign, [Harvey Englander] said, but it would still be a hard sell given the strain between Parks and Hahn. Having twice failed in recent years to win approval of police bond measures, Los Angeles city leaders face the added challenge this year of overcoming the public discord over Mayor James K. Hahn's decision not to back Police Chief Bernard Parks for another term. Proposition Q campaign manager Steve Afriat discounts that theory, noting that despite their differences over the chief's tenure, Parks and Hahn both signed the ballot argument in favor of the bonds and have agreed to campaign for the measure. The city might be able to overcome all of those issues if it could raise $1 million for a campaign, [Harvey Englander] said, but it would still be a hard sell given the strain between Parks and Hahn. You have requested \"on-the-fly\" machine translation of selected content from our datab\n\n[...TRUNCATED...]\n\nols and facilities they need to do the best job they can.\" Caption: PHOTO: LAPD Officers Gretchen Zavala, right, and Miki Akiyama share a closet converted to office space at the West Valley station.; PHOTOGRAPHER: BRIAN VANDER BRisG / Los Angeles Times Credit: TIMES STAFF WRITER (Copyright (c) 2002 Los Angeles Times) Show less You have requested \"on-the-fly\" machine translation of selected content from our databases. This functionality is provided solely for your convenience and is in no way intended to replace human translation. Show full disclaimer Neither ProQuest nor its licensors make any representations or warranties with respect to the translations. The translations are automatically generated \"AS IS\" and \"AS AVAILABLE\" and are not retained in our systems. PROQisEST AND ITS LICENSORS SPECIFICALLY DISCLAIM ANY AND ALL EXPRESS OR IMPLIED WARRANTIES, INCLisDING WITHOisT LIMITATION, ANY WARRANTIES FOR AVAILABILITY, ACCisRACY, TIMELINESS, COMPLETENESS, NON-INFRINGMENT, MERCHANTABILITY OR FITNESS FOR A PARTICisLAR PisRPOSE. Your use of the translations is subject to all use restrictions contained in your Electronic Products License Agreement and by using the translation functionality you agree to forgo any and all claims against ProQuest or its licensors for your use of the translation functionality and any output derived there from. Hide full disclaimer Translations powered by LEC. Translations powered by LEC. Please select one or more items.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"Having twice failed in recent years to win approval of police bond measures, Los Angeles city leaders face the added challenge this year of overcoming the public discord over Mayor James K. Hahn's decision\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 833,
+            "outputTokens": 74,
+            "inputTokensCostNanodollars": "1041250",
+            "outputTokensCostNanodollars": "11210000",
+            "totalBackendLatencyMs": "10259"
+          },
+          "id": "epu_q2_short-6cee2fa8-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 833,
+        "outputTokens": 74,
+        "inputTokensCostNanodollars": "1041250",
+        "outputTokensCostNanodollars": "11210000",
+        "totalBackendLatencyMs": "10259"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #147"
+}

@@ -1,0 +1,12 @@
+clean_label,attacked_label,count,llm_name,gold_epu
+-9,0,1,google/gemini-2.5-flash,1
+0,-9,1,google/gemini-2.5-flash,1
+0,0,63,google/gemini-2.5-flash,1
+0,1,15,google/gemini-2.5-flash,1
+1,0,7,google/gemini-2.5-flash,1
+1,1,213,google/gemini-2.5-flash,1
+-9,1,2,google/gemini-2.5-flash,0
+0,0,144,google/gemini-2.5-flash,0
+0,1,26,google/gemini-2.5-flash,0
+1,0,12,google/gemini-2.5-flash,0
+1,1,116,google/gemini-2.5-flash,0

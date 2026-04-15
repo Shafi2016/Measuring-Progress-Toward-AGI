@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T22:40:29.953507Z",
+  "endTime": "2026-04-02T22:40:42.574483Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-0d18e6f7",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nA 1997 national voter survey by the Polling Company finds that the majority of respondents would prefer to undergo a rtot canal than be audited by the Internal Revenue Service (IRS). And a 1990 People magazine survey finds that the most frightening words people could imagine hearing when they answer the phone are \"This is the IRS calling.\"Although Americans have every right to be upset by an oppressive tax system, their anger should not bedirected at the IRS. The vast majority of problems with the current tax system are the result of 85 years of bad tax policy.The way to reduce the public's intense aversion to the IRS is to enact a flat tax. By wiping out all the complicated, obscure, and convoluted provisions of the current tax code, a flat tax would reduce compliance costs and ease theuncertaintyand anguish that make April 15 everyone's least favorite day of the year. The following numbers provide the evidence:* 62,000,000 = The number of lines of computer code required by the IRS to manage the current tax code.* 3,200 = The number of threats and assaults against IRS agents over a five-year period.* 820 = The number of pages added to the tax code by the 1997 budget act.* 271 = The number of new regulations issued by the IRS in 1997.* 569 = The number of tax forms available on the IRS Web site.* 33,984,689 = The number of civil penalties assessed by the IRS in 1996.* 2,100,000 = The number of IRS audits conducted in 1996.* 85 = The percentage of taxpayers selected by the IRS\n\n[...TRUNCATED...]\n\nn changes between 1981 and 1997.* 160 = The percentage increase in the stock value of tax preparation firms in the month period surrounding enactment of the 1997 budget.* 54 = The number of lines on the new capital gains form, up from 23 before the 1997 budget deal.* $3,500 = The amount one woman was forced to pay twice, even though the IRS eventually admitted that the debt had been owed - and paid - by her former husband.* $26 = The amount the IRS seized from a six-year-old's bank account because her parents owed money.* $900,000 = The amount a small businessman was fined after being entrapped by his accountant, a paid informer for the IRS.* 25 = The percentage of households with incomes over $50,000 that would pay an inaccurate assessment from the IRS rather than fight.The only way to address these problems is fundamental reform. A flat tax that taxes all income - but only one time and at one low rate - will reduce the power of the IRS dramatically by eliminating the vast majority of possible conflicts. In a system that asked individuals to provide only their total income and the size of their families, much of the fear, frustration, anduncertaintysurrounding the payment of taxes would disappear.Daniel Mitchell is the senior fellow of politicaleconomyat the Heritage Foundation. He is a former staff economist for the National Commission on Tax Reform andEconomicGrowth and former director of tax and budget policy at Citizens for a SoundEconomy.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"By wiping out all the complicated, obscure, and convoluted provisions of the current tax code, a flat tax would reduce compliance costs and ease theuncertaintyand anguish that make April 15 everyone's least favorite day of the year.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 935,
+            "outputTokens": 79,
+            "inputTokensCostNanodollars": "1870000",
+            "outputTokensCostNanodollars": "11724000",
+            "totalBackendLatencyMs": "12510"
+          },
+          "id": "epu_q2_short-0d18e6f7-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 935,
+        "outputTokens": 79,
+        "inputTokensCostNanodollars": "1870000",
+        "outputTokensCostNanodollars": "11724000",
+        "totalBackendLatencyMs": "12510"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #322"
+}

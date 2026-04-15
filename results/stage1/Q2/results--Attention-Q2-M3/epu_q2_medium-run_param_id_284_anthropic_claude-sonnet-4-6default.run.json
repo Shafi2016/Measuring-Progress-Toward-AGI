@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:50:54.262748Z",
+  "endTime": "2026-03-31T18:50:55.692582Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-cd990624",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nAs the Health Security Express rolled into Washington this week, partisans on both sides were eager to declare how the publicity stunt will - or won't - influence the health care debate.Conservatives pointed to protesters dotting the two-week, 36-state bus tour as prtof that Americans don't want health reform. Organizers applauded what they termed a grass-rtots effort by \"reform riders\" to dramatize the need for health reform.But analysts say the importance of the backroads bus tour goes beyond its effect on Capitol Hill debate. Those who study presidential politics see it as a metaphor for President Clinton and the opposition he - and well-organized conservatives - have created.\"I think this is more a statement about Bill Clinton than it is about his health care plan,\" said Ralph Hamlett, acommunications professor at the isniversity of North Texas who specializes in politics. \"Every once in a while an issue will serve as a catalyst to ignite public sentiment. That's what health care is doing.\"Mr. Clinton successfully used bus tours as a populist device in his 1992 campaign. Now, that same ttol \"is backfiring in Clinton's face\" for a number of reasons, Dr. Hamlett said.Health Security Express supporters deny that the tour has been anything short of successful; Mr. Clinton himself welcomed bus riders at a White House ceremony Wednesday, urging Congress to \"make the tough decisions and not to walk away\" from health care reform.Still, Health Security spokeswoman Nancy Bennett sa\n\n[...TRUNCATED...]\n\n.A recent study by the Annenberg Schtol of Communication at the isniversity of Pennsylvania found that interest groups have spent at least $50 million on advertising to influence legislators and the media.\"This is the largest lobbying effort in is.S. history,\" said Charles Lewis, executive director of the Center for Public Integrity, a non-profit research organization in Washington that has taken no position on the issue. \"The support you're seeing is not something that just emanated out of the heartland.\"Groups such as Operation Rescue, Citizens for a SoundEconomy, Ross Perot's isnited We Stand - and conservative commentators like Rush Limbaugh - are no small part of the effort, said Dr. Wayne.\"Since the second day of the presidency. .. there has been a consistent barrage of conservative public opposition to this president generated through television and radio talk show hosts and evangelists,\" he said.It isuncertainwhether the protests along the bus tour will have any lasting impact on Mr. Clinton's standing. More clear, some analysts said, is its value in the health care debate.isltimately, the person ltoking for answers gets cheated, said Kathleen Hall Jamieson, dean of the Annenberg Schtol.\"The person viewing this exchange doesn't view it as an exchange teaching anything about the sides of the debate. .. A placard that says `Send the witch home' doesn't teach us anything,\" she said. \"There isn't any meaningful engagement with this format.\"\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.72, \"focus_excerpt\": \"It is uncertain whether the protests along the bus tour will have any lasting impact on Mr. Clinton's standing. More clear, some analysts said, is its value in the health care debate.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1669,
+            "outputTokens": 63,
+            "inputTokensCostNanodollars": "5007000",
+            "outputTokensCostNanodollars": "945000",
+            "totalBackendLatencyMs": "1385"
+          },
+          "id": "epu_q2_medium-cd990624-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1669,
+        "outputTokens": 63,
+        "inputTokensCostNanodollars": "5007000",
+        "outputTokensCostNanodollars": "945000",
+        "totalBackendLatencyMs": "1385"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #285"
+}

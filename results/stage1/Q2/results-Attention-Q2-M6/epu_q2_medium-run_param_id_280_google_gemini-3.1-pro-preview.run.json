@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:00:01.770772Z",
+  "endTime": "2026-04-03T00:00:11.042961Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-c9a25e3d",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nPanama's Crisis Spawns Chaos In Economy: Troubles Hit Economy In Panama Lynda Gorov Special to The Washington Post The Washington Post (1974-Currentjile); Mar 6, 1988; ProQuest Historical Newspapers: The Washington Post (1877-1997) pg. 151 Panama's Crisis Spawns Chaos In Economy By Lynda Gorov Special to The Washington Post, PANAMA CITY\u2014The political crisis that has swept Panama following the ouster of ci\u00advilian president Eric Arturo Delvalle late last month is rapidly creating financial chaos, with banks forced to shut down operations because they are out of cash. Analysts say the latest developments threaten to crack Panama's already fragile dollar economy and severely impact business activity.' _ The 12 Panamanian banks that had been closed by a widespread^ general, strike early lak,week remained shuttered Friday follow\u00ading the indefinite suspension of all state banking operations by Panama's National Banking'Commission, the governmental reg\u00adulatory agency. ' Interbank blearing operations also were suspended, making it all but impossible for businesses and individuals to cash checks anywhere in the capital. Most of the operations of international banks also were closed, and no one was able to predict when the banks might reopen. This is the second liquidity crisis that the Panamanian banks have faced since June, when the opposition movement to the re\u00adgime of Gen. Manuel Antonio Noriega was reinvigorated. But it is the first time the na\u00adtion's banks have actually ceased ope\n\n[...TRUNCATED...]\n\nit appeared to be weakening. Declaring victory, No\u00adriega's opponents called off the pro- :tdst; '. V:' But by then the strikediad becomealmost irrelevant to the banking community. Without cash, the banks could not open. The inability to cash checks, and the banks' refusal to clear them, has ramifications for private businesses as well as individuals. If the crisis continues, all sorts of financial trans\u00adactions could come to a halt. For ex\u00adample, factories may be unable to pay for needed raw materials. \"I don't know what we are going to do when we have to pay our work\u00aders,\" said Eduardo Vallarino, a chemical manufacturer and opposi\u00adtion leader. \"We will have money in the bank but no currency. The checks are going to be worthless.\" Panama itself must make a $42 million interest payment to foreign commercial banks on March 11, and analysts say the deadline may well go unmet. It is also uncertain wheth\u00ader the Panamanian government will be able to pay state employees. At many construction sites in the capital, the workers are usually paid in cash. But Arturo Diaz, an official at one construction company, said his.60 workers now will be receiving checks. He has no other way of pay\u00ading them. \"Some of them told me that really, right now, no one wants to accept a ..check* They ask n%;'Where;canJ[ ';dpsh';# DispSrc ' knotv. I have tHe same problem.'\" \u2022 Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.90,\n  \"focus_excerpt\": \"It is also uncertain whether the Panamanian government will be able to pay state employees.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1605,
+            "outputTokens": 49,
+            "inputTokensCostNanodollars": "3210000",
+            "outputTokensCostNanodollars": "10944000",
+            "totalBackendLatencyMs": "9130"
+          },
+          "id": "epu_q2_medium-c9a25e3d-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1605,
+        "outputTokens": 49,
+        "inputTokensCostNanodollars": "3210000",
+        "outputTokensCostNanodollars": "10944000",
+        "totalBackendLatencyMs": "9130"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #281"
+}

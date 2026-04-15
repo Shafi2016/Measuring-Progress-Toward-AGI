@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:19:21.751114Z",
+  "endTime": "2026-04-03T00:19:22.644147Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-72c27b9d",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequenc\n\nTARGET ARTICLE START\nIn the aftermath of Sunday's vote by the French people in favor of the Maastricht blueprint for eventual European monetary union, European Commission President Jacques Delors succinctly gauged the outcome of the vote: \"I think there is as much to learn from the reason why 49 percent voted no as to why 51 percent voted yes.' Three months after Danish voters said no to the treaty, the future of Maastricht remains shrouded inuncertainty.Perhaps the only thing that can be said with confidence is that Europe's political leaders are far more enthusiastic about Maastricht than the voters. Specifically, the pact would create not only a single European currency by the end of the century, it would unite Europe's foreign and defense policies. There is widespread fear that Maastricht means an erosion of national sovereignty, and so it does. Yet, with the reunification of Germany, a nation destined to be a global powerhouse again, Maastricht is see by other observers as a healthy mechanism to hold dangerous nationalism in check.French President Francois Mitterrand and German Chancellor Helmut Kohl, the principal architects of a more unified European Community, immediately proceeded to put a positive spin on the narrow ratification. In truth, a narrow victory is better than a loss. Had the French rejected the treaty, it was widely understtod that Mr. Mitterrand would have resigned. Interestingly enough, in spite of Mr. Kohl's wholehearted support for Maastricht, the German people appear to be no more enthusiastic about the idea than the French, which only adds to theuncertainty.For the moment, monetary and financialuncertaintyin Europe appears to be having a contradictory impact on the isnited States. The recent rise in the dollar means is.S. exports are more expensive and therefore less attractive to European consumers. The French vote on Maastricht should be gtod news for European bond markets, however, and is.S. markets should benefit as well. The nearly simultaneous lowering of interest rates in Germany and the isnited Kingdom should stimulateeconomicactiv ity in those countries and help offset the adverse trade effects of a stronger dollar.What happens now? Following the French vote, Prime Minister John Major of Great Britain called for a summit meeting of European Community leaders in order to discuss the future of the Maastricht pact. He already has said he will not submit the treaty to Parliament until the Danish rejection of the treaty is resolved, something that will probably be done by presenting a revised version of Maastricht to Danish voters in a second referendum. It would appear that the message emanating from Europe in some ways mirrors concerns over the North American free-trade agreement on this side of the Atlantic: The people want closer integration with their neighbors, but demand that it be done cautiously and deliberately, rather than ramrodding it through as their leaders would prefer.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":1,\"confidence\":0.92,\"focus_excerpt\":\"the future of Maastricht remains shrouded in uncertainty\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1517,
+            "outputTokens": 29,
+            "inputTokensCostNanodollars": "3792500",
+            "outputTokensCostNanodollars": "435000",
+            "totalBackendLatencyMs": "736"
+          },
+          "id": "epu_q2_medium-72c27b9d-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1517,
+        "outputTokens": 29,
+        "inputTokensCostNanodollars": "3792500",
+        "outputTokensCostNanodollars": "435000",
+        "totalBackendLatencyMs": "736"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #440"
+}

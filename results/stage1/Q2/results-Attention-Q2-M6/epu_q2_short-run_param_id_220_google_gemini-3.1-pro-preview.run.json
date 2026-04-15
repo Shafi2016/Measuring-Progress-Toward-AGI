@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T22:15:58.245601Z",
+  "endTime": "2026-04-02T22:16:21.483741Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-c5a65a68",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nMoscow's circus college doesn't just train a fresh crop of young entertainers each year. It has helped preserve Russia's revered circus traditions in an uncertain era. And though the schtol has fallen on hard economic times, it increasingly is helping introduce the discipline and artistry of classical Russian circus to Western audiences. Swedish performers Henrik Agger, 28, and his 19-year-old partner, Louise Bjurholm came to Moscow to hone their acrobatic skills. \"When you start to learn,\" Agger says, \"you want to learn more and more difficult things.\" [Boris Belokhovstov], Agger says, showed the couple how to make the feat seem effortless. And, they say, he understands how they work together better than they do. \"He can just figure out what movements fit us best,\" Agger says. Moscow's circus college doesn't just train a fresh crop of young entertainers each year. It has helped preserve Russia's revered circus traditions in an uncertain era. And though the schtol has fallen on hard economic times, it increasingly is helping introduce the discipline and artistry of classical Russian circus to Western audiences. Swedish performers Henrik Agger, 28, and his 19-year-old partner, Louise Bjurholm came to Moscow to hone their acrobatic skills. \"When you start to learn,\" Agger says, \"you want to learn more and more difficult things.\" [Boris Belokhovstov], Agger says, showed the couple how to make the feat seem effortless. And, they say, he understands how they work together better t\n\n[...TRUNCATED...]\n\n alarm. As long as there are Russians, she says, there will be a circus schtol. \"The circus art is for the fanatics,\" she says. \"They have always existed, and there will always be such people.\" Douglas Birch writes for the Baltimore Sun, a Tribune company. Credit: BALTIMORE SisN (Copyright (c) 2001 Los Angeles Times) Show less You have requested \"on-the-fly\" machine translation of selected content from our databases. This functionality is provided solely for your convenience and is in no way intended to replace human translation. Show full disclaimer Neither ProQuest nor its licensors make any representations or warranties with respect to the translations. The translations are automatically generated \"AS IS\" and \"AS AVAILABLE\" and are not retained in our systems. PROQisEST AND ITS LICENSORS SPECIFICALLY DISCLAIM ANY AND ALL EXPRESS OR IMPLIED WARRANTIES, INCLisDING WITHOisT LIMITATION, ANY WARRANTIES FOR AVAILABILITY, ACCisRACY, TIMELINESS, COMPLETENESS, NON-INFRINGMENT, MERCHANTABILITY OR FITNESS FOR A PARTICisLAR PisRPOSE. Your use of the translations is subject to all use restrictions contained in your Electronic Products License Agreement and by using the translation functionality you agree to forgo any and all claims against ProQuest or its licensors for your use of the translation functionality and any output derived there from. Hide full disclaimer Translations powered by LEC. Translations powered by LEC. Please select one or more items.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 1.0,\n  \"focus_excerpt\": \"It has helped preserve Russia's revered circus traditions in an uncertain era. And though the schtol has fallen on hard economic times\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 866,
+            "outputTokens": 57,
+            "inputTokensCostNanodollars": "1732000",
+            "outputTokensCostNanodollars": "6936000",
+            "totalBackendLatencyMs": "23098"
+          },
+          "id": "epu_q2_short-c5a65a68-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 866,
+        "outputTokens": 57,
+        "inputTokensCostNanodollars": "1732000",
+        "outputTokensCostNanodollars": "6936000",
+        "totalBackendLatencyMs": "23098"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #221"
+}

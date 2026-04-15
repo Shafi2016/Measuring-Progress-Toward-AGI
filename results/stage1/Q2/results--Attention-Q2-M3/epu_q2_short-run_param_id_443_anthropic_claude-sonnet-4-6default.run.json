@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:36:51.739590Z",
+  "endTime": "2026-03-31T18:36:54.274876Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-b7093bba",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nEven without a naming-rights deal, the Dallas Cowboys could btost their annual revenue by at least a third - $90 million and probably more - in their new stadium this season, an analysis by The Dallas Morning News shows.Such a jump, propelled largely by premium-priced club seats and suites, would probably make the Cowboys the top revenue producer in the NFL at more than $360 million and, possibly, the most profitable franchise, tto, surpassing the Washington Redskins in both categories. Dallas already is the most valuable franchise.The ptoreconomy, if it lingers for longer than another year or so, would eventually dull the team's financial performance.But the novelty effect of what arguably will be the grandest sports facility in the world could benefit owner Jerry Jones over a shorter term, some business experts say.They expect Cowboys Stadium to be full this season.\"I don't think Jerry Jones is going to be hurting,\" said Tom Kelly, director of the Baylor Center for Business andEconomicResearch.Still, it's clear thatuncertaintyabout theeconomyis cause for caution at Valley Ranch and in Arlington. The Cowboys aren't talking much about the finances of their billion- dollar baby. The last official update on ticket sales - 85 percent of reserved seats sold - was months ago.Interviewed at a recent team workout, Jones declined to be specific about new revenue. \"We'll be the top revenue team in the league,\" he said.After hearing The News' estimate for the team's revenue btost - mor\n\n[...TRUNCATED...]\n\nabove average.So, what does the stadium mean for Jones' personal fortune, estimated at $1.3 billion by Forbes in March?Two isniversity of Chicago economists, Kevin Murphy and Robert Topel, said in a paper early this year that the best way to measure total financial returns for an NFL owner is to consider the change in the value of his team as well as its operating income. The study of ownership economics, which found that team values had nearly quadrupled since 1998, was done for the NFL Players Association.By that measure, Jones already has realized considerable personal gain. According to Forbes, the value of the Cowboys increased by $327 million to $1.5 billion in 2007, the year after ground was broken for the new stadium. That dwarfed increases for the Redskins ($44 million) and the Patriots ($23 million) in the same period.Last September, Forbes valued the Cowboys at $1.61 billion.One sure way for Jones to increase team revenue, team value and his personal net worth is to start winning playoff games again.The Patriots, perennial winners, doubled their annual revenue in the six years after their new stadium opened.Caption:PHOTO(S): (TOM FOX/Staff Photographer) Dallas Cowboys owner Jerry Jones may get a little extra money to spend, thanks to his new stadium. The Cowboys revenue could exceed $360 million a year, the most in the NFL, according to an analysis. Most of the new revenue is expected to come from the stadium's club seats and suites.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.85, \"focus_excerpt\": \"uncertainty about the economy is cause for caution at Valley Ranch and in Arlington\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 919,
+            "outputTokens": 40,
+            "inputTokensCostNanodollars": "2757000",
+            "outputTokensCostNanodollars": "600000",
+            "totalBackendLatencyMs": "2484"
+          },
+          "id": "epu_q2_short-b7093bba-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 919,
+        "outputTokens": 40,
+        "inputTokensCostNanodollars": "2757000",
+        "outputTokensCostNanodollars": "600000",
+        "totalBackendLatencyMs": "2484"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #444"
+}

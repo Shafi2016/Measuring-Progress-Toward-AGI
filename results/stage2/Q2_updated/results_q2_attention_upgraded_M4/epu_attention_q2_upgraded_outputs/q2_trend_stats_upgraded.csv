@@ -1,0 +1,2 @@
+llm_name,trend_slope_per_step,long_minus_short_boot_mean,long_minus_short_boot_ci_lo,long_minus_short_boot_ci_hi
+deepseek-ai/deepseek-v3.2,0.014999999999999866,0.03,-0.006,0.066

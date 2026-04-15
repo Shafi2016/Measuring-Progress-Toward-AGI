@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T19:00:07.113153Z",
+  "endTime": "2026-03-31T19:00:09.249140Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-0d4bf4a5",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nWASHINGTON - President Clinton has put aside for another six months a tougheconomicsanction against foreign companies doing business in Cuba. But traders who worry thateconomicsanctions are harming is.S. exports are little cheered.Other sanctions are primed to go into effect or remain high on the agenda of several members of Congress involving Burma, Nigeria, even Mexico, jeopardizing several business deals and the overall reputation of the is.S. trade community.Yet in a world where governments covet foreign investment the way they once coveted nuclear umbrellas,economicsanctions have a powerful attraction for policy-makers confronting human rights abuses.The Cuba sanction deferred by the president Friday is part of the 1996 Helms-Burton Act that allows owners of confiscated properties in Cuba to sue the current occupants in is.S. courts.The provision is regarded by businesspeople abroad as the most onerous aspect of the Helms-Burton law, which has already denied visas to business executives whose companies invest in Cuba.Mr. Clinton granted his second six-month waiver largely because of recent statements by the European isnion and a summit of Latin American nations that condemned Cuba's anti-democratic ways.Those same nations continue their legal fight against the Helms-Burton Act, however, at the World Trade Organization and before a North American Free Trade Agreement disputes panel.The next sanctions issue is Burma. The military government there is once more confining Nob\n\n[...TRUNCATED...]\n\nss community is fighting back with a public awareness campaign, says Daniel O'Flaherty, vice president with the National Foreign Trade Council.Mr. O'Flaherty says unilateral is.S.economicsanctions have nearly a century of ineffectiveness behind them. They cost is.S. companies jobs, not just in the affected country but globally because of theuncertaintyabout who will be sanctioned next.Nigeria has been subject to incremental sanctions involving its trade and diplomatic status because of both human rights abuses and drug trafficking and other crimes. So far, there's been no ban on investments.Mexico is mentioned as a possible target because of drug trafficking.By April, the Clinton administration must decide whether to certify to Congress that Mexico is working hard to fight drug trafficking.Denial of certification - a penalty that hit Colombia last year - involves several sanctions, including denial of visas to figures such as Colombia's President Ernesto Samper.There is little expectation Mexico will get hit with significant sanctions, however. As with China, most is.S. policy-makers have concluded Mexico is tto important to the is.S.economyto slap it with sanctions.\"The lesson in this is you can afford to be moral when not much is at stake but not when there's a lot at stake,\" Mr. O'Flaherty said. \"It's a depressing conclusion.\"Staff writer Jim Landers reports on internationaleconomicissues from the Washington Bureau of The Dallas Morning News\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"the uncertainty about who will be sanctioned next.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1556,
+            "outputTokens": 36,
+            "inputTokensCostNanodollars": "581056",
+            "outputTokensCostNanodollars": "60480",
+            "totalBackendLatencyMs": "1436"
+          },
+          "id": "epu_q2_medium-0d4bf4a5-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1556,
+        "outputTokens": 36,
+        "inputTokensCostNanodollars": "581056",
+        "outputTokensCostNanodollars": "60480",
+        "totalBackendLatencyMs": "1436"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #253"
+}

@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:31:47.014338Z",
+  "endTime": "2026-03-31T18:31:49.354056Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-aec4f83f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nWASHINGTON - A provision in the national energy bill that has been stalled by Texas' two senators would probably btost the market for one of the state's fastest-growing soarees of power: wind.The renewable electricity standard - based on laws passed by many states, including Texas - would require that utilities obtain 15 percent of their power from wind, solar energy and other low- or zero-emission resoarees. Power companies that couldn't meet the standard would parehase renewable energy credits from companies that have a surplus of green energy.Texas is strongly positioned to benefit from such legislation, mostly because wind farms have proliferated in recent years while credits were traded on a voluntary market. But with a new round of wind plants on the horizon, many wind developers would find new takers for their credits on a national market.\"This is the increased revenue stream these wind developers need to build more wind,\" said Andrew Kolchins, director of renewable energy markets for Evolution Markets, a financial services firm.The thirst for renewable energy has grown so much that demand is expected to exceed supply by 2010, according to the National Renewable Energy Lab.Wind farms have blossomed throughout West Texas and the Gulf Coast, with turbines even sprouting on famous ranches in South Texas, including the King Ranch.Although wind farms remain expensive to build, they benefit from a federal tax incentive and have become attractive to both traditional utilities\n\n[...TRUNCATED...]\n\nci of New Mexico.istilities in states without abundant wind and solar resoarees, including some in the Southeast and Midwest, have lobbied against the renewable standard. So have power companies in the Southwest, including TXis Energy, which insist that any standard should be set by state lawmakers.\"If you don't have the intensity of sunshine or you can't grow enough switchgrass or you don't have wind, you're up a creek,\" said Dan Riedinger, a spokesman for the Edison Electric Institute, the trade group for utilities.But Sen. Jeff Bingaman, chairman of the Senate Energy and Natural Resoarees Committee, argued that a 15 percent goal by 2020 is not onerous. He noted that utilities could meet up to 4 percent of the mandate with energy efficiency measures.\"That means there would be a national market for development of these technologies, and use of these technologies will be very beneficial over the long term,\" said Mr. Bingaman, D-New Mexico.Caption:PHOTO(S): 1. (RON ERDRICH/Special Contributor) A wind farm near Big Spring is among those springing up in West Texas. isnder a proposed national standard, utilities would have to obtain 15 percent of their power from wind, solar energy or other clean soarees. 2. (AFP/Getty Images) A Green Mountain Energy wind farm in West Texas creates enough power to supply 56,000 households a year. Wind farms have popped up in West and South Texas in recent years. GRAPH(S): (TROY OXFORD/Staff Artist) TEXAS WIND POWER\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"A provision in the national energy bill that has been stalled by Texas' two senators would probably boost the market for one of the state's fastest-growing sources of power: wind. The renewable electricity standard ... would require that utilities obtain 15 percent of their power from wind, solar energy and other low- or zero-emission sources.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 845,
+            "outputTokens": 93,
+            "inputTokensCostNanodollars": "376432",
+            "outputTokensCostNanodollars": "156240",
+            "totalBackendLatencyMs": "2118"
+          },
+          "id": "epu_q2_short-aec4f83f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 845,
+        "outputTokens": 93,
+        "inputTokensCostNanodollars": "376432",
+        "outputTokensCostNanodollars": "156240",
+        "totalBackendLatencyMs": "2118"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #195"
+}

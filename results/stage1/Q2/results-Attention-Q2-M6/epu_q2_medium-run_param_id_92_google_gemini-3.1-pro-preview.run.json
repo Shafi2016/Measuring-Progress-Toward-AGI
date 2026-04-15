@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-3.1-pro-preview"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-02T23:36:17.734972Z",
+  "endTime": "2026-04-02T23:36:30.466097Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-d43edc1c",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation ma\n\nTARGET ARTICLE START\nThe National Mediation Board said Tuesday it has recessed contract talks between Eastern Airlines and its machinists union, and has placed the case under review after failing to nudge the two sides toward a settlement during a special negotiating session. Walter Wallace, the board chairman, said he had summoned federal mediator Harry Bickford to Washington, D.C., to participate in the review. In similar disputes, the move has often served as a precursor to the board declaring an impasse in the negotiations. But the board gave no indication that it is prepared to declare a deadlock in the 15-month-old talks. Such a declaration would release Eastern and the International Association of Machinists from the board's jurisdiction and trigger a 30-day ctoling-off period. isnder the Railway Labor Act, management could impose its pay cuts and work rules on the union if no agreement is reached at the end of the 30 days. The union would be free to strike. Neither Eastern nor the IAM would comment. Wallace asked both sides to honor a news blackout. Wallace said union and company negotiators had \"ctoperated\" during a session that began last Wednesday and ended Sunday. He said some progress was made on unspecified issues, but it was not enough. \"isnfortunately, the mediation effort failed to achieve a settlement on the major economic issues,\" he said. A spokesman for Wallace refused to say what the board plans to do next. He would not speculate on when there will be another announcement. The uncertainty has angered management. In recent weeks, Eastern has vigorously campaigned for an impasse, gaining public support from Dade County business leaders and Wall Street analysts. They all say that Eastern should quickly gain the right to impose $150 million in annual concessions on the IAM. But the union, which has offered to accept a one-year pay freeze in return for raises later, insists the demands are unreasonable. It blames management for the company's ills. On Tuesday, Eastern named Kay McMurray, a former chairman of the National Mediation Board, to its board of directors. He most recently was director of the Federal Mediation and Conciliation Service, which is responsible for mediation of labor-management disputes for most is.S. industry. Throughout the debate over negotiations, Eastern has been losing about $1 million a day. Through the first nine months of 1988, the company posted net losses of $233 million. Analysts believe the airline lost as much as $140 million in the fourth quarter. If correct, the figure would push Eastern's yearly deficit to $370 million.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation mar"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"A spokesman for Wallace refused to say what the board plans to do next. He would not speculate on when there will be another announcement. The uncertainty has angered management.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-3.1-pro-preview"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1532,
+            "outputTokens": 63,
+            "inputTokensCostNanodollars": "3064000",
+            "outputTokensCostNanodollars": "9396000",
+            "totalBackendLatencyMs": "12597"
+          },
+          "id": "epu_q2_medium-d43edc1c-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1532,
+        "outputTokens": 63,
+        "inputTokensCostNanodollars": "3064000",
+        "outputTokensCostNanodollars": "9396000",
+        "totalBackendLatencyMs": "12597"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #93"
+}

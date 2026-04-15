@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:52:20.290065Z",
+  "endTime": "2026-04-01T17:52:21.788131Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-8dfc27c0",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nAmiable Idea Merchant Who Is Viewed as the Most-Feared Japan-Basher By ELAINE SCIOLINO Special to The New York Times New York Times (1923-Current file); Feb 8, 1990; ProQuest Historical Newspapers: The New York Times (1851-2010) pg. A24 Washington at Work Amiable Idea Merchant Who Is Viewed as the Most-Feared Japan-Basher By ELAINE SCIOLINO Special to The New York Times WASHINGTON, Feb. 7 \u2014 Enter Pat Choate's cinnabar-colored Victo\u00adrian townhouse on Capitol Hill, and you are walking into the Orient. istamaro wtodblocks and a 17th-cen\u00adtury painted screen line the gallery of the spare living rtom. A six-ftot- square calligraphy on hammered sil\u00adver frames the dining rtom table. A mural of Hokusains \"Mount Fuji at Dawn\" graces the viewing area of the Japanese rock garden in the back\u00adyard. So why is this bearded and bespec\u00adtacled economist regarded as Wash\u00adington's most-feared Japan-basher? In September, Alfred A. Knopf will publish \"Agents of Influence,\" Mr. Choate's chronicling of the ways Japan shapes American trade and economic policies through contribut\u00ading to Congressional, gubernatorial and mayoral campaigns, bankrolling think tanks and universities, planting stories in the press, and most of all, through the revolving dtor, hiring for big money former isnited States Gov\u00adernment officials as lobbyists, law\u00adyers and publicists. \"This is a town where you can rent power and influence,\" says Mr. Choate, who is vice president of policy analysis for TRW Inc., a $7 bil\u00adlion milita\n\n[...TRUNCATED...]\n\nocratic administrations, and since 1981 has operated as a one-man think tank from the conglomerate's office in Rosyln, Va. Although TRW has two manufac\u00adturing plants and a business develop\u00adment office in Japan and a number of American-Japanese joint ventures in North America, he is not required to show his bosses an advance copy of his forthcoming btok, which he says he has written in his spare time. Be\u00adcause his wife, Diane, a psychothera\u00adpist, is studying Jungian analysis in Zurich, he says he has the luxury of working at home alone. Mr. Choate knows that he may risk friendships by naming names and de\u00adtailing unsavory relationships in the btok's Appendix A, an alphabetical Who's Who of Washington's Japan promoters, the interests they repre\u00adsent and what they were paid. But he is confident that because of the pecul\u00adiar political culture of Washington, where alliances of the powerful sur\u00advive because they have to, the furor will be short-lived. \"There are going to be a lot of peo\u00adple who will be very angry with me when the btok comes out, and I will be very angry and then realize ulti\u00admately that a lot of the criticism has nothing to do with me,\" he says. \"But stoner or later, the next topic will come along and we can work together on that. So I'm not in great puddles of sweat about this, because I'll be a player long after this btok is gone.\" Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"Agents of Influence,\\\" Mr. Choate's chronicling of the ways Japan shapes American trade and economic policies through contributing to Congressional, gubernatorial and mayoral campaigns, bankrolling think tanks and universities, planting stories in the press, and most of all, through the revolving door, hiring for big money former United States Government officials as lobbyists, lawyers and publicists.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1690,
+            "outputTokens": 99,
+            "inputTokensCostNanodollars": "371800",
+            "outputTokensCostNanodollars": "87120",
+            "totalBackendLatencyMs": "1344"
+          },
+          "id": "epu_q2_medium-8dfc27c0-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1690,
+        "outputTokens": 99,
+        "inputTokensCostNanodollars": "371800",
+        "outputTokensCostNanodollars": "87120",
+        "totalBackendLatencyMs": "1344"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #310"
+}

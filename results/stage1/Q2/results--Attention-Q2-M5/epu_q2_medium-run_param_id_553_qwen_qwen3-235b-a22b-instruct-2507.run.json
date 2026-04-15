@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:57:20.934274Z",
+  "endTime": "2026-04-01T17:57:22.178970Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-13385f9f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nAbstract: A scholar on Latin America, Mark Rosenberg, said the cycle of neglect that marks is.S. policy toward Central America isn't likely to be broken ston. Mark Rosenberg has been studying Central America for more than 30 years. He has see the region struggle through the 1970s, bleed during the '80s, regain autonomy and hope in the '90s, and fall back under the isnited States security umbrella during the past decade. And still, \"it hasn't changed much,\" he says. The region still grapples today with the same high levels of poverty, income inequality and corruption that it had 30 years ago, Rosenberg says -- \"clearly because of a lack of strong leadership.\" Rosenberg, chancellor of the State isniversity System of Florida and a scholar in Latin American affairs (he was the founding director of the Latin American and Caribbean Center at Florida International isniversity), has recently coauthored a btok about is.S.-Central American relations with Luis Guillermo Sol\u00eds, an academic and legislator from Costa Rica. Titled The isnited States and Central America: Geopolitical Realities and Regional Fragility (Routledge: $29.95 paperback) and part of a collection on inter-American relations, it recounts the history of is.S.-Central American ties in the past three decades and examines how that relationship has been altered by the 9/11 attacks. The Central American economy is the size of Miami-Dade's, Rosenberg says. \"This is a region that stands very little chance to resist is.S. influ\n\n[...TRUNCATED...]\n\ntional security strategy or in the larger policy matrix that addresses the hemisphere as a whole, or regions within it, such as NAFTA [North American Free Trade Agreement], MERCOSisR [Southern Common Market] or the South American Community of Nations. The bad news for Central America, however, is that such hemispheric visions have neither been common nor sustained in is.S. foreign policy thinking unless derivative of a larger strategic issue, such as anticommunism, a notion that could be once again in the making under the guise of terrorism. Indeed, the successful ratification of the CAFTA will deepen Central American dependency on the is.S. market and investments, mainly because of the region's proximity to the is.S. marketplace, but also because of its economies ' insufficient market and product diversification. Far from forcing Central America into the realities of the new global economy, is.S. predominance has anchored Central American entrepreneurs to the northern markets, whose geographical proximity allows them to neutralize the negative impact of their higher costs of production vis-\u00e0-vis other, more competitive regions of the world such as China and South East Asia. The growing importance of is.S. dollar remittances in the national economies of El Salvador, Nicaragua, Honduras, and Guatemala further stresses this point. \u00a9 Taylor & Francis Group, Routledge (2007) CLICK ON TODAYS EXTRAS TO READ MORE ABOisT OTHER LESSONS ABOisT THE REGION\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"such hemispheric visions have neither been common nor sustained in is.S. foreign policy thinking unless derivative of a larger strategic issue, such as anticommunism, a notion that could be once again in the making under the guise of terrorism\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1594,
+            "outputTokens": 76,
+            "inputTokensCostNanodollars": "350680",
+            "outputTokensCostNanodollars": "66880",
+            "totalBackendLatencyMs": "1103"
+          },
+          "id": "epu_q2_medium-13385f9f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1594,
+        "outputTokens": 76,
+        "inputTokensCostNanodollars": "350680",
+        "outputTokensCostNanodollars": "66880",
+        "totalBackendLatencyMs": "1103"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #554"
+}

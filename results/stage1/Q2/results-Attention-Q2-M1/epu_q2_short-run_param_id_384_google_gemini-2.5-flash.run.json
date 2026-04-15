@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:09:55.573106Z",
+  "endTime": "2026-03-31T02:09:58.503949Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-63e45eed",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nIn the political ballfield of George W. Bush's presidential campaign, the Rev. James Merritt knows exactly where he's standing.\"Home plate,\" the pastor said recently from his chareh office north of Atlanta.\"People like myself - meaning evangelical Christians, regular charehgoing people - that's his home plate. George Bush can lose with us, but he cannot win without us.\"For the Bush re-election team, a key task in its calculus for keeping his job is securing and invigorating the president's conservative political base. And nowhere is that more solid than in that bright cluster of red states in the South.Mr. Bush swept that region in 2000, winning even Democratic rival Al Gore's home state of Tennessee and earning a contested victory in Florida that gave him the White House by a razor-thin margin.In early closed-dtor sessions in Texas, Georgia, Florida and other states, Bush campaign officials are telling supporters that the swing vote is dwindling - making it more important to identify reliable Bush voters and get them to the polls in November.The message from Karl Rove, the president's chief political adviser, is that 4 million evangelical voters who should have cast ballots for Mr. Bush in 2000 stayed home, and he says the campaign must do a better job marshaling its forces this year. To that end, the Bush team is mapping a detailed plan to register millions of new Republicans and train volunteers for a massive person-to-person drive to btost the vote among the base.\"We need\n\n[...TRUNCATED...]\n\nrs cite disenchantment with politics after eight years of Bill Clinton. Still others said some social conservatives who were lukewarm about the father when he was in the White House wereuncertainabout the son.In his first term, Mr. Bush has clearly sided with evangelicals on issues they care about - abortion, same-sex marriage, the appointment of conservative judges, support of Israel and the war in Iraq, analysts said.Last month, influential pastors and religious leaders were invited to a luncheon at a downtown Atlanta hotel where Mr. Rove delivered a political pep talk and touted Mr. Bush as a man of faith, say those who attended.Sadie Fields, head of the Christian Coalition in Georgia, promised a vigorous effort to register voters, including at charehes. The Christian Coalition will be distributing thousands of Citizen Sunday packets aimed at getting people registered and out to vote.\"You can't have your base wandering off. That's why the life issue, the homosexual marriage issue, the 10 Commandments issue, the judicial issue and illegal immigration are important,\" she said. \"Before you can go after the swing voters, the ones who stay on the side until a week before the election, you've got to have something to build on.\"E-mail wslater@dallasnews.comCaption:PHOTO(S): 1. Ralph Reed. 2. James Merritt. 3. (J. SCOTT APPLEWHITE/Associated Press) President Bush spoke last year at a chareh in Landover, Md. Next to him was pastor John K. Jenkins Sr.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 1.0, \"focus_excerpt\": \"The article focuses on President George W. Bush's re-election campaign strategy, specifically targeting his conservative base and issues important to them such as abortion, same-sex marriage, and judicial appointments. It discusses political mobilization and voter registration efforts. There is no discussion of uncertainty related to economic policy, policy decisions, possible economic actions, or the economic effects of policy.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 872,
+            "outputTokens": 96,
+            "inputTokensCostNanodollars": "261600",
+            "outputTokensCostNanodollars": "1215000",
+            "totalBackendLatencyMs": "2860"
+          },
+          "id": "epu_q2_short-63e45eed-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 872,
+        "outputTokens": 96,
+        "inputTokensCostNanodollars": "261600",
+        "outputTokensCostNanodollars": "1215000",
+        "totalBackendLatencyMs": "2860"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #385"
+}

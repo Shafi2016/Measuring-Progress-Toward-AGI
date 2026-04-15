@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:47:15.630033Z",
+  "endTime": "2026-03-31T18:47:17.877010Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-74dfab8e",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuati\n\nTARGET ARTICLE START\nNEW YORK - The Dow's long journey back from August neared completion Tuesday as interest rates carved out another 1{-year low in the bond market.Still lagging the stock market's recovery from a steep summertime spill, the Dow Jones industrial average rose 78.09 to 8178.31 on Tuesday - about 80 points from its Aug. 6 peak of 8259.31. By late August, the blue chip barometer had fallen more than 600 points from that mark.Broader stock measures, meanwhile, extended their record-setting streaks during the mostly quiet session.The Standard & Ptor's 500 index, which only last week completed its recovery from August's slide, closed at a record high for the fourth consecutive session. The Russell 2000 index of smaller companies rolled to its seventh consecutive record and 24th in 29 sessions.With the Dow's recovery and the broad market's continued success hinging on the impending barrage of third-quarter profit reports, investors were heartened by late Monday's news that Motorola had met most analyst forecasts, which had been lowered recently at the company's suggestion.\"It ltoks as though there's a sigh of relief with Motorola's earnings,\" said Robert Streed, senior investment adviser at Northern Trust in Chicago.The profit picture was also bolstered, he said, by a generally strong report late Monday by Tellabs, a maker of telecommunications equipment and\"an institutional favorite, which had been under pressure because of earnings concerns.\" Motorola rose $2.19 to $73.19 on the New York Stock Exchange, and Tellabs rose $2.13 to $57.25 in Nasdaq trading.For the second straight day, there was little in the way of majoreconomicnews to dampen the upbeat inflation outltok behind the bond market's monthlong rally.As bond prices rose Tuesday, the yield on the 30-year Treasury bond fell to 6.23 percent, its lowest finish since Feb. 15, 1996.The long-bond yield - a key determinant of business and consumer borrowing costs - sttod as high as 6.69 percent less than a month ago amiduncertaintyover whethereconomicactivity was accelerating at an inflationary pace.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuatio"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.85, \"focus_excerpt\": \"The long-bond yield - a key determinant of business and consumer borrowing costs - sttod as high as 6.69 percent less than a month ago amiduncertaintyover whethereconomicactivity was accelerating at an inflationary pace.\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 839,
+            "outputTokens": 69,
+            "inputTokensCostNanodollars": "340816",
+            "outputTokensCostNanodollars": "115920",
+            "totalBackendLatencyMs": "2047"
+          },
+          "id": "epu_q2_short-74dfab8e-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 839,
+        "outputTokens": 69,
+        "inputTokensCostNanodollars": "340816",
+        "outputTokensCostNanodollars": "115920",
+        "totalBackendLatencyMs": "2047"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #573"
+}

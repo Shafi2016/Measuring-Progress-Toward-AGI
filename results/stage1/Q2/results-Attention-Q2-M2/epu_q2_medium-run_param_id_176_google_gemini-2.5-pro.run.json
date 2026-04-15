@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-pro"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T04:10:21.548816Z",
+  "endTime": "2026-03-31T04:10:32.487566Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-8c4194bf",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nTwo hours were enough for Jos\u00e9 Luis S\u00e1nchez and his family to pack their most valuable belongings in two vans - items accumulated in 10 years of living in the Dallas area.With his wife, children and their suitcases in place, Mr. S\u00e1nchez closed the dtor of his Mesquite apartment for the last time, sat at the wheel of one of the vehicles - his brother drove the other - and hit the road back to his homeland.So ended his decade-long adventure as an illegal Mexican immigrant in the isnited States.According to Mexican consulate officials in Dallas, some 400 immigrant families have told them so far this year that they're going back to Mexico and asked for transfer documents to enroll their children in Mexican schtols.Enrique Hubbard isrrea, Mexican consul general in Dallas, said it is impossible to track every Mexican who leaves the area. But he said the number asking for transfer documents at the consulate is on the rise.In 2005, the consulate issued 162 such documents; in 2006 it was 199; and last year it was 270. At the current rate, more than twice as many people will leave this year as last, he said.\"There is no doubt the trend indicates that the number is growing,\" Mr. Hubbard said.And it isn't happening only in Dallas. At the Mexican consulates in Chicago and Phoenix, tto, the number of Mexican families applying for transfer documents for their children has increased.So far in 2008, more people (752) have visited the Mexican consulate in Phoenix to apply for transfer document\n\n[...TRUNCATED...]\n\n spokesman for FAIR, an organization opposed to illegal immigration.\"That these people are leaving proves what we have been saying for years,\" he said. \"If you begin enforcing the law to prevent them getting what they come here to get, they will go.\"Mr. Mehlman said FAIR would like to see more immigrants leave, not because of hardeconomictimes but because of law enforcement.He said the return of Mexican immigrants to their home country would force the government there to make reforms to jump-start itseconomy.\"Exporting its unemployed, underemployed citizens or those who are unhappy there allowed the Mexican government to get rid of the pressure to introduce changes for the benefit of their people,\" Mr. Mehlman said. \"Now that their people are going back, perhaps they won't be able to shun their responsibility any longer.\"As the moment to leave came, Jos\u00e9 Luis S\u00e1nchez and his family didn't have an idea of the Mexico awaiting them. From their family, they expect everything. From their home country, not much.\"We're going to continue living by the day, for sure,\" he said. \"But psychologically we're going to be better. With our family, without fears, without pressures. It's worth the difficulties.\"And, he added, \"The American Dream is just that - a dream.\"Caption:PHOTO(S): (ROBERTO M. SANCHEZ/Al D\u00eda.) Jos\u00e9 Luis S\u00e1nchez Jr. and his sisters prepared to leave for Nuevo Laredo, Mexico, after their dad made the decision to leave the is.S. after 10 years.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "```json\n{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"\\\"If you begin enforcing the law to prevent them getting what they come here to get, they will go.\\\"\"\n}\n```"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-pro"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1610,
+            "outputTokens": 57,
+            "inputTokensCostNanodollars": "2012500",
+            "outputTokensCostNanodollars": "10890000",
+            "totalBackendLatencyMs": "10836"
+          },
+          "id": "epu_q2_medium-8c4194bf-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1610,
+        "outputTokens": 57,
+        "inputTokensCostNanodollars": "2012500",
+        "outputTokensCostNanodollars": "10890000",
+        "totalBackendLatencyMs": "10836"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #177"
+}

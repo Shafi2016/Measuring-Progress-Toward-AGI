@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:53:58.512765Z",
+  "endTime": "2026-04-01T17:53:59.690219Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-39b2ce0b",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nTALKING ABOisT SMALL BisSINESS: An educator discusses the state of entrepreneurship in the 1990s Wall Street Journal (1923 - Current file); Oct 16, 1992; ProQuest Historical Newspapers: The pg. RIO Reproduced with permission of the copyright owner. Further reproduction prohibited without permission. Talking Continued from Page RIO do you sleep at night? They don't see the risk that you and I see because they really understand the market: they really under\u00adstand the customer. They have a gtod handle on production and they're happy with this team. But they can t grow. There is no money out there. WSJ: Even if they're a successful busi\u00adness? MS. GOODMAN: They are decreasingly bankable. WSJ: When did the herd mentality sud\u00addenly decide it was tto risky to put money into these people? you had all of those wonderful little com\u00adpanies that exploited the fact that you had pretty much comatose retailers that hadn't changed anything they had done in 100 years. The Limited, or the whole dis\u00adcount Wal-Mart phenomenon. On the other hand, entrepreneurs figure out that some patents are valuable, and the next thing you know you've got an entire industry built around biogenetic engineering. Or somebody comes up with a new way to grow crystals in space and, voisa, new semiconductors that are awesome. So en\u00adtrepreneurs tend to play in arenas that ei\u00adther become brand-new industries driven by highly proprietary, competitive-advan\u00adtage technology, or else in niches that are falling out from class\n\n[...TRUNCATED...]\n\nn 90 days. It's where you get your money for your property, plant and equipment It's where you float your pay\u00adroll for cyclical businesses. And if you can't get money from banks, you're in trouble. WSJ: What's the answer? How do you get out of this trap? ms, GOOOMAN: What has to happen is that stoner or later, the cash that's being held by banks in Treasury bills will become burdensome because it attracts tto much notice from\u2014 KkThepolitical animals? MS. GOOOMAN: Right political animals, people who read the newspapers, so the banks will put pressure on the regulators to come up with a strategy that will allow them to lend money to clients who are safe in your view and my view, but not now in the regulator's view. The Demand Side .KkWeweretalkingalotdboutthelack of credit But what about the problem of a lack of demand? How much of that is affect\u00ading entrepreneurs? MS. GOODMAN: For entrepreneurs, rela\u00adtively little. First of all, historically, the most attractive time to start a company is in really bad economic times. You have cheaper labor, cheaper property, plant and equipment, and basically costs are much lower and more predictable, which is very, very important for a new company. ' And then there is the other thing: Ltok at what true entrepreneurial companies go into. On the one hand, they're mining market niches. For example, in retailing. Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"the banks will put pressure on the regulators to come up with a strategy that will allow them to lend money to clients who are safe in your view and my view, but not now in the regulator's view\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1648,
+            "outputTokens": 69,
+            "inputTokensCostNanodollars": "362560",
+            "outputTokensCostNanodollars": "60720",
+            "totalBackendLatencyMs": "1025"
+          },
+          "id": "epu_q2_medium-39b2ce0b-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1648,
+        "outputTokens": 69,
+        "inputTokensCostNanodollars": "362560",
+        "outputTokensCostNanodollars": "60720",
+        "totalBackendLatencyMs": "1025"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #391"
+}

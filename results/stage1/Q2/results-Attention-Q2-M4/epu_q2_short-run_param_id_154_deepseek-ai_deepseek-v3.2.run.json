@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "deepseek-ai/deepseek-v3.2"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:30:06.835973Z",
+  "endTime": "2026-03-31T18:30:11.450683Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-494a4547",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nRussia has no plans to import Cuban raw sugar in the second half of 1992 because it will be processing its own sugar beet harvest, the Russian sugar buying agency Prodintorg said Thursday. Prodintorg President Sergei Barykin said in Havana that Russia and Cuba were currently implementing the second three- month part of a sugar-for-oil agreement that covered the first six months of the year. Asked about the prospects for renewing this agreement for the rest of 1992, Barykin said: \"No prospects, because we do not need raw sugar for the second half of the year.\" He added that Russian refineries would concentrate in that period on processing the Russian sugar beet harvest. In the first three months of 1992, Cuba delivered 500,000 tons of raw sugar to Russia in return for 900,000 tons of oil products. Barykin said the two countries were now implementing the second optional part of the agreement, which foresees the exchange of similar amounts, traded on the basis of world market prices, up to the end of June. This year Cuba had hoped to sell two million to 2.5 million tons of sugar to the Russians. But Barykin's statements mean Cuba will ship just one million tons in 1992, compared with the four million tons the island once sold the former Soviet isnion under a preferential long-term trade agreement. Cuba also has agreements this year to supply sugar to a few other countries -- China, Kazakhstan and Lithuania among them. But with no exports to Russia during the second half of the y\n\n[...TRUNCATED...]\n\n its sugar. Another sugar analyst said Cuba probably will be able to export a total of about four million tons this year, but should realize that the days when it could rely heavily on sugar are now over. \"The lesson is that Cuba can no longer sell five million tons of sugar a year. The Cubans need to rationalize their sugar industry and decrease production,\" he said. Meanwhile, the oil end of the Russian oil-sugar deal also appears uncertain. Asked how the sugar-for-oil shipments were progressing in the second quarter of this year, Barykin said the exchange was affected by problems in the Russian oil industry. \"We have to ctordinate the activities and it depends on the oil industry, which is not in the best of condition,\" he added. \"Shortages of oil can mean that we cannot pick up the whole quantity of sugar,\" Barykin said. He added the sugar-for-oil deal was being executed on a practically ship-by-ship basis, with Prodintorg and the Cuban sugar agency Cubazucar ctordinating deliveries. He could not detail the exact current status of shipments but said he understtod a number of ships carrying Cuban raw sugar had just left the island. Asked about the prices Russia was paying for the Cuban sugar, Barykin would say only that \"they are quite competitive.\" Cuban President Fidel Castro said recently that Cuba was receiving about $190 a ton for its sugar this year, compared with $800 a ton under the preferential accords with the former Soviet isnion.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.8,\n  \"focus_excerpt\": \"the exchange was affected by problems in the Russian oil industry. 'We have to coordinate the activities and it depends on the oil industry, which is not in the best of condition,'\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "deepseek-ai/deepseek-v3.2"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 853,
+            "outputTokens": 64,
+            "inputTokensCostNanodollars": "380912",
+            "outputTokensCostNanodollars": "107520",
+            "totalBackendLatencyMs": "2092"
+          },
+          "id": "epu_q2_short-494a4547-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 853,
+        "outputTokens": 64,
+        "inputTokensCostNanodollars": "380912",
+        "outputTokensCostNanodollars": "107520",
+        "totalBackendLatencyMs": "2092"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #155"
+}

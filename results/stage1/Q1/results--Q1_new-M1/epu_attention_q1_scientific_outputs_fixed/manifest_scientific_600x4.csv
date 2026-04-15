@@ -1,0 +1,9 @@
+file_name,description
+q1_results_detailed_600x4.csv,"Row-level clean and attacked predictions, correctness flags, confidences, excerpts, and composite score."
+summary_overall_scientific_600x4.csv,"Main scientific proof table: clean accuracy, attacked accuracy, attack drop, flip rate, McNemar p-value, FP/FN pull, and distraction label."
+summary_by_disagreement_scientific_600x4.csv,Same scientific proof metrics split by disagreement_flag.
+summary_by_gold_epu_scientific_600x4.csv,Same scientific proof metrics split by gold_epu.
+transition_counts_clean_to_attacked_600x4.csv,"Transition counts from clean prediction to attacked prediction, by model and gold_epu."
+most_harmed_rows_shared_600x4.csv,"Rows harmed by distractors across multiple models, for qualitative evidence."
+worst_attack_failures_by_model_600x4.csv,Model-specific rows where distractors changed a clean-correct prediction into an attacked-wrong prediction.
+pilot_rows_600.csv,The exact 600-row pilot used for the run.

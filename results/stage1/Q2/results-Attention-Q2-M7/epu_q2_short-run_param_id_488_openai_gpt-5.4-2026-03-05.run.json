@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "openai/gpt-5.4-2026-03-05"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-03T00:08:37.087961Z",
+  "endTime": "2026-04-03T00:08:38.202615Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-dd06c793",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nABC was added by name because the district has 21,000 students-3,000 below the minimum enrollment established in the bill. The references to ABC are not flattering. ABC Supt. Larry L. Lucas said the district policies did not create the higher dropout rates and lower achievement test scores in Hawaiian Gardens. He said that students from similar social and economic backgrounds performed similarly regardless of where they lived within ABC boundaries. The teachers union supports the idea of election districts, but is against the legislation, Assembly Bill 1002, because it specifically finds fault with ABC, said Richard Hathaway, president of the ABC Federation of Teachers. Hathaway said he interprets the bill's language as an indirect criticism of district teachers. ABC was added by name because the district has 21,000 students-3,000 below the minimum enrollment established in the bill. The references to ABC are not flattering. ABC Supt. Larry L. Lucas said the district policies did not create the higher dropout rates and lower achievement test scores in Hawaiian Gardens. He said that students from similar social and economic backgrounds performed similarly regardless of where they lived within ABC boundaries. The teachers union supports the idea of election districts, but is against the legislation, Assembly Bill 1002, because it specifically finds fault with ABC, said Richard Hathaway, president of the ABC Federation of Teachers. Hathaway said he interprets the bill's language\n\n[...TRUNCATED...]\n\nd La Palma. Soaree: The Los Angeles County registrar of voters office, ABC isnified Schtol District and the 1990 is.S. Census. TABLE: Comparison of Population Figures, Los Angeles Times; TABLE: Ethnicity by Percentages, Los Angeles Times (Copyright, The Times Mirror Company; Los Angeles Times 1991all Rights reserved) Show less You have requested \"on-the-fly\" machine translation of selected content from our databases. This functionality is provided solely for your convenience and is in no way intended to replace human translation. Show full disclaimer Neither ProQuest nor its licensors make any representations or warranties with respect to the translations. The translations are automatically generated \"AS IS\" and \"AS AVAILABLE\" and are not retained in our systems. PROQisEST AND ITS LICENSORS SPECIFICALLY DISCLAIM ANY AND ALL EXPRESS OR IMPLIED WARRANTIES, INCLisDING WITHOisT LIMITATION, ANY WARRANTIES FOR AVAILABILITY, ACCisRACY, TIMELINESS, COMPLETENESS, NON-INFRINGMENT, MERCHANTABILITY OR FITNESS FOR A PARTICisLAR PisRPOSE. Your use of the translations is subject to all use restrictions contained in your Electronic Products License Agreement and by using the translation functionality you agree to forgo any and all claims against ProQuest or its licensors for your use of the translation functionality and any output derived there from. Hide full disclaimer Translations powered by LEC. Translations powered by LEC. Please select one or more items.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\":0,\"confidence\":0.8,\"focus_excerpt\":\"the teachers union supports the idea of election districts, but is against the legislation, Assembly Bill 1002\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "openai/gpt-5.4-2026-03-05"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 794,
+            "outputTokens": 40,
+            "inputTokensCostNanodollars": "1985000",
+            "outputTokensCostNanodollars": "600000",
+            "totalBackendLatencyMs": "957"
+          },
+          "id": "epu_q2_short-dd06c793-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 794,
+        "outputTokens": 40,
+        "inputTokensCostNanodollars": "1985000",
+        "outputTokensCostNanodollars": "600000",
+        "totalBackendLatencyMs": "957"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #489"
+}

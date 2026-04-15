@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:53:07.315390Z",
+  "endTime": "2026-04-01T17:53:08.560758Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-ae31b637",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nTXis Corp.'s rushed sale of its troubled is.K. unit Monday may have averted a trigger that would have forced it to quickly pay off the debt of its telecommunications business.The Dallas-based company's telecom unit, TXis Communications, sits in an off-balance-sheet venture called Pinnacle One Partners LP. Outside investors own half of Pinnacle One, and the TXis parent company owns the other half.The partnership agreement requires TXis to pay off $810 million in loans if the parent company's credit rating drops below investment grade and its stock trades below $21.93 for 10 days.The stock closed below that level Monday for the 10th straight trading day. And Mtody's Investors Service put TXis's credit ratings on review Friday for a downgrade to junk status, citing the company's problems in Europe.TXis executives said Monday that they believed the Mtody's move Friday was a result ofuncertaintyover TXis Europe, and that the sale of the is.K. unit should resolve thatuncertainty.Mtody's has not yet responded to TXis's sale announcement.If the trigger hits, TXis would have to issue stock, sell assets or come up with other funds to pay off the $810 million debt.The company has played down any effect that Pinnacle would have, in part because credit rating agencies have already factored the partnership's debt into their analyses of TXis.TXis also has built up its cash reserves in recent weeks as its stock plummeted, saying it wanted to make sure it had ample cash for any needs that mig\n\n[...TRUNCATED...]\n\ners said after reviewing the filing.\"The clarity quotient here is a 2 on a scale of 1 to 10, where 10 is clear,\" said Mr. Cheffers, chief executive of AccountingMalpractice.com.Other questionsAnd the partnership's structure and investors raise other questions, Mr. Cheffers said.Pinnacle's third-party investors include subsidiaries of John Hancock Financial Services Inc., Credit Suisse First Boston and LJM2 Co-Investment LP, according to a filing with the Federal Communications Commission.LJM2 was one of the key entities that Enron used to hide its debt, and was central to the company's collapse last fall. Former Enron chief financial officer Andrew Fastow launched the partnership in 1999.While most of LJM2's activities were related to Enron, it also made several non-Enron investments. It owns about 7 percent of TXis Communications, through Pinnacle One.LJM2, which faces numerous lawsuits, filed for Chapter 11 bankruptcy protection last month.TXis acknowledged that LJM2 is an investor but would not discuss the role of the outside investors, saying Pinnacle One is a private investment with a confidentiality agreement.Mr. Cheffers said the connection with LJM2 brings up other concerns about Pinnacle One's financing and the structure of the partnership.\"They need to come clean,\" he said. \"They would do well to have a complete and full disclosure of what ttok place here.\"E-mail sreddy@dallasnews.comCaption:CHART(S): (Staff graphic) BLEEDING STOPPED?\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 0,\n  \"confidence\": 0.1,\n  \"focus_excerpt\": \"uncertainty over TXis Europe\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1619,
+            "outputTokens": 33,
+            "inputTokensCostNanodollars": "356180",
+            "outputTokensCostNanodollars": "29040",
+            "totalBackendLatencyMs": "1098"
+          },
+          "id": "epu_q2_medium-ae31b637-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1619,
+        "outputTokens": 33,
+        "inputTokensCostNanodollars": "356180",
+        "outputTokensCostNanodollars": "29040",
+        "totalBackendLatencyMs": "1098"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #354"
+}

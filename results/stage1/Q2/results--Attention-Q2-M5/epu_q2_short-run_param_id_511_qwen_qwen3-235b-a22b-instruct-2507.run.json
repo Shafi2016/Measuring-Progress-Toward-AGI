@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "qwen/qwen3-235b-a22b-instruct-2507"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-04-01T17:44:49.317414Z",
+  "endTime": "2026-04-01T17:44:50.236156Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-f5ec5b15",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nBy Thursday, a piece of one of the biggest public works projects in Texas history could be in the hands of a single private entity.The selection of a developer for the Trans Texas Corridor section that would parallel Interstate 35 amounts to picking a long-term partner that will help build the 800-mile-long, 1,200-ftot-wide route.\"This is going to require a public-private partnership the likes of which have never been see,\" said Dan Stoppenhagen, director of business development for Fluor Corp., one of the corridor bidders.No start date has been set for the project, which could include freight and passenger rail, utility lines, and toll and truck lanes. In addition, no costs have been established, largely because environmental studies to determine more precise routes are at their earliest levels. But a final route and financing plan could be selected by the end of 2005.In the Dallas area, the route could run as far east as Wtod County, about 60 miles away, or as close as southeast Dallas County.\"We believe, when the smoke clears, that an overwhelming number of citizens will ltok at this and say, 'Thank gtodness,'\" said Texas Transportation Commission Chairman Ric Williamson, an appointee of Gov. Rick Perry, who brought forth the corridor idea. \"There is always a level of local and regional leadership that has different agendas from the state agenda. But the state can't let that overwhelm them in the planning process.\"The road aheadOnce the state picks a developer, it will hav\n\n[...TRUNCATED...]\n\neaking with or working with him on any future projects.\"I characterize it as, 'Why would we invest the people's time and money in an organization that is opposed to the people's projects?'\" Mr. Williamson said, noting that local leaders should ltok beyond the needs of their areas to what is now a statewideeconomicissue. \"The nub of the argument is that we have a group of people with a tremendous investment in making sure congestion remains the same,\" so their localeconomiesdon't suffer.CollaborationuncertainAt a meeting Tuesday, the River of Trade group agreed to meet with Mr. Williamson, possibly as early as next week. Mr. Williamson, however, remained noncommittal on whether he would meet with the group, made up of leaders from East Texas to border areas, if Mr. Dean also attended.Mr. Dean said he is trying to schedule his own meeting with Mr. Williamson. His and the group's mission, he said, is to keep improvements coming to Interstate 35, while fostering a full discussion on the effects of the corridor.\"I hold Ric Williamson in very high regard, and I think he is capable of thinking outside the box, as is Rick Perry,\" Mr. Dean said. \"We have sincere issues about what will happen if cars and trucks that constitute trade and commerce are rerouted. A huge concept like that at some point has to have a full vetting.\"E-mail thartzel@dallasnews.comCaption:CHART(S): 1. GROisPS BIDDING FOR THE JOB. 2. (File graphic) THE TRANS TEXAS CORRIDOR CONCEPT.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.85,\n  \"focus_excerpt\": \"There is always a level of local and regional leadership that has different agendas from the state agenda. But the state can't let that overwhelm them in the planning process.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "qwen/qwen3-235b-a22b-instruct-2507"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 872,
+            "outputTokens": 60,
+            "inputTokensCostNanodollars": "191840",
+            "outputTokensCostNanodollars": "52800",
+            "totalBackendLatencyMs": "778"
+          },
+          "id": "epu_q2_short-f5ec5b15-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 872,
+        "outputTokens": 60,
+        "inputTokensCostNanodollars": "191840",
+        "outputTokensCostNanodollars": "52800",
+        "totalBackendLatencyMs": "778"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #512"
+}

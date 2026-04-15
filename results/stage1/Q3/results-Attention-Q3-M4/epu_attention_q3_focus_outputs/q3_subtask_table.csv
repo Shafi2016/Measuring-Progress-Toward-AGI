@@ -1,0 +1,13 @@
+llm_name,condition,field,prompt_order_index,completion_rate,correctness_mean,correctness_ci_low,correctness_ci_high
+deepseek-ai/deepseek-v3.2,multi_focus_epu_first,epu,1,1.0,0.66,0.6211852791435979,0.696778976532018
+deepseek-ai/deepseek-v3.2,multi_focus_epu_first,who,2,1.0,0.14666666666666667,0.12060802259334437,0.17722091278967084
+deepseek-ai/deepseek-v3.2,multi_focus_epu_first,actions,3,1.0,0.22333333333333333,0.19182825353148128,0.25835855436276645
+deepseek-ai/deepseek-v3.2,multi_focus_epu_first,effects,4,1.0,0.17333333333333334,0.14514798291106668,0.20567499508455117
+deepseek-ai/deepseek-v3.2,multi_focus_epu_first,mention_foreign,5,1.0,0.69,0.6518828921422978,0.7256996614724959
+deepseek-ai/deepseek-v3.2,multi_focus_epu_first,mainly_foreign,6,1.0,0.7533333333333333,0.7173016098226437,0.7861417949970813
+deepseek-ai/deepseek-v3.2,multi_focus_epu_last,epu,6,1.0,0.6316666666666667,0.5923473624908886,0.6693107229088371
+deepseek-ai/deepseek-v3.2,multi_focus_epu_last,who,1,1.0,0.3433333333333333,0.30644498721602165,0.38221501243493794
+deepseek-ai/deepseek-v3.2,multi_focus_epu_last,actions,2,1.0,0.3516666666666667,0.3145138540633485,0.3907067839040495
+deepseek-ai/deepseek-v3.2,multi_focus_epu_last,effects,3,1.0,0.32,0.28392122394605246,0.3583689884188799
+deepseek-ai/deepseek-v3.2,multi_focus_epu_last,mention_foreign,4,1.0,0.71,0.6724472094026921,0.7448808761715535
+deepseek-ai/deepseek-v3.2,multi_focus_epu_last,mainly_foreign,5,1.0,0.7783333333333333,0.7433855127100799,0.8097398070589601

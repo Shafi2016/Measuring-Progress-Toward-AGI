@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_medium",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_medium\")\ndef epu_q2_medium(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, medium_pre, medium_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:48:35.271084Z",
+  "endTime": "2026-03-31T18:48:36.907360Z",
+  "conversations": [
+    {
+      "id": "epu_q2_medium-d42bdfb8",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout ref\n\nTARGET ARTICLE START\nNarrowed is.S. Trade Deficit May Btost Some Bond Buying but Could Cut Prices: CREDIT Herman, Tom;EDWARD P. FOLDESSY Staff Reporter of THE WALL STREET JOisRNAL Wall Street Journal (1923 - Current file); Feb 2, 1987; ProQuest Historical Newspapers: The Pg- 35 _, Narrowed is.S. Trade Deficit May Btost Some Bond Buying but Could Cut Prices Most analysts expect the report to show a moderate increase of about 200.000 in the number of workers on business payrolls. The analysts also estimate the civilian un\u00ademployment rate rose slightly to 6.8% last month from 6.7% in December. Irwin L. Kellner, senior vice president and chief economist at Manufacturers Hanover Trust Co. in New York, predicts the economy will pick up steam throughout the year. He sees the trade deficit narrow\u00ading modestly this year to about $140 billion from a record $169.78 billion last year. That \"represents a plus for the economy,\" Mr. Kellner said. Meanwhile, Treasury Secretary James Baker told a congres\u00adsional Joint Economic Committee hearing Friday that it's tto early to conclude that trade deficits are declining. Mr. Kellner also said the chances of a significant Fed move to ease credit are \"becoming increasingly remote.\" He pre\u00addicted yields on 30-year Treasury bonds will rise to 744% by the year end. The dollar's deep slump so far this year has aroused the fear that inflationary pres\u00adsures will grow as imported gtods become more expensive. \"I am pessimistic on prices,\" said Scott Pardee, vice chairman of Yam\n\n[...TRUNCATED...]\n\nd at 100 4/32, where the yield was 7.23%. Shearson Lehman Brothers Inc. 's index of long-term Treasury bonds declined 5.38 points Friday to 1417.51. It closed last year at 1403.17. Three-year Treasury notes yielded atout 645% as of Friday. With these notes yielding only about five-eighths of a per\u00adcentage point below 10-year notes and only about one percentage point below 30-year bonds, \"there isn't a tremendous induce\u00adment\" to buy the 10-year and 30-year bonds, said Lawrence H. Brown, senior vice president at Northern Trust Co. in Chicago. isncertainty about the is.S. economy's health, about the outltok for the dollar, and about foreign investors' appetite for American bonds make it especially diffi\u00adcult to forecast interest rates, Mr. Brown said. \"You've got a lot of cross currents in the markets right now,\" he said.\"If there are signs the dollar will stabilize at these levels, then I think there is a gtod chance you will see reasonable participation by overseas investors\" in this week's Treas\u00adury auctions. KEY ASSETS AND LIABILITIES OF THE NATION'S LARGE COMMERCIAL BANKS (in millions of dollars) Change from ASSETS: Total loans, leases and Loans to depository and Other securities Including LIABILITIES: Demand deposits Other transaction deposits including NOW accounts .... Savings and other nontransaction deposits Includes large time deposits Reproduced with permission of the copyright owner. Further reproduction prohibited without permission.\nTARGET ARTICLE END\n\nArchive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout reference. Page sequence note. Archive copy marker. Section listing. Internal reference line. Continuation note. Archive page marker. Section header. Edition note. Library index line. Continuation marker. Photo caption omitted. Layout refe"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 1, \"confidence\": 0.7, \"focus_excerpt\": \"Treasury Secretary James Baker told a congressional Joint Economic Committee hearing Friday that it's too early to conclude that trade deficits are declining... the chances of a significant Fed move to ease credit are 'becoming increasingly remote'\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 1770,
+            "outputTokens": 69,
+            "inputTokensCostNanodollars": "5310000",
+            "outputTokensCostNanodollars": "1035000",
+            "totalBackendLatencyMs": "1600"
+          },
+          "id": "epu_q2_medium-d42bdfb8-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 1770,
+        "outputTokens": 69,
+        "inputTokensCostNanodollars": "5310000",
+        "outputTokensCostNanodollars": "1035000",
+        "totalBackendLatencyMs": "1600"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_medium-Run #219"
+}

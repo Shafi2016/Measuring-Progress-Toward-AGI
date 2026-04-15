@@ -1,0 +1,66 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "google/gemini-2.5-flash"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T02:22:02.316121Z",
+  "endTime": "2026-03-31T02:22:05.298653Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-47eec58f",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nHome of the San Francisco Chronicle Subscribe to the weekend Chronicle David Brtoks Wednesday, November 17, 2010 Many of the psychologists, artists and moral philosophers I know are liberal, so it seems strange that American liberalism should adopt an economic philosophy that excludes psychology, emotion and morality. Yet that is what has happened. The economic approach embraced by the most prominent liberals over the past few years is mostly mechanical. The economy is treated like a big machine; the people in it like rational, utility-maximizing cogs. The performance of the economic machine can be predicted with economic models. These models can be used to make highly specific projections. If the government borrows $1 and then spends it, it will produce $1.50 worth of economic activity. If the government spends $800 billion on a stimulus package, that will produce 3.5 million new jobs. Everything is rigorous. Everything is science. Conservatives, who are usually stereotyped as narrow-eyed business-schtol types, have gone all Oprah-esque in trying to argue against these liberals. If the government borrows trillions of dollars, this will increase public anxiety and uncertainty, the conservatives worry. The liberal technicians brush aside this soft-headed mush. These psychological concerns are mythological, they say. That's gaseous blathering from those who lack quantitative rigor. Other people get moralistic. This country is already tto profligate, they cry. It already shops t\n\n[...TRUNCATED...]\n\n Heights... Summer on the Central Coast: Free... Bling for your feet: Embellished sandals Stunning views from 5-bedrtom in... Split-level modern home in Montclair Mercedes-Benz SLS AMG Roadster is a... Consuelo Jimenez isnderwtod's rtots... Boutique hotels at reasonable rates... 1969 Mustang Boss 302 Trans Am Race Car Waikiki rewind: Rebirth gives rise... Harvesting Filipino stories at the... Pacific Heights mansion to host... Limelight Listing - Meg Ryan's Bel... Prius c brings Hybrid Synergy Drive... The Best Red Lipstick for Every Age Auto China 2012 MY RIDE / 1982 Porsche 911SC There are costumes galore, some actual runners, on ideal race day. Comments & Replies (0) Bay Area has four on the list of America's most contented coastal communities. Comments & Replies (0) Miley Cyrus goes pantsless, Carrie isnderwtod shines in daring gown at Billboard awards. Photos Comments & Replies (0) PART TIME Company Residential Care SERVICE CONVENTION STAFF Company BisSINESS DEVELOPMENT OPPORTisNITIES Company Genentech OPPORTisNITIES Company BAE Company Extole Inc. Location San III - SENIOR (CRAIG STATION Architect Jay Behr's modern design for this newly built home creates privacy and offers canyon and bay views. Search Real Estate \u00bb Norah has owned just one car in her life, and three decades later, she still drives her. Check out Norah's classic bug 'Rousseau' here. Search Cars \u00bb Browse ads | Place an ad \u00bb [Return to top] \u00a9 2012 Hearst Communications Inc.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\n  \"epu\": 1,\n  \"confidence\": 0.9,\n  \"focus_excerpt\": \"If the government borrows trillions of dollars, this will increase public anxiety and uncertainty, the conservatives worry.\"\n}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "google/gemini-2.5-flash"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 875,
+            "outputTokens": 50,
+            "inputTokensCostNanodollars": "262500",
+            "outputTokensCostNanodollars": "1007500",
+            "totalBackendLatencyMs": "2898"
+          },
+          "id": "epu_q2_short-47eec58f-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 875,
+        "outputTokens": 50,
+        "inputTokensCostNanodollars": "262500",
+        "outputTokensCostNanodollars": "1007500",
+        "totalBackendLatencyMs": "2898"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {}
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #553"
+}

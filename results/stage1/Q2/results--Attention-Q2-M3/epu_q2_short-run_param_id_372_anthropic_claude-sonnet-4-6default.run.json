@@ -1,0 +1,68 @@
+{
+  "taskVersion": {
+    "versionNumber": 1,
+    "name": "epu_q2_short",
+    "description": "",
+    "definition": "@kbench.task(name=\"epu_q2_short\")\ndef epu_q2_short(\n    llm,\n    article_key: str,\n    content_for_eval: str,\n    gold_epu: int,\n    short_pre: str = \"\",\n    short_post: str = \"\",\n    medium_pre: str = \"\",\n    medium_post: str = \"\",\n    long_pre: str = \"\",\n    long_post: str = \"\",\n    disagreement_flag: int = 0,\n) -> float:\n    out = model_json_call(llm, build_q2_prompt(content_for_eval, short_pre, short_post))\n    m = binary_match(out[\"epu\"], gold_epu)\n    return 0.0 if m is None else float(m)\n"
+  },
+  "modelVersion": {
+    "slug": "anthropic/claude-sonnet-4-6@default"
+  },
+  "state": "BENCHMARK_TASK_RUN_STATE_COMPLETED",
+  "startTime": "2026-03-31T18:34:52.080444Z",
+  "endTime": "2026-03-31T18:34:53.819695Z",
+  "conversations": [
+    {
+      "id": "epu_q2_short-2ab488c4",
+      "requests": [
+        {
+          "contents": [
+            {
+              "parts": [
+                {
+                  "text": "You are evaluating only the text between TARGET ARTICLE START and TARGET ARTICLE END.\n\nTask:\nDecide whether the TARGET ARTICLE expresses ECONOMIC POLICY UNCERTAINTY (EPU).\n\nLabeling rule:\n- EPU = 1 only if the TARGET ARTICLE discusses uncertainty about government policy,\n  policy decisions, possible policy actions, political outcomes affecting policy,\n  or the economic effects of policy.\n- EPU = 0 for general economics, elections, markets, war, uncertainty, or foreign events\n  unless the uncertainty is specifically tied to economic policy.\n\nIMPORTANT:\n- Use only the text inside TARGET ARTICLE START and TARGET ARTICLE END for the decision.\n- Return ONLY valid JSON.\n- No markdown. No explanation. No code fence.\n\nReturn exactly these keys:\n{\n  \"epu\": 0 or 1,\n  \"confidence\": number between 0 and 1,\n  \"focus_excerpt\": \"short quote from target article only\"\n}\n\nArchi\n\nTARGET ARTICLE START\nCONDOMINIisMS have become a familiar sight in Manhattan in the last couple of years, punctuating the skyline from Battery Park to Harlem and most neighborhtods in between. SPACE AVAILABLE New Manhattan condominiums on the market include, from top, the Avery, under construction on Riverside Boulevard at West 65th Street; the Ariel West, planned for Broadway and 99th Street; 165 Charles Street; and the Abbey at 205 East 16th Street. Julia Bohan and her son, Henry, are selling their apartment and planning to move to the Ariel East, under construction at Broadway and 99th. But as these condos are marketed \u2014 each carrying sky-high prices and a competitive list of amenities \u2014 and still more are breaking ground, it is hard not to wonder whether there are enough buyers to go around. Not only are there thousands of condos currently on the market, but a review of building plans submitted by developers to the state attorney general's office shows that this building binge has not yet slowed down and may produce a supply of new apartments that could be around for a while. So far, applications have been submitted for more than 24,000 condominium apartments since January 2004, 7,000 of them in the first half of this year alone. This increase in filings comes as supply in the current market has been rising steadily, with broker listings nearly doubling since 2004. And since many developers list only a sampling of apartments in new buildings, the numbers of apartments available for sale is pr\n\n[...TRUNCATED...]\n\nak Senbahar thought he had his finger on the pulse of the market when he put up a 16-story glass building designed by Richard Meier along the Hudson River, next dtor to two other Meier projects, and set prices as high as $20 million for the 31 apartments. But last October, after about half the building was in contract, sales stalled. Not a single contract was signed for about six months, until April 2006. Mr. Senbahar received a series of offers below the asking prices and could have sold out long ago, said James Lansill, a senior managing director of the Sunshine Group, which is marketing the building. Even brokers urged him to cut his prices, but he would not. \"He placed his bet and stuck with his bet,\" Mr. Lansill said. \"He had a belief in his goal that is unwavering. He just said when the building is completed, people are going to come and buy this.\" After vacant apartments were used for an exhibition of modern furniture earlier this year, sales ttok off once more, Mr. Lansill said. Since April, he said, five apartments have been sold, leaving five apartments available. Two of those five apartments are being combined into a larger unit, he said, and a price increase was just filed with the attorney general's office. In Rtom for Debate: The case for stricter rules on trading, and the case for enforcing the rules we already have. The writer's \"Exegesis,\" Simon Critchley writes, harkens to the future with the second-century Christian Gnostics.\nTARGET ARTICLE END\n\nArchiv"
+                }
+              ],
+              "role": "CONTENT_ROLE_USER",
+              "senderName": "User"
+            },
+            {
+              "parts": [
+                {
+                  "text": "{\"epu\": 0, \"confidence\": 0.95, \"focus_excerpt\": \"applications have been submitted for more than 24,000 condominium apartments since January 2004, 7,000 of them in the first half of this year alone\"}"
+                }
+              ],
+              "role": "CONTENT_ROLE_ASSISTANT",
+              "senderName": "anthropic/claude-sonnet-4-6@default"
+            }
+          ],
+          "metrics": {
+            "inputTokens": 943,
+            "outputTokens": 62,
+            "inputTokensCostNanodollars": "2829000",
+            "outputTokensCostNanodollars": "930000",
+            "totalBackendLatencyMs": "1683"
+          },
+          "id": "epu_q2_short-2ab488c4-req-1"
+        }
+      ],
+      "metrics": {
+        "inputTokens": 943,
+        "outputTokens": 62,
+        "inputTokensCostNanodollars": "2829000",
+        "outputTokensCostNanodollars": "930000",
+        "totalBackendLatencyMs": "1683"
+      },
+      "modelVersionSlug": "model_version_slug for conversation is DEPRECATED"
+    }
+  ],
+  "results": [
+    {
+      "type": "AGGREGATED",
+      "numericResult": {
+        "value": 1.0
+      }
+    }
+  ],
+  "pyRunId": "epu_q2_short-Run #373"
+}
